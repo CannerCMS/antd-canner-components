@@ -1,5 +1,42 @@
 {
-	"devDependencies": {
-		"lerna": "2.5.1"
-	}
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.1.2",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-import": "^1.6.3",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "css-loader": "^0.28.7",
+    "eslint": "^4.14.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-flowtype": "^2.40.1",
+    "eslint-plugin-prettier": "^2.4.0",
+    "eslint-plugin-react": "^7.5.1",
+    "express": "^4.16.2",
+    "flow-bin": "^0.61.0",
+    "lerna": "2.5.1",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
+    "node-sass": "^4.7.2",
+    "prettier": "^1.9.2",
+    "react": "^16.2.0",
+    "resolve-url-loader": "^2.2.1",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.1",
+    "webpack": "^3.10.0",
+    "webpack-dev-middleware": "^2.0.3",
+    "webpack-hot-middleware": "^2.21.0"
+  },
+  "theme": {
+    "primary-color": "#f2b173",
+    "item-active-bg": "rgba(242, 177, 115, 0.1)",
+    "item-hover-bg": "rgba(242, 177, 115, 0.3)",
+    "font-size-base": "14px"
+  },
+  "scripts": {
+    "start": "node devServer.js",
+    "lint": "prettier --write ./packages/*/src/**/*.js && eslint ./packages/*/src/**/*.js"
+  }
 }

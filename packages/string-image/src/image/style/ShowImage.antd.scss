@@ -1,0 +1,17 @@
+@import '../../../scss_share/color.scss';
+.custom-card {
+  .ant-btn {
+    border-color: $orangish;
+    background: $orangish;
+    i {
+      color: white;
+    }
+    &:hover {
+      border-color: $apricot;
+      background: white;
+      i {
+        color: $apricot;
+      }
+    }
+  }
+}
