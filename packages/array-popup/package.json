@@ -1,0 +1,22 @@
+{
+  "name": "@canner/array-popup",
+  "version": "0.0.1",
+  "description": "array popup",
+  "main": "src/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "form",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {
+    "antd": "^3.0.3",
+    "immutable": "^3.8.2",
+    "lodash": "^4.17.4",
+    "prop-types": "^15.6.0",
+    "react-css-modules": "^4.7.1",
+    "react-intl": "^2.4.0"
+  }
+}
