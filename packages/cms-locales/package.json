@@ -1,0 +1,19 @@
+{
+  "name": "@canner/cms-locales",
+  "version": "0.0.1",
+  "description": "plugins locals",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "locales",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "16.2.0",
+    "react-dom": "16.2.0"
+  }
+}
