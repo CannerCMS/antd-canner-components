@@ -7,5 +7,6 @@ flow-typed/
 [lints]
 
 [options]
+module.name_mapper='^utils\/\(.*\)$' -> '<PROJECT_ROOT>/utils/\1'
 
 [strict]

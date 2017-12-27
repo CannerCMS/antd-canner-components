@@ -3,11 +3,18 @@ import React, { Component } from "react";
 import ShowImage from "./image/ShowImage";
 import EditImage from "@canner/image-upload";
 import { Button } from "antd";
-import createImageService from "../utils/imageService";
+import createImageService from "@canner/image-service";
+import ImageServiceConfig from "@canner/image-service/imageService";
 
-type Props = defaultProps & { value: string };
+type Props = defaultProps & {
+  value: string
+};
+type State = {
+  editPopup: boolean
+};
 
-export default class Image extends Component<Props> {
+export default class Image extends Component<Props, State> {
+  serviceConfig: ImageServiceConfig;
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -37,17 +44,21 @@ export default class Image extends Component<Props> {
     }
   }
 
-  showEditPopup() {
-    this.setState({ editPopup: true });
-  }
+  showEditPopup = () => {
+    this.setState({
+      editPopup: true
+    });
+  };
 
-  closeEditPopup() {
-    this.setState({ editPopup: false });
-  }
+  closeEditPopup = () => {
+    this.setState({
+      editPopup: false
+    });
+  };
 
-  onChange(value) {
+  onChange = (value: Array<string>) => {
     this.props.onChange(this.props.id, "update", value[0]);
-  }
+  };
 
   render() {
     const { value } = this.props;
@@ -60,15 +71,15 @@ export default class Image extends Component<Props> {
     return (
       <div id="react-qa-plugin-image">
         <Button type="primary" onClick={this.showEditPopup}>
-          + 新增圖片
-        </Button>
+          +新增圖片{" "}
+        </Button>{" "}
         <EditImage
           onChange={this.onChange}
           editPopup={editPopup}
           serviceConfig={this.serviceConfig}
           closeEditPopup={this.closeEditPopup}
           multiple={false}
-        />
+        />{" "}
       </div>
     );
   }

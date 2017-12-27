@@ -7,6 +7,7 @@ declare type defaultProps = {
   title: string,
   description: string,
   value: any,
+  items: { [string]: any },
   uiParams: { [string]: any },
   validation: { [string]: any }, // The validator HOC deal with it.
   readOnly: boolean,
