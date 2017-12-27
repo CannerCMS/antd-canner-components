@@ -2,7 +2,7 @@
   "name": "@canner/cms-plugin-share-card",
   "version": "0.0.1",
   "description": "string card",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {},
   "keywords": [
     "cms",

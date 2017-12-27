@@ -2,7 +2,7 @@
   "name": "@canner/cms-plugin-string-date-time-picker",
   "version": "0.0.1",
   "description": "string date time picker",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {},
   "keywords": [
     "cms",

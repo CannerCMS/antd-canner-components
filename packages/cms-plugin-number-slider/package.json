@@ -2,7 +2,7 @@
   "name": "@canner/cms-plugin-number-slider",
   "version": "0.0.1",
   "description": "number slider",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {},
   "keywords": [
     "cms",

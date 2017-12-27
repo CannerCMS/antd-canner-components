@@ -2,7 +2,7 @@
   "name": "@canner/cms-plugin-array-tab-left",
   "version": "0.0.1",
   "description": "array tab lef",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {},
   "keywords": [
     "cms",

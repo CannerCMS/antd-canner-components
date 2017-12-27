@@ -2,7 +2,7 @@
   "name": "@canner/cms-plugin-string-select",
   "version": "0.0.1",
   "description": "string select",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {},
   "keywords": [
     "cms",

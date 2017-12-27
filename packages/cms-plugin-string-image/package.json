@@ -2,7 +2,7 @@
   "name": "@canner/cms-plugin-string-image",
   "version": "0.0.1",
   "description": "string image",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {},
   "keywords": [
     "cms",

@@ -2,7 +2,7 @@
   "name": "@canner/cms-plugin-array-gallery",
   "version": "0.0.1",
   "description": "array gallery",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {},
   "keywords": [
     "cms",

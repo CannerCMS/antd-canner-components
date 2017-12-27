@@ -2,7 +2,7 @@
   "name": "@canner/cms-plugin-number-text-input",
   "version": "0.0.1",
   "description": "number text input",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {},
   "keywords": [
     "cms",

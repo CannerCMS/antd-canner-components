@@ -2,7 +2,7 @@
   "name": "@canner/cms-plugin-string-editor",
   "version": "0.0.1",
   "description": "string editor",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {},
   "keywords": [
     "cms",

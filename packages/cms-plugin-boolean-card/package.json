@@ -2,7 +2,7 @@
   "name": "@canner/cms-plugin-boolean-card",
   "version": "0.0.1",
   "description": "boolean card",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {},
   "keywords": [
     "cms",
