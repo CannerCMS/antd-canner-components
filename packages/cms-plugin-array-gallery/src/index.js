@@ -8,8 +8,8 @@ import Item from "./item";
 import Add from "./add";
 import EditImage from "@canner/image-upload";
 import "./style/index.css";
-import code from "@canner/image-service-config";
-import ImageServiceConfig from "@canner/image-service-config/lib/imageService";
+import createImageService from "@canner/image-service-config";
+import typeof ImageServiceConfig from "@canner/image-service-config/lib/imageService";
 
 type Props = defaultProps & {
   uiParams: {
@@ -33,7 +33,7 @@ export default class Gallery extends Component<Props, State> {
   thumbKey: string;
   titleKey: string;
   serviceConfig: ImageServiceConfig;
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     const { uiParams } = props;
     this.imageKey = uiParams.imageKey || "image";
@@ -43,7 +43,7 @@ export default class Gallery extends Component<Props, State> {
       editPopup: false
     };
     const { service, dir, filename } = uiParams;
-    this.serviceConfig = code/({
+    this.serviceConfig = createImageService({
       service,
       dir,
       filename
