@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 import { Input } from "antd";
-
+const { TextArea } = Input;
 type Props = defaultProps & {
   value: string,
   id: string
@@ -14,7 +14,7 @@ type State = {
 
 export default class TextareaString extends Component<Props, State> {
   isOnComposition: boolean;
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.isOnComposition = false;
     this.state = {
@@ -50,13 +50,13 @@ export default class TextareaString extends Component<Props, State> {
   };
 
   render() {
+    console.log('textarea render');
     const { value } = this.state;
     const { readOnly } = this.props;
     return (
       <div id="input">
-        <Input
+        <TextArea
           disable={readOnly}
-          type="textarea"
           value={value}
           onChange={this.onChange}
         />

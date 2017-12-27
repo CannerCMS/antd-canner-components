@@ -12,9 +12,18 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
+    "@canner/image-service-config": "^0.0.1",
     "@canner/image-upload": "^0.5.2",
     "grid-breakpoint": "^1.0.0",
     "grid-draggable": "^1.0.0",
     "immutable": "^3.8.2"
+  },
+  "peerDependencies": {
+    "@canner/canner-config": "^0.1.0",
+    "firebase": "^4.8.1"
+  },
+  "devDependencies": {
+    "@canner/canner-config": "^0.1.0",
+    "firebase": "^4.8.1"
   }
 }

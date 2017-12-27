@@ -1,12 +1,12 @@
 {
-  "name": "@canner/cms-plugin-number-input",
+  "name": "@canner/cms-plugin-object-fieldset",
   "version": "0.0.1",
   "description": "number input",
   "main": "lib/index.js",
   "scripts": {},
   "keywords": [
     "cms",
-    "number",
+    "fieldset",
     "canner"
   ],
   "author": "canner",

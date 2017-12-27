@@ -40,13 +40,16 @@
   "scripts": {
     "start": "node devServer.js",
     "lint": "prettier --write ./packages/*/src/**/*.js && eslint ./packages/*/src/**/*.js",
-    "build": "lerna exec --parallel -- babel src -d lib --copy-files"
+    "build": "lerna exec --parallel -- babel src -d lib --copy-files",
+    "build:watch": "lerna exec --parallel -- babel src -d lib --copy-files -w"
   },
   "dependencies": {
     "antd": "^3.0.3",
+    "imagesloaded": "^4.1.3",
     "immutable": "^3.8.2",
     "lodash": "^4.17.4",
     "react-css-modules": "^4.7.1",
+    "react-icons": "^2.2.7",
     "react-intl": "^2.4.0"
   }
 }

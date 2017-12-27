@@ -9,6 +9,7 @@ import { List } from "immutable";
 import CSSModules from "react-css-modules";
 import styles from "./style/tab.scss";
 import "./style/index.lib.scss";
+import {injectIntl} from 'react-intl';
 
 type Props = defaultProps & {
   value: List<any>,
@@ -24,6 +25,7 @@ type State = {
   activeKey: number
 };
 
+@injectIntl
 @CSSModules(styles)
 export default class TabUi extends Component<Props, State> {
   constructor(props) {
@@ -111,7 +113,6 @@ export default class TabUi extends Component<Props, State> {
       allowSwap,
       intl
     } = this.props;
-
     const { activeKey } = this.state;
     const position = uiParams.position || "top";
     const panelFields = [];
@@ -120,7 +121,7 @@ export default class TabUi extends Component<Props, State> {
       const thisId = generateId(id, i, "array");
       // generate panel title
       let title;
-      const defaultTitle = `${intl.formatMessage({
+    const defaultTitle = `${intl.formatMessage({
         id: "array.tab.item"
       })} ${i + 1}`;
       if (uiParams.titleKey) {
@@ -148,7 +149,7 @@ export default class TabUi extends Component<Props, State> {
         </TabPane>
       );
     });
-
+    
     return (
       <div styleName="tab-container">
         <Tabs

@@ -8,8 +8,8 @@ import Item from "./item";
 import Add from "./add";
 import EditImage from "@canner/image-upload";
 import "./style/index.css";
-import createImageService from "../../utils/imageService";
-import ImageServiceConfig from "@canner/image-service/imageService";
+import code from "@canner/image-service-config";
+import ImageServiceConfig from "@canner/image-service-config/lib/imageService";
 
 type Props = defaultProps & {
   uiParams: {
@@ -43,7 +43,7 @@ export default class Gallery extends Component<Props, State> {
       editPopup: false
     };
     const { service, dir, filename } = uiParams;
-    this.serviceConfig = createImageService({
+    this.serviceConfig = code/({
       service,
       dir,
       filename
