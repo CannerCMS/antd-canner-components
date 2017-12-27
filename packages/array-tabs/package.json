@@ -1,0 +1,20 @@
+{
+  "name": "@canner/array-tabs",
+  "version": "0.0.1",
+  "description": "array tabs",
+  "main": "src/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "input",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {
+    "@canner/rc-tabs": "^7.1.5",
+    "antd": "^3.0.3",
+    "immutable": "^3.8.2",
+    "react-css-modules": "^4.7.1"
+  }
+}

@@ -1,0 +1,75 @@
+.#{$tabs-prefix-cls} {
+  &-bottom {
+    overflow-x: hidden;
+  }
+
+  &-bottom > &-bar {
+    width: 100%;
+    border-top: 1px solid #f3f3f3;
+    display: flex;
+    flex-direction: row;
+    div:nth-child(1) {
+      order: 1;
+      align-self: center;
+    }
+
+    .#{$tabs-prefix-cls}-nav-container-scrolling {
+      padding-top: 0px;
+      padding-bottom: 0px;
+      padding-left: 32px;
+      padding-right: 32px;
+    }
+
+    .#{$tabs-prefix-cls}-nav-scroll {
+      width: 99999px;
+    }
+
+    .#{$tabs-prefix-cls}-nav-wrap {
+      width: 100%;
+    }
+
+    .#{$tabs-prefix-cls}-tab-next {
+      right: 2px;
+
+      &-icon:before {
+        content: ">";
+      }
+    }
+
+    .#{$tabs-prefix-cls}-tab-prev {
+      left: 0;
+      &-icon:before {
+        content: "<";
+      }
+    }
+
+    .#{$tabs-prefix-cls}-tab-prev, .#{$tabs-prefix-cls}-tab-next {
+      margin-right: -2px;
+      width: 32px;
+      height: 100%;
+      top: 0;
+      text-align: center;
+    }
+
+    .#{$tabs-prefix-cls}-ink-bar {
+      height: 2px;
+      top: 3px;
+      left: 0;
+    }
+
+    .#{$tabs-prefix-cls}-tab {
+      float: left;
+      height: 100%;
+      margin-right: 30px;
+    }
+  }
+
+  &-bottom > &-content-animated, &-bottom > &-content-no-animated {
+    flex-direction: row;
+    display: flex;
+    .#{$tabs-prefix-cls}-tabpane {
+      width: 100%;
+      padding: 2%;
+    }
+  }
+}
