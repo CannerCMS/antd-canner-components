@@ -1,0 +1,15 @@
+{
+  "name": "@canner/cms-plugin-number-text-input",
+  "version": "0.0.1",
+  "description": "number text input",
+  "main": "src/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "number input",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {}
+}

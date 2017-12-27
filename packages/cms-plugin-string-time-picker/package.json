@@ -1,0 +1,17 @@
+{
+  "name": "@canner/cms-plugin-string-time-picker",
+  "version": "0.0.1",
+  "description": "string time picker",
+  "main": "src/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "time-picker",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {
+    "moment-timezone": "^0.5.14"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "@canner/scms-plugin-tring-radio",
+  "version": "0.0.1",
+  "description": "string radio",
+  "main": "src/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "radio",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "@canner/cms-plugin-array-tab-right",
+  "version": "0.0.1",
+  "description": "array tab right",
+  "main": "src/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "tab",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {}
+}

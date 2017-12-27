@@ -1,0 +1,17 @@
+{
+  "name": "@canner/cms-plugin-string-card",
+  "version": "0.0.1",
+  "description": "string card",
+  "main": "src/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "card",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}

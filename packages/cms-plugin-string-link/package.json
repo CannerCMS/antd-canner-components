@@ -1,0 +1,17 @@
+{
+  "name": "@canner/cms-plugin-string-link",
+  "version": "0.0.1",
+  "description": "string input",
+  "main": "src/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "link",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {
+    "react-intl": "^2.4.0"
+  }
+}

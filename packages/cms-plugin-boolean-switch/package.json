@@ -1,0 +1,17 @@
+{
+  "name": "@canner/cms-plugin-boolean-switch",
+  "version": "0.0.1",
+  "description": "boolean-switch",
+  "main": "src/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "boolean",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {
+    "react-intl": "^2.4.0"
+  }
+}

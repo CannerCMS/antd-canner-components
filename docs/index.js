@@ -2,13 +2,25 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-import TextInput from "packages/string-input";
-import Editor from "packages/string-editor";
-import Tabs from "packages/array-tabs";
+import TextInput from "packages/cms-plugin-string-input";
+import Editor from "packages/cms-plugin-string-editor";
+import Tabs from "packages/cms-plugin-array-tabs";
+
+const onChange = (id, type, value) => {
+  console.log(id, type, value);
+};
+
+const props = {
+  uiParams: {},
+  onChange,
+  id: 'id',
+  generateId: () => 'id2',
+  createEmptyData: () => undefined,
+}
 
 ReactDOM.render(
   <div>
-    <Editor />
+    <Tabs {...props} />
   </div>,
   document.getElementById("root")
 );

@@ -1,0 +1,18 @@
+{
+  "name": "@canner/cms-plugin-array-tabs",
+  "version": "0.0.1",
+  "description": "array tabs",
+  "main": "src/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "tabs",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {
+    "@canner/rc-tabs": "^7.1.8",
+    "immutable": "^3.8.2"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "@canner/cms-plugin-share-card",
+  "version": "0.0.1",
+  "description": "string card",
+  "main": "src/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "card",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {
+    "styled-components": "^2.4.0"
+  },
+  "private": true
+}
