@@ -7,6 +7,14 @@ flow-typed/
 [lints]
 
 [options]
+esproposal.decorators=ignore
+module.file_ext=.js
+module.file_ext=.json
+module.file_ext=.jsx
+module.file_ext=.scss
+module.file_ext=.css
+module.ignore_non_literal_requires=true
+
 module.name_mapper='^utils\/\(.*\)$' -> '<PROJECT_ROOT>/utils/\1'
 
 [strict]

@@ -1,25 +1,33 @@
+// @flow
+
 import React from "react";
 import PropTypes from "prop-types";
-import immutable from "immutable";
+import { fromJS } from "immutable";
 import { Modal } from "antd";
 
 import ChangeMethodComponent from "./changeMethodComponent";
 import { FormattedMessage } from "react-intl";
 import defaultMessage from "@canner/cms-locales";
 
+type Props = {
+  onChange: (id: any, type: string, value: any) => void,
+  createAction: Array<string>,
+  id: string,
+  renderChildren: Function,
+  items: {[string]: any},
+  createEmptyData: Function
+}
+
 export default class EditModal extends ChangeMethodComponent {
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
 
-    this.showModal = this.showModal.bind(this);
-    this.handleCancel = this.handleCancel.bind(this);
-    this.handleOk = this.handleOk.bind(this);
     this.onChange = super.onChange.bind(this);
     this.onChangeMulti = super.onChangeMulti.bind(this);
     this.onChangeApi = super.onChangeApi.bind(this);
     this.state = {
       visible: false,
-      record: immutable.fromJS({}),
+      record: fromJS({}),
       idPath: "",
       errors: []
     };
@@ -33,24 +41,24 @@ export default class EditModal extends ChangeMethodComponent {
     updateAction: PropTypes.arrayOf(PropTypes.string).isRequired
   };
 
-  showModal(record, i) {
+  showModal = (record: any, i: number) => {
     this.setState({
       visible: true,
-      record: immutable.fromJS(record),
+      record: fromJS(record),
       idPath: [this.props.id, i].join("/")
     });
   }
 
-  handleCancel() {
+  handleCancel = () => {
     this.setState({
       visible: false,
-      record: immutable.fromJS({}),
+      record: fromJS({}),
       idPath: null,
       errors: []
     });
   }
 
-  handleOk() {
+  handleOk = () => {
     const { onChange } = this.props;
     const { idPath } = this.state;
     const that = this;

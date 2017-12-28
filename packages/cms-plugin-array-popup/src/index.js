@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 import { Table, Button } from "antd";
-import immutable from "immutable";
+import { fromJS } from "immutable";
 import renderFunc from "./renderFunc";
 import showDeleteConfirm from "./showDeleteConfirm";
 import PropTypes from "prop-types";
@@ -11,7 +11,7 @@ import AddModal from "./addModal";
 import isEmpty from "lodash/isEmpty";
 import isNull from "lodash/isNull";
 import { FormattedMessage } from "react-intl";
-import defaultMessage from "./locales";
+import defaultMessage from "@canner/cms-locales";
 
 type Props = defaultProps & {
   value: Array<any>,
@@ -24,12 +24,16 @@ type Props = defaultProps & {
       dataIndex: number,
       renderTemplate: string
     }>
-  }
+  },
+  onChangeMulti: Function,
+  showPagination: boolean
 };
 
 export default class PopupArrayPlugin extends Component<Props> {
+  editModal: ?HTMLDivElement;
+  addModal: ?HTMLDivElement;
   static defaultProps = {
-    value: immutable.fromJS([]),
+    value: fromJS([]),
     showPagination: true,
     schema: {}
   };
@@ -39,9 +43,8 @@ export default class PopupArrayPlugin extends Component<Props> {
     // query is the function from endpoint to fetch data
   };
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
-    this.state = {};
   }
 
   render() {
@@ -97,7 +100,10 @@ export default class PopupArrayPlugin extends Component<Props> {
           return (
             <Button
               type="primary"
-              onClick={() => this.editModal.showModal(record, record.__index)}
+              onClick={() => {
+                if (this.editModal)
+                  this.editModal.showModal(record, record.__index);
+              }}
             >
               {editText}
             </Button>
@@ -142,7 +148,10 @@ export default class PopupArrayPlugin extends Component<Props> {
         {isEmpty(createAction) ? null : (
           <Button
             type="primary"
-            onClick={() => this.addModal.showModal(value.size)}
+            onClick={() => {
+              if (this.addModal)
+                this.addModal.showModal(value.size);
+            }}
           >
             {addText}
           </Button>

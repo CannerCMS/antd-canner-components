@@ -1,46 +1,40 @@
 // @flow
 
 import React from "react";
-import PropTypes from "prop-types";
-import immutable from "immutable";
-import { Modal, message } from "antd";
+import { fromJS } from "immutable";
+import { Modal } from "antd";
 
 import ChangeMethodComponent from "./changeMethodComponent";
 import { FormattedMessage } from "react-intl";
 import defaultMessage from "@canner/cms-locales";
 import pick from "lodash/pick";
 
-export default class AddModal extends ChangeMethodComponent {
-  constructor(props) {
-    super(props);
+type Props = {
+  onChange: (id: any, type: string, value: any) => void,
+  createAction: Array<string>,
+  id: string,
+  renderChildren: Function,
+  items: {[string]: any},
+  createEmptyData: Function
+}
 
-    this.showModal = this.showModal.bind(this);
-    this.handleCancel = this.handleCancel.bind(this);
-    this.handleOk = this.handleOk.bind(this);
+export default class AddModal extends ChangeMethodComponent {
+  constructor(props: Props) {
+    super(props);
     this.onChange = super.onChange.bind(this);
     this.onChangeMulti = super.onChangeMulti.bind(this);
     this.onChangeApi = super.onChangeApi.bind(this);
     this.state = {
       visible: false,
-      record: immutable.fromJS({}),
+      record: fromJS({}),
       idPath: null,
       errors: []
     };
   }
 
-  static propTypes = {
-    id: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    onChangeMulti: PropTypes.func.isRequired,
-    renderChildren: PropTypes.func.isRequired,
-    createAction: PropTypes.arrayOf(PropTypes.string).isRequired
-  };
-
-  showModal(order) {
+  showModal = (order: number) => {
     const { createAction, createEmptyData, id, items } = this.props;
     const schema = pick(items, createAction);
-    console.log(schema);
-    console.log(id, order);
     this.setState({
       visible: true,
       record: createEmptyData(schema),
@@ -48,16 +42,16 @@ export default class AddModal extends ChangeMethodComponent {
     });
   }
 
-  handleCancel() {
+  handleCancel = () => {
     this.setState({
       visible: false,
-      record: immutable.fromJS({}),
+      record: fromJS({}),
       idPath: null,
       errors: []
     });
   }
 
-  handleOk() {
+  handleOk = () => {
     const { onChange } = this.props;
     const { idPath } = this.state;
     const that = this;
