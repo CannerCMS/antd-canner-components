@@ -5,7 +5,7 @@ import { Modal } from "antd";
 
 import ChangeMethodComponent from "./changeMethodComponent";
 import { FormattedMessage } from "react-intl";
-import defaultMessage from "../locales";
+import defaultMessage from "@canner/cms-locales";
 
 export default class EditModal extends ChangeMethodComponent {
   constructor(props) {

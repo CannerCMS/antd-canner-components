@@ -12,6 +12,7 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
+    "@canner/cms-locales": "^0.0.1",
     "prop-types": "^15.6.0"
   }
 }

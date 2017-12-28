@@ -5,7 +5,7 @@ module.exports = {
     browser: true
   },
   rules: {
-    "new-cap": [2, { capIsNewExceptions: ["CSSModules", "List"] }],
+    "new-cap": 0,
     "max-len": 0,
     "require-jsdoc": 0,
     "no-return-assign": 0,

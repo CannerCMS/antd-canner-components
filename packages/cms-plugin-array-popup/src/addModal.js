@@ -7,7 +7,7 @@ import { Modal, message } from "antd";
 
 import ChangeMethodComponent from "./changeMethodComponent";
 import { FormattedMessage } from "react-intl";
-import defaultMessage from "./locales";
+import defaultMessage from "@canner/cms-locales";
 import pick from "lodash/pick";
 
 export default class AddModal extends ChangeMethodComponent {
@@ -58,29 +58,12 @@ export default class AddModal extends ChangeMethodComponent {
   }
 
   handleOk() {
-    const { createAction, onChange } = this.props;
+    const { onChange } = this.props;
     const { idPath } = this.state;
-    const { validators } = createAction;
-    const record = this.state.record.toJS();
     const that = this;
 
-    function triggerAdd() {
-      onChange(idPath, "create", that.state.record);
-      that.handleCancel();
-    }
-
-    if (validators) {
-      qaValidator(validators, record, function(errors) {
-        if (errors && errors.length > 0) {
-          message.error("表格內容有誤，請修正！");
-          that.setState({ errors });
-        } else {
-          triggerAdd();
-        }
-      });
-    } else {
-      triggerAdd();
-    }
+    onChange(idPath, "create", that.state.record);
+    that.handleCancel();
   }
 
   render() {

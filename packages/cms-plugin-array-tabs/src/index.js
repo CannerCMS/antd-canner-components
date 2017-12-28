@@ -22,16 +22,16 @@ type Props = defaultProps & {
 } & otherProps;
 
 type State = {
-  activeKey: number
+  activeKey: string
 };
 
 @injectIntl
 @CSSModules(styles)
 export default class TabUi extends Component<Props, State> {
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.state = {
-      activeKey: 0
+      activeKey: '.$0'
     };
   }
 
@@ -39,7 +39,7 @@ export default class TabUi extends Component<Props, State> {
     // change active key when user delete last tab
     let { activeKey } = this.state;
     const valueSize = nextProps.value.size;
-    if (valueSize < Number(activeKey, 10) + 1) {
+    if (valueSize < Number(activeKey) + 1) {
       activeKey = valueSize - 1;
       this.setState({ activeKey });
     }
@@ -141,9 +141,9 @@ export default class TabUi extends Component<Props, State> {
       });
       panelFields.push(
         <TabPane
-          tab={Number(activeKey, 10) === i ? [title, deleteBtn] : title}
+          tab={activeKey === `.$${i}` ? [title, deleteBtn] : title}
           id={thisId}
-          key={i}
+          key={`${i}`}
         >
           {childrenWithProps}
         </TabPane>

@@ -1,64 +1,43 @@
 // @flow
 import React, { PureComponent } from "react";
-import PropTypes from "prop-types";
-import { Input } from "antd";
+import { InputNumber } from "antd";
+import isNaN from "lodash/isNaN";
+
 
 type State = {
   value: string
 };
 
-type Props = defaultProps & { value: string };
-
-export default class StringInput extends PureComponent<Props, State> {
-  isOnComposition: boolean;
-  constructor(props: defaultProps) {
-    super(props);
-    this.isOnComposition = false;
-    this.state = {
-      value: props.value
-    };
+type Props = defaultProps & {
+  value: string,
+  uiParams: {
+    min: number,
+    max: number,
+    step: number,
+    unit: string
   }
+};
 
-  componentWillReceiveProps(nextProps: Props) {
-    this.setState({
-      value: nextProps.value
-    });
+export default class Input extends PureComponent<Props, State> {
+  onChange = (val: any) => {
+    const value = isNaN(Number(val)) ? 0 : Number(val);
+    this.props.onChange(this.props.id, "update", value);
   }
-
-  onChange = (e: any) => {
-    this.setState(
-      {
-        value: e.target.value
-      },
-      () => {
-        if (!this.isOnComposition) {
-          this.props.onChange(this.props.id, "update", this.state.value);
-        }
-      }
-    );
-  };
-
-  onCompositionStart = () => {
-    this.isOnComposition = true;
-  };
-
-  onCompositionEnd = () => {
-    this.isOnComposition = false;
-    this.props.onChange(this.props.id, "update", this.state.value);
-  };
 
   render() {
-    const { value } = this.state;
-    const { readOnly } = this.props;
+    const { value, uiParams } = this.props;
+
+    let formatter =
+      uiParams && uiParams.unit ? val => `${val} ${uiParams.unit}` : val => val;
     return (
       <div id="input">
-        <Input
-          disabled={readOnly}
-          type="text"
-          value={value}
+        <InputNumber
+          min={uiParams && uiParams.min}
+          max={uiParams && uiParams.max}
+          step={uiParams && uiParams.step}
+          formatter={formatter}
+          value={value} // eslint-disable-line
           onChange={this.onChange}
-          onCompositionEnd={this.onCompositionEnd}
-          onCompositionStart={this.onCompositionStart}
         />
       </div>
     );
