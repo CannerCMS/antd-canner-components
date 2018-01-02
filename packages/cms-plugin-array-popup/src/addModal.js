@@ -23,7 +23,6 @@ export default class AddModal extends ChangeMethodComponent {
     super(props);
     this.onChange = super.onChange.bind(this);
     this.onChangeMulti = super.onChangeMulti.bind(this);
-    this.onChangeApi = super.onChangeApi.bind(this);
     this.state = {
       visible: false,
       record: fromJS({}),

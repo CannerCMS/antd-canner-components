@@ -102,7 +102,7 @@ export default class PopupArrayPlugin extends Component<Props> {
               type="primary"
               onClick={() => {
                 if (this.editModal)
-                  this.editModal.showModal(record, record.__index);
+                  this.editModal.showModal(value, record.__index);
               }}
             >
               {editText}

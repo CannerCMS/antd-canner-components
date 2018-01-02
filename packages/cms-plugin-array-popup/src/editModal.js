@@ -24,10 +24,9 @@ export default class EditModal extends ChangeMethodComponent {
 
     this.onChange = super.onChange.bind(this);
     this.onChangeMulti = super.onChangeMulti.bind(this);
-    this.onChangeApi = super.onChangeApi.bind(this);
     this.state = {
       visible: false,
-      record: fromJS({}),
+      value: fromJS([]),
       idPath: "",
       errors: []
     };
@@ -41,10 +40,10 @@ export default class EditModal extends ChangeMethodComponent {
     updateAction: PropTypes.arrayOf(PropTypes.string).isRequired
   };
 
-  showModal = (record: any, i: number) => {
+  showModal = (value: any, i: number) => {
     this.setState({
       visible: true,
-      record: fromJS(record),
+      value: value,
       idPath: [this.props.id, i].join("/")
     });
   }
@@ -52,7 +51,7 @@ export default class EditModal extends ChangeMethodComponent {
   handleCancel = () => {
     this.setState({
       visible: false,
-      record: fromJS({}),
+      value: fromJS([]),
       idPath: null,
       errors: []
     });
@@ -60,14 +59,15 @@ export default class EditModal extends ChangeMethodComponent {
 
   handleOk = () => {
     const { onChange } = this.props;
-    const { idPath } = this.state;
+    const { value, idPath } = this.state;
     const that = this;
-    onChange(idPath, "update", that.state.record);
+    const paths = idPath.split('/');
+    onChange(idPath, "update", value.get(paths[1]));
     that.handleCancel();
   }
 
   render() {
-    const { visible, record, idPath } = this.state;
+    const { visible, value, idPath } = this.state;
     const { updateAction, renderChildren } = this.props;
     return (
       <Modal
@@ -90,7 +90,7 @@ export default class EditModal extends ChangeMethodComponent {
       >
         {visible
           ? renderChildren(child => ({
-              value: record,
+              value: value,
               id: idPath,
               onChange: this.onChange,
               // not work now, need to resolve it

@@ -11,7 +11,6 @@ export default class ChangeMethodComponent extends Component {
     let modifyId;
     let type;
     let value;
-    const { id } = this.props;
     if (res.length === 3) {
       [modifyId, type, value] = res;
     } else if (res[1] === "delete" || res[1] === "swap") {
@@ -20,47 +19,27 @@ export default class ChangeMethodComponent extends Component {
     } else if (res.length === 2) {
       [type, value] = res;
     }
-
-    if (type === "swap") {
-      const { firstId, secondId } = modifyId;
-
-      modifyId = {
-        firstId: firstId.slice(id.length + 1, firstId.length),
-        secondId: secondId.slice(id.length + 1, secondId.length)
-      };
-    } else {
-      modifyId = modifyId.slice(id.length + 1, modifyId.length);
-    }
     this.setState(function(prevState) {
       const updated = this.editCannerJSON(
-        prevState.record,
+        prevState.value,
         modifyId,
         type,
         value
       );
       return {
-        record: updated
+        value: updated
       };
     });
   }
 
-  onChangeApi(modifyId, type, obj = {}) {
-    let { record } = this.state;
-    const { id } = this.props;
-    const newId = modifyId.slice(id.length + 1, modifyId.length);
-    const updated = this.editCannerJSON(record, newId, type, obj.payload);
-    this.setState({ record: updated });
-  }
-
   onChangeMulti(changeQueue) {
-    let { record } = this.state;
-    const { id } = this.props;
+    let stateValue = this.state.value;
     changeQueue.forEach(item => {
       let { id: modifyId, type, value } = item;
-      modifyId = modifyId.slice(id.length + 1, modifyId.length);
-      record = this.editCannerJSON(record, modifyId, type, value);
+      modifyId = modifyId.slice();
+      stateValue = this.editCannerJSON(stateValue, modifyId, type, value);
     });
-    this.setState({ record });
+    this.setState({ value: stateValue });
   }
 
   editCannerJSON(cannerJSON, id, type, value) {
@@ -70,7 +49,7 @@ export default class ChangeMethodComponent extends Component {
       return immutable.fromJS(value);
     }
     if (type !== "swap") {
-      idPath = this.generateIdPath(id);
+      idPath = id.split('/').slice(1);
     }
     if (type === "update") {
       updated = cannerJSON.setIn(idPath, value);
@@ -81,14 +60,13 @@ export default class ChangeMethodComponent extends Component {
         updated = cannerJSON.setIn(idPath.slice(0, -1), new immutable.List());
       updated = updated.setIn(idPath, value);
     } else if (type === "swap") {
-      const firstIdPath = this.generateIdPath(id.firstId);
-      const secondIdPath = this.generateIdPath(id.secondId);
+      const firstIdPath = id.firstId.split('/').slice(1);
+      const secondIdPath = id.secondId.split('/').slice(1);
       const firstValue = cannerJSON.getIn(firstIdPath);
       const secondValue = cannerJSON.getIn(secondIdPath);
       updated = cannerJSON.setIn(firstIdPath, secondValue);
       updated = updated.setIn(secondIdPath, firstValue);
     }
-
     return updated;
   }
 

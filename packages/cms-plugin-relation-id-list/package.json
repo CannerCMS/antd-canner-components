@@ -1,0 +1,19 @@
+{
+  "name": "@canner/cms-plugin-relation-id-list",
+  "version": "0.0.1",
+  "description": "string input",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "input",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "16.2.0",
+    "react-dom": "16.2.0"
+  }
+}

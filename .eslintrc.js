@@ -24,6 +24,7 @@ module.exports = {
   globals: {
     process: true,
     defaultProps: true,
-    otherProps: true
+    otherProps: true,
+    changeArg: true
   }
 };
