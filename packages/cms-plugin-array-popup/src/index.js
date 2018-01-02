@@ -150,7 +150,7 @@ export default class PopupArrayPlugin extends Component<Props> {
             type="primary"
             onClick={() => {
               if (this.addModal)
-                this.addModal.showModal(value.size);
+                this.addModal.showModal(value, value.size);
             }}
           >
             {addText}

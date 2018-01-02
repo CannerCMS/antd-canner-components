@@ -25,18 +25,18 @@ export default class AddModal extends ChangeMethodComponent {
     this.onChangeMulti = super.onChangeMulti.bind(this);
     this.state = {
       visible: false,
-      record: fromJS({}),
+      value: fromJS([]),
       idPath: null,
       errors: []
     };
   }
 
-  showModal = (order: number) => {
+  showModal = (value: any, order: number) => {
     const { createAction, createEmptyData, id, items } = this.props;
     const schema = pick(items, createAction);
     this.setState({
       visible: true,
-      record: createEmptyData(schema),
+      value: value.push(createEmptyData(schema)),
       idPath: [id, order].join("/")
     });
   }
@@ -44,7 +44,7 @@ export default class AddModal extends ChangeMethodComponent {
   handleCancel = () => {
     this.setState({
       visible: false,
-      record: fromJS({}),
+      value: fromJS([]),
       idPath: null,
       errors: []
     });
@@ -54,14 +54,15 @@ export default class AddModal extends ChangeMethodComponent {
     const { onChange } = this.props;
     const { idPath } = this.state;
     const that = this;
+    const paths = idPath.split('/');
 
-    onChange(idPath, "create", that.state.record);
+    onChange(idPath, "create", that.state.value.get(paths[1]));
     that.handleCancel();
   }
 
   render() {
     const { createAction, renderChildren } = this.props;
-    const { visible, record, idPath } = this.state;
+    const { visible, value, idPath } = this.state;
     return (
       <Modal
         width="80%"
@@ -83,7 +84,7 @@ export default class AddModal extends ChangeMethodComponent {
       >
         {visible
           ? renderChildren(child => ({
-              value: record,
+              value: value,
               id: idPath,
               onChange: this.onChange,
               // not work now, need to resolve it

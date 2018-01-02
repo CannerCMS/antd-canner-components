@@ -61,8 +61,8 @@ export default class EditModal extends ChangeMethodComponent {
     const { onChange } = this.props;
     const { value, idPath } = this.state;
     const that = this;
-    const paths = idPath.split('/');
-    onChange(idPath, "update", value.get(paths[1]));
+    const paths = idPath.split('/').slice(1);
+    onChange(idPath, "update", value.getIn(paths));
     that.handleCancel();
   }
 
