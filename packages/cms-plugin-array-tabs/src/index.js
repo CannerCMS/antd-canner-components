@@ -19,7 +19,7 @@ type Props = defaultProps & {
     position?: "top" | "left" | "right" | "bottom"
   },
   allowSwap: boolean
-} & otherProps;
+};
 
 type State = {
   activeKey: string
@@ -136,8 +136,7 @@ export default class TabUi extends Component<Props, State> {
         <Icon type="close-circle" onClick={this.handleDelete} />
       );
       const childrenWithProps = renderChildren({
-        id: thisId,
-        value: value.get(i)
+        id: thisId
       });
       panelFields.push(
         <TabPane
