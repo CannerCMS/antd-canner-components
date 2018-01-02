@@ -141,6 +141,7 @@ export default class PopupArrayPlugin extends Component<Props> {
           pagination={showPagination}
           dataSource={value.toJS().map((datum, i) => {
             datum.__index = i;
+            datum.key = datum.key || i;
             return datum;
           })}
           columns={newColumnsRender}
