@@ -18,7 +18,8 @@ type Props = defaultProps & {
     titlePrefix?: string,
     position?: "top" | "left" | "right" | "bottom"
   },
-  allowSwap: boolean
+  allowSwap: boolean,
+  intl: any
 };
 
 type State = {
@@ -41,7 +42,7 @@ export default class TabUi extends Component<Props, State> {
     const valueSize = nextProps.value.size;
     if (valueSize < Number(activeKey) + 1) {
       activeKey = valueSize - 1;
-      this.setState({ activeKey });
+      this.setState({ activeKey: String(activeKey) });
     }
   }
 
@@ -69,13 +70,12 @@ export default class TabUi extends Component<Props, State> {
     this.setState({ activeKey: size });
   };
 
-  handleDelete = () => {
+  handleDelete = (index: number) => {
     const { intl, onChange } = this.props;
     const r = confirm(intl.formatMessage({ id: "array.tab.delete.confirm" }));
     if (r) {
-      let { activeKey } = this.state;
       const { id, generateId } = this.props;
-      const deleteId = generateId(id, activeKey, "array");
+      const deleteId = generateId(id, index, "array");
       onChange(deleteId, "delete");
     }
   };
@@ -132,15 +132,15 @@ export default class TabUi extends Component<Props, State> {
         title = defaultTitle;
       }
 
-      const deleteBtn = (
-        <Icon type="close-circle" onClick={this.handleDelete} />
+      const deleteBtn = (index: number) => (
+        <Icon type="close-circle" onClick={() => this.handleDelete(index)} />
       );
       const childrenWithProps = renderChildren({
         id: thisId
       });
       panelFields.push(
         <TabPane
-          tab={activeKey === `.$${i}` ? [title, deleteBtn] : title}
+          tab={activeKey === `.$${i}` ? [title, deleteBtn(i)] : title}
           id={thisId}
           key={`${i}`}
         >
