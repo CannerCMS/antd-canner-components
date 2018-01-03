@@ -1,0 +1,14 @@
+@import '../../scss_share/color.scss';
+.react-qa-plugin-panel {
+  .ant-btn {
+    border-color: #ce4034;
+    background: #ce4034;
+    color: white;
+    margin-top: 10px;
+    &:hover {
+      border-color: #ce4034;
+      background: white;
+      color: #ce4034;
+    }
+  }
+}
