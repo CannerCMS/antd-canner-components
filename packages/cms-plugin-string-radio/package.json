@@ -1,5 +1,5 @@
 {
-  "name": "@canner/scms-plugin-tring-radio",
+  "name": "@canner/cms-plugin-string-radio",
   "version": "0.0.1",
   "description": "string radio",
   "main": "lib/index.js",
