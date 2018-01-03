@@ -3,8 +3,8 @@ import React, { Component } from "react";
 import ShowImage from "./image/ShowImage";
 import EditImage from "@canner/image-upload";
 import { Button } from "antd";
-import createImageService from "@canner/image-service";
-import ImageServiceConfig from "@canner/image-service/imageService";
+import createImageService from "@canner/image-service-config";
+import ImageServiceConfig from "@canner/image-service-config/lib/imageService";
 
 type Props = defaultProps & {
   value: string
