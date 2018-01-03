@@ -23,7 +23,6 @@ export default class EditModal extends ChangeMethodComponent {
     super(props);
 
     this.onChange = super.onChange.bind(this);
-    this.onChangeMulti = super.onChangeMulti.bind(this);
     this.state = {
       visible: false,
       value: fromJS([]),

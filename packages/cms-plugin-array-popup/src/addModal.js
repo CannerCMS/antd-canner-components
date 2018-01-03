@@ -22,7 +22,6 @@ export default class AddModal extends ChangeMethodComponent {
   constructor(props: Props) {
     super(props);
     this.onChange = super.onChange.bind(this);
-    this.onChangeMulti = super.onChangeMulti.bind(this);
     this.state = {
       visible: false,
       value: fromJS([]),
@@ -52,11 +51,11 @@ export default class AddModal extends ChangeMethodComponent {
 
   handleOk = () => {
     const { onChange } = this.props;
-    const { idPath } = this.state;
+    const { idPath, value } = this.state;
     const that = this;
-    const paths = idPath.split('/');
+    const paths = idPath.split('/').slice(1);
 
-    onChange(idPath, "create", that.state.value.get(paths[1]));
+    onChange(idPath, "create", value.getIn(paths));
     that.handleCancel();
   }
 

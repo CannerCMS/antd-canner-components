@@ -16,12 +16,12 @@ type Props = defaultProps & {
     imageKey: string,
     thumbKey: string,
     titleKey: string,
-    disableDrag: boolean,
-    onChangeMulti: any => void
+    disableDrag: boolean
   },
   value: Array<{
     [string]: string
-  }>
+  }>,
+  transformData: Function
 };
 
 type State = {
@@ -72,7 +72,7 @@ export default class Gallery extends Component<Props, State> {
   };
 
   addImages = (values: Array<any>) => {
-    const { id, transformData, onChangeMulti } = this.props;
+    const { id, transformData, onChange } = this.props;
     const that = this;
 
     const createValues = values.map((img: string) => {
@@ -97,8 +97,7 @@ export default class Gallery extends Component<Props, State> {
         value: transformData(newData)
       };
     });
-
-    onChangeMulti(createValues);
+    onChange(createValues);
     this.closeEditPopup();
   };
 
@@ -120,7 +119,6 @@ export default class Gallery extends Component<Props, State> {
   render() {
     const { editPopup } = this.state;
     const { value, uiParams } = this.props;
-
     let list = value.map((item, i) => {
       if (uiParams.disableDrag) {
         return (

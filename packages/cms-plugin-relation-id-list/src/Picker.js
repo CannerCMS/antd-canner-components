@@ -41,14 +41,14 @@ export default class Picker extends PureComponent<Props, State> {
     super(props);
     this.state = {
       value: new List(),
-      selectedRowKeys: props.pickedIds.toJS()
+      selectedRowKeys: props.pickedIds ? props.pickedIds.toJS() : []
     };
     this.componentId = 'test';
   }
   
   componentWillReceiveProps(nextProps: Props) {
     this.setState({
-      selectedRowKeys: nextProps.pickedIds.toJS()
+      selectedRowKeys: nextProps.pickedIds ? nextProps.pickedIds.toJS() : []
     });
   }
 
