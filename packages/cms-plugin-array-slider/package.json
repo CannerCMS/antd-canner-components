@@ -1,0 +1,19 @@
+{
+  "name": "@canner/cms-plugin-array-slider",
+  "version": "0.0.1",
+  "description": "array-slider",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "slider",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "16.2.0",
+    "react-dom": "16.2.0"
+  }
+}
