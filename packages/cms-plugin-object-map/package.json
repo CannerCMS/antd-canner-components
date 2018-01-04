@@ -1,0 +1,19 @@
+{
+  "name": "@canner/cms-plugin-object-map",
+  "version": "0.0.1",
+  "description": "object map",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "map",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {
+    "@canner/cms-locales": "^0.0.1",
+    "react-geosuggest": "^2.7.0",
+    "react-google-maps": "^9.4.3"
+  }
+}

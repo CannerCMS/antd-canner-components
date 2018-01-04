@@ -1,0 +1,23 @@
+@import './color.scss';
+#react-qa-plugin-map {
+  .geosuggest__input {
+    height: 36px;
+    border-radius: 5px;
+    &:hover, &:focus {
+      border-color: $apricot;
+    }
+    &:focus {
+      box-shadow: 0 0 0 2px $light-orangish;
+      outline: none;
+    }
+  }
+  .geosuggest__suggests {
+    border:1px solid #ccc;
+    &.geosuggest__suggests--hidden {
+      border-width: 0px;
+    }
+    & > .geosuggest-item:hover {
+      background-color: $light-orangish;
+    }
+  }
+}
