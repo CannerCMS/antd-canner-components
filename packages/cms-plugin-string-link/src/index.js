@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import InputString from "@canner/string-input";
+import InputString from "@canner/cms-plugin-string-input";
 import CSSModules from "react-css-modules";
 import styles from "./style/Link.scss";
 import defaultMessage from "./locales";

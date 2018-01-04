@@ -12,6 +12,7 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
+    "cms-plugin-string-input": "^0.0.1",
     "react-intl": "^2.4.0"
   }
 }

@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Card from "@canner/card";
+import Card from "@canner/cms-plugin-share-card";
 import { isObjectLike } from "lodash";
 
 type Props = defaultProps & {
