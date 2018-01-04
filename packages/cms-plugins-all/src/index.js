@@ -18,13 +18,13 @@ export default {
     input: createLoadable(() => import('@canner/cms-plugin-string-input')),
     image: createLoadable(() => import('@canner/cms-plugin-string-image')),
     card: createLoadable(() => import('@canner/cms-plugin-string-card')),
-    dateTimePicker: createLoadable(() => import('@canner/cms-plugin-string-date-time-picker')),
+    dateTime: createLoadable(() => import('@canner/cms-plugin-string-date-time-picker')),
     editor: createLoadable(() => import('@canner/cms-plugin-string-editor')),
     link: createLoadable(() => import('@canner/cms-plugin-string-link')),
     radio: createLoadable(() => import('@canner/cms-plugin-string-radio')),
     select: createLoadable(() => import('@canner/cms-plugin-string-select')),
     textarea: createLoadable(() => import('@canner/cms-plugin-string-textarea')),
-    timePicker: createLoadable(() => import('@canner/cms-plugin-string-time-picker'))
+    time: createLoadable(() => import('@canner/cms-plugin-string-time-picker'))
   },
   number: {
     input: createLoadable(() => import('@canner/cms-plugin-number-input')),
