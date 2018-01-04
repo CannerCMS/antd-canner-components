@@ -12,6 +12,7 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
+    "@canner/cms-plugin-share-card": "^0.0.5",
     "lodash": "^4.17.4"
   }
 }
