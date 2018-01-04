@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-number-slider",
-  "version": "0.0.8",
+  "version": "0.0.10",
   "description": "number slider",
   "main": "lib/index.js",
   "scripts": {},
