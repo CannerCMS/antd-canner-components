@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugins-all",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "plugins",
   "main": "lib/index.js",
   "scripts": {},
