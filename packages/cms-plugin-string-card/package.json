@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-string-card",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "description": "string card",
   "main": "lib/index.js",
   "scripts": {},
