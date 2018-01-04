@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@canner/cms-plugin-string-input": "^0.0.8",
+    "@canner/cms-locales": "^0.0.8",
     "react-intl": "^2.4.0"
   }
 }

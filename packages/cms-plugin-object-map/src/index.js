@@ -38,6 +38,7 @@ export default class MapUI extends Component<Props> {
       <Row id="react-qa-plugin-map">
         <Col span={18}>
           {uiParams && uiParams.type === "address" ? (
+            // $FlowFixMe
             <MapAddress
               lat={value.get("lat")}
               lng={value.get("lng")}
