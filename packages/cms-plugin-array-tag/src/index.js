@@ -16,6 +16,12 @@ type Props = defaultProps & {
 };
 
 export default class TagUi extends PureComponent<Props, State> {
+  static defaultProps = {
+    uiParams: {
+      defaultOptions: ["未分類"]
+    }
+  }
+
   onChange = (value: List<string>) => {
     const { onChange, id } = this.props;
     onChange(id, "update", value);
@@ -24,11 +30,6 @@ export default class TagUi extends PureComponent<Props, State> {
   render() {
     const { value, uiParams } = this.props;
     let { defaultOptions } = uiParams;
-
-    // backward support
-    if (uiParams.defaultOption) defaultOptions = uiParams.defaultOption;
-
-    defaultOptions = defaultOptions || ["未分類"];
 
     return (
       <Select

@@ -14,6 +14,10 @@ type Props = defaultProps & {
 };
 
 export default class NumberSlider extends Component<Props> {
+  static defaultProps = {
+    value: []
+  }
+
   onChange = (val: number) => {
     this.props.onChange(this.props.id, "update", val);
   };
