@@ -12,11 +12,13 @@ type Props = defaultProps & {
 
 export default class TimePickerPlugin extends Component<Props> {
   static defaultProps = {
-    format: "HH:mm"
+    uiParams: {
+      format: "HH:mm"
+    }
   };
 
   onChange = (time: any) => {
-    const { format, onChange, id } = this.props;
+    const { uiParams: {format}, onChange, id } = this.props;
     const timeString = moment(time).format(format);
     onChange(id, "update", timeString);
   };
