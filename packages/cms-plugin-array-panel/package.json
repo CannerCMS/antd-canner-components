@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-array-panel",
-  "version": "0.0.8",
+  "version": "0.0.11",
   "description": "string input",
   "main": "lib/index.js",
   "scripts": {},
