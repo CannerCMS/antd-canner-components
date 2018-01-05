@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from "react";
-import type {Map} from 'immutable';
+import {Map} from 'immutable';
 import MapSuggest from "./MapSuggest";
 import MapComponent from "./MapComponent";
 import MapAddress from "./MapAddress";
@@ -20,7 +20,8 @@ export default class MapUI extends Component<Props> {
   static defaultProps = {
     uiParams: {
       type: "placedId"
-    }
+    },
+    value: new Map()
   };
 
   onChange = (value: any) => {

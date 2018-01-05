@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 import { Table, Button } from "antd";
-import { fromJS } from "immutable";
+import { List } from "immutable";
 import renderFunc from "./renderFunc";
 import showDeleteConfirm from "./showDeleteConfirm";
 import PropTypes from "prop-types";
@@ -14,7 +14,7 @@ import { FormattedMessage } from "react-intl";
 import defaultMessage from "@canner/cms-locales";
 
 type Props = defaultProps & {
-  value: Array<any>,
+  value: List<any>,
   uiParams: {
     createAction: Array<string>,
     updateAction: Array<string>,
@@ -33,7 +33,7 @@ export default class PopupArrayPlugin extends Component<Props> {
   editModal: ?HTMLDivElement;
   addModal: ?HTMLDivElement;
   static defaultProps = {
-    value: fromJS([]),
+    value: new List(),
     showPagination: true,
     schema: {}
   };

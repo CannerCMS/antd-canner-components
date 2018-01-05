@@ -19,12 +19,13 @@ export default class TagUi extends PureComponent<Props, State> {
   static defaultProps = {
     uiParams: {
       defaultOptions: ["未分類"]
-    }
+    },
+    value: new List()
   }
 
-  onChange = (value: List<string>) => {
-    const { onChange, id } = this.props;
-    onChange(id, "update", value);
+  onChange = (value: Array<string>) => {
+    const { onChange, id, transformData } = this.props;
+    onChange(id, "update", transformData(value));
   }
 
   render() {

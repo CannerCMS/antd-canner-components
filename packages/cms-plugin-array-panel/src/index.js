@@ -2,7 +2,7 @@
 import React, { PureComponent } from "react";
 import { Button, Icon } from "antd";
 import {injectIntl} from 'react-intl';
-import type {List} from 'immutable';
+import {List} from 'immutable';
 import Collapse from "@canner/rc-collapse";
 const Panel = Collapse.Panel;
 import "./style/panel.antd.scss";
@@ -32,7 +32,8 @@ export default class PanelUi extends PureComponent<Props, State> {
 
   static defaultProps = {
     allowSwap: true,
-    uiParams: {}
+    uiParams: {},
+    value: new List()
   };
 
   create = () => {
@@ -82,7 +83,7 @@ export default class PanelUi extends PureComponent<Props, State> {
           <Collapse
             drag={allowSwap}
             accordion
-            value={value}
+            value={value.toJS()}
             onChange={id => this.switchTab(id)}
             onSwap={this.onSwap}
           >

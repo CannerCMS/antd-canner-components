@@ -19,6 +19,7 @@ declare type defaultProps = {
   readOnly: boolean,
   generateId: (...any) => string,
   createEmptyData: ({[string]: any}) => any,
+  transformData: any => any,
   renderChildren: (node: any, props: any | (any => any)) => Node,
   onChange: (
     id: string | { firstId: string, secondId: string } | Array<changeArg>,

@@ -18,9 +18,7 @@ type Props = defaultProps & {
     titleKey: string,
     disableDrag: boolean
   },
-  value: Array<{
-    [string]: string
-  }>,
+  value: List<any>,
   transformData: Function
 };
 
@@ -51,7 +49,7 @@ export default class Gallery extends Component<Props, State> {
   }
 
   static defaultProps = {
-    value: List([]),
+    value: new List(),
     uiParams: {}
   };
 

@@ -1,6 +1,5 @@
 // @flow
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { Slider } from "antd";
 
 type Props = defaultProps & {
@@ -14,10 +13,6 @@ type Props = defaultProps & {
 };
 
 export default class NumberSlider extends Component<Props> {
-  static defaultProps = {
-    value: []
-  }
-
   onChange = (val: number) => {
     this.props.onChange(this.props.id, "update", val);
   };

@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from "react";
 import { Slider } from "antd";
-import type {List} from 'immutable';
+import {List} from 'immutable';
 
 type Props = defaultProps & {
   value: List<number>,
@@ -14,9 +14,13 @@ type Props = defaultProps & {
 };
 
 export default class RangeSlider extends Component<Props> {
+  static defaultProps = {
+    value: new List()
+  }
+
   onChange = (val: Array<number>) => {
-    const { id } = this.props;
-    this.props.onChange(id, "update", val);
+    const { id, transformData } = this.props;
+    this.props.onChange(id, "update", transformData(val));
   }
 
   render() {
