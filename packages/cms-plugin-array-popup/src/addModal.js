@@ -53,9 +53,8 @@ export default class AddModal extends ChangeMethodComponent {
     const { onChange } = this.props;
     const { idPath, value } = this.state;
     const that = this;
-    const paths = idPath.split('/').slice(1);
-
-    onChange(idPath, "create", value.getIn(paths));
+    const paths = idPath.split('/');
+    onChange(paths.slice(0, -1).join('/'), "create", value.getIn(paths.slice(1)));
     that.handleCancel();
   }
 

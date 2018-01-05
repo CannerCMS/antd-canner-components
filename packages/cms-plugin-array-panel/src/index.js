@@ -37,10 +37,9 @@ export default class PanelUi extends PureComponent<Props, State> {
   };
 
   create = () => {
-    const { value, id, items, generateId, createEmptyData } = this.props;
+    const { value, id, items, createEmptyData } = this.props;
     const size = value.size;
-    const createId = generateId(id, size, "array");
-    this.props.onChange(createId, "create", createEmptyData(items.items));
+    this.props.onChange(id, "create", createEmptyData(items.items));
     this.setState({ activeKey: size });
   }
 
