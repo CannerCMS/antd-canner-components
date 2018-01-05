@@ -20,6 +20,7 @@ type Props = defaultProps & {
 
 export default class RelationIdList extends PureComponent<Props, State> {
   isOnComposition: boolean;
+
   constructor(props: Props) {
     super(props);
     this.isOnComposition = false;

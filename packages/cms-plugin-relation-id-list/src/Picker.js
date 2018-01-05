@@ -15,7 +15,7 @@ type Props = {
   relation: {
     relationship: string,
     relationTo: string,
-    relationOn: string
+    relationOn?: string
   },
   columns: Array<{
     title: string,
