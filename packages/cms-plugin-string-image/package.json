@@ -11,16 +11,8 @@
   ],
   "author": "canner",
   "license": "ISC",
-  "peerDependencies": {
-    "@canner/canner-config": "^0.1.0",
-    "firebase": "^4.8.1"
-  },
   "dependencies": {
-    "@canner/image-service-config": "^0.0.1",
+    "@canner/image-service-config": "^0.0.2",
     "@canner/image-upload": "^0.5.2"
-  },
-  "devDependencies": {
-    "@canner/canner-config": "^0.1.0",
-    "firebase": "^4.8.1"
   }
 }
