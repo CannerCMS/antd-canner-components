@@ -15,7 +15,7 @@ type Props = defaultProps & {
 
 export default class RangeSlider extends Component<Props> {
   static defaultProps = {
-    value: new List()
+    value: new List().push(0).push(100)
   }
 
   onChange = (val: Array<number>) => {
