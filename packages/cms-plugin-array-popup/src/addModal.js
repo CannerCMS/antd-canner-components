@@ -1,13 +1,13 @@
 // @flow
 
-import React from "react";
-import { fromJS } from "immutable";
+import React, {Component} from "react";
 import { Modal } from "antd";
 
-import ChangeMethodComponent from "./changeMethodComponent";
+// import ChangeMethodComponent from "./changeMethodComponent";
 import { FormattedMessage } from "react-intl";
 import defaultMessage from "@canner/cms-locales";
 import pick from "lodash/pick";
+import PropTypes from 'prop-types';
 
 type Props = {
   onChange: (id: any, type: string, value: any) => void,
@@ -18,49 +18,55 @@ type Props = {
   createEmptyData: Function
 }
 
-export default class AddModal extends ChangeMethodComponent {
+export default class AddModal extends Component<Props> {
+  static contextTypes = {
+    deploy: PropTypes.func,
+    reset: PropTypes.func
+  }
+
   constructor(props: Props) {
     super(props);
-    this.onChange = super.onChange.bind(this);
     this.state = {
       visible: false,
-      value: fromJS([]),
-      idPath: null,
+      order: 0,
       errors: []
     };
   }
 
   showModal = (value: any, order: number) => {
-    const { createAction, createEmptyData, id, items } = this.props;
+    const { createAction, createEmptyData, items, onChange, id } = this.props;
     const schema = pick(items, createAction);
+    onChange(id, "create", createEmptyData(schema));
     this.setState({
       visible: true,
-      value: value.push(createEmptyData(schema)),
-      idPath: [id, order].join("/")
+      order
     });
+  }
+
+
+  closeModalAndReset = () => {
+    const {id} = this.props;
+    const key = id.split('/')[0];
+    this.setState({
+      visible: false
+    });
+    this.context.reset(key);
   }
 
   handleCancel = () => {
-    this.setState({
-      visible: false,
-      value: fromJS([]),
-      idPath: null,
-      errors: []
-    });
+    this.closeModalAndReset();
   }
 
   handleOk = () => {
-    const { onChange } = this.props;
-    const { idPath, value } = this.state;
-    const that = this;
-    const paths = idPath.split('/');
-    onChange(paths.slice(0, -1).join('/'), "create", value.getIn(paths.slice(1)));
-    that.handleCancel();
+    const {deploy} = this.context;
+    deploy().then(() => {
+      this.closeModalAndReset();
+    });
   }
 
   render() {
-    const { createAction, renderChildren } = this.props;
-    const { visible, value, idPath } = this.state;
+    const { createAction, renderChildren, id, rootValue } = this.props;
+    const { visible, order } = this.state;
     return (
       <Modal
         width="80%"
@@ -82,9 +88,8 @@ export default class AddModal extends ChangeMethodComponent {
       >
         {visible
           ? renderChildren(child => ({
-              value: value,
-              id: idPath,
-              onChange: this.onChange,
+              id: `${id}/${order}`,
+              rootValue,
               // not work now, need to resolve it
               readOnly: createAction.indexOf(child.title) !== -1
             }))
