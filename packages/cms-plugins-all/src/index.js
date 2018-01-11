@@ -45,8 +45,7 @@ export default {
     map: createLoadable(() => import('@canner/cms-plugin-object-map'))
   },
   relation: {
-    OneToMany: {
-      idList: createLoadable(() => import('@canner/cms-plugin-relation-id-list'))
-    }
+    one: createLoadable(() => import('@canner/cms-plugin-relation/lib/One')),
+    list: createLoadable(() => import('@canner/cms-plugin-relation/lib/List'))
   }
 }
