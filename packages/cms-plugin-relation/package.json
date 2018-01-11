@@ -1,5 +1,5 @@
 {
-  "name": "@canner/cms-plugin-relation-id-list",
+  "name": "@canner/cms-plugin-relation",
   "version": "0.0.8",
   "description": "string input",
   "main": "lib/index.js",

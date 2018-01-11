@@ -10,7 +10,8 @@ type Props = {
   onCancel: Function,
   renderChildren: Function,
   visible: boolean,
-  pickedIds: List<string>,
+  pickedIds: string[],
+  pickOne?: boolean,
   id: string,
   relation: {
     relationship: string,
@@ -41,14 +42,14 @@ export default class Picker extends PureComponent<Props, State> {
     super(props);
     this.state = {
       value: new List(),
-      selectedRowKeys: props.pickedIds ? props.pickedIds.toJS() : []
+      selectedRowKeys: props.pickedIds ? props.pickedIds : []
     };
     this.componentId = 'test';
   }
   
   componentWillReceiveProps(nextProps: Props) {
     this.setState({
-      selectedRowKeys: nextProps.pickedIds ? nextProps.pickedIds.toJS() : []
+      selectedRowKeys: nextProps.pickedIds ? nextProps.pickedIds : []
     });
   }
 
@@ -79,7 +80,7 @@ export default class Picker extends PureComponent<Props, State> {
   }
 
   render() {
-    const { visible, columns } = this.props;
+    const { visible, columns, pickOne = false } = this.props;
     const { value, selectedRowKeys } = this.state;
     return <Modal
       onOk={this.handleOk}
@@ -88,6 +89,7 @@ export default class Picker extends PureComponent<Props, State> {
     >
       <Table
         rowSelection={{
+          type: (pickOne) ? "radio" : "checkbox",
           onChange: this.rowSelectOnChange,
           selectedRowKeys: selectedRowKeys
         }}

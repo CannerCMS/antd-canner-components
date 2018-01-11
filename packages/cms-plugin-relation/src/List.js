@@ -3,6 +3,7 @@ import React, { PureComponent } from "react";
 import { Tag, Tooltip, Icon } from "antd";
 import type { Map, List } from 'immutable';
 import template from 'lodash/template';
+import difference from "lodash/difference";
 import Picker from './Picker';
 
 type State = {
@@ -40,8 +41,13 @@ export default class RelationIdList extends PureComponent<Props, State> {
   }
 
   handleOk = (queue: List<any>) => {
-    const {onChange, id} = this.props;
-    onChange(id, 'update', queue);
+    const {onChange, id, value} = this.props;
+    const currentIds = value.toJS().map(v => v._id);
+    const idsShouldCreate = difference(queue, currentIds);
+    const idsShouldRemove = difference(currentIds, queue);
+    const createActions = idsShouldCreate.map(_id => ({id, type: "create", value: _id}));
+    const delActions = idsShouldRemove.map(_id => ({id: `${id}/${_id}`, type: "delete"}));
+    onChange([...createActions, ...delActions]);
     this.handleCancel();
   }
 
