@@ -34,7 +34,7 @@ export default class TagUi extends PureComponent<Props, State> {
 
     return (
       <Select
-        tags
+        mode="tags"
         style={{ width: "100%" }}
         value={Iterable.isIterable(value) ? value.toJS() : value}
         searchPlaceholder="選擇標籤"

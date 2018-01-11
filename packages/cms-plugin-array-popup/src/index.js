@@ -25,7 +25,6 @@ type Props = defaultProps & {
       renderTemplate: string
     }>
   },
-  onChangeMulti: Function,
   showPagination: boolean
 };
 
@@ -39,9 +38,18 @@ export default class PopupArrayPlugin extends Component<Props> {
   };
 
   static contextTypes = {
-    rootValue: PropTypes.object
-    // query is the function from endpoint to fetch data
+    deploy: PropTypes.func
+  }
+
+  static childContextTypes = {
+    rootValue: PropTypes.any
   };
+
+  getChildContextTypes () {
+    return {
+      rootValue: 123
+    };
+  }
 
   constructor(props: Props) {
     super(props);
@@ -53,12 +61,13 @@ export default class PopupArrayPlugin extends Component<Props> {
       uiParams,
       value,
       onChange,
-      onChangeMulti,
       createEmptyData,
       renderChildren,
       showPagination,
-      items
+      items,
+      rootValue
     } = this.props;
+    const {deploy} = this.context;
     const editText = (
       <FormattedMessage
         id="array.popup.editText"
@@ -125,6 +134,7 @@ export default class PopupArrayPlugin extends Component<Props> {
                 showDeleteConfirm({
                   id,
                   onChange,
+                  deploy,
                   order: record.__index
                 })
               }
@@ -163,7 +173,7 @@ export default class PopupArrayPlugin extends Component<Props> {
           renderChildren={renderChildren}
           updateAction={updateAction}
           onChange={onChange}
-          onChangeMulti={onChangeMulti}
+          rootValue={rootValue}
         />
         <AddModal
           ref={modal => (this.addModal = modal)}
@@ -171,9 +181,9 @@ export default class PopupArrayPlugin extends Component<Props> {
           renderChildren={renderChildren}
           createAction={createAction}
           onChange={onChange}
-          onChangeMulti={onChangeMulti}
           items={items.items}
           createEmptyData={createEmptyData}
+          rootValue={rootValue}
         />
       </div>
     );

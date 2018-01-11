@@ -90,6 +90,11 @@ export default class Editor extends Component<Props, State> {
     this.setDefaultValue(this.props);
   }
 
+  shouldComponentUpdate(nextProps: Props, nextState: State) {
+    return nextProps.value !== this.props.value ||
+     nextState.color !== this.state.color;
+  }
+
   // 如果不先設預設值，value="" 會讓dangerousHtml break
   setDefaultValue = (props: Props) => {
     const { id, value, onChange } = props;
@@ -114,7 +119,7 @@ export default class Editor extends Component<Props, State> {
     }
   };
 
-  changeColor(color: any) {
+  changeColor = (color: any) => {
     this.setState({
       color: color.hex
     });
