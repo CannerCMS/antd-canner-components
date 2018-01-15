@@ -6,9 +6,9 @@
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@canner/canner-config/-/canner-config-0.1.0.tgz#d0616ea1afcd988527ea036b75c63fb9073dac6f"
 
-"@canner/image-service-config@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@canner/image-service-config/-/image-service-config-0.0.4.tgz#c5617a11d7603e8bf0a19d11c432ffe9bf0bdf4b"
+"@canner/image-service-config@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@canner/image-service-config/-/image-service-config-0.0.5.tgz#a0342974c20786063b72a0e54fe459794c34ad4b"
   dependencies:
     "@canner/canner-config" "^0.1.0"
     firebase "^4.8.1"

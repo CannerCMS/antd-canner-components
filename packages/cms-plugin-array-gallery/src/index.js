@@ -41,11 +41,12 @@ export default class Gallery extends Component<Props, State> {
       editPopup: false
     };
     const { service, dir, filename } = uiParams;
+    const key = this.props.id.split('/')[0];
     this.serviceConfig = createImageService({
       service,
       dir,
       filename
-    }).getServiceConfig();
+    }, {key}).getServiceConfig();
   }
 
   static defaultProps = {

@@ -21,7 +21,7 @@ export default class Image extends Component<Props, State> {
       editPopup: false
     };
     const { service, dir, filename } = props.uiParams || {};
-
+    const key = props.id.split('/')[0];
     // {
     //   service: 'canner' | 'imgur',
     //   dir?: string,
@@ -32,7 +32,7 @@ export default class Image extends Component<Props, State> {
       service,
       dir,
       filename
-    }).getServiceConfig();
+    }, {key}).getServiceConfig();
   }
 
   componentWillReceiveProps(nextProps: Props) {
