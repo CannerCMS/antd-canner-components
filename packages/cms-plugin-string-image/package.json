@@ -12,7 +12,7 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/image-service-config": "^0.0.2",
+    "@canner/image-service-config": "^0.0.4",
     "@canner/image-upload": "^0.5.2"
   }
 }
