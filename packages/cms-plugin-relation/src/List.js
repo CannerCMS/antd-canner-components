@@ -41,8 +41,10 @@ export default class RelationIdList extends PureComponent<Props, State> {
   }
 
   handleOk = (queue: List<any>) => {
-    const {onChange, id, value} = this.props;
-    const currentIds = value.toJS().map(v => v._id);
+    let {onChange, id, value} = this.props;
+    value = value && value.toJS ? value.toJS() : [];
+    queue = queue.toJS();
+    const currentIds = value.map(v => v._id);
     const idsShouldCreate = difference(queue, currentIds);
     const idsShouldRemove = difference(currentIds, queue);
     const createActions = idsShouldCreate.map(_id => ({id, type: "create", value: _id}));
@@ -64,10 +66,11 @@ export default class RelationIdList extends PureComponent<Props, State> {
 
   render() {
     const { modalVisible } = this.state;
-    const { readOnly, value, uiParams, renderChildren, id, relation } = this.props;
+    let { readOnly, value, uiParams, renderChildren, id, relation } = this.props;
+    value = value && value.toJS ? value.toJS() : [];
     return (
       <div>
-        {value.toJS().map((v, index) => {
+        {value.map((v, index) => {
           const tag = getTag(v, uiParams);
           const isLongTag = tag.length > 20;
           const tagElem = (
@@ -90,7 +93,7 @@ export default class RelationIdList extends PureComponent<Props, State> {
             onOk={this.handleOk}
             onCancel={this.handleCancel}
             renderChildren={renderChildren}
-            pickedIds={value.map(v => v.get('_id'))}
+            pickedIds={value.map(v => v._id)}
             columns={uiParams.columns}
             id={id}
             relation={relation}

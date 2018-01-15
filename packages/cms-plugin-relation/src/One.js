@@ -60,17 +60,20 @@ export default class RelationOneId extends PureComponent<Props, State> {
   render() {
     const { modalVisible } = this.state;
     const { readOnly, value, uiParams, renderChildren, id, relation } = this.props;
-    const tag = getTag(value, uiParams);
     return (
       <div>
-        <Tag key={value.get("_id")} closable={true} afterClose={this.handleClose}>
-            {tag}
-        </Tag>
+        {
+          value && value.size ?
+            <Tag key={value.getIn([0, "_id"])} closable={true} afterClose={this.handleClose}>
+              {getTag(value.toJS()[0], uiParams)}
+            </Tag> :
+            null
+        }
         <Tag
           onClick={this.showModal}
           style={{ background: '#fff', borderStyle: 'dashed' }}
         >
-            <Icon type="edit" /> Change
+          <Icon type="edit" /> Change
         </Tag>
         {
           !readOnly && <Picker
@@ -80,7 +83,7 @@ export default class RelationOneId extends PureComponent<Props, State> {
             onCancel={this.handleCancel}
             renderChildren={renderChildren}
             pickOne={true}
-            pickedIds={[value.get("_id")]}
+            pickedIds={[value && value.getIn([0, "_id"])]}
             columns={uiParams.columns}
             id={id}
             relation={relation}
@@ -99,7 +102,6 @@ function getTag(v: {[string]: any}, uiParams: {
   // use value and uiParams to generateTagName
   const {textCol, subtextCol, renderText} = uiParams;
   let tag = '';
-  
   if (renderText) {
     // if there is renderText, textCol and subtextCol will be ignored;
     const compiler = template(renderText);
