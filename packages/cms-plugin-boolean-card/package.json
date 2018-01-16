@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-boolean-card",
-  "version": "0.0.26",
+  "version": "0.0.28",
   "description": "boolean card",
   "main": "lib/index.js",
   "scripts": {},
