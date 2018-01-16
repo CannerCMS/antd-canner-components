@@ -6,18 +6,18 @@
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@canner/canner-config/-/canner-config-0.1.0.tgz#d0616ea1afcd988527ea036b75c63fb9073dac6f"
 
-"@canner/image-service-config@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@canner/image-service-config/-/image-service-config-0.0.5.tgz#a0342974c20786063b72a0e54fe459794c34ad4b"
+"@canner/image-service-config@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@canner/image-service-config/-/image-service-config-0.0.6.tgz#02d52df4f44af649102e441040f9e74bcb82fe27"
   dependencies:
     "@canner/canner-config" "^0.1.0"
     firebase "^4.8.1"
     promise-polyfill "^7.0.0"
     whatwg-fetch "^2.0.3"
 
-"@canner/image-upload@^0.5.2":
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/@canner/image-upload/-/image-upload-0.5.2.tgz#3872d126b706706049016640dba557d8cd94bdbb"
+"@canner/image-upload@^0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@canner/image-upload/-/image-upload-0.5.3.tgz#490108f91a589e0d3470cb6be0fd4b268fc191fd"
   dependencies:
     antd "^2.5.2"
     react-css-modules "^4.1.0"
