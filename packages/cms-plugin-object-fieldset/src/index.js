@@ -18,7 +18,7 @@ export default class Fieldset extends Component<Props> {
       border: 0,
       minWidth: 0,
       paddingLeft: 32,
-      borderLeft: '1px solid orange'
+      borderLeft: '2px solid orange'
     }}>{childrenWithProps}</fieldset>;
   }
 }

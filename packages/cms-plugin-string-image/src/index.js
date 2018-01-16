@@ -71,7 +71,7 @@ export default class Image extends Component<Props, State> {
     return (
       <div id="react-qa-plugin-image">
         <Button type="primary" onClick={this.showEditPopup}>
-          +新增圖片{" "}
+          + Add Images{" "}
         </Button>{" "}
         <EditImage
           onChange={this.onChange}
