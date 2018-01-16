@@ -14,6 +14,11 @@ export default class Fieldset extends Component<Props> {
     const childrenWithProps = renderChildren({
       id
     });
-    return <fieldset style={{border: 0, minWidth: 0}}>{childrenWithProps}</fieldset>;
+    return <fieldset style={{
+      border: 0,
+      minWidth: 0,
+      paddingLeft: 32,
+      borderLeft: '1px orange'
+    }}>{childrenWithProps}</fieldset>;
   }
 }
