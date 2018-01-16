@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-number-input",
-  "version": "0.0.8",
+  "version": "0.0.26",
   "description": "number input",
   "main": "lib/index.js",
   "scripts": {},
