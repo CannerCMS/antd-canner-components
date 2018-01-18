@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-string-image",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "description": "string image",
   "main": "lib/index.js",
   "scripts": {},
