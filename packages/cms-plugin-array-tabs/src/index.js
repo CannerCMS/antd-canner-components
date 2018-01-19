@@ -134,7 +134,8 @@ export default class TabUi extends Component<Props, State> {
         <Icon type="close-circle" onClick={() => this.handleDelete(index)} />
       );
       const childrenWithProps = renderChildren({
-        id: thisId
+        id: thisId,
+        routes: this.props.routes
       });
       panelFields.push(
         <TabPane

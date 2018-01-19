@@ -32,5 +32,6 @@ declare type defaultProps = {
     relationship: string,
     relationTo: string,
     relationOn?: string
-  }
+  },
+  routes: Array<string>
 };

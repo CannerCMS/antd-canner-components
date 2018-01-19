@@ -7,13 +7,15 @@ type Props = defaultProps & {
 
 export default class Fieldset extends Component<Props> {
   render() {
-    const { id, renderChildren } = this.props;
+    const { id, renderChildren, routes } = this.props;
     /**
      * pass onChange, and id to each child
      */
     const childrenWithProps = renderChildren({
-      id
+      id,
+      routes
     });
+    console.log(123)
     return <fieldset style={{
       border: 0,
       minWidth: 0,
