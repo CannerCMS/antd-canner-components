@@ -30,7 +30,7 @@ export default {
     input: createLoadable(() => import('@canner/cms-plugin-number-input')),
     rate: createLoadable(() => import('@canner/cms-plugin-number-rate')),
     slider: createLoadable(() => import('@canner/cms-plugin-number-slider')),
-    textInput: createLoadable(() => import('@canner/cms-plugin-number-text-input'))
+    numberInput: createLoadable(() => import('@canner/cms-plugin-number-text-input'))
   },
   array: {
     tab: createLoadable(() => import('@canner/cms-plugin-array-tabs')),
