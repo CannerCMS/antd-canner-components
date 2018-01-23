@@ -14,10 +14,10 @@ export default class NumberInput extends Component<Props> {
   };
 
   render() {
-    const { value } = this.props;
+    const { value, readOnly } = this.props;
     return (
       <div id="input">
-        <Input type="text" value={value} onChange={this.onChange} />
+        <Input disabled={readOnly} type="text" value={value} onChange={this.onChange} />
       </div>
     );
   }
