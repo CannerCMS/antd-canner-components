@@ -41,7 +41,8 @@ export default {
     popup: createLoadable(() => import('@canner/cms-plugin-array-popup')),
     slider: createLoadable(() => import('@canner/cms-plugin-array-slider')),
     panel: createLoadable(() => import('@canner/cms-plugin-array-panel')),
-    tag: createLoadable(() => import('@canner/cms-plugin-array-tag'))
+    tag: createLoadable(() => import('@canner/cms-plugin-array-tag')),
+    breadcrumb: createLoadable(() => import('@canner/cms-plugin-array-breadcrumb'))
   },
   object: {
     fieldset: createLoadable(() => import('@canner/cms-plugin-object-fieldset')),
