@@ -26,6 +26,7 @@
     "@canner/cms-plugin-number-text-input": "^0.0.28",
     "@canner/cms-plugin-object-fieldset": "^0.0.30",
     "@canner/cms-plugin-object-map": "^0.0.28",
+    "@canner/cms-plugin-object-variants": "^0.0.32",
     "@canner/cms-plugin-relation": "^0.0.28",
     "@canner/cms-plugin-string-card": "^0.0.28",
     "@canner/cms-plugin-string-date-time-picker": "^0.0.28",

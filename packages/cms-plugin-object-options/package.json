@@ -1,0 +1,17 @@
+{
+  "name": "@canner/cms-plugin-object-options",
+  "version": "0.0.1",
+  "description": "object options",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "options",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {
+    "immutable": "^3.8.2"
+  }
+}
