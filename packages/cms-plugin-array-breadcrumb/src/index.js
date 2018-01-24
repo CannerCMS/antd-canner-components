@@ -36,6 +36,11 @@ export default class ArrayBreadcrumb extends Component<Props> {
     schema: {}
   };
 
+  add = () => {
+    const {goTo, id} = this.props;
+    goTo(`/${id}?op=create`);
+  }
+
   edit = (recordId: string) => {
     const {goTo, id} = this.props;
     goTo(`/${id}/${recordId}`);
@@ -116,10 +121,7 @@ export default class ArrayBreadcrumb extends Component<Props> {
         {isEmpty(createAction) ? null : (
           <Button
             type="primary"
-            onClick={() => {
-              if (this.addModal)
-                this.addModal.showModal(value, value.size);
-            }}
+            onClick={this.add}
           >
             {addText}
           </Button>
