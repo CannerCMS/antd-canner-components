@@ -8,6 +8,7 @@ import { flatten, map, reduce, isEqual } from "lodash";
 import { fromJS, List } from "immutable";
 import CSSModules from "react-css-modules";
 import styles from "./style/variants.scss";
+import {injectIntl} from 'react-intl';
 const FormItem = Form.Item;
 const defaultData = fromJS({
   variants: [],
@@ -17,7 +18,7 @@ const defaultData = fromJS({
 type Props = defaultProps & {
   intl: any
 };
-
+@injectIntl
 @CSSModules(styles)
 export default class Variants extends Component<Props> {
   static defaultProps = {
