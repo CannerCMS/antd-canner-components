@@ -40,14 +40,14 @@ export default class RelationIdList extends PureComponent<Props, State> {
     });
   }
 
-  handleOk = (queue: List<any>) => {
+  handleOk = (queue: List<any>, originData: any) => {
     let {onChange, id, value} = this.props;
     value = value && value.toJS ? value.toJS() : [];
     queue = queue.toJS();
     const currentIds = value.map(v => v._id);
     const idsShouldCreate = difference(queue, currentIds);
     const idsShouldRemove = difference(currentIds, queue);
-    const createActions = idsShouldCreate.map(_id => ({id, type: "create", value: _id}));
+    const createActions = idsShouldCreate.map(_id => ({id, type: "create", value: originData.find(data => data.get('_id') === _id)}));
     const delActions = idsShouldRemove.map(_id => ({id: `${id}/${currentIds.findIndex(v => v === _id)}`, type: "delete"}));
     onChange([...createActions, ...delActions]);
     this.handleCancel();

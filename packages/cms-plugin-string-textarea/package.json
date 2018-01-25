@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-string-textarea",
-  "version": "0.0.28",
+  "version": "0.0.35",
   "description": "string textarea",
   "main": "lib/index.js",
   "scripts": {},

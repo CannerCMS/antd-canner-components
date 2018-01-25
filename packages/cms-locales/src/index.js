@@ -16,6 +16,11 @@ export default {
     "object.map.address.lngText": "Lng",
     "object.map.suggest.word":
       "Please select an address from the dropdown menu after inputing an address so that we can locate it.",
+    "object.variants.addVariants": "Add variants",
+    "object.variants.select.placeholder": "Please enter the select items",
+    "object.variants.select": "Selected",
+    "object.variants.variantsName": "Category Name",
+    "object.variants.table.title": "Name",
     "string.link.preview": "preview link: "
   },
   zh: {
@@ -34,6 +39,11 @@ export default {
     "object.map.address.latText": "緯度",
     "object.map.address.lngText": "經度",
     "object.map.suggest.word": "輸入完地址後請從下拉式選單選擇一個地址，我們才能正確幫你定位喔。",
+    "object.variants.addVariants": "增加型號",
+    "object.variants.select.placeholder": "請輸入選擇項目",
+    "object.variants.select": "選擇",
+    "object.variants.variantsName": "型號名稱",
+    "object.variants.table.title": "名稱",
     "string.link.preview": "預覽連結: "
   }
 }

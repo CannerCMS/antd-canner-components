@@ -1,18 +1,17 @@
 {
-  "name": "@canner/cms-locales",
+  "name": "@canner/cms-plugin-object-variants",
   "version": "0.0.37",
-  "description": "plugins locals",
+  "description": "object variants",
   "main": "lib/index.js",
   "scripts": {},
   "keywords": [
     "cms",
-    "locales",
+    "variants",
     "canner"
   ],
   "author": "canner",
   "license": "ISC",
-  "peerDependencies": {
-    "react": "16.2.0",
-    "react-dom": "16.2.0"
+  "dependencies": {
+    "immutable": "^3.8.2"
   }
 }

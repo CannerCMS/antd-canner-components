@@ -1,17 +1,17 @@
 {
-  "name": "@canner/cms-plugin-string-select",
+  "name": "@canner/cms-plugin-object-options",
   "version": "0.0.35",
-  "description": "string select",
+  "description": "object options",
   "main": "lib/index.js",
   "scripts": {},
   "keywords": [
     "cms",
-    "select",
+    "options",
     "canner"
   ],
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "lodash": "^4.17.4"
+    "immutable": "^3.8.2"
   }
 }

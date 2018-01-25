@@ -46,7 +46,8 @@ export default {
   },
   object: {
     fieldset: createLoadable(() => import('@canner/cms-plugin-object-fieldset')),
-    map: createLoadable(() => import('@canner/cms-plugin-object-map'))
+    map: createLoadable(() => import('@canner/cms-plugin-object-map')),
+    variants: createLoadable(() => import('@canner/cms-plugin-object-variants'))
   },
   relation: {
     one: createLoadable(() => import('@canner/cms-plugin-relation/lib/One')),
