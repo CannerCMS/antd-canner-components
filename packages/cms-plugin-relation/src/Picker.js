@@ -44,7 +44,7 @@ export default class Picker extends PureComponent<Props, State> {
       value: new List(),
       selectedRowKeys: props.pickedIds ? props.pickedIds : []
     };
-    this.componentId = 'test';
+    this.componentId = `${props.id}/PICK`;
   }
   
   componentWillReceiveProps(nextProps: Props) {
@@ -70,13 +70,13 @@ export default class Picker extends PureComponent<Props, State> {
   }
 
   handleOk = () => {
-    this.props.onOk(fromJS(this.state.selectedRowKeys));
+    this.props.onOk(fromJS(this.state.selectedRowKeys), this.state.value);
   }
 
   rowSelectOnChange = (selectedRowKeys: Array<string>) => {
     this.setState({
       selectedRowKeys
-    })
+    });
   }
 
   render() {
