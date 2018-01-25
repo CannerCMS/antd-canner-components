@@ -12,7 +12,6 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/cms-plugin-array-popup": "^0.0.35",
     "immutable": "^3.8.2"
   }
 }

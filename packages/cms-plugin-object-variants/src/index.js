@@ -2,7 +2,6 @@
 
 import React, { Component } from "react";
 import { Button, Icon } from "antd";
-import { popup as Popup } from "@canner/cms-plugin-array-popup";
 import { Form, Input, Select } from "antd";
 import { flatten, map, reduce, isEqual } from "lodash";
 import { fromJS, List } from "immutable";
@@ -56,6 +55,34 @@ export default class Variants extends Component<Props> {
     );
   }
 
+  updateVariantsAfterRemoveOption = (i: number) => {
+    const { value, items, createEmptyData, id, onChange } = this.props;
+    const options = value.get("options").remove(i);
+    const variants = value.get("variants");
+    const types = this.cartesianProduct(options.toJS());
+    const variantsObj = types.filter(type => type.length).map(type => {
+      const newVariants = type.join("-");
+      const originVariants = variants.find(variant =>
+        isEqual(variant.get("options"), newVariants)
+      );
+      if (originVariants) {
+        return originVariants;
+      }
+      return {
+        ...createEmptyData(items.variants.items.items).toJS(),
+        options: newVariants
+      };
+    });
+    onChange(
+      id,
+      "update",
+      fromJS({
+        options,
+        variants: variantsObj
+      })
+    );
+  }
+
   cartesianProduct = (products: Array<{[string]: any}>) => {
     // IMPROVEMENT: need to refactor to pure immutable
     const values = products.map(prod => prod.values);
@@ -87,8 +114,7 @@ export default class Variants extends Component<Props> {
   }
 
   removeOption = (i: number) => {
-    const { id, onChange } = this.props;
-    onChange(`${id}/options/${i}`, "delete");
+    this.updateVariantsAfterRemoveOption(i);
   }
 
   changeOptionName = (i: number, e: any) => {
@@ -97,6 +123,7 @@ export default class Variants extends Component<Props> {
   }
 
   render() {
+    
     const { value, items, uiParams, id, intl } = this.props;
     let { columns } = uiParams;
     columns = columns || [];
@@ -108,6 +135,7 @@ export default class Variants extends Component<Props> {
       }
     ].concat(columns);
     const action = Object.keys(items.variants.items.items);
+    
     action.splice(action.indexOf("options"), 1);
     return (
       <div>
@@ -153,18 +181,16 @@ export default class Variants extends Component<Props> {
           {intl.formatMessage({ id: "object.variants.addVariants" })}
         </Button>
         <div styleName="variants">
-          <Popup
-            {...this.props}
-            schema={items.variants.items}
-            uiParams={{
+          {this.props.renderChildren({
+            uiParams:{
               createAction: [],
               updateAction: action,
               deleteAction: false,
               columns
-            }}
-            id={`${id}/variants`}
-            value={value.get("variants")}
-          />
+            },
+            id: id
+          })}
+          
         </div>
       </div>
     );
