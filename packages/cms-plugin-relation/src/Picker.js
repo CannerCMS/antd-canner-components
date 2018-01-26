@@ -82,7 +82,7 @@ export default class Picker extends PureComponent<Props, State> {
         });
         this.setState({
           totalValue: totalValue,
-          value: ctx.response.value,
+          value: ctx.response.body,
           page: ctx.response.pagination.page,
           totalPage: ctx.response.pagination.totalPage
         });
