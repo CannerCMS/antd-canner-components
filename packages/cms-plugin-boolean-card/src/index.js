@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from "react";
-import Card from "@canner/card";
+import Card from "@canner/cms-plugin-share-card";
 
 type Props = defaultProps & {
   value: boolean,
