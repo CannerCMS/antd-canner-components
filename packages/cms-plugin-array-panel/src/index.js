@@ -73,7 +73,8 @@ export default class PanelUi extends PureComponent<Props, State> {
       generateId,
       allowSwap,
       intl,
-      renderChildren
+      renderChildren,
+      routes
     } = this.props;
     const titleKey = uiParams.titleKey;
     return (
@@ -106,7 +107,8 @@ export default class PanelUi extends PureComponent<Props, State> {
               return (
                 <Panel header={header} key={thisId}>
                   {renderChildren({
-                    id: thisId
+                    id: thisId,
+                    routes: routes
                   })}
                 </Panel>
               );

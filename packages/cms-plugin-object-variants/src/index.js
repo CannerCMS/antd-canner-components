@@ -124,7 +124,7 @@ export default class Variants extends Component<Props> {
 
   render() {
     
-    const { value, items, uiParams, id, intl } = this.props;
+    const { value, items, uiParams, id, intl, routes } = this.props;
     let { columns } = uiParams;
     columns = columns || [];
     columns = [
@@ -183,14 +183,11 @@ export default class Variants extends Component<Props> {
         <div styleName="variants">
           {this.props.renderChildren({
             uiParams:{
-              createAction: [],
-              updateAction: action,
-              deleteAction: false,
-              columns
+              titleKey: 'options'
             },
-            id: id
+            id: id,
+            routes: routes
           })}
-          
         </div>
       </div>
     );

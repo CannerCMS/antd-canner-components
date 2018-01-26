@@ -1,10 +1,6 @@
 {
   "name": "@canner/cms-plugins-core",
-<<<<<<< HEAD
-  "version": "0.0.33",
-=======
   "version": "0.0.37",
->>>>>>> develop
   "description": "plugins",
   "main": "lib/index.js",
   "scripts": {},
