@@ -48,5 +48,9 @@ export default {
   relation: {
     one: createLoadable(() => import('@canner/cms-plugin-relation/lib/One')),
     list: createLoadable(() => import('@canner/cms-plugin-relation/lib/List'))
+  },
+  boolean: {
+    switch: createLoadable(() => import('@canner/cms-plugin-boolean-switch')),
+    card: createLoadable(() => import('@canner/cms-plugin-boolean-card'))
   }
 }
