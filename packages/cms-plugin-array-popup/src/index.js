@@ -65,7 +65,8 @@ export default class PopupArrayPlugin extends Component<Props> {
       renderChildren,
       showPagination,
       items,
-      rootValue
+      rootValue,
+      query
     } = this.props;
     const {deploy} = this.context;
     const editText = (
@@ -174,6 +175,7 @@ export default class PopupArrayPlugin extends Component<Props> {
           updateAction={updateAction}
           onChange={onChange}
           rootValue={rootValue}
+          query={query}
         />
         <AddModal
           ref={modal => (this.addModal = modal)}
@@ -184,6 +186,7 @@ export default class PopupArrayPlugin extends Component<Props> {
           items={items.items}
           createEmptyData={createEmptyData}
           rootValue={rootValue}
+          query={query}
         />
       </div>
     );
