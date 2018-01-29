@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-relation",
-  "version": "0.0.41",
+  "version": "0.0.45",
   "description": "string input",
   "main": "lib/index.js",
   "scripts": {},

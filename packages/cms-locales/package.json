@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-locales",
-  "version": "0.0.37",
+  "version": "0.0.45",
   "description": "plugins locals",
   "main": "lib/index.js",
   "scripts": {},

@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-object-options",
-  "version": "0.0.43",
+  "version": "0.0.45",
   "description": "object options",
   "main": "lib/index.js",
   "scripts": {},
