@@ -61,12 +61,10 @@ export default class TabUi extends Component<Props, State> {
       id,
       items,
       createEmptyData,
-      onChange,
-      onOk,
-      create
+      onChange
     } = this.props;
     const size = value.size;
-    create();
+    onChange(id, "create", createEmptyData(items));
     this.setState({ activeKey: `.$${size}` });
   };
 
