@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugins-all",
-  "version": "0.0.47",
+  "version": "0.0.48",
   "description": "plugins",
   "main": "lib/index.js",
   "scripts": {},
@@ -25,7 +25,7 @@
     "@canner/cms-plugin-number-rate": "^0.0.47",
     "@canner/cms-plugin-number-slider": "^0.0.47",
     "@canner/cms-plugin-number-text-input": "^0.0.47",
-    "@canner/cms-plugin-object-fieldset": "^0.0.47",
+    "@canner/cms-plugin-object-fieldset": "^0.0.48",
     "@canner/cms-plugin-object-map": "^0.0.47",
     "@canner/cms-plugin-object-options": "^0.0.47",
     "@canner/cms-plugin-object-variants": "^0.0.47",

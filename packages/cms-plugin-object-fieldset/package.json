@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-object-fieldset",
-  "version": "0.0.47",
+  "version": "0.0.48",
   "description": "number input",
   "main": "lib/index.js",
   "scripts": {},
