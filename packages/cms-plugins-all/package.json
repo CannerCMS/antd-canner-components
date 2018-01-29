@@ -12,6 +12,7 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
+    "@canner/cms-plugin-array-breadcrumb": "^0.0.43",
     "@canner/cms-plugin-array-gallery": "^0.0.35",
     "@canner/cms-plugin-array-panel": "^0.0.43",
     "@canner/cms-plugin-array-popup": "^0.0.43",
