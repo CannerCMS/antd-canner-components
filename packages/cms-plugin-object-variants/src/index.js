@@ -139,7 +139,7 @@ export default class Variants extends Component<Props> {
     action.splice(action.indexOf("options"), 1);
     return (
       <div>
-        {value.get("options").map((opt, i) => {
+        {value.get("options", List()).map((opt, i) => {
           return (
             <div key={i} styleName="opt">
               <Icon
