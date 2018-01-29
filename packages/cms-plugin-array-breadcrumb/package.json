@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-array-breadcrumb",
-  "version": "0.0.45",
+  "version": "0.0.47",
   "description": "array breadcrumb",
   "main": "lib/index.js",
   "scripts": {},

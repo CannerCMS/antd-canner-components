@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-string-select",
-  "version": "0.0.45",
+  "version": "0.0.47",
   "description": "string select",
   "main": "lib/index.js",
   "scripts": {},
