@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugins-all",
-  "version": "0.0.45",
+  "version": "0.0.46",
   "description": "plugins",
   "main": "lib/index.js",
   "scripts": {},
@@ -27,8 +27,8 @@
     "@canner/cms-plugin-number-text-input": "^0.0.45",
     "@canner/cms-plugin-object-fieldset": "^0.0.45",
     "@canner/cms-plugin-object-map": "^0.0.45",
-    "@canner/cms-plugin-object-options": "^0.0.45",
-    "@canner/cms-plugin-object-variants": "^0.0.45",
+    "@canner/cms-plugin-object-options": "^0.0.46",
+    "@canner/cms-plugin-object-variants": "^0.0.46",
     "@canner/cms-plugin-relation": "^0.0.45",
     "@canner/cms-plugin-string-card": "^0.0.45",
     "@canner/cms-plugin-string-date-time-picker": "^0.0.45",
