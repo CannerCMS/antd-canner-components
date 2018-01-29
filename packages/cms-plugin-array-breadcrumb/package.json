@@ -1,0 +1,21 @@
+{
+  "name": "@canner/cms-plugin-array-breadcrumb",
+  "version": "0.0.33",
+  "description": "array breadcrumb",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "breadcrumb",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "16.2.0",
+    "react-dom": "16.2.0"
+  },
+  "dependencies": {
+    "@canner/cms-locales": "^0.0.28"
+  }
+}

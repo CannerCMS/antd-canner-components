@@ -25,6 +25,7 @@ type Props = defaultProps & {
       renderTemplate: string
     }>
   },
+  rootValue: any,
   showPagination: boolean
 };
 
@@ -39,16 +40,6 @@ export default class PopupArrayPlugin extends Component<Props> {
 
   static contextTypes = {
     deploy: PropTypes.func
-  }
-
-  static childContextTypes = {
-    rootValue: PropTypes.any
-  };
-
-  getChildContextTypes () {
-    return {
-      rootValue: 123
-    };
   }
 
   constructor(props: Props) {
@@ -88,10 +79,10 @@ export default class PopupArrayPlugin extends Component<Props> {
       />
     );
     const schema = items.items;
-    const schemaKets = Object.keys(schema);
+    const schemaKeys = Object.keys(schema);
     let {
-      createAction = schemaKets,
-      updateAction = schemaKets,
+      createAction = schemaKeys,
+      updateAction = schemaKeys,
       deleteAction = true,
       columns = []
     } = uiParams;

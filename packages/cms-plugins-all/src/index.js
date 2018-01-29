@@ -26,6 +26,9 @@ export default {
     textarea: createLoadable(() => import('@canner/cms-plugin-string-textarea')),
     time: createLoadable(() => import('@canner/cms-plugin-string-time-picker'))
   },
+  boolean: {
+    switch: createLoadable(() => import('@canner/cms-plugin-boolean-switch'))
+  },
   number: {
     input: createLoadable(() => import('@canner/cms-plugin-number-input')),
     rate: createLoadable(() => import('@canner/cms-plugin-number-rate')),
@@ -38,12 +41,14 @@ export default {
     popup: createLoadable(() => import('@canner/cms-plugin-array-popup')),
     slider: createLoadable(() => import('@canner/cms-plugin-array-slider')),
     panel: createLoadable(() => import('@canner/cms-plugin-array-panel')),
-    tag: createLoadable(() => import('@canner/cms-plugin-array-tag'))
+    tag: createLoadable(() => import('@canner/cms-plugin-array-tag')),
+    breadcrumb: createLoadable(() => import('@canner/cms-plugin-array-breadcrumb'))
   },
   object: {
     fieldset: createLoadable(() => import('@canner/cms-plugin-object-fieldset')),
     map: createLoadable(() => import('@canner/cms-plugin-object-map')),
-    variants: createLoadable(() => import('@canner/cms-plugin-object-variants'))
+    variants: createLoadable(() => import('@canner/cms-plugin-object-variants')),
+    options: createLoadable(() => import('@canner/cms-plugin-object-options'))
   },
   relation: {
     one: createLoadable(() => import('@canner/cms-plugin-relation/lib/One')),

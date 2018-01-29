@@ -2,7 +2,7 @@
 import React, { PureComponent } from "react";
 import { InputNumber } from "antd";
 import isNaN from "lodash/isNaN";
-
+import './style/number-input.antd.scss';
 
 type State = {
   value: string
@@ -25,13 +25,14 @@ export default class Input extends PureComponent<Props, State> {
   }
 
   render() {
-    const { value, uiParams } = this.props;
+    const { value, uiParams, readOnly } = this.props;
 
     let formatter =
       uiParams && uiParams.unit ? val => `${val} ${uiParams.unit}` : val => val;
     return (
-      <div id="input">
+      <div id="number-input">
         <InputNumber
+          disabled={readOnly}
           min={uiParams && uiParams.min}
           max={uiParams && uiParams.max}
           step={uiParams && uiParams.step}
