@@ -29,6 +29,7 @@ type State = {
 @injectIntl
 @CSSModules(styles)
 export default class TabUi extends Component<Props, State> {
+  prevIndex: number;
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -62,21 +63,27 @@ export default class TabUi extends Component<Props, State> {
       items,
       createEmptyData,
       onChange,
-      onOk,
-      create
     } = this.props;
     const size = value.size;
-    create();
+    onChange(`${id}`, 'create', createEmptyData(items));
     this.setState({ activeKey: `.$${size}` });
   };
 
   handleDelete = (index: number) => {
-    const { intl, onChange } = this.props;
+    const { intl, onChange, deploy, value } = this.props;
     const r = confirm(intl.formatMessage({ id: "array.tab.delete.confirm" }));
     if (r) {
       const { id, generateId } = this.props;
       const deleteId = generateId(id, index, "array");
-      onChange(deleteId, "delete");
+      onChange(deleteId, "delete")
+        .then(() => {
+          return deploy(id, value.getIn([index, '_id']));
+        })
+        .then(() => {
+          this.setState({
+            activeKey: `.$${value.size - 1}`
+          });
+        });
     }
   };
 

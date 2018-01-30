@@ -47,14 +47,16 @@ export default class ArrayBreadcrumb extends Component<Props> {
   }
 
   remove = (index: number) => {
-    const {onChange, id} = this.props;
+    const {onChange, deploy, id} = this.props;
     confirm({
       title: 'Are you sure delete this task?',
       okText: 'Yes',
       okType: 'danger',
       cancelText: 'No',
       onOk() {
-        onChange(`${id}/${index}`, 'delete');
+        onChange(`${id}/${index}`, 'delete').then(() => {
+          deploy();
+        });
       }
     });
     
