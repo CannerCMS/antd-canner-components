@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-array-gallery",
-  "version": "0.0.35",
+  "version": "0.1.0-rc.2",
   "description": "array gallery",
   "main": "lib/index.js",
   "scripts": {},
