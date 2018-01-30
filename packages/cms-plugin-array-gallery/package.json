@@ -16,6 +16,7 @@
     "@canner/image-upload": "^0.5.4",
     "grid-breakpoint": "^1.0.0",
     "grid-draggable": "^1.0.0",
+    "imagesloaded": "^4.1.4",
     "immutable": "^3.8.2"
   }
 }
