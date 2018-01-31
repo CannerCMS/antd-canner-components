@@ -53,6 +53,7 @@ export default class OptionPlugin extends Component<Props, State> {
     const { uiParams, renderChildren, id, routes } = this.props;
     const { options } = uiParams;
     const { selectedKey } = this.state;
+    const selectedOpion = options.find(option => option.key === selectedKey) || options[0];
     return (
       <div>
         <Group
@@ -66,7 +67,7 @@ export default class OptionPlugin extends Component<Props, State> {
         </Group>
         {renderChildren(child => {
           let hidden = false;
-          if (child.name !== selectedKey) {
+          if (child.name !== selectedOpion.childName) {
             hidden = true;
           }
           return {

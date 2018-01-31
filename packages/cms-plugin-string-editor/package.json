@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-string-editor",
-  "version": "0.0.35",
+  "version": "0.0.49",
   "description": "string editor",
   "main": "lib/index.js",
   "scripts": {},

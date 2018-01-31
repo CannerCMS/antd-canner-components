@@ -26,9 +26,6 @@ export default {
     textarea: createLoadable(() => import('@canner/cms-plugin-string-textarea')),
     time: createLoadable(() => import('@canner/cms-plugin-string-time-picker'))
   },
-  boolean: {
-    switch: createLoadable(() => import('@canner/cms-plugin-boolean-switch'))
-  },
   number: {
     input: createLoadable(() => import('@canner/cms-plugin-number-input')),
     rate: createLoadable(() => import('@canner/cms-plugin-number-rate')),
@@ -53,5 +50,9 @@ export default {
   relation: {
     one: createLoadable(() => import('@canner/cms-plugin-relation/lib/One')),
     list: createLoadable(() => import('@canner/cms-plugin-relation/lib/List'))
+  },
+  boolean: {
+    switch: createLoadable(() => import('@canner/cms-plugin-boolean-switch')),
+    card: createLoadable(() => import('@canner/cms-plugin-boolean-card'))
   }
 }

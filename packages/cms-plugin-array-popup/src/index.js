@@ -128,7 +128,8 @@ export default class PopupArrayPlugin extends Component<Props, State> {
       renderChildren,
       showPagination,
       items,
-      rootValue
+      rootValue,
+      query
     } = this.props;
     const {relationData} = this.state;
     const {deploy} = this.context;
@@ -238,6 +239,7 @@ export default class PopupArrayPlugin extends Component<Props, State> {
           updateAction={updateAction}
           onChange={onChange}
           rootValue={rootValue}
+          query={query}
         />
         <AddModal
           ref={modal => (this.addModal = modal)}
@@ -248,6 +250,7 @@ export default class PopupArrayPlugin extends Component<Props, State> {
           items={items.items}
           createEmptyData={createEmptyData}
           rootValue={rootValue}
+          query={query}
         />
       </div>
     );

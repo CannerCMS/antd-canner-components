@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-string-link",
-  "version": "0.0.37",
+  "version": "0.0.49",
   "description": "string input",
   "main": "lib/index.js",
   "scripts": {},
@@ -12,8 +12,8 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/cms-locales": "^0.0.37",
-    "@canner/cms-plugin-string-input": "^0.0.35",
+    "@canner/cms-locales": "^0.0.49",
+    "@canner/cms-plugin-string-input": "^0.0.49",
     "react-intl": "^2.4.0"
   }
 }

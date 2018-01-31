@@ -39,12 +39,12 @@ export default class EditModal extends Component<Props> {
   }
 
   closeModalAndReset = () => {
-    const {id} = this.props;
+    const {id, query} = this.props;
     const key = id.split('/')[0];
     this.setState({
       visible: false
     });
-    this.context.reset(key);
+    this.context.reset(key, query);
   }
 
   handleCancel = () => {

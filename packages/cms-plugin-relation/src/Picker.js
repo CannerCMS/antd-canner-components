@@ -26,13 +26,17 @@ type Props = {
 };
 
 type State = {
+  totalValue: List<*>,
   value: List<*>,
+  page: number,
+  totalPage: number,
   selectedRowKeys: Array<string>
 };
 
 export default class Picker extends PureComponent<Props, State> {
   componentId: string;
   queue: Array<changeArg>;
+  goTo: (page: number) => ({[string]: number});
   static contextTypes = {
     fetch: PropTypes.func,
     subscribe: PropTypes.func
@@ -41,7 +45,10 @@ export default class Picker extends PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
+      totalValue: new List(),
       value: new List(),
+      page: 1,
+      totalPage: 1,
       selectedRowKeys: props.pickedIds ? props.pickedIds : []
     };
     this.componentId = `${props.id}/PICK`;
@@ -54,13 +61,30 @@ export default class Picker extends PureComponent<Props, State> {
   }
 
   componentDidMount() {
-    const {fetch} = this.context;
+    this.fetchData({start: 0, limit: 10});
+  }
+
+  changePage = (page: number) => {
+    this.fetchData(this.goTo(page));
+  }
+
+  fetchData = (pagination: {[string]: number}) => {
     const {relation} = this.props;
-    const {relationTo} = relation;
-    fetch(relationTo, this.componentId, {})
+    const {fetch} = this.context;
+    return fetch(relation.relationTo, this.componentId, {pagination})
       .then(ctx => {
+        this.goTo = ctx.response.pagination.goTo;
+        let totalValue = this.state.totalValue;
+        ctx.response.body.forEach(val => {
+          if (!totalValue.find(nv => nv.get('_id') === val.get('_id'))) {
+            totalValue = totalValue.push(val);
+          }
+        });
         this.setState({
-          value: ctx.response.body
+          totalValue: totalValue,
+          value: ctx.response.body,
+          page: ctx.response.pagination.page,
+          totalPage: ctx.response.pagination.totalPage
         });
       });
   }
@@ -70,7 +94,7 @@ export default class Picker extends PureComponent<Props, State> {
   }
 
   handleOk = () => {
-    this.props.onOk(fromJS(this.state.selectedRowKeys), this.state.value);
+    this.props.onOk(fromJS(this.state.selectedRowKeys), this.state.totalValue);
   }
 
   rowSelectOnChange = (selectedRowKeys: Array<string>) => {
@@ -81,7 +105,7 @@ export default class Picker extends PureComponent<Props, State> {
 
   render() {
     const { visible, columns, pickOne = false } = this.props;
-    const { value, selectedRowKeys } = this.state;
+    const { value, selectedRowKeys, page, totalPage } = this.state;
     return <Modal
       onOk={this.handleOk}
       onCancel={this.handleCancel}
@@ -93,6 +117,12 @@ export default class Picker extends PureComponent<Props, State> {
           onChange: this.rowSelectOnChange,
           selectedRowKeys: selectedRowKeys
         }}
+        pagination={{
+          onChange: this.changePage,
+          current: page,
+          total: totalPage * 10
+        }}
+        size="middle"
         columns={columns}
         dataSource={value.toJS().map(v => ({key: v._id, ...v}))}
       />
