@@ -105,7 +105,7 @@ export default class PopupArrayPlugin extends Component<Props, State> {
           idList = idList.concat(v.get(__key__, new List()));
         }
       });
-      fetch(relationTo, `id/__RELATION__`, {filter: {_id: {$in: idList.toJS()}}, pagination: {start: 0, limit: 40}})
+      fetch(relationTo, `${id}/__RELATION__`, {filter: {_id: {$in: idList.toJS()}}, pagination: {start: 0, limit: 40}})
         .then(ctx => {
           const data = ctx.response.body;
           this.setState(state => ({
