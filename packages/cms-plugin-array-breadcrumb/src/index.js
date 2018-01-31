@@ -120,12 +120,12 @@ export default class ArrayBreadcrumb extends Component<Props, State> {
 
   add = () => {
     const {goTo, id, baseUrl} = this.props;
-    goTo(`/${baseUrl}/${id}?op=create`);
+    goTo(`${baseUrl}/${id}?op=create`);
   }
 
   edit = (recordId: string) => {
     const {goTo, id, baseUrl} = this.props;
-    goTo(`/${baseUrl}/${id}/${recordId}`);
+    goTo(`${baseUrl}/${id}/${recordId}`);
   }
 
   remove = (index: number) => {
