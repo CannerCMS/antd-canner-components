@@ -3,8 +3,8 @@
 
 
 "@canner/rc-collapse@^2.2.6":
-  version "2.2.7"
-  resolved "https://registry.yarnpkg.com/@canner/rc-collapse/-/rc-collapse-2.2.7.tgz#1aba638b5a5856d562a204ac5f14b1d388038155"
+  version "2.2.8"
+  resolved "https://registry.yarnpkg.com/@canner/rc-collapse/-/rc-collapse-2.2.8.tgz#7765569f1a42e5731e3df758ce106dc953acebb6"
   dependencies:
     classnames "2.x"
     css-animation "1.x"
