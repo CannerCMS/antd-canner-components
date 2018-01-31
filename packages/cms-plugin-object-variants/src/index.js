@@ -124,22 +124,23 @@ export default class Variants extends Component<Props> {
 
   render() {
     
-    const { value, items, uiParams, id, intl, routes } = this.props;
-    let { columns } = uiParams;
-    columns = columns || [];
-    columns = [
-      {
-        title: intl.formatMessage({ id: "object.variants.table.title" }),
-        dataIndex: "options",
-        key: "options"
-      }
-    ].concat(columns);
+    const { value, items, id, intl, routes } = this.props;
+    // for now, use panel instead of popup to quick fix
+    // let { columns } = uiParams;
+    // columns = columns || [];
+    // columns = [
+    //   {
+    //     title: intl.formatMessage({ id: "object.variants.table.title" }),
+    //     dataIndex: "options",
+    //     key: "options"
+    //   }
+    // ].concat(columns);
     const action = Object.keys(items.variants.items.items);
     
     action.splice(action.indexOf("options"), 1);
     return (
       <div>
-        {value.get("options").map((opt, i) => {
+        {value.get("options", List()).map((opt, i) => {
           return (
             <div key={i} styleName="opt">
               <Icon

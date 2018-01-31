@@ -1,7 +1,8 @@
 /* eslint-disable require-jsdoc */
-import { isBoolean, isArray, template } from "lodash";
+import { isBoolean, isArray, template, isUndefined, isEmpty } from "lodash";
 import React from 'react';
-export default function(cols, schema) {
+import { Tag } from 'antd';
+export default function(cols, schema, relationData) {
   return cols.map(col => {
     const itemSchema = schema[col.dataIndex];
     const func = (text, record) => {
@@ -51,36 +52,54 @@ export default function(cols, schema) {
         return <div dangerouslySetInnerHTML={{__html: compiled(record)}} />;
       }
 
-      // if (itemSchema && itemSchema.ui === "assoc.select") {
-      //   const {path} = itemSchema.association;
-      //   const item = (assocData[path] || []).find(datum => datum._id === text);
-      //   let {textCol, subtextCol} = itemSchema.uiParams;
-      //   if (isUndefined(item) || isEmpty(item) || item && item.size === 0) {
-      //     return "";
-      //   }
-      //   if (textCol && (textCol.indexOf('<%') === -1 || textCol.indexOf('%>') === -1)) {
-      //     // not template string
-      //     // change it
-      //     textCol = `<%=${textCol}%>`;
-      //   }
-      //   if (subtextCol && (subtextCol.indexOf('<%') === -1 || subtextCol.indexOf('%>') === -1)) {
-      //     // not template string
-      //     // change it
-      //     subtextCol = `<%=${subtextCol}%>`;
-      //   }
-      //   const textCompiled = template(textCol || '');
-      //   const subtextCompiled = template(subtextCol || '');
-      //   let title = '';
-      //   let subText = '';
-      //   try {
-      //     title = textCompiled(item);
-      //     subText = subtextCompiled(item);
-      //   } catch (e) {
-      //     title = '';
-      //     subText = '';
-      //   }
-      //   return `${title} ${subText ? `(${subText})` : ""}`;
-      // }
+      if (itemSchema && itemSchema.type === "relation") {
+        const {relationTo, relationship} = itemSchema.relation;
+        if (relationship === 'oneToMany.idMap') {
+          text = Object.keys(text);
+        } else if (typeof text === 'string') {
+          text = [text];
+        }
+        const item = (relationData[relationTo] || []).filter(datum => text.indexOf(datum._id) !== -1);
+        let {textCol, subtextCol} = itemSchema.uiParams;
+        if (item && item.length === 0) {
+          return "";
+        }
+        if (textCol && (textCol.indexOf('<%') === -1 || textCol.indexOf('%>') === -1)) {
+          // not template string
+          // change it
+          textCol = `<%=${textCol}%>`;
+        }
+        if (subtextCol && (subtextCol.indexOf('<%') === -1 || subtextCol.indexOf('%>') === -1)) {
+          // not template string
+          // change it
+          subtextCol = `<%=${subtextCol}%>`;
+        }
+        const textCompiled = template(textCol || '');
+        const subtextCompiled = template(subtextCol || '');
+        
+        
+        const texts = item.map(value => {
+          let title = '';
+          let subText = '';
+          try {
+            title = textCompiled(value);
+            subText = subtextCompiled(value);
+          } catch (e) {
+            title = '';
+            subText = '';
+          }
+          return `${title} ${subText ? `(${subText})` : ""}`;
+        })
+        return <div>
+          {texts.map(text => {
+            const isLongTag = text.length > 10;
+            return <Tag key={text} closable={false}>
+              {isLongTag ? `${text.slice(0, 10)}...` : text}
+            </Tag>
+          })}
+        
+        </div>
+      }
 
       if (isBoolean(text)) {
         if (text) {
