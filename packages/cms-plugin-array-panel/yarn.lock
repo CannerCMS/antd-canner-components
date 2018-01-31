@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@canner/rc-collapse@^2.2.6":
+"@canner/rc-collapse@2.2.8":
   version "2.2.8"
   resolved "https://registry.yarnpkg.com/@canner/rc-collapse/-/rc-collapse-2.2.8.tgz#7765569f1a42e5731e3df758ce106dc953acebb6"
   dependencies:
