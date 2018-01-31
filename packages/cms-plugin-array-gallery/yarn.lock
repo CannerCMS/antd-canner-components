@@ -6,9 +6,9 @@
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@canner/canner-config/-/canner-config-0.1.0.tgz#d0616ea1afcd988527ea036b75c63fb9073dac6f"
 
-"@canner/image-service-config@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@canner/image-service-config/-/image-service-config-0.0.7.tgz#d930a244cf16a9d7907c7dbd9f5e271aa65efbc3"
+"@canner/image-service-config@^0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@canner/image-service-config/-/image-service-config-0.0.8.tgz#9c5a7de0209dc554119c88fc0cdab3a39242ce0d"
   dependencies:
     "@canner/canner-config" "^0.1.0"
     axios "^0.17.1"
@@ -16,11 +16,12 @@
     promise-polyfill "^7.0.0"
     whatwg-fetch "^2.0.3"
 
-"@canner/image-upload@^0.5.4":
-  version "0.5.4"
-  resolved "https://registry.yarnpkg.com/@canner/image-upload/-/image-upload-0.5.4.tgz#40315a77a5f38e130a6872ed81ac48ff74ada52d"
+"@canner/image-upload@^0.5.5":
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/@canner/image-upload/-/image-upload-0.5.5.tgz#de75ec5f3455c1093b05ce13e4b87954cb9ea204"
   dependencies:
     antd "^2.5.2"
+    prop-types "^15.6.0"
     react-css-modules "^4.1.0"
 
 "@firebase/app-types@0.1.0":
@@ -460,6 +461,10 @@ enquire.js@^2.1.6:
   version "2.1.6"
   resolved "https://registry.yarnpkg.com/enquire.js/-/enquire.js-2.1.6.tgz#3e8780c9b8b835084c3f60e166dbc3c2a3c89814"
 
+ev-emitter@^1.0.0:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/ev-emitter/-/ev-emitter-1.1.1.tgz#8f18b0ce5c76a5d18017f71c0a795c65b9138f2a"
+
 eventlistener@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/eventlistener/-/eventlistener-0.0.1.tgz#ed2baabb852227af2bcf889152c72c63ca532eb8"
@@ -663,6 +668,12 @@ http-signature@~1.1.0:
 iconv-lite@~0.4.13:
   version "0.4.19"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
+
+imagesloaded@^4.1.4:
+  version "4.1.4"
+  resolved "https://registry.yarnpkg.com/imagesloaded/-/imagesloaded-4.1.4.tgz#1376efcd162bb768c34c3727ac89cc04051f3cc7"
+  dependencies:
+    ev-emitter "^1.0.0"
 
 immutable@^3.7.4, immutable@^3.8.2:
   version "3.8.2"
@@ -977,7 +988,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@15.x, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@^15.5.9:
+prop-types@15.x, prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@^15.5.9, prop-types@^15.6.0:
   version "15.6.0"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.0.tgz#ceaf083022fc46b4a35f69e13ef75aed0d639856"
   dependencies:
