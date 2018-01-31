@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-array-slider",
-  "version": "0.1.0-rc.18",
+  "version": "0.1.0-rc.19",
   "description": "array-slider",
   "main": "lib/index.js",
   "scripts": {},
