@@ -2,6 +2,7 @@
 
 import React, { Component } from "react";
 import { Table, Button, Modal } from "antd";
+import PropTypes from 'prop-types';
 import { List, Map } from "immutable";
 import renderFunc from "./renderFunc";
 import isEmpty from "lodash/isEmpty";
@@ -74,6 +75,10 @@ export default class ArrayBreadcrumb extends Component<Props, State> {
     showPagination: true,
     schema: {}
   };
+
+  static contextTypes = {
+    fetch: PropTypes.func
+  }
 
   componentWillMount() {
     const { fetch } = this.context;
