@@ -1,8 +1,8 @@
 // @flow
 
 import React, { Component } from "react";
-import GridDraggable, { Section } from "grid-draggable";
-import GridBreakpoint from "grid-breakpoint";
+import GridDraggable, { Section } from "@canner/grid-draggable";
+import GridBreakpoint from "@canner/grid-breakpoint";
 import { List } from "immutable";
 import Item from "./item";
 import Add from "./add";

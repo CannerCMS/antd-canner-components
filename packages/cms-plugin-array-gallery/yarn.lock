@@ -6,6 +6,26 @@
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@canner/canner-config/-/canner-config-0.1.0.tgz#d0616ea1afcd988527ea036b75c63fb9073dac6f"
 
+"@canner/grid-breakpoint@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@canner/grid-breakpoint/-/grid-breakpoint-1.0.0.tgz#2c67b7896cb7af7b86c70b4a7ebaeed9202ea8f0"
+  dependencies:
+    classnames "^2.2.5"
+    lodash "^4.16.6"
+    prop-types "^15.6.0"
+    react-dimensions "^1.3.0"
+    react-flexbox-grid "^1.1.3"
+
+"@canner/grid-draggable@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@canner/grid-draggable/-/grid-draggable-1.0.0.tgz#c8bd0f512e4c5f0400c5ef31323960af1e431260"
+  dependencies:
+    "@canner/grid-breakpoint" "^1.0.0"
+    grid-breakpoint "^1.0.0"
+    lodash "^4.16.6"
+    prop-types "^15.6.0"
+    react-draggable "^2.2.2"
+
 "@canner/image-service-config@^0.0.8":
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/@canner/image-service-config/-/image-service-config-0.0.8.tgz#9c5a7de0209dc554119c88fc0cdab3a39242ce0d"
