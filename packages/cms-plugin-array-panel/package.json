@@ -12,7 +12,7 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/rc-collapse": "2.2.8"
+    "@canner/rc-collapse": "2.2.9"
   },
   "peerDependencies": {
     "react": "16.2.0",

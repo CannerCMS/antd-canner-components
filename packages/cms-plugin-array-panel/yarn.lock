@@ -2,11 +2,12 @@
 # yarn lockfile v1
 
 
-"@canner/rc-collapse@2.2.8":
-  version "2.2.8"
-  resolved "https://registry.yarnpkg.com/@canner/rc-collapse/-/rc-collapse-2.2.8.tgz#7765569f1a42e5731e3df758ce106dc953acebb6"
+"@canner/rc-collapse@2.2.9":
+  version "2.2.9"
+  resolved "https://registry.yarnpkg.com/@canner/rc-collapse/-/rc-collapse-2.2.9.tgz#0224dc4fead5d0411bca2b39b655c3d6eef925f5"
   dependencies:
     classnames "2.x"
+    create-react-class "^15.6.3"
     css-animation "1.x"
     deep-equal "^1.0.1"
     lodash.isequal "^4.4.0"
@@ -49,6 +50,14 @@ core-js@^2.4.0:
   version "2.5.3"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.3.tgz#8acc38345824f16d8365b7c9b4259168e8ed603e"
 
+create-react-class@^15.6.3:
+  version "15.6.3"
+  resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.6.3.tgz#2d73237fb3f970ae6ebe011a9e66f46dbca80036"
+  dependencies:
+    fbjs "^0.8.9"
+    loose-envify "^1.3.1"
+    object-assign "^4.1.1"
+
 css-animation@1.x, css-animation@^1.3.2:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/css-animation/-/css-animation-1.4.1.tgz#5b8813125de0fbbbb0bbe1b472ae84221469b7a8"
@@ -66,7 +75,7 @@ encoding@^0.1.11:
   dependencies:
     iconv-lite "~0.4.13"
 
-fbjs@^0.8.16:
+fbjs@^0.8.16, fbjs@^0.8.9:
   version "0.8.16"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.16.tgz#5e67432f550dc41b572bf55847b8aca64e5337db"
   dependencies:
