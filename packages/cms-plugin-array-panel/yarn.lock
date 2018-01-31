@@ -3,13 +3,14 @@
 
 
 "@canner/rc-collapse@^2.2.6":
-  version "2.2.6"
-  resolved "https://registry.yarnpkg.com/@canner/rc-collapse/-/rc-collapse-2.2.6.tgz#482382039ae935b5ed19304a1caadd897dd2cd37"
+  version "2.2.7"
+  resolved "https://registry.yarnpkg.com/@canner/rc-collapse/-/rc-collapse-2.2.7.tgz#1aba638b5a5856d562a204ac5f14b1d388038155"
   dependencies:
     classnames "2.x"
     css-animation "1.x"
     deep-equal "^1.0.1"
     lodash.isequal "^4.4.0"
+    prop-types "^15.6.0"
     rc-animate "2.x"
     react-draggable "^2.2.3"
     react-icons "^2.2.1"
@@ -143,7 +144,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@15.x:
+prop-types@15.x, prop-types@^15.6.0:
   version "15.6.0"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.0.tgz#ceaf083022fc46b4a35f69e13ef75aed0d639856"
   dependencies:
