@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-array-popup",
-  "version": "0.1.0-rc.5",
+  "version": "0.1.0-rc.6",
   "description": "array popup",
   "main": "lib/index.js",
   "scripts": {},
