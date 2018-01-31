@@ -80,6 +80,13 @@ export default class ArrayBreadcrumb extends Component<Props, State> {
     fetch: PropTypes.func
   }
 
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      relationData: {}
+    };
+  }
+
   componentWillMount() {
     const { fetch } = this.context;
     const { items, id, value } = this.props;
