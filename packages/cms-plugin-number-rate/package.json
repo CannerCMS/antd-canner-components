@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-number-rate",
-  "version": "0.1.0-rc.9",
+  "version": "0.1.0-rc.10",
   "description": "string input",
   "main": "lib/index.js",
   "scripts": {},
