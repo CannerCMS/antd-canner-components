@@ -100,9 +100,9 @@ export default class PopupArrayPlugin extends Component<Props, State> {
       value.forEach(v => {
         // $FlowFixMe
         if (relationship === 'oneToMany.idMap') {
-          idList = idList.concat(v.get(__key__, new Map()).keySeq().toJS());
+          idList = idList.concat((v.get(__key__) || new Map()).keySeq().toJS());
         } else {
-          idList = idList.concat(v.get(__key__, new List()));
+          idList = idList.concat((v.get(__key__) || new List()));
         }
       });
       fetch(relationTo, `${id}/__RELATION__`, {filter: {_id: {$in: idList.toJS()}}, pagination: {start: 0, limit: 40}})
