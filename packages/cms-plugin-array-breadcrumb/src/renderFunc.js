@@ -55,7 +55,7 @@ export default function(cols, schema, relationData) {
       if (itemSchema && itemSchema.type === "relation") {
         const {relationTo, relationship} = itemSchema.relation;
         if (relationship === 'oneToMany.idMap') {
-          text = Object.keys(text);
+          text = Object.keys(text || {});
         } else if (typeof text === 'string') {
           text = [text];
         }
