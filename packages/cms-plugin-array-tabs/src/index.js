@@ -33,7 +33,8 @@ export default class TabUi extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      activeKey: '.$0'
+      activeKey: '.$0',
+
     };
   }
 
@@ -118,7 +119,8 @@ export default class TabUi extends Component<Props, State> {
       id,
       uiParams,
       allowSwap,
-      intl
+      intl,
+      renderButton
     } = this.props;
     const { activeKey } = this.state;
     const position = uiParams.position || "top";
@@ -128,7 +130,7 @@ export default class TabUi extends Component<Props, State> {
       const thisId = generateId(id, i, "array");
       // generate panel title
       let title;
-    const defaultTitle = `${intl.formatMessage({
+      const defaultTitle = `${intl.formatMessage({
         id: "array.tab.item"
       })} ${i + 1}`;
       if (uiParams.titleKey) {
@@ -146,6 +148,7 @@ export default class TabUi extends Component<Props, State> {
         id: thisId,
         routes: this.props.routes
       });
+      const paths = thisId.split('/');
       panelFields.push(
         <TabPane
           tab={activeKey === `.$${i}` ? [title, deleteBtn(i)] : title}
@@ -153,6 +156,16 @@ export default class TabUi extends Component<Props, State> {
           key={`${i}`}
         >
           {childrenWithProps}
+          {
+            // only the top tabs need the button
+            paths.length > 2 ?
+              null :
+              renderButton({
+                disabled: false,
+                key: i,
+                id: item.get('_id')
+              })
+          }
         </TabPane>
       );
     });
