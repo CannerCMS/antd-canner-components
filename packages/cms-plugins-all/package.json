@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugins-all",
-  "version": "0.0.49",
+  "version": "0.0.50",
   "description": "plugins",
   "main": "lib/index.js",
   "scripts": {},
@@ -15,7 +15,7 @@
     "@canner/cms-plugin-array-breadcrumb": "^0.0.49",
     "@canner/cms-plugin-array-gallery": "^0.0.49",
     "@canner/cms-plugin-array-panel": "^0.0.49",
-    "@canner/cms-plugin-array-popup": "^0.0.49",
+    "@canner/cms-plugin-array-popup": "^0.0.50",
     "@canner/cms-plugin-array-slider": "^0.0.49",
     "@canner/cms-plugin-array-tabs": "^0.0.49",
     "@canner/cms-plugin-array-tag": "^0.0.49",
