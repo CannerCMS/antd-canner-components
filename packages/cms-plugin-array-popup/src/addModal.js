@@ -91,7 +91,7 @@ export default class AddModal extends Component<Props> {
               id: `${id}/${order}`,
               rootValue,
               // not work now, need to resolve it
-              readOnly: createAction.indexOf(child.title) !== -1
+              readOnly: createAction.indexOf(child.name) === -1
             }))
           : null}
       </Modal>

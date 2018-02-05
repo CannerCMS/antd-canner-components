@@ -84,7 +84,7 @@ export default class EditModal extends Component<Props> {
           ? renderChildren(child => ({
               id: `${id}/${order}`,
               // not work now, need to resolve it
-              readOnly: updateAction.indexOf(child.title) !== -1
+              readOnly: updateAction.indexOf(child.name) === -1
             }))
           : null}
       </Modal>
