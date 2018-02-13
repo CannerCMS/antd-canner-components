@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-string-time-picker",
-  "version": "0.1.0-rc.19",
+  "version": "0.1.0-rc.20",
   "description": "string time picker",
   "main": "lib/index.js",
   "scripts": {},

@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-array-tag",
-  "version": "0.1.0-rc.19",
+  "version": "0.1.0-rc.20",
   "description": "array tag",
   "main": "lib/index.js",
   "scripts": {},
