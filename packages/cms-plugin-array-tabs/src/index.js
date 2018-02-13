@@ -162,7 +162,7 @@ export default class TabUi extends Component<Props, State> {
               null :
               renderButton({
                 disabled: false,
-                key: i,
+                key: thisId.split('/')[0],
                 id: item.get('_id')
               })
           }
