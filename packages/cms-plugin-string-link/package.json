@@ -4,7 +4,7 @@
   "description": "string input",
   "main": "lib/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "../../node_modules/.bin/jest"
   },
   "keywords": [
     "cms",

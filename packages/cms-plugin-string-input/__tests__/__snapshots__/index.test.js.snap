@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[input] render success with value 1`] = `
+<div
+  id="input"
+>
+  <input
+    className="ant-input"
+    disabled={false}
+    onChange={[Function]}
+    onCompositionEnd={[Function]}
+    onCompositionStart={[Function]}
+    onKeyDown={[Function]}
+    type="text"
+    value="this is a test"
+  />
+</div>
+`;

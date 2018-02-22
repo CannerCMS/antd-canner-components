@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`link render success with value 1`] = `
+exports[`[link] render success with value 1`] = `
 <div>
   <div
     id="input"
