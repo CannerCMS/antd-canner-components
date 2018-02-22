@@ -31,7 +31,12 @@ declare type defaultProps = {
   relation: {
     relationship: string,
     relationTo: string,
-    relationOn?: string
+    relationOn?: string,
+    foreignKey?:string
   },
-  routes: Array<string>
+  routes: Array<string>,
+  goTo: string => void,
+  baseUrl: string,
+  rootValue: any,
+  fetchRelation: Function
 };

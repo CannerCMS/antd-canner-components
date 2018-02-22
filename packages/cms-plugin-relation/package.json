@@ -14,5 +14,8 @@
   "peerDependencies": {
     "react": "16.2.0",
     "react-dom": "16.2.0"
+  },
+  "dependencies": {
+    "@canner/cms-locales": "^0.1.0-rc.20"
   }
 }
