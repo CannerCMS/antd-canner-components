@@ -18,7 +18,7 @@ type Props = {
     relationTo: string,
     relationOn?: string
   },
-  fetchRelation: Function,
+  fetchRelation?: Function,
   columns: Array<{
     title: string,
     key: string,

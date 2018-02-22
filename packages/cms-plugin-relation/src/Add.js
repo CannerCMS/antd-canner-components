@@ -71,7 +71,7 @@ export default class RelationAdd extends PureComponent<Props, State> {
     return (
       <div>
         <Button
-          onClick={() => goTo(`${baseUrl}/${relation.relationTo}?op=create&payload=${JSON.stringify({[relation.foreignKey]: {[recordId]: true}})}&backUrl=${encodeURIComponent(location.href)}`)}
+          onClick={() => goTo(`${baseUrl}/${relation.relationTo}?op=create&payload=${JSON.stringify({[relation.foreignKey || relation.relationTo]: {[recordId]: true}})}&backUrl=${encodeURIComponent(location.href)}`)}
         >
           <Icon type="plus" /> 新增物件
         </Button>
