@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-string-input",
-  "version": "0.1.0-rc.21",
+  "version": "0.1.0-rc.22",
   "description": "string input",
   "main": "lib/index.js",
   "scripts": {},
