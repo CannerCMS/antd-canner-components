@@ -72,7 +72,9 @@ export default class Picker extends PureComponent<Props, State> {
   fetchData = (pagination: {[string]: number}) => {
     const {relation, fetchRelation} = this.props;
     const {fetch} = this.context;
-    fetchRelation(null, {start: 0, limit: pagination.start + pagination.limit});
+    if (fetchRelation) {
+      fetchRelation(null, {start: 0, limit: pagination.start + pagination.limit});
+    }
     return fetch(relation.relationTo, this.componentId, {pagination})
       .then(ctx => {
         this.goTo = ctx.response.pagination.goTo;
