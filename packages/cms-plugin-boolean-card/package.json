@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-boolean-card",
-  "version": "0.1.0-rc.20",
+  "version": "0.1.0-rc.21",
   "description": "boolean card",
   "main": "lib/index.js",
   "scripts": {},
@@ -12,6 +12,6 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/cms-plugin-share-card": "^0.1.0-rc.20"
+    "@canner/cms-plugin-share-card": "^0.1.0-rc.21"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-array-tab-left",
-  "version": "0.1.0-rc.20",
+  "version": "0.1.0-rc.21",
   "description": "array tab lef",
   "main": "lib/index.js",
   "scripts": {},
