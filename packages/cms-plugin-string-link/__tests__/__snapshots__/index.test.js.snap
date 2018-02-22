@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`link render success with value 1`] = `
+<div>
+  <div
+    id="input"
+  >
+    <input
+      className="ant-input"
+      disabled={false}
+      onChange={[Function]}
+      onCompositionEnd={[Function]}
+      onCompositionStart={[Function]}
+      onKeyDown={[Function]}
+      type="text"
+      value="this is a test link"
+    />
+  </div>
+  <div
+    className="preview"
+  >
+    <span>
+      preview link: 
+    </span>
+    <a
+      href="this is a test link"
+      target="_blank"
+    >
+      this is a test link
+    </a>
+  </div>
+</div>
+`;
