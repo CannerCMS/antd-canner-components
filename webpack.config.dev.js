@@ -41,7 +41,12 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loaders: ["babel-loader"]
+        loaders: ["babel"]
+      },
+      {
+        test: /\.js$/,
+        include: [/node_modules\/@canner\/image-upload/],
+        loaders: ["babel"]
       },
       {
         test: /\.scss$/,

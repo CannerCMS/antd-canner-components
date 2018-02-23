@@ -101,7 +101,7 @@ export default class Gallery extends Component<Props, State> {
   };
 
   deleteImage = (imageId: string) => {
-    const r = confirm("您確定要刪除嗎？");
+    const r = confirm("Are you sure to delete this item?");
     if (r) {
       const { id, generateId, onChange } = this.props;
       const deleteId = generateId(id, imageId, "array");
@@ -148,8 +148,7 @@ export default class Gallery extends Component<Props, State> {
       );
     });
 
-    list = list.push(<Add onClick={this.showEditPopup} />);
-
+    list = list.push(<Add key="add" onClick={this.showEditPopup} />);
     return (
       <div>
         {uiParams.disableDrag ? (

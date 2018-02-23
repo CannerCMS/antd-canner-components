@@ -2,9 +2,10 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
+import immutable from 'immutable';
 import TextInput from "packages/cms-plugin-string-input";
 import Editor from "packages/cms-plugin-string-editor";
-import Tabs from "packages/cms-plugin-array-tabs";
+import Gallery from "packages/cms-plugin-array-gallery";
 
 const onChange = (id, type, value) => {
   console.log(id, type, value);
@@ -20,7 +21,15 @@ const props = {
 
 ReactDOM.render(
   <div>
-    <Tabs {...props} />
+    <Gallery
+      id="gallery"
+      value={immutable.fromJS([{
+        image: "./test.png",
+        title: "image1"
+      }, {
+        image: "./test2.png",
+        title: "image2"
+      }])}/>
   </div>,
   document.getElementById("root")
 );
