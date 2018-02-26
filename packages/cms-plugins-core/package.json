@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugins-core",
-  "version": "0.1.0-rc.23",
+  "version": "0.1.0-rc.24",
   "description": "plugins",
   "main": "lib/index.js",
   "scripts": {},
@@ -12,13 +12,13 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/cms-plugin-array-gallery": "^0.1.0-rc.23",
-    "@canner/cms-plugin-array-popup": "^0.1.0-rc.23",
-    "@canner/cms-plugin-array-tabs": "^0.1.0-rc.23",
+    "@canner/cms-plugin-array-gallery": "^0.1.0-rc.24",
+    "@canner/cms-plugin-array-popup": "^0.1.0-rc.24",
+    "@canner/cms-plugin-array-tabs": "^0.1.0-rc.24",
     "@canner/cms-plugin-boolean-switch": "^0.0.35",
-    "@canner/cms-plugin-number-input": "^0.1.0-rc.23",
-    "@canner/cms-plugin-object-fieldset": "^0.1.0-rc.23",
-    "@canner/cms-plugin-string-image": "^0.1.0-rc.23",
+    "@canner/cms-plugin-number-input": "^0.1.0-rc.24",
+    "@canner/cms-plugin-object-fieldset": "^0.1.0-rc.24",
+    "@canner/cms-plugin-string-image": "^0.1.0-rc.24",
     "@canner/cms-plugin-string-input": "^0.0.35",
     "@canner/cms-plugin-string-textarea": "^0.0.35",
     "react-loadable": "^5.3.1"

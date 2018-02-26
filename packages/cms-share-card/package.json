@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-share-card",
-  "version": "0.1.0-rc.23",
+  "version": "0.1.0-rc.24",
   "description": "string card",
   "main": "lib/index.js",
   "scripts": {},
