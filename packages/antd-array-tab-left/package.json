@@ -1,0 +1,14 @@
+{
+  "name": "@canner/antd-array-tab-left",
+  "version": "0.0.49",
+  "description": "array tab lef",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "input",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC"
+}

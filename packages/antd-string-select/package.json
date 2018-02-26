@@ -1,0 +1,17 @@
+{
+  "name": "@canner/antd-string-select",
+  "version": "0.0.49",
+  "description": "string select",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "select",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}

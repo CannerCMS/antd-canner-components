@@ -1,0 +1,14 @@
+{
+  "name": "@canner/antd-number-input",
+  "version": "0.0.49",
+  "description": "number input",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "number",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "@canner/antd-array-tab-bottom",
+  "version": "0.0.49",
+  "description": "array tab bottom",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "array",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC"
+}

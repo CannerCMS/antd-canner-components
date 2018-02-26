@@ -1,0 +1,17 @@
+{
+  "name": "@canner/antd-string-radio",
+  "version": "0.0.49",
+  "description": "string radio",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "radio",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}

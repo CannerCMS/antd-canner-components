@@ -1,0 +1,49 @@
+{
+  "name": "@canner/antd-component-all-import",
+  "version": "0.0.50",
+  "description": "plugins",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "plugins",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {
+    "@canner/cms-plugin-array-breadcrumb": "^0.0.49",
+    "@canner/cms-plugin-array-gallery": "^0.0.49",
+    "@canner/cms-plugin-array-panel": "^0.0.49",
+    "@canner/cms-plugin-array-popup": "^0.0.50",
+    "@canner/cms-plugin-array-slider": "^0.0.49",
+    "@canner/cms-plugin-array-tabs": "^0.0.49",
+    "@canner/cms-plugin-array-tag": "^0.0.49",
+    "@canner/cms-plugin-boolean-card": "^0.0.49",
+    "@canner/cms-plugin-boolean-switch": "^0.0.49",
+    "@canner/cms-plugin-number-input": "^0.0.49",
+    "@canner/cms-plugin-number-rate": "^0.0.49",
+    "@canner/cms-plugin-number-slider": "^0.0.49",
+    "@canner/cms-plugin-number-text-input": "^0.0.49",
+    "@canner/cms-plugin-object-fieldset": "^0.0.49",
+    "@canner/cms-plugin-object-map": "^0.0.49",
+    "@canner/cms-plugin-object-options": "^0.0.49",
+    "@canner/cms-plugin-object-variants": "^0.0.49",
+    "@canner/cms-plugin-relation": "^0.0.49",
+    "@canner/cms-plugin-string-card": "^0.0.49",
+    "@canner/cms-plugin-string-date-time-picker": "^0.0.49",
+    "@canner/cms-plugin-string-editor": "^0.0.49",
+    "@canner/cms-plugin-string-image": "^0.0.49",
+    "@canner/cms-plugin-string-input": "^0.0.49",
+    "@canner/cms-plugin-string-link": "^0.0.49",
+    "@canner/cms-plugin-string-radio": "^0.0.49",
+    "@canner/cms-plugin-string-select": "^0.0.49",
+    "@canner/cms-plugin-string-textarea": "^0.0.49",
+    "@canner/cms-plugin-string-time-picker": "^0.0.49",
+    "react-loadable": "^5.3.1"
+  },
+  "peerDependencies": {
+    "react": "16.2.0",
+    "react-dom": "16.2.0"
+  }
+}

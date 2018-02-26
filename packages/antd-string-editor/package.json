@@ -1,0 +1,23 @@
+{
+  "name": "@canner/antd-string-editor",
+  "version": "0.0.49",
+  "description": "string editor",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "editor",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {
+    "@canner/react-quill": "^0.4.6",
+    "bson-objectid": "^1.2.2",
+    "react-color": "^2.13.8"
+  },
+  "peerDependencies": {
+    "react": "16.2.0",
+    "react-dom": "16.2.0"
+  }
+}

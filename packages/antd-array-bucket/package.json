@@ -1,0 +1,17 @@
+{
+  "name": "@canner/antd-array-bucket",
+  "version": "0.0.49",
+  "description": "array gallery",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "bucket",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {
+    "immutable": "^3.8.2"
+  }
+}

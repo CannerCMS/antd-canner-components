@@ -1,0 +1,14 @@
+{
+  "name": "@canner/antd-string-textarea",
+  "version": "0.0.49",
+  "description": "string textarea",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "textarea",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC"
+}

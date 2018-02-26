@@ -1,0 +1,18 @@
+{
+  "name": "@canner/antd-array-tabs",
+  "version": "0.0.49",
+  "description": "array tabs",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "tabs",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {
+    "@canner/rc-tabs": "^9.2.4",
+    "immutable": "^3.8.2"
+  }
+}

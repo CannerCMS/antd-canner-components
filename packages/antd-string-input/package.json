@@ -1,0 +1,27 @@
+{
+  "name": "@canner/antd-string-input",
+  "version": "0.0.49",
+  "description": "string input",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "../../node_modules/.bin/jest"
+  },
+  "keywords": [
+    "cms",
+    "input",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+        "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less|scss)$": "identity-obj-proxy"
+    }
+  },
+  "peerDependencies": {
+    "react": "16.2.0",
+    "react-dom": "16.2.0"
+  }
+}

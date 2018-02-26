@@ -1,0 +1,17 @@
+{
+  "name": "@canner/antd-string-time-picker",
+  "version": "0.0.49",
+  "description": "string time picker",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "time-picker",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {
+    "moment-timezone": "^0.5.14"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "@canner/antd-number-slider",
+  "version": "0.0.49",
+  "description": "number slider",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "slider",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC"
+}
