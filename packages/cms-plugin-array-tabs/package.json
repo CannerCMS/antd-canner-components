@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-array-tabs",
-  "version": "0.1.0-rc.26",
+  "version": "0.1.0-rc.27",
   "description": "array tabs",
   "main": "lib/index.js",
   "scripts": {},
