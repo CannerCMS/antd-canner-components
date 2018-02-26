@@ -1,6 +1,7 @@
 /* eslint-disable require-jsdoc */
 import { isBoolean, isArray, template } from "lodash";
 import React from 'react';
+
 export default function(cols, schema) {
   return cols.map(col => {
     const itemSchema = schema[col.dataIndex];

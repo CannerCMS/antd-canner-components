@@ -1,11 +1,7 @@
-/* eslint-disable */
-
 import React from "react";
 import ReactDOM from "react-dom";
 import immutable from 'immutable';
-import TextInput from "packages/cms-plugin-string-input";
-import Editor from "packages/cms-plugin-string-editor";
-import Gallery from "packages/cms-plugin-array-gallery";
+import Breadcrumb from "packages/cms-plugin-array-breadcrumb";
 
 const onChange = (id, type, value) => {
   console.log(id, type, value);
@@ -21,7 +17,7 @@ const props = {
 
 ReactDOM.render(
   <div>
-    <Gallery
+    <Breadcrumb
       id="gallery"
       value={immutable.fromJS([{
         image: "./test.png",
