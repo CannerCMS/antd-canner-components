@@ -10,5 +10,8 @@
     "canner"
   ],
   "author": "canner",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@canner/antd-array-tabs": "0.0.49"
+  }
 }

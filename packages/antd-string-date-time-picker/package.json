@@ -14,5 +14,8 @@
   "dependencies": {
     "moment": "^2.20.1",
     "moment-timezone": "^0.5.14"
+  },
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
   }
 }

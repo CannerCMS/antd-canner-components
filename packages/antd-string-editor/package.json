@@ -17,7 +17,6 @@
     "react-color": "^2.13.8"
   },
   "peerDependencies": {
-    "react": "16.2.0",
-    "react-dom": "16.2.0"
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
   }
 }

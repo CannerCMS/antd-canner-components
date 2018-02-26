@@ -22,6 +22,9 @@
       "\\.(css|less|scss)$": "identity-obj-proxy"
     }
   },
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
+  },
   "dependencies": {
     "@canner/image-service-config": "^0.0.8",
     "@canner/image-upload": "^0.6.0",

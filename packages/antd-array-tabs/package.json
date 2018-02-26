@@ -12,7 +12,7 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/rc-tabs": "^9.2.4",
+    "@canner/rc-tabs": "^9.2.5",
     "immutable": "^3.8.2"
   }
 }

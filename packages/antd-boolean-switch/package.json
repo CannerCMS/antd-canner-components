@@ -13,5 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "react-intl": "^2.4.0"
+  },
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
   }
 }

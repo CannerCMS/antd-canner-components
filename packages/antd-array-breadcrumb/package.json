@@ -12,10 +12,9 @@
   "author": "canner",
   "license": "ISC",
   "peerDependencies": {
-    "react": "16.2.0",
-    "react-dom": "16.2.0"
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
-    "@canner/cms-locales": "^0.0.28"
+    "@canner/antd-locales": "^0.0.49"
   }
 }

@@ -12,6 +12,9 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/share-card": "^0.0.49"
+    "@canner/antd-share-card": "^0.0.49"
+  },
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
   }
 }

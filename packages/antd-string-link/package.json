@@ -21,8 +21,11 @@
     }
   },
   "dependencies": {
-    "@canner/cms-locales": "^0.0.49",
-    "@canner/cms-plugin-string-input": "^0.0.49",
+    "@canner/antd-locales": "^0.0.49",
+    "@canner/antd-string-input": "^0.0.49",
     "react-intl": "^2.4.0"
+  },
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
   }
 }
