@@ -90,7 +90,10 @@ export default class RelationAdd extends PureComponent<Props, State> {
         </Button>
         <div style={{ marginTop: 16 }}>
           <Table
-            columns={uiParams.columns}
+            columns={uiParams.columns.map(col => {
+              col.render = text => text || '未命名';
+              return col;
+            })}
             dataSource={value}
             bordered
             size="small"
