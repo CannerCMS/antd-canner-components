@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
-import { Icon, Button } from "antd";
+import { Icon, Button, Table } from "antd";
 import type { Map, List } from 'immutable';
 import difference from "lodash/difference";
 import Picker from './Picker';
@@ -27,6 +27,13 @@ export default class RelationAdd extends PureComponent<Props, State> {
     this.state = {
       modalVisible: false
     };
+  }
+
+  componentWillMount() {
+    const {fetchRelation} = this.props;
+    if (fetchRelation) {
+      fetchRelation(null, {start: 0, limit: 999999});
+    }
   }
 
   static defaultProps = {
@@ -81,7 +88,14 @@ export default class RelationAdd extends PureComponent<Props, State> {
         >
           <Icon type="check" /> 選取物件
         </Button>
-
+        <div style={{ marginTop: 16 }}>
+          <Table
+            columns={uiParams.columns}
+            dataSource={value}
+            bordered
+            size="small"
+          />
+        </div>
         {
           !readOnly && <Picker
             title="選擇物件"
@@ -100,4 +114,3 @@ export default class RelationAdd extends PureComponent<Props, State> {
     );
   }
 }
-
