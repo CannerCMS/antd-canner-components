@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-array-tab-right",
-  "version": "0.1.0-rc.24",
+  "version": "0.1.0-rc.25",
   "description": "array tab right",
   "main": "lib/index.js",
   "scripts": {},
