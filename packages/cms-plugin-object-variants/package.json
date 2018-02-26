@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-object-variants",
-  "version": "0.1.0-rc.25",
+  "version": "0.1.0-rc.26",
   "description": "object variants",
   "main": "lib/index.js",
   "scripts": {},
