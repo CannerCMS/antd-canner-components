@@ -29,12 +29,15 @@ declare type defaultProps = {
   readOnly: boolean,
 
   // just combine the id, used in array
+  // https://github.com/Canner/qa-generator/tree/master/src/utils
   generateId: (...any) => string,
 
   // in array, use this function to create empty data
+  // https://github.com/Canner/qa-generator/tree/master/src/utils
   createEmptyData: ({[string]: any}) => any,
 
   // transform data to immutable
+  // https://github.com/Canner/qa-generator/tree/master/src/utils
   transformData: any => any,
 
   // parent component will call this method to render their children,
@@ -42,6 +45,7 @@ declare type defaultProps = {
   // eg: <div>
   //   {renderChildren({id: `${this.props.id}/${index}`, routes: this.props.routes})}
   // </div>
+  // https://github.com/Canner/qa-generator/blob/master/src/index.js
   renderChildren: (node: any, props: any | (any => any)) => Node,
 
   // only relation component get this
@@ -54,10 +58,12 @@ declare type defaultProps = {
 
   // the route controller
   // goTo('/my/url')
+  // https://github.com/Canner/qa-generator/blob/master/src/index.js
   goTo: string => void,
 
   // the baseUrl
   // eg: in canner-web, the baseUrl=/apps/APP-URL/restfulqa
+  // https://github.com/Canner/qa-generator/blob/master/src/index.js
   baseUrl: string,
 
   // not supported
@@ -85,6 +91,7 @@ declare type defaultProps = {
 
 
   // hoc: withRequest
+  // https://github.com/Canner/qa-generator/blob/master/src/hocs/withRequest.js
   onChange: (
     id: string | { firstId: string, secondId: string } | Array<changeArg>,
     type?: string,
@@ -93,6 +100,7 @@ declare type defaultProps = {
 
   // hoc: withRelation
   // only used in relation
+  // https://github.com/Canner/qa-generator/blob/master/src/hocs/relation.js
   fetchRelation: Function,
 
 
