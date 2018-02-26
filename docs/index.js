@@ -1,31 +1,64 @@
-import React from "react";
+import React, {Component} from "react";
 import ReactDOM from "react-dom";
-import immutable from 'immutable';
-import Breadcrumb from "packages/cms-plugin-array-breadcrumb";
+import {Menu, Layout} from 'antd';
+import TabLeftDemo from './demos/tabs-left';
 
-const onChange = (id, type, value) => {
-  console.log(id, type, value);
-};
+const {SubMenu} = Menu;
+const {Content, Sider} = Layout;
 
-const props = {
-  uiParams: {},
-  onChange,
-  id: 'id',
-  generateId: () => 'id2',
-  createEmptyData: () => undefined,
+class Demo extends Component {
+  constructor() {
+    super();
+
+    this.switchDemo = this.switchDemo.bind(this);
+    this.state = {
+      selectKey: 'tab-left',
+      selectTab: 'array'
+    };
+  }
+
+  switchDemo(item) {
+    this.setState({
+      selectKey: item.keyPath[0],
+      selectTab: item.keyPath[1]
+    })
+  }
+
+  render() {
+    const {selectKey, selectTab} = this.state;
+
+    return (
+      <Layout>
+        <Sider width={200} style={{ background: '#fff' }}>
+          <Menu
+            mode="inline"
+            defaultSelectedKeys={[selectKey]}
+            defaultOpenKeys={[selectTab]}
+            onClick={this.switchDemo}
+            style={{ height: '100%', borderRight: 0 }}
+          >
+            <SubMenu key="string" title="String">
+              <Menu.Item key="input">input</Menu.Item>
+              <Menu.Item key="link">link</Menu.Item>
+            </SubMenu>
+            <SubMenu key="array" title="Array">
+              <Menu.Item key="tab-left">tab-left</Menu.Item>
+            </SubMenu>
+          </Menu>
+        </Sider>
+        <Layout style={{ padding: '0 24px 24px' }}>
+          <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
+            {
+              selectTab === 'array' && selectKey === 'tab-left' ? <TabLeftDemo/> : null
+            }
+          </Content>
+        </Layout>
+      </Layout>
+    );
+  }
 }
 
 ReactDOM.render(
-  <div>
-    <Breadcrumb
-      id="gallery"
-      value={immutable.fromJS([{
-        image: "./test.png",
-        title: "image1"
-      }, {
-        image: "./test2.png",
-        title: "image2"
-      }])}/>
-  </div>,
+  <Demo/>,
   document.getElementById("root")
 );
