@@ -3,11 +3,7 @@
   "packages": [
     "packages/*"
   ],
-<<<<<<< HEAD
-  "version": "0.1.0-rc.27",
-=======
   "version": "0.0.50",
->>>>>>> c498dfe981ea322945ea9fda5341726ea5362a1b
   "command": {
     "init": {
       "exact": true

@@ -1,11 +1,6 @@
 {
-<<<<<<< HEAD:packages/cms-plugin-string-select/package.json
-  "name": "@canner/cms-plugin-string-select",
-  "version": "0.1.0-rc.27",
-=======
   "name": "@canner/antd-string-select",
   "version": "0.0.49",
->>>>>>> c498dfe981ea322945ea9fda5341726ea5362a1b:packages/antd-string-select/package.json
   "description": "string select",
   "main": "lib/index.js",
   "scripts": {},
