@@ -51,37 +51,6 @@ export default function(cols, schema) {
         return <div dangerouslySetInnerHTML={{__html: compiled(record)}} />;
       }
 
-      // if (itemSchema && itemSchema.ui === "assoc.select") {
-      //   const {path} = itemSchema.association;
-      //   const item = (assocData[path] || []).find(datum => datum._id === text);
-      //   let {textCol, subtextCol} = itemSchema.uiParams;
-      //   if (isUndefined(item) || isEmpty(item) || item && item.size === 0) {
-      //     return "";
-      //   }
-      //   if (textCol && (textCol.indexOf('<%') === -1 || textCol.indexOf('%>') === -1)) {
-      //     // not template string
-      //     // change it
-      //     textCol = `<%=${textCol}%>`;
-      //   }
-      //   if (subtextCol && (subtextCol.indexOf('<%') === -1 || subtextCol.indexOf('%>') === -1)) {
-      //     // not template string
-      //     // change it
-      //     subtextCol = `<%=${subtextCol}%>`;
-      //   }
-      //   const textCompiled = template(textCol || '');
-      //   const subtextCompiled = template(subtextCol || '');
-      //   let title = '';
-      //   let subText = '';
-      //   try {
-      //     title = textCompiled(item);
-      //     subText = subtextCompiled(item);
-      //   } catch (e) {
-      //     title = '';
-      //     subText = '';
-      //   }
-      //   return `${title} ${subText ? `(${subText})` : ""}`;
-      // }
-
       if (isBoolean(text)) {
         if (text) {
           return "是";

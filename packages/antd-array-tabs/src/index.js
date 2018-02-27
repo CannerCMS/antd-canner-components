@@ -85,7 +85,7 @@ export default class TabUi extends Component<Props, State> {
     const prevIndex = generateId(id, oldIndex - 1, "array");
     const currIndex = generateId(id, newIndex - 1, "array");
 
-    this.setState({activeKey: `${newIndex - 1}`});
+    this.setState({activeKey: `.$${newIndex - 1}`});
     onChange({firstId: currIndex, secondId: prevIndex}, "swap")
   };
 
@@ -130,7 +130,7 @@ export default class TabUi extends Component<Props, State> {
 
       panelFields.push(
         <TabPane
-          tab={activeKey === `.$${i}` ? [title, deleteBtn(i)] : title}
+          tab={activeKey === `.$${i}` ? [title, ' ', deleteBtn(i)] : title}
           id={thisId}
           key={`${i}`}
         >
@@ -152,7 +152,7 @@ export default class TabUi extends Component<Props, State> {
           renderTabBar={() => (
             <ScrollableInkTabBar
               extraContent={
-                <Button onClick={this.handleCreate}>+</Button>
+                <Button onClick={this.handleCreate}>+ Add Item</Button>
               }
               />
           )}

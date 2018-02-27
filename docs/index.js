@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import ReactDOM from "react-dom";
 import {Menu, Layout} from 'antd';
 import TabTopDemo from './demos/tabs-top';
+import TabBottomDemo from './demos/tabs-bottom';
 import TabLeftDemo from './demos/tabs-left';
 import TabRightDemo from './demos/tabs-right';
 
@@ -45,6 +46,7 @@ class Demo extends Component {
             </SubMenu>
             <SubMenu key="array" title="Array">
               <Menu.Item key="tab-top">tab-top</Menu.Item>
+              <Menu.Item key="tab-bottom">tab-bottom</Menu.Item>
               <Menu.Item key="tab-left">tab-left</Menu.Item>
               <Menu.Item key="tab-right">tab-right</Menu.Item>
             </SubMenu>
@@ -60,6 +62,9 @@ class Demo extends Component {
             }
             {
               selectTab === 'array' && selectKey === 'tab-right' ? <TabRightDemo/> : null
+            }
+            {
+              selectTab === 'array' && selectKey === 'tab-bottom' ? <TabBottomDemo/> : null
             }
           </Content>
         </Layout>

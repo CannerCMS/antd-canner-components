@@ -98,6 +98,17 @@
     promise-polyfill "^7.0.0"
     whatwg-fetch "^2.0.3"
 
+"@canner/qa-generator@^0.1.0-rc.17":
+  version "0.1.0-rc.17"
+  resolved "https://registry.yarnpkg.com/@canner/qa-generator/-/qa-generator-0.1.0-rc.17.tgz#795adc071c0d08ce7c2c298ade98c5e031377ee4"
+  dependencies:
+    bson-objectid "^1.2.2"
+    firebase "^4.8.1"
+    immutable "^3.8.2"
+    prop-types "^15.6.0"
+    randomstring "^1.1.5"
+    react-immutable-proptypes "^2.1.0"
+
 "@firebase/app-types@0.1.1":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@firebase/app-types/-/app-types-0.1.1.tgz#1b794e101c779310763b1bfce8c24e7728fb9a91"
@@ -450,6 +461,10 @@ array-union@^1.0.1:
   resolved "https://registry.yarnpkg.com/array-union/-/array-union-1.0.2.tgz#9a34410e4f4e3da23dea375be5be70f24778ec39"
   dependencies:
     array-uniq "^1.0.1"
+
+array-uniq@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/array-uniq/-/array-uniq-1.0.2.tgz#5fcc373920775723cfd64d65c64bef53bf9eba6d"
 
 array-uniq@^1.0.1:
   version "1.0.3"
@@ -1558,6 +1573,10 @@ bser@^2.0.0:
   resolved "https://registry.yarnpkg.com/bser/-/bser-2.0.0.tgz#9ac78d3ed5d915804fd87acb158bc797147a1719"
   dependencies:
     node-int64 "^0.4.0"
+
+bson-objectid@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/bson-objectid/-/bson-objectid-1.2.2.tgz#f7d5dbc0d5fc1e810e4fefc9e0ef08e18534b7f2"
 
 buffer-xor@^1.0.3:
   version "1.0.3"
@@ -5919,6 +5938,12 @@ randomfill@^1.0.3:
     randombytes "^2.0.5"
     safe-buffer "^5.1.0"
 
+randomstring@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/randomstring/-/randomstring-1.1.5.tgz#6df0628f75cbd5932930d9fe3ab4e956a18518c3"
+  dependencies:
+    array-uniq "1.0.2"
+
 range-parser@^1.0.3, range-parser@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.0.tgz#f49be6b487894ddc40dcc94a322f611092e00d5e"
@@ -6279,6 +6304,10 @@ react-icons@^2.2.7:
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-2.2.7.tgz#d7860826b258557510dac10680abea5ca23cf650"
   dependencies:
     react-icon-base "2.1.0"
+
+react-immutable-proptypes@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-immutable-proptypes/-/react-immutable-proptypes-2.1.0.tgz#023d6f39bb15c97c071e9e60d00d136eac5fa0b4"
 
 react-intl@^2.4.0:
   version "2.4.0"
