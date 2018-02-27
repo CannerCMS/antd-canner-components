@@ -1,12 +1,13 @@
 // @flow
 
 import React, { Component } from "react";
-import { Table, Button, Icon, Modal } from "antd";
-import { List } from "immutable";
+import { Table, Button, Modal } from "antd";
+import PropTypes from 'prop-types';
+import { List, Map } from "immutable";
 import renderFunc from "./renderFunc";
-import PropTypes from "prop-types";
 import isEmpty from "lodash/isEmpty";
-import isNull from "lodash/isNull";
+import pick from 'lodash/pick';
+import isObject from "lodash/isObject";
 import { FormattedMessage } from "react-intl";
 import defaultMessage from "@canner/cms-locales";
 const ButtonGroup = Button.Group;
@@ -23,11 +24,50 @@ type Props = defaultProps & {
       renderTemplate: string
     }>
   },
+  baseUrl: string,
+  onChange: Function,
+  id: string,
+  deploy: Function,
   rootValue: any,
   showPagination: boolean
 };
 
-export default class ArrayBreadcrumb extends Component<Props> {
+type State = {
+  relationData: {[string]: any}
+}
+
+function findFromItems(items, filter, rtnField, list) {
+  list = list || [];
+  if (!isObject(items)) {
+    return list;
+  }
+  if (items && filter(items)) {
+    try {
+      list.push(pick(items, rtnField));
+    } catch (e) {
+      list.push(items);
+      // eslint-disable-next-line
+      console.error(e);
+    }
+    return list;
+  }
+
+  if ('items' in items ) {
+    list = list.concat(findFromItems(items.items, filter, rtnField));
+  } else {
+    list = Object.keys(items).reduce((acc, key) => {
+      const item = items[key];
+      if (isObject(item)) {
+        item.__key__ = key;
+        return acc.concat(findFromItems(item, filter, rtnField));
+      }
+      return acc;
+    }, list);
+  }
+  return list;
+}
+
+export default class ArrayBreadcrumb extends Component<Props, State> {
   editModal: ?HTMLDivElement;
   addModal: ?HTMLDivElement;
   static defaultProps = {
@@ -36,25 +76,69 @@ export default class ArrayBreadcrumb extends Component<Props> {
     schema: {}
   };
 
+  static contextTypes = {
+    fetch: PropTypes.func
+  }
+
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      relationData: {}
+    };
+  }
+
+  componentWillMount() {
+    const { fetch } = this.context;
+    const { items, id, value } = this.props;
+    const relationList = findFromItems(items, schema => {
+      return schema.type === 'relation';
+    }, ['relation', '__key__']);
+    relationList.forEach(item => {
+      const { __key__, relation } = item;
+      const { relationTo, relationship } = relation;
+      let idList = new List();
+      value.forEach(v => {
+        // $FlowFixMe
+        if (relationship === 'oneToMany.idMap') {
+          idList = idList.concat((v.get(__key__) || new Map()).keySeq().toJS());
+        } else {
+          idList = idList.concat((v.get(__key__) || new List()));
+        }
+      });
+      fetch(relationTo, `${id}/__RELATION__`, {filter: {_id: {$in: idList.toJS()}}, pagination: {start: 0, limit: 40}})
+        .then(ctx => {
+          const data = ctx.response.body;
+          this.setState(state => ({
+            relationData: {
+              ...state.relationData,
+              [__key__]: data && data.toJS ? data.toJS() : []
+            }
+          }));
+        });
+    });
+  }
+
   add = () => {
-    const {goTo, id} = this.props;
-    goTo(`/${id}?op=create`);
+    const {goTo, id, baseUrl} = this.props;
+    goTo(`${baseUrl}/${id}?op=create`);
   }
 
   edit = (recordId: string) => {
-    const {goTo, id} = this.props;
-    goTo(`/${id}/${recordId}`);
+    const {goTo, id, baseUrl} = this.props;
+    goTo(`${baseUrl}/${id}/${recordId}`);
   }
 
   remove = (index: number) => {
-    const {onChange, id} = this.props;
+    const {onChange, deploy, id, value} = this.props;
     confirm({
       title: 'Are you sure delete this task?',
       okText: 'Yes',
       okType: 'danger',
       cancelText: 'No',
       onOk() {
-        onChange(`${id}/${index}`, 'delete');
+        onChange(`${id}/${index}`, 'delete').then(() => {
+          deploy(id.split('/')[0], value.getIn([index, '_id']));
+        });
       }
     });
     
@@ -69,6 +153,7 @@ export default class ArrayBreadcrumb extends Component<Props> {
       showPagination,
       items
     } = this.props;
+    const {relationData} = this.state;
     const addText = (
       <FormattedMessage
         id="array.popup.addText"
@@ -79,8 +164,6 @@ export default class ArrayBreadcrumb extends Component<Props> {
     const schemaKeys = Object.keys(schema);
     let {
       createAction = schemaKeys,
-      updateAction = schemaKeys,
-      deleteAction = true,
       columns = []
     } = uiParams;
 
@@ -88,7 +171,7 @@ export default class ArrayBreadcrumb extends Component<Props> {
     const newColumns = columns.slice();
     // 為了向後相容 當 schema.items undefined時
     // 拿 schema.createAction.schema.items
-    const newColumnsRender = renderFunc(newColumns, items.items);
+    const newColumnsRender = renderFunc(newColumns, items.items, relationData);
     newColumnsRender.push({
       title: 'Actions',
       dataIndex: "__settings",

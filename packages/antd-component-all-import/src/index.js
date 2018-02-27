@@ -49,7 +49,8 @@ export default {
   },
   relation: {
     one: createLoadable(() => import('@canner/cms-plugin-relation/lib/One')),
-    list: createLoadable(() => import('@canner/cms-plugin-relation/lib/List'))
+    list: createLoadable(() => import('@canner/cms-plugin-relation/lib/List')),
+    add: createLoadable(() => import('@canner/cms-plugin-relation/lib/Add'))
   },
   boolean: {
     switch: createLoadable(() => import('@canner/cms-plugin-boolean-switch')),

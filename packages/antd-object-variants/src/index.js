@@ -34,7 +34,7 @@ export default class Variants extends Component<Props> {
     const types = this.cartesianProduct(options.toJS());
     const variantsObj = types.map(type => {
       const newVariants = type.join("-");
-      const originVariants = variants.find(variant =>
+      const originVariants = (variants, []).find(variant =>
         isEqual(variant.get("options"), newVariants)
       );
       if (originVariants) {
@@ -91,9 +91,9 @@ export default class Variants extends Component<Props> {
       (a, b) => {
         return flatten(
           map(a, x => {
-            return map(b, y => {
+            return b && b.length ? map(b, y => {
               return x.concat([y]);
-            });
+            }) : [x];
           }),
           true
         );
@@ -124,16 +124,17 @@ export default class Variants extends Component<Props> {
 
   render() {
     
-    const { value, items, uiParams, id, intl, routes } = this.props;
-    let { columns } = uiParams;
-    columns = columns || [];
-    columns = [
-      {
-        title: intl.formatMessage({ id: "object.variants.table.title" }),
-        dataIndex: "options",
-        key: "options"
-      }
-    ].concat(columns);
+    const { value, items, id, intl, routes } = this.props;
+    // for now, use panel instead of popup to quick fix
+    // let { columns } = uiParams;
+    // columns = columns || [];
+    // columns = [
+    //   {
+    //     title: intl.formatMessage({ id: "object.variants.table.title" }),
+    //     dataIndex: "options",
+    //     key: "options"
+    //   }
+    // ].concat(columns);
     const action = Object.keys(items.variants.items.items);
     
     action.splice(action.indexOf("options"), 1);

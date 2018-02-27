@@ -13,5 +13,8 @@
   "license": "ISC",
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
+  },
+  "dependencies": {
+    "@canner/antd-locales": "^0.0.49"
   }
 }

@@ -29,10 +29,12 @@ type State = {
 @injectIntl
 @CSSModules(styles)
 export default class TabUi extends Component<Props, State> {
+  prevIndex: number;
   constructor(props: Props) {
     super(props);
     this.state = {
-      activeKey: '.$0'
+      activeKey: '.$0',
+
     };
   }
 
@@ -61,20 +63,28 @@ export default class TabUi extends Component<Props, State> {
       id,
       items,
       createEmptyData,
-      onChange
+      onChange,
     } = this.props;
     const size = value.size;
-    onChange(id, "create", createEmptyData(items));
+    onChange(`${id}`, 'create', createEmptyData(items));
     this.setState({ activeKey: `.$${size}` });
   };
 
   handleDelete = (index: number) => {
-    const { intl, onChange } = this.props;
+    const { intl, onChange, deploy, value } = this.props;
     const r = confirm(intl.formatMessage({ id: "array.tab.delete.confirm" }));
     if (r) {
       const { id, generateId } = this.props;
       const deleteId = generateId(id, index, "array");
-      onChange(deleteId, "delete");
+      onChange(deleteId, "delete")
+        .then(() => {
+          return deploy(id, value.getIn([index, '_id']));
+        })
+        .then(() => {
+          this.setState({
+            activeKey: `.$${value.size - 1}`
+          });
+        });
     }
   };
 
@@ -127,7 +137,7 @@ export default class TabUi extends Component<Props, State> {
         id: thisId,
         routes: this.props.routes
       });
-
+      const paths = thisId.split('/');
       panelFields.push(
         <TabPane
           tab={activeKey === `.$${i}` ? [title, ' ', deleteBtn(i)] : title}
@@ -135,6 +145,16 @@ export default class TabUi extends Component<Props, State> {
           key={`${i}`}
         >
           {childrenWithProps}
+          {
+            // only the top tabs need the button
+            paths.length > 2 ?
+              null :
+              renderButton({
+                disabled: false,
+                key: thisId.split('/')[0],
+                id: item.get('_id')
+              })
+          }
         </TabPane>
       );
     });

@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 import { Table, Button } from "antd";
-import { List } from "immutable";
+import { List, Map } from "immutable";
 import renderFunc from "./renderFunc";
 import showDeleteConfirm from "./showDeleteConfirm";
 import PropTypes from "prop-types";
@@ -10,6 +10,8 @@ import EditModal from "./editModal";
 import AddModal from "./addModal";
 import isEmpty from "lodash/isEmpty";
 import isNull from "lodash/isNull";
+import isObject from 'lodash/isObject';
+import pick from 'lodash/pick';
 import { FormattedMessage } from "react-intl";
 import defaultMessage from "@canner/cms-locales";
 
@@ -29,7 +31,42 @@ type Props = defaultProps & {
   showPagination: boolean
 };
 
-export default class PopupArrayPlugin extends Component<Props> {
+type State = {
+  relationData: ?{[string]: any}
+}
+
+function findFromItems(items, filter, rtnField, list) {
+  list = list || [];
+  if (!isObject(items)) {
+    return list;
+  }
+  if (items && filter(items)) {
+    try {
+      list.push(pick(items, rtnField));
+    } catch (e) {
+      list.push(items);
+      // eslint-disable-next-line
+      console.error(e);
+    }
+    return list;
+  }
+
+  if ('items' in items ) {
+    list = list.concat(findFromItems(items.items, filter, rtnField));
+  } else {
+    list = Object.keys(items).reduce((acc, key) => {
+      const item = items[key];
+      if (isObject(item)) {
+        item.__key__ = key;
+        return acc.concat(findFromItems(item, filter, rtnField));
+      }
+      return acc;
+    }, list);
+  }
+  return list;
+}
+
+export default class PopupArrayPlugin extends Component<Props, State> {
   editModal: ?HTMLDivElement;
   addModal: ?HTMLDivElement;
   static defaultProps = {
@@ -39,11 +76,46 @@ export default class PopupArrayPlugin extends Component<Props> {
   };
 
   static contextTypes = {
+    fetch: PropTypes.func,
     deploy: PropTypes.func
   }
 
   constructor(props: Props) {
     super(props);
+    this.state = {
+      relationData: {}
+    }
+  }
+
+  componentWillMount() {
+    const { fetch } = this.context;
+    const { items, id, value } = this.props;
+    const relationList = findFromItems(items, schema => {
+      return schema.type === 'relation';
+    }, ['relation', '__key__']);
+    relationList.forEach(item => {
+      const { __key__, relation } = item;
+      const { relationTo, relationship } = relation;
+      let idList = new List();
+      value.forEach(v => {
+        // $FlowFixMe
+        if (relationship === 'oneToMany.idMap') {
+          idList = idList.concat((v.get(__key__) || new Map()).keySeq().toJS());
+        } else {
+          idList = idList.concat((v.get(__key__) || new List()));
+        }
+      });
+      fetch(relationTo, `${id}/__RELATION__`, {filter: {_id: {$in: idList.toJS()}}, pagination: {start: 0, limit: 40}})
+        .then(ctx => {
+          const data = ctx.response.body;
+          this.setState(state => ({
+            relationData: {
+              ...state.relationData,
+              [__key__]: data && data.toJS ? data.toJS() : []
+            }
+          }));
+        });
+    });
   }
 
   render() {
@@ -59,6 +131,7 @@ export default class PopupArrayPlugin extends Component<Props> {
       rootValue,
       query
     } = this.props;
+    const {relationData} = this.state;
     const {deploy} = this.context;
     const editText = (
       <FormattedMessage
@@ -91,7 +164,7 @@ export default class PopupArrayPlugin extends Component<Props> {
     const newColumns = columns.slice();
     // 為了向後相容 當 schema.items undefined時
     // 拿 schema.createAction.schema.items
-    const newColumnsRender = renderFunc(newColumns, items.items);
+    const newColumnsRender = renderFunc(newColumns, items.items, relationData || {});
     if (!isEmpty(updateAction)) {
       newColumnsRender.push({
         title: editText,
