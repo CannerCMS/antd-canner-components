@@ -1,0 +1,21 @@
+{
+  "name": "@canner/antd-string-date-time-picker",
+  "version": "0.0.49",
+  "description": "string date time picker",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "datetimepicker",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.20.1",
+    "moment-timezone": "^0.5.14"
+  },
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
+  }
+}

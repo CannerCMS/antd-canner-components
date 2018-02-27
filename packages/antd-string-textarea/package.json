@@ -1,0 +1,22 @@
+{
+<<<<<<< HEAD:packages/cms-plugin-string-textarea/package.json
+  "name": "@canner/cms-plugin-string-textarea",
+  "version": "0.1.0-rc.27",
+=======
+  "name": "@canner/antd-string-textarea",
+  "version": "0.0.49",
+>>>>>>> c498dfe981ea322945ea9fda5341726ea5362a1b:packages/antd-string-textarea/package.json
+  "description": "string textarea",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "textarea",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
+  }
+}

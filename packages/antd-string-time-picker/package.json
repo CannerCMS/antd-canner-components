@@ -1,0 +1,25 @@
+{
+<<<<<<< HEAD:packages/cms-plugin-string-time-picker/package.json
+  "name": "@canner/cms-plugin-string-time-picker",
+  "version": "0.1.0-rc.27",
+=======
+  "name": "@canner/antd-string-time-picker",
+  "version": "0.0.49",
+>>>>>>> c498dfe981ea322945ea9fda5341726ea5362a1b:packages/antd-string-time-picker/package.json
+  "description": "string time picker",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "time-picker",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {
+    "moment-timezone": "^0.5.14"
+  },
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
+  }
+}

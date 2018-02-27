@@ -1,8 +1,10 @@
 module.exports = {
   extends: ["eslint:recommended", "plugin:react/recommended", "prettier"],
-  plugins: ["react", "flowtype", "prettier"],
+  plugins: ["react", "flowtype", "prettier", "jest"],
   env: {
-    browser: true
+    browser: true,
+    jest: true,
+    node: true
   },
   rules: {
     "new-cap": 0,

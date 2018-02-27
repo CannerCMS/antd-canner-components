@@ -1,0 +1,20 @@
+{
+  "name": "@canner/antd-array-breadcrumb",
+  "version": "0.0.49",
+  "description": "array breadcrumb",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "breadcrumb",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
+  },
+  "dependencies": {
+    "@canner/antd-locales": "^0.0.49"
+  }
+}

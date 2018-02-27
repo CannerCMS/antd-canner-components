@@ -1,0 +1,31 @@
+{
+<<<<<<< HEAD:packages/cms-plugin-string-image/package.json
+  "name": "@canner/cms-plugin-string-image",
+  "version": "0.1.0-rc.27",
+=======
+  "name": "@canner/antd-string-image",
+  "version": "0.0.49",
+>>>>>>> c498dfe981ea322945ea9fda5341726ea5362a1b:packages/antd-string-image/package.json
+  "description": "string image",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "image",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {
+    "@canner/image-service-config": "^0.0.8",
+<<<<<<< HEAD:packages/cms-plugin-string-image/package.json
+    "@canner/image-upload": "^0.5.5",
+    "imagesloaded": "^4.1.4"
+=======
+    "@canner/image-upload": "^0.5.4"
+  },
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
+>>>>>>> c498dfe981ea322945ea9fda5341726ea5362a1b:packages/antd-string-image/package.json
+  }
+}

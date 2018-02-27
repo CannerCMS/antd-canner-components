@@ -1,0 +1,20 @@
+{
+  "name": "@canner/antd-object-options",
+  "version": "0.0.49",
+  "description": "object options",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "options",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {
+    "immutable": "^3.8.2"
+  },
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
+  }
+}

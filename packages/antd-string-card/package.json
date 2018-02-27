@@ -1,0 +1,18 @@
+{
+  "name": "@canner/antd-string-card",
+  "version": "0.0.49",
+  "description": "string card",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "card",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {
+    "@canner/antd-share-card": "^0.0.49",
+    "lodash": "^4.17.4"
+  }
+}
