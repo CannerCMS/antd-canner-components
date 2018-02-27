@@ -5,11 +5,12 @@ import Tabs, { TabPane } from "@canner/rc-tabs";
 import TabContent from "@canner/rc-tabs/lib/TabContent";
 import ScrollableInkTabBar from "@canner/rc-tabs/lib/ScrollableInkTabBar";
 import { Button, Icon } from "antd";
+import Sortable from "react-sortablejs";
 import { List } from "immutable";
 import CSSModules from "react-css-modules";
-import styles from "./style/tab.scss";
-import "./style/index.lib.scss";
 import {injectIntl} from 'react-intl';
+import styles from './style/tab.scss';
+import "./style/index.lib.scss";
 
 type Props = defaultProps & {
   value: List<any>,
@@ -18,7 +19,6 @@ type Props = defaultProps & {
     titlePrefix?: string,
     position?: "top" | "left" | "right" | "bottom"
   },
-  allowSwap: boolean,
   intl: any
 };
 
@@ -78,27 +78,15 @@ export default class TabUi extends Component<Props, State> {
     }
   };
 
-  dragStart = (e: any, data: any) => {
-    const grandParentNode = data.node.parentNode.parentNode;
-    const parentNode = data.node.parentNode;
-    const nodeList = Array.prototype.slice.call(grandParentNode.children);
-    const index = nodeList.indexOf(parentNode);
-    this.prevIndex = index;
-  };
+  dragItem = (order: any, sortable: any, evt: any) => {
+    const {newIndex, oldIndex} = evt;
+    const {id, generateId, onChange} = this.props;
 
-  dragStop = (e: any, data: any) => {
-    const grandParentNode = data.node.parentNode.parentNode;
-    const parentNode = data.node.parentNode;
-    const { id, generateId } = this.props;
-    const nodeList = Array.prototype.slice.call(grandParentNode.children);
-    const index = nodeList.indexOf(parentNode);
+    const prevIndex = generateId(id, oldIndex - 1, "array");
+    const currIndex = generateId(id, newIndex - 1, "array");
 
-    const currActiveKey = index - 1;
-    const prevIndex = generateId(id, this.prevIndex - 1, "array");
-    const currIndex = generateId(id, currActiveKey, "array");
-
-    this.setState({ activeKey: `${currActiveKey}` });
-    this.props.onChange({ firstId: currIndex, secondId: prevIndex }, "swap");
+    this.setState({activeKey: `${newIndex - 1}`});
+    onChange({firstId: currIndex, secondId: prevIndex}, "swap")
   };
 
   render() {
@@ -108,20 +96,22 @@ export default class TabUi extends Component<Props, State> {
       generateId,
       id,
       uiParams,
-      allowSwap,
       intl
     } = this.props;
     const { activeKey } = this.state;
     const position = uiParams.position || "top";
     const panelFields = [];
+
     // set array content
     value.forEach((item, i) => {
       const thisId = generateId(id, i, "array");
+
       // generate panel title
       let title;
-    const defaultTitle = `${intl.formatMessage({
+      const defaultTitle = `${intl.formatMessage({
         id: "array.tab.item"
       })} ${i + 1}`;
+
       if (uiParams.titleKey) {
         title = item.get(uiParams.titleKey) || defaultTitle;
       } else if (uiParams.titlePrefix) {
@@ -137,6 +127,7 @@ export default class TabUi extends Component<Props, State> {
         id: thisId,
         routes: this.props.routes
       });
+
       panelFields.push(
         <TabPane
           tab={activeKey === `.$${i}` ? [title, deleteBtn(i)] : title}
@@ -151,26 +142,24 @@ export default class TabUi extends Component<Props, State> {
     return (
       <div styleName="tab-container">
         <Tabs
-          drag={allowSwap}
-          updateChildren
           activeKey={`${activeKey}`}
           tabBarPosition={position}
+          navWrapper={(content) => (
+            <Sortable onChange={this.dragItem}>
+              {content}
+            </Sortable>
+          )}
           renderTabBar={() => (
             <ScrollableInkTabBar
               extraContent={
-                <Button type="default" onClick={this.handleCreate}>
-                  +
-                </Button>
+                <Button onClick={this.handleCreate}>+</Button>
               }
-              onTabClick={this.onTabClick}
-            />
+              />
           )}
           renderTabContent={() => (
             <TabContent tabBarPosition={position} animated={false} />
           )}
           onChange={this.handleTabChange}
-          dragStart={this.dragStart}
-          dragStop={this.dragStop}
         >
           {panelFields}
         </Tabs>

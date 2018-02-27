@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from "react";
-import Tab from "@canner/cms-plugin-array-tabs";
+import Tab from "@canner/antd-array-tabs/src";
 
 type Props = defaultProps & {
   value: Array<{
@@ -12,6 +12,12 @@ type Props = defaultProps & {
 export default class TabLeft extends Component<Props> {
   render() {
     const { uiParams } = this.props;
-    return <Tab {...this.props} uiParams={{ ...uiParams, position: "left" }} />;
+    return (
+      // $FlowFixMe decorator props
+      <Tab
+        {...this.props}
+        uiParams={{ ...uiParams, position: "left" }}
+        />
+    );
   }
 }

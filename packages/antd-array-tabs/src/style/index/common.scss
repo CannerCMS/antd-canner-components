@@ -1,10 +1,10 @@
 @import '../color.scss';
+
 .#{$tabs-prefix-cls} {
   box-sizing: border-box;
   position: relative;
-  &-bar {
-    display: flex;
-  }
+  overflow: hidden;
+
   &-bar, &-nav-container {
     font-size: 14px;
     line-height: 1.5;
@@ -14,16 +14,7 @@
     white-space: nowrap;
     outline: none;
     zoom: 1;
-    .ant-btn {
-      color: white;
-      background-color: #ce4034;
-      padding: 4px 20px;
-      &:hover {
-        color: #ce4034;
-        background-color: white;
-        border-color: #ce4034;
-      }
-    }
+    transition: padding .45s;
   }
 
   &-ink-bar {
@@ -110,7 +101,7 @@
     cursor: pointer;
 
     &:hover {
-      color: $apricot;
+      color: $light-orangish;
     }
   }
 
@@ -139,7 +130,9 @@
     }
 
     &-animated {
-      transition: transform $effect-duration $easing-in-out;
+      transition: transform $effect-duration $easing-in-out,
+                  margin-left $effect-duration $easing-in-out,
+                  margin-top $effect-duration $easing-in-out;
       display: flex;
       will-change: transform;
 
@@ -160,4 +153,3 @@
     display: none;
   }
 }
-

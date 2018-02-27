@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from "react";
-import Tab from "@canner/cms-plugin-array-tabs";
+import Tab from "@canner/antd-array-tabs/src";
 
 type Props = defaultProps & {
   value: Array<{

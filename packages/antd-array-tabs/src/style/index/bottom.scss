@@ -1,75 +1,90 @@
 .#{$tabs-prefix-cls} {
   &-bottom {
-    overflow-x: hidden;
+    border-top: 2px solid #f3f3f3;
   }
 
-  &-bottom > &-bar {
+  &-bottom &-content {
     width: 100%;
-    border-top: 1px solid #f3f3f3;
-    display: flex;
-    flex-direction: row;
-    div:nth-child(1) {
-      order: 1;
-      align-self: center;
-    }
-
-    .#{$tabs-prefix-cls}-nav-container-scrolling {
-      padding-top: 0px;
-      padding-bottom: 0px;
-      padding-left: 32px;
-      padding-right: 32px;
-    }
-
-    .#{$tabs-prefix-cls}-nav-scroll {
-      width: 99999px;
-    }
-
-    .#{$tabs-prefix-cls}-nav-wrap {
-      width: 100%;
-    }
-
-    .#{$tabs-prefix-cls}-tab-next {
-      right: 2px;
-
-      &-icon:before {
-        content: ">";
-      }
-    }
-
-    .#{$tabs-prefix-cls}-tab-prev {
-      left: 0;
-      &-icon:before {
-        content: "<";
-      }
-    }
-
-    .#{$tabs-prefix-cls}-tab-prev, .#{$tabs-prefix-cls}-tab-next {
-      margin-right: -2px;
-      width: 32px;
-      height: 100%;
-      top: 0;
-      text-align: center;
-    }
-
-    .#{$tabs-prefix-cls}-ink-bar {
-      height: 2px;
-      top: 3px;
-      left: 0;
-    }
-
-    .#{$tabs-prefix-cls}-tab {
-      float: left;
-      height: 100%;
-      margin-right: 30px;
-    }
   }
 
-  &-bottom > &-content-animated, &-bottom > &-content-no-animated {
+  &-bottom &-bar {
+    border-top: 1px solid #f3f3f3;
+  }
+
+  &-bottom &-nav-container-scrolling {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  &-bottom &-nav-scroll {
+    width: 99999px;
+  }
+
+  &-bottom &-nav-swipe {
+    position: relative;
+    left: 0;
+    .#{$tabs-prefix-cls}-nav {
+      display: flex;
+      flex: 1;
+      width: 100%;
+      .#{$tabs-prefix-cls}-tab {
+        display: flex;
+        flex-shrink: 0;
+        margin-right: 0;
+        padding: 8px 0;
+        justify-content: center;
+      }
+    }
+  }
+  &-bottom &-nav-wrap {
+    width: 100%;
+  }
+
+  &-bottom &-content-animated {
     flex-direction: row;
-    display: flex;
+
     .#{$tabs-prefix-cls}-tabpane {
       width: 100%;
-      padding: 2%;
     }
+  }
+
+  &-bottom &-tab-next {
+    right: 2px;
+
+    &-icon:before {
+      content: ">";
+    }
+  }
+
+  &-bottom &-tab-prev {
+    left: 0;
+    &-icon:before {
+      content: "<";
+    }
+  }
+
+  &-bottom &-tab-prev, &-bottom &-tab-next {
+    margin-right: -2px;
+    width: 32px;
+    height: 100%;
+    top: 0;
+    text-align: center;
+  }
+
+  &-bottom &-ink-bar {
+    height: 2px;
+    top: 3px;
+    left: 0;
+  }
+
+  &-bottom &-tab {
+    float: left;
+    height: 100%;
+    margin-right: 30px;
+  }
+
+  &-bottom &-tabpane-inactive {
+    height: 0;
+    overflow: visible;
   }
 }

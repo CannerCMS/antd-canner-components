@@ -14,8 +14,7 @@ export default {
     "object.map.address.sureText": "Enter",
     "object.map.address.latText": "Lat",
     "object.map.address.lngText": "Lng",
-    "object.map.suggest.word":
-      "Please select an address from the dropdown menu after inputing an address so that we can locate it.",
+    "object.map.suggest.word": "Please select an address from the dropdown menu after inputing an address so that we can locate it.",
     "object.variants.addVariants": "Add variants",
     "object.variants.select.placeholder": "Please enter the select items",
     "object.variants.select": "Selected",

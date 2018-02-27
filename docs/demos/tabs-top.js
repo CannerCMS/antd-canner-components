@@ -1,17 +1,17 @@
 // @flow
 import React, {Component} from 'react';
-import TabLeft from 'packages/antd-array-tab-left/src';
+import TabTop from 'packages/antd-array-tabs/src';
 import cmsLocale from 'packages/antd-locales';
 import immutable from 'immutable';
 import {IntlProvider} from 'react-intl';
 
-export default class TabLeftDemo extends Component<{}> {
+export default class TabTopDemo extends Component<{}> {
   render() {
     return (
       <IntlProvider
         locale="en"
         messages={cmsLocale["en"]}>
-        <TabLeft
+        <TabTop
           value={immutable.fromJS([{
             "title": "title 1",
             "content": "content 1"
