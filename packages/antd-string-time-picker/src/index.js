@@ -1,15 +1,21 @@
 // @flow
 import React, { Component } from "react";
 import { TimePicker } from "antd";
+import defaultMessage from "@canner/antd-locales";
+import {injectIntl} from 'react-intl';
 import moment from "moment-timezone/moment-timezone";
 
-type Props = defaultProps & {
+type Props = {
+  id: defaultProps.id,
   value: string,
+  onChange: defaultProps.onChange,
   uiParams: {
     format: string
-  }
+  },
+  intl: defaultProps.intl
 };
 
+@injectIntl
 export default class TimePickerPlugin extends Component<Props> {
   static defaultProps = {
     uiParams: {
@@ -24,13 +30,22 @@ export default class TimePickerPlugin extends Component<Props> {
   };
 
   render() {
-    const { value, uiParams: { format } } = this.props;
+    const {
+      value,
+      uiParams: { format },
+      intl
+    } = this.props;
     return (
       <div>
         <TimePicker
           value={value && value.length > 0 ? moment(value, format) : null}
           format={format}
-          placeholder="選擇時間"
+          placeholder={
+            intl.formatMessage({
+              id: "string.timepicker.placeholder",
+              defaultMessage: defaultMessage.en["string.timepicker.placeholder"]
+            })
+          }
           onChange={this.onChange}
         />
       </div>

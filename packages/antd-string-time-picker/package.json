@@ -12,7 +12,8 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "moment-timezone": "^0.5.14"
+    "moment-timezone": "^0.5.14",
+    "@canner/antd-locales": "^0.0.49"
   },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0 || ^16.0.0"

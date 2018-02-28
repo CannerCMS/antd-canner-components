@@ -21,7 +21,8 @@ export default {
     "object.variants.variantsName": "Category Name",
     "object.variants.table.title": "Name",
     "string.link.preview": "preview link: ",
-    "string.datetimepicker.placeholder": "Please pick a date",
+    "string.datetimepicker.placeholder": "Select date",
+    "string.timepicker.placeholder": "Select time",
     "string.image.add": "add Image"
   },
   zh: {
@@ -46,7 +47,8 @@ export default {
     "object.variants.variantsName": "型號名稱",
     "object.variants.table.title": "名稱",
     "string.link.preview": "預覽連結: ",
-    "string.datetimepicker.placeholder": "請選擇一個日期",
+    "string.datetimepicker.placeholder": "請選擇日期",
+    "string.timepicker.placeholder": "請選擇時間",
     "string.image.add": "新增圖片"
   }
 }

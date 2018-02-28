@@ -7,6 +7,7 @@ import InputDemo from './demos/string/input';
 import LinkDemo from './demos/string/link';
 import RadioDemo from './demos/string/radio';
 import DatetimeDemo from './demos/string/datetime';
+import TimepickerDemo from './demos/string/timepicker';
 import TextareaDemo from './demos/string/textarea';
 import SelectDemo from './demos/string/select';
 import ImageDemo from './demos/string/image';
@@ -56,6 +57,7 @@ class Demo extends Component {
               <Menu.Item key="link">link</Menu.Item>
               <Menu.Item key="radio">radio</Menu.Item>
               <Menu.Item key="datetime">datetime</Menu.Item>
+              <Menu.Item key="timepicker">timepicker</Menu.Item>
               <Menu.Item key="textarea">textarea</Menu.Item>
               <Menu.Item key="select">select</Menu.Item>
               <Menu.Item key="image">image</Menu.Item>
@@ -75,6 +77,7 @@ class Demo extends Component {
             {selectTab === 'string' && selectKey === 'link' ? <LinkDemo/> : null}
             {selectTab === 'string' && selectKey === 'radio' ? <RadioDemo/> : null}
             {selectTab === 'string' && selectKey === 'datetime' ? <DatetimeDemo/> : null}
+            {selectTab === 'string' && selectKey === 'timepicker' ? <TimepickerDemo/> : null}
             {selectTab === 'string' && selectKey === 'textarea' ? <TextareaDemo/> : null}
             {selectTab === 'string' && selectKey === 'select' ? <SelectDemo/> : null}
             {selectTab === 'string' && selectKey === 'image' ? <ImageDemo/> : null}
