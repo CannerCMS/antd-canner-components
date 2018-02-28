@@ -1,22 +1,26 @@
 // @flow
-
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { DatePicker } from "antd";
-import { isEmpty } from "lodash";
+import defaultMessage from "@canner/antd-locales";
+import {injectIntl} from 'react-intl';
+
 import {
   transformMomentToString,
   transformStringToMoment
 } from "./transformFormat";
 
-type Props = defaultProps & {
+type Props = {
+  id: defaultProps.id,
+  onChange: defaultProps.onChange,
   value: string | number,
   uiParams: {
     format: string,
     output: string
-  }
+  },
+  intl: defaultProps.intl
 };
 
+@injectIntl
 export default class DateTimePicker extends Component<Props> {
   static defaultProps = {
     uiParams: {
@@ -31,7 +35,7 @@ export default class DateTimePicker extends Component<Props> {
   };
 
   render() {
-    const { value, uiParams = {} } = this.props;
+    const { value, uiParams = {}, intl } = this.props;
     const moment = transformStringToMoment(value, uiParams.output);
 
     // backward support
@@ -43,7 +47,12 @@ export default class DateTimePicker extends Component<Props> {
           value={moment}
           showTime
           format={uiParams && uiParams.format}
-          placeholder="選擇一個日期"
+          placeholder={
+            intl.formatMessage({
+              id: "string.datetimepicker.placeholder",
+              defaultMessage: defaultMessage.en["string.datetimepicker.placeholder"]
+            })
+          }
           onChange={this.onChange}
         />
       </div>

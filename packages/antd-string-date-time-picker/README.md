@@ -1,4 +1,4 @@
-# @canner/antd-string-radio
+# @canner/antd-string-date-time-picker
 
 ## API
 
@@ -30,17 +30,14 @@
       <td>uiParams</td>
       <td>
         <code>
-          {
-            options: Array<{
-              text: string,
-              value: string
-            }>,
-            defaultSelected: number
+          uiParams: {
+            format: string,
+            output: string
           }
         </code>
       </td>
       <th></th>
-      <td>Setup options and selected option</td>
+      <td>Setup format and output format</td>
     </tr>
     <tr>
       <td>onChange</td>

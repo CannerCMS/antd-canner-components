@@ -1,3 +1,4 @@
+// @flow
 import moment from 'moment';
 
 export function transformMomentToString(date, input = 'ISO_8601') {

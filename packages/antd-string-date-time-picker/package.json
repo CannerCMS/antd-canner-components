@@ -13,7 +13,9 @@
   "license": "ISC",
   "dependencies": {
     "moment": "^2.20.1",
-    "moment-timezone": "^0.5.14"
+    "moment-timezone": "^0.5.14",
+    "react-intl": "^2.4.0",
+    "@canner/antd-locales": "^0.0.49"
   },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0 || ^16.0.0"

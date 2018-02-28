@@ -27,6 +27,7 @@ export default class RadioDemo extends Component<{}> {
         <h1>Normal radio using default value</h1>
         <StringRadio
           id="radio"
+          value="1"
           uiParams={{
             options: [{
               text: 'option 1',
