@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import ReactDOM from "react-dom";
 import {Menu, Layout} from 'antd';
 import InputDemo from './demos/string/input';
+import LinkDemo from './demos/string/link';
+
 import TabTopDemo from './demos/array/tabs-top';
 import TabBottomDemo from './demos/array/tabs-bottom';
 import TabLeftDemo from './demos/array/tabs-left';
@@ -55,7 +57,11 @@ class Demo extends Component {
         </Sider>
         <Layout style={{ padding: '0 24px 24px' }}>
           <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
+            {/* string */}
             {selectTab === 'string' && selectKey === 'input' ? <InputDemo/> : null}
+            {selectTab === 'string' && selectKey === 'link' ? <LinkDemo/> : null}
+
+            {/* array */}
             {selectTab === 'array' && selectKey === 'tab-top' ? <TabTopDemo/> : null}
             {selectTab === 'array' && selectKey === 'tab-left' ? <TabLeftDemo/> : null}
             {selectTab === 'array' && selectKey === 'tab-right' ? <TabRightDemo/> : null}

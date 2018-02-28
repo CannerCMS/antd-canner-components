@@ -1,13 +1,15 @@
 // @flow
 import React, { Component } from "react";
-import InputString from "@canner/cms-plugin-string-input";
+import InputString from "@canner/antd-string-input";
 import CSSModules from "react-css-modules";
-import styles from "./style/Link.scss";
-import defaultMessage from "@canner/cms-locales";
+import defaultMessage from "@canner/antd-locales";
 import { FormattedMessage } from "react-intl";
+import styles from "./style/Link.scss";
 
-type Props = defaultProps & {
-  value: string
+type Props = {
+  id: defaultProps.id,
+  value: string,
+  onChange: defaultProps.onChange
 }
 
 @CSSModules(styles)
