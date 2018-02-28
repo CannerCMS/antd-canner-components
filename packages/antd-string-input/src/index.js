@@ -6,7 +6,12 @@ type State = {
   value: string
 };
 
-type Props = defaultProps & { value: string };
+type Props = {
+  id: string,
+  value: string,
+  disabled: defaultProps.disabled,
+  onChange: defaultProps.onChange
+};
 
 export default class StringInput extends PureComponent<Props, State> {
   isOnComposition: boolean;
@@ -48,14 +53,15 @@ export default class StringInput extends PureComponent<Props, State> {
 
   render() {
     const { value } = this.state;
-    const { readOnly } = this.props;
+    const { disabled } = this.props;
     return (
       <div id="input">
         <Input
-          disabled={readOnly}
+          disabled={disabled}
           type="text"
           value={value}
           onChange={this.onChange}
+          // prevent input called update function when user haven't composited their words using Chinese typing
           onCompositionEnd={this.onCompositionEnd}
           onCompositionStart={this.onCompositionStart}
         />

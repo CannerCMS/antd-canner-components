@@ -1,18 +1,17 @@
 // @flow
 import React, {Component} from 'react';
-import TabTop from 'packages/antd-array-tabs/src';
+import TabRight from 'packages/antd-array-tab-right';
 import cmsLocale from 'packages/antd-locales';
 import immutable from 'immutable';
 import {IntlProvider} from 'react-intl';
-import createEmptyData from '@canner/qa-generator/lib/utils/createEmptyData'
 
-export default class TabTopDemo extends Component<{}> {
+export default class TabRightDemo extends Component<{}> {
   render() {
     return (
       <IntlProvider
         locale="en"
         messages={cmsLocale["en"]}>
-        <TabTop
+        <TabRight
           value={immutable.fromJS([{
             "title": "title 1",
             "content": "content 1"
@@ -20,11 +19,9 @@ export default class TabTopDemo extends Component<{}> {
             "title": "title 2",
             "content": "content 2"
           }])}
-          id="tab-left"
+          id="tab-right"
           generateId={(id, i, type) => `${id}/${i}/${type}`}
-          renderChildren={(values) => `this is content: ${values.id}`}
-          createEmptyData={createEmptyData}
-          items={{}}
+          renderChildren={() => "this is content"}
           onChange={(datum, evt) => console.log(datum, evt)}
           />
       </IntlProvider>

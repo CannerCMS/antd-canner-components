@@ -26,6 +26,7 @@ declare type defaultProps = {
    */
   items: { [string]: any },
   uiParams: { [string]: any },
+  disabled: boolean,
   readOnly: boolean,
 
   // just combine the id, used in array

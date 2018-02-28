@@ -7,12 +7,15 @@ This repository provide CMS components for developers to assemble CMS interface 
 ## Develop
 
 ```
-lerna bootstrap
-npm run build
+# install lerna in npm
+$ npm i -g lerna
+
+$ lerna bootstrap
+$ npm run build
 ```
 
 ## Test
 
 ```
-lerna run test
+$ lerna run test
 ```

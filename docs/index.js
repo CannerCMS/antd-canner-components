@@ -1,10 +1,11 @@
 import React, {Component} from "react";
 import ReactDOM from "react-dom";
 import {Menu, Layout} from 'antd';
-import TabTopDemo from './demos/tabs-top';
-import TabBottomDemo from './demos/tabs-bottom';
-import TabLeftDemo from './demos/tabs-left';
-import TabRightDemo from './demos/tabs-right';
+import InputDemo from './demos/string/input';
+import TabTopDemo from './demos/array/tabs-top';
+import TabBottomDemo from './demos/array/tabs-bottom';
+import TabLeftDemo from './demos/array/tabs-left';
+import TabRightDemo from './demos/array/tabs-right';
 
 const {SubMenu} = Menu;
 const {Content, Sider} = Layout;
@@ -54,18 +55,11 @@ class Demo extends Component {
         </Sider>
         <Layout style={{ padding: '0 24px 24px' }}>
           <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
-            {
-              selectTab === 'array' && selectKey === 'tab-top' ? <TabTopDemo/> : null
-            }
-            {
-              selectTab === 'array' && selectKey === 'tab-left' ? <TabLeftDemo/> : null
-            }
-            {
-              selectTab === 'array' && selectKey === 'tab-right' ? <TabRightDemo/> : null
-            }
-            {
-              selectTab === 'array' && selectKey === 'tab-bottom' ? <TabBottomDemo/> : null
-            }
+            {selectTab === 'string' && selectKey === 'input' ? <InputDemo/> : null}
+            {selectTab === 'array' && selectKey === 'tab-top' ? <TabTopDemo/> : null}
+            {selectTab === 'array' && selectKey === 'tab-left' ? <TabLeftDemo/> : null}
+            {selectTab === 'array' && selectKey === 'tab-right' ? <TabRightDemo/> : null}
+            {selectTab === 'array' && selectKey === 'tab-bottom' ? <TabBottomDemo/> : null}
           </Content>
         </Layout>
       </Layout>
