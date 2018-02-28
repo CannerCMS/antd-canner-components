@@ -4,7 +4,8 @@ import { Radio } from "antd";
 import { isObjectLike } from "lodash";
 const RadioGroup = Radio.Group;
 
-type Props = defaultProps & {
+type Props = {
+  id: defaultProps.id,
   value: string,
   uiParams: {
     options: Array<{
@@ -12,10 +13,11 @@ type Props = defaultProps & {
       value: string
     }>,
     defaultSelected: number
-  }
+  },
+  onChange: defaultProps.onChange
 };
 
-export default class SelectString extends Component<Props> {
+export default class RadioString extends Component<Props> {
   onChange = (val: any) => {
     this.props.onChange(this.props.id, "update", val.target.value);
   };

@@ -1,4 +1,4 @@
-# @canner/antd-string-link
+# @canner/antd-string-radio
 
 ## API
 
@@ -24,7 +24,21 @@
       <td>value</td>
       <td>String</td>
       <th></th>
-      <td>Default value of the input</td>
+      <td>Default value</td>
+    </tr>
+    <tr>
+      <td>uiParams</td>
+      <td>
+        {
+          options: Array<{
+            text: string,
+            value: string
+          }>,
+          defaultSelected: number
+        }
+      </td>
+      <th></th>
+      <td>Setup options and selected option</td>
     </tr>
     <tr>
       <td>onChange</td>

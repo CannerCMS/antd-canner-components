@@ -34,7 +34,7 @@
     </tr>
     <tr>
       <td>onChange</td>
-      <td>(id: string, type: string, value: string): void</td>
+      <td>(id: string, type: string, value: string) => void</td>
       <th></th>
       <td>Called when input is changed</td>
     </tr>

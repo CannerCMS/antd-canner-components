@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import {Menu, Layout} from 'antd';
 import InputDemo from './demos/string/input';
 import LinkDemo from './demos/string/link';
+import RadioDemo from './demos/string/radio';
 
 import TabTopDemo from './demos/array/tabs-top';
 import TabBottomDemo from './demos/array/tabs-bottom';
@@ -46,6 +47,7 @@ class Demo extends Component {
             <SubMenu key="string" title="String">
               <Menu.Item key="input">input</Menu.Item>
               <Menu.Item key="link">link</Menu.Item>
+              <Menu.Item key="radio">radio</Menu.Item>
             </SubMenu>
             <SubMenu key="array" title="Array">
               <Menu.Item key="tab-top">tab-top</Menu.Item>
@@ -60,6 +62,7 @@ class Demo extends Component {
             {/* string */}
             {selectTab === 'string' && selectKey === 'input' ? <InputDemo/> : null}
             {selectTab === 'string' && selectKey === 'link' ? <LinkDemo/> : null}
+            {selectTab === 'string' && selectKey === 'radio' ? <RadioDemo/> : null}
 
             {/* array */}
             {selectTab === 'array' && selectKey === 'tab-top' ? <TabTopDemo/> : null}
