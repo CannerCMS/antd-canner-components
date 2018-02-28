@@ -2,7 +2,9 @@
 import React, { Component } from "react";
 import { Rate } from "antd";
 
-type Props = defaultProps & {
+type Props = {
+  id: defaultProps.id,
+  onChange: defaultProps.onChange,
   value: number,
   uiParams: {
     count: number,
@@ -19,7 +21,7 @@ export default class NumberRate extends Component<Props> {
   render() {
     const { value, uiParams } = this.props;
     return (
-      <div id="rate">
+      <div>
         <Rate
           count={uiParams && uiParams.count}
           allowHalf={uiParams && uiParams.allowHalf}

@@ -1,15 +1,18 @@
 // @flow
 import React, {Component} from 'react';
-import NumberInput from 'packages/antd-number-text-input';
+import NumberRate from 'packages/antd-number-rate';
 
-export default class NumberInputDemo extends Component<{}> {
+export default class NumberRateDemo extends Component<{}> {
   render() {
     return (
       <React.Fragment>
-        <h1>Number input</h1>
-        <NumberInput
-          id="number-text-input"
-          value={6}
+        <h1>Number rate</h1>
+        <NumberRate
+          id="number-rate"
+          value={2.5}
+          uiParams={{
+            allowHalf: true
+          }}
           onChange={(id, type, value) => {
             console.log('id: ', id, ', type: ', type, ', value: ', value);
           }}

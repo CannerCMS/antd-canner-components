@@ -12,6 +12,8 @@ import BooleanSwitchDemo from './demos/boolean/switch';
 // number
 import NumberInputDemo from './demos/number/input';
 import NumberTextInputDemo from './demos/number/textInput';
+import NumberSliderDemo from './demos/number/slider';
+import NumberRateDemo from './demos/number/rate';
 
 // string
 import InputDemo from './demos/string/input';
@@ -87,6 +89,8 @@ class Demo extends Component {
             <SubMenu key="number" title="Number">
               <Menu.Item key="input">input</Menu.Item>
               <Menu.Item key="textInput">text-input</Menu.Item>
+              <Menu.Item key="slider">slider</Menu.Item>
+              <Menu.Item key="rate">rate</Menu.Item>
             </SubMenu>
             <SubMenu key="boolean" title="Boolean">
               <Menu.Item key="card">card</Menu.Item>
@@ -106,6 +110,8 @@ class Demo extends Component {
             {/* number */}
             {selectTab === 'number' && selectKey === 'input' ? <NumberInputDemo/> : null}
             {selectTab === 'number' && selectKey === 'textInput' ? <NumberTextInputDemo/> : null}
+            {selectTab === 'number' && selectKey === 'slider' ? <NumberSliderDemo/> : null}
+            {selectTab === 'number' && selectKey === 'rate' ? <NumberRateDemo/> : null}
 
             {/* string */}
             {selectTab === 'string' && selectKey === 'input' ? <InputDemo/> : null}
