@@ -5,8 +5,9 @@ import { isObjectLike } from "lodash";
 import { Select } from "antd";
 const Option = Select.Option;
 
-type Props = defaultProps & {
+type Props = {
   value: string,
+  onChange: defaultProps.onChange,
   uiParams: {
     options: Array<{
       text: string,
