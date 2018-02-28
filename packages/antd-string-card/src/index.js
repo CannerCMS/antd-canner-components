@@ -1,11 +1,12 @@
 // @flow
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import Card from "@canner/cms-plugin-share-card";
+import Card from "@canner/antd-share-card";
 import { isObjectLike } from "lodash";
 
-type Props = defaultProps & {
+type Props = {
   value: string,
+  onChange: defaultProps.onChange,
+  id: defaultProps.id,
   uiParams: {
     options: Array<{
       text: string,
@@ -18,7 +19,7 @@ type Props = defaultProps & {
   }
 };
 
-export default class CardString extends Component {
+export default class CardString extends Component<Props> {
   onChange = (val: string) => {
     this.props.onChange(this.props.id, "update", val);
   };
@@ -41,17 +42,20 @@ export default class CardString extends Component {
         };
       });
     }
+
     return (
       <div>
         {options.map((selection, i) => {
+          const checked = (
+            value ||
+              (isObjectLike(options[defaultSelected])
+                ? options[defaultSelected].value
+                : options[defaultSelected])
+          ) === selection.value;
+
           return (
             <Card
-              selectedValue={
-                value ||
-                (isObjectLike(options[defaultSelected])
-                  ? options[defaultSelected].value
-                  : options[defaultSelected])
-              }
+              checked={checked}
               onChange={this.onChange}
               value={selection.value}
               text={selection.text}

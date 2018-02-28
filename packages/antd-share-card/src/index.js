@@ -6,9 +6,9 @@ import CSSModules from "react-css-modules";
 import styles from "./style/Card.scss";
 
 type Props = {
-  selectedValue: string | boolean,
+  checked: boolean,
   value: string | boolean,
-  onChange: () => void,
+  onChange: (value: string | boolean) => void,
   text: string,
   img: string,
   imgStyle: { [string]: any },
@@ -24,7 +24,7 @@ export default class Card extends Component<Props> {
   render() {
     const {
       value,
-      selectedValue,
+      checked,
       img,
       imgStyle,
       labelStyle,
@@ -37,7 +37,7 @@ export default class Card extends Component<Props> {
     return (
       <label styleName="label">
         <Label
-          checked={selectedValue === value}
+          checked={checked}
           labelStyle={labelStyle}
           onClick={() => this.onChange(value)}
         >

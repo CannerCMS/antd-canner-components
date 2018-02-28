@@ -1,8 +1,10 @@
 // @flow
 import React, { Component } from "react";
-import Card from "@canner/cms-plugin-share-card";
+import Card from "@canner/antd-share-card";
 
-type Props = defaultProps & {
+type Props = {
+  id: defaultProps.id,
+  onChange: defaultProps.onChange,
   value: boolean,
   uiParams: {
     yesText: string,
@@ -32,13 +34,13 @@ export default class CardBoolean extends Component<Props> {
         labelStyle
       }
     } = this.props;
-    // 向後相容
+    // backward support
     if (text) {
       yesText = text[0];
       noText = text[1];
     }
 
-    // 向後相容
+    // backward support
     if (imgs) {
       yesText = text[0];
       noText = text[1];
@@ -47,7 +49,7 @@ export default class CardBoolean extends Component<Props> {
     return (
       <div>
         <Card
-          selectedValue={value}
+          checked={value === true}
           onChange={this.onChange}
           value={true}
           text={yesText}
@@ -56,7 +58,7 @@ export default class CardBoolean extends Component<Props> {
           labelStyle={labelStyle}
         />
         <Card
-          selectedValue={value}
+          checked={value === false}
           onChange={this.onChange}
           value={false}
           text={noText}

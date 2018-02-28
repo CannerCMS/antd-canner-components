@@ -2,6 +2,12 @@ import React, {Component} from "react";
 import ReactDOM from "react-dom";
 import {Menu, Layout} from 'antd';
 
+// share
+import ShareCardDemo from './demos/share/card';
+
+// boolean
+import BooleanCardDemo from './demos/boolean/card';
+
 // string
 import InputDemo from './demos/string/input';
 import LinkDemo from './demos/string/link';
@@ -11,6 +17,7 @@ import TimepickerDemo from './demos/string/timepicker';
 import TextareaDemo from './demos/string/textarea';
 import SelectDemo from './demos/string/select';
 import ImageDemo from './demos/string/image';
+import StringCardDemo from './demos/string/card';
 
 // array
 import TabTopDemo from './demos/array/tabs-top';
@@ -52,6 +59,9 @@ class Demo extends Component {
             onClick={this.switchDemo}
             style={{ height: '100%', borderRight: 0 }}
           >
+            <SubMenu key="share" title="Share">
+              <Menu.Item key="card">card</Menu.Item>
+            </SubMenu>
             <SubMenu key="string" title="String">
               <Menu.Item key="input">input</Menu.Item>
               <Menu.Item key="link">link</Menu.Item>
@@ -61,6 +71,7 @@ class Demo extends Component {
               <Menu.Item key="textarea">textarea</Menu.Item>
               <Menu.Item key="select">select</Menu.Item>
               <Menu.Item key="image">image</Menu.Item>
+              <Menu.Item key="card">card</Menu.Item>
             </SubMenu>
             <SubMenu key="array" title="Array">
               <Menu.Item key="tab-top">tab-top</Menu.Item>
@@ -68,10 +79,19 @@ class Demo extends Component {
               <Menu.Item key="tab-left">tab-left</Menu.Item>
               <Menu.Item key="tab-right">tab-right</Menu.Item>
             </SubMenu>
+            <SubMenu key="boolean" title="Boolean">
+              <Menu.Item key="card">card</Menu.Item>
+            </SubMenu>
           </Menu>
         </Sider>
         <Layout style={{ padding: '0 24px 24px' }}>
           <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
+            {/* share */}
+            {selectTab === 'share' && selectKey === 'card' ? <ShareCardDemo/> : null}
+
+            {/* boolean */}
+            {selectTab === 'boolean' && selectKey === 'card' ? <BooleanCardDemo/> : null}
+
             {/* string */}
             {selectTab === 'string' && selectKey === 'input' ? <InputDemo/> : null}
             {selectTab === 'string' && selectKey === 'link' ? <LinkDemo/> : null}
@@ -81,6 +101,7 @@ class Demo extends Component {
             {selectTab === 'string' && selectKey === 'textarea' ? <TextareaDemo/> : null}
             {selectTab === 'string' && selectKey === 'select' ? <SelectDemo/> : null}
             {selectTab === 'string' && selectKey === 'image' ? <ImageDemo/> : null}
+            {selectTab === 'string' && selectKey === 'card' ? <StringCardDemo/> : null}
 
             {/* array */}
             {selectTab === 'array' && selectKey === 'tab-top' ? <TabTopDemo/> : null}
