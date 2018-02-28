@@ -3,9 +3,11 @@
 import React, { Component } from "react";
 import { Input } from "antd";
 const { TextArea } = Input;
-type Props = defaultProps & {
+type Props = {
   value: string,
-  id: string
+  id: string,
+  disabled: defaultProps.disabled,
+  onChange: defaultProps.onChange
 };
 
 type State = {
@@ -50,13 +52,12 @@ export default class TextareaString extends Component<Props, State> {
   };
 
   render() {
-    console.log('textarea render');
     const { value } = this.state;
-    const { readOnly } = this.props;
+    const { disabled } = this.props;
     return (
       <div id="input">
         <TextArea
-          disable={readOnly}
+          disabled={disabled}
           value={value}
           onChange={this.onChange}
         />
