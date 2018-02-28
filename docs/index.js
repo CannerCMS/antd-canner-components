@@ -9,6 +9,10 @@ import ShareCardDemo from './demos/share/card';
 import BooleanCardDemo from './demos/boolean/card';
 import BooleanSwitchDemo from './demos/boolean/switch';
 
+// number
+import NumberInputDemo from './demos/number/input';
+import NumberTextInputDemo from './demos/number/textInput';
+
 // string
 import InputDemo from './demos/string/input';
 import LinkDemo from './demos/string/link';
@@ -80,6 +84,10 @@ class Demo extends Component {
               <Menu.Item key="tab-left">tab-left</Menu.Item>
               <Menu.Item key="tab-right">tab-right</Menu.Item>
             </SubMenu>
+            <SubMenu key="number" title="Number">
+              <Menu.Item key="input">input</Menu.Item>
+              <Menu.Item key="textInput">text-input</Menu.Item>
+            </SubMenu>
             <SubMenu key="boolean" title="Boolean">
               <Menu.Item key="card">card</Menu.Item>
               <Menu.Item key="switch">switch</Menu.Item>
@@ -94,6 +102,10 @@ class Demo extends Component {
             {/* boolean */}
             {selectTab === 'boolean' && selectKey === 'card' ? <BooleanCardDemo/> : null}
             {selectTab === 'boolean' && selectKey === 'switch' ? <BooleanSwitchDemo/> : null}
+
+            {/* number */}
+            {selectTab === 'number' && selectKey === 'input' ? <NumberInputDemo/> : null}
+            {selectTab === 'number' && selectKey === 'textInput' ? <NumberTextInputDemo/> : null}
 
             {/* string */}
             {selectTab === 'string' && selectKey === 'input' ? <InputDemo/> : null}

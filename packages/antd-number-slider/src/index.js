@@ -2,7 +2,9 @@
 import React, { Component } from "react";
 import { Slider } from "antd";
 
-type Props = defaultProps & {
+type Props = {
+  id: defaultProps.id,
+  onChange: defaultProps.onChange,
   value: number,
   uiParams: {
     min: number,

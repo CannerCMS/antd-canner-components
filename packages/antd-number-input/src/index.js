@@ -2,13 +2,15 @@
 import React, { PureComponent } from "react";
 import { InputNumber } from "antd";
 import isNaN from "lodash/isNaN";
-import './style/number-input.antd.scss';
 
 type State = {
   value: string
 };
 
-type Props = defaultProps & {
+type Props = {
+  id: defaultProps.id,
+  onChange: defaultProps.onChange,
+  disabled: defaultProps.disabled,
   value: string,
   uiParams: {
     min: number,
@@ -25,22 +27,20 @@ export default class Input extends PureComponent<Props, State> {
   }
 
   render() {
-    const { value, uiParams, readOnly } = this.props;
+    const { value, uiParams, disabled } = this.props;
 
     let formatter =
       uiParams && uiParams.unit ? val => `${val} ${uiParams.unit}` : val => val;
     return (
-      <div id="number-input">
-        <InputNumber
-          disabled={readOnly}
-          min={uiParams && uiParams.min}
-          max={uiParams && uiParams.max}
-          step={uiParams && uiParams.step}
-          formatter={formatter}
-          value={value} // eslint-disable-line
-          onChange={this.onChange}
-        />
-      </div>
+      <InputNumber
+        disabled={disabled}
+        min={uiParams && uiParams.min}
+        max={uiParams && uiParams.max}
+        step={uiParams && uiParams.step}
+        formatter={formatter}
+        value={value}
+        onChange={this.onChange}
+      />
     );
   }
 }

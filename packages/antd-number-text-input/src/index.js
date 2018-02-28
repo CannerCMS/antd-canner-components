@@ -3,8 +3,11 @@
 import React, { Component } from "react";
 import { Input } from "antd";
 
-type Props = defaultProps & {
-  value: string
+type Props = {
+  value: string,
+  onChange: defaultProps.onChange,
+  id: defaultProps.id,
+  disabled: defaultProps.disabled
 };
 
 export default class NumberInput extends Component<Props> {
@@ -14,11 +17,14 @@ export default class NumberInput extends Component<Props> {
   };
 
   render() {
-    const { value, readOnly } = this.props;
+    const { value, disabled } = this.props;
     return (
-      <div id="input">
-        <Input disabled={readOnly} type="text" value={value} onChange={this.onChange} />
-      </div>
+      <Input
+        disabled={disabled}
+        type="text"
+        value={value}
+        onChange={this.onChange}
+        />
     );
   }
 }
