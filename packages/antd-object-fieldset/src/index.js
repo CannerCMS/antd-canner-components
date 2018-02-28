@@ -15,8 +15,10 @@ export default class Fieldset extends Component<Props> {
       id,
       routes
     });
-    return <fieldset style={{
-      border: 0
-    }}>{childrenWithProps}</fieldset>;
+    return (
+      <fieldset style={{border: 0}}>
+        {childrenWithProps}
+      </fieldset>
+    );
   }
 }
