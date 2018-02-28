@@ -7,6 +7,7 @@ import ShareCardDemo from './demos/share/card';
 
 // boolean
 import BooleanCardDemo from './demos/boolean/card';
+import BooleanSwitchDemo from './demos/boolean/switch';
 
 // string
 import InputDemo from './demos/string/input';
@@ -81,6 +82,7 @@ class Demo extends Component {
             </SubMenu>
             <SubMenu key="boolean" title="Boolean">
               <Menu.Item key="card">card</Menu.Item>
+              <Menu.Item key="switch">switch</Menu.Item>
             </SubMenu>
           </Menu>
         </Sider>
@@ -91,6 +93,7 @@ class Demo extends Component {
 
             {/* boolean */}
             {selectTab === 'boolean' && selectKey === 'card' ? <BooleanCardDemo/> : null}
+            {selectTab === 'boolean' && selectKey === 'switch' ? <BooleanSwitchDemo/> : null}
 
             {/* string */}
             {selectTab === 'string' && selectKey === 'input' ? <InputDemo/> : null}

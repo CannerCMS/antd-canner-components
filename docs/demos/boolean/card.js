@@ -8,7 +8,7 @@ export default class BooleanCardDemo extends Component<{}> {
       <React.Fragment>
         <h1>Boolean card</h1>
         <BooleanCard
-          id="string-card"
+          id="boolean-card"
           value={false}
           uiParams={{
             yesText: "YES!!",

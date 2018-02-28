@@ -1,16 +1,18 @@
 // @flow
 
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { Switch } from "antd";
 import { injectIntl } from "react-intl";
 
-type Props = defaultProps & {
+type Props = {
+  id: defaultProps.id,
+  onChange: defaultProps.onChange,
   value: boolean,
   uiParams: {
     yesText: string,
     noText: string
-  }
+  },
+  intl: defaultProps.intl
 }
 
 @injectIntl
@@ -24,7 +26,7 @@ export default class SwitchBoolean extends Component<Props> {
     const defaultYesText = intl.formatMessage({ id: "boolean.switch.yesText" });
     const defaultNoText = intl.formatMessage({ id: "boolean.switch.noText" });
     return (
-      <div id="input">
+      <div>
         <Switch
           onChange={this.onChange}
           checked={value}
