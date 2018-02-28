@@ -9,6 +9,7 @@ import RadioDemo from './demos/string/radio';
 import DatetimeDemo from './demos/string/datetime';
 import TextareaDemo from './demos/string/textarea';
 import SelectDemo from './demos/string/select';
+import ImageDemo from './demos/string/image';
 
 // array
 import TabTopDemo from './demos/array/tabs-top';
@@ -57,6 +58,7 @@ class Demo extends Component {
               <Menu.Item key="datetime">datetime</Menu.Item>
               <Menu.Item key="textarea">textarea</Menu.Item>
               <Menu.Item key="select">select</Menu.Item>
+              <Menu.Item key="image">image</Menu.Item>
             </SubMenu>
             <SubMenu key="array" title="Array">
               <Menu.Item key="tab-top">tab-top</Menu.Item>
@@ -75,6 +77,7 @@ class Demo extends Component {
             {selectTab === 'string' && selectKey === 'datetime' ? <DatetimeDemo/> : null}
             {selectTab === 'string' && selectKey === 'textarea' ? <TextareaDemo/> : null}
             {selectTab === 'string' && selectKey === 'select' ? <SelectDemo/> : null}
+            {selectTab === 'string' && selectKey === 'image' ? <ImageDemo/> : null}
 
             {/* array */}
             {selectTab === 'array' && selectKey === 'tab-top' ? <TabTopDemo/> : null}

@@ -6,6 +6,7 @@ import { Select } from "antd";
 const Option = Select.Option;
 
 type Props = {
+  id: defaultProps.id,
   value: string,
   onChange: defaultProps.onChange,
   uiParams: {

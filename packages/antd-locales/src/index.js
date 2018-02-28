@@ -21,7 +21,8 @@ export default {
     "object.variants.variantsName": "Category Name",
     "object.variants.table.title": "Name",
     "string.link.preview": "preview link: ",
-    "string.datetimepicker.placeholder": "Please pick a date"
+    "string.datetimepicker.placeholder": "Please pick a date",
+    "string.image.add": "add Image"
   },
   zh: {
     "array.panel.delete.confirm": "您確定要刪除這個類別嗎？",
@@ -45,6 +46,7 @@ export default {
     "object.variants.variantsName": "型號名稱",
     "object.variants.table.title": "名稱",
     "string.link.preview": "預覽連結: ",
-    "string.datetimepicker.placeholder": "請選擇一個日期"
+    "string.datetimepicker.placeholder": "請選擇一個日期",
+    "string.image.add": "新增圖片"
   }
 }

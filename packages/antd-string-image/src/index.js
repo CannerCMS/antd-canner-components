@@ -2,12 +2,21 @@
 import React, { Component } from "react";
 import ShowImage from "./image/ShowImage";
 import EditImage from "@canner/image-upload";
+import defaultMessage from '@canner/antd-locales';
 import { Button } from "antd";
+import {FormattedMessage} from "react-intl";
 import createImageService from "@canner/image-service-config";
 import ImageServiceConfig from "@canner/image-service-config/lib/imageService";
 
-type Props = defaultProps & {
-  value: string
+type Props = {
+  id: defaultProps.id,
+  value: string,
+  onChange: defaultProps.onChange,
+  uiParams: {
+    service: string,
+    dir: string,
+    filename: string
+  }
 };
 type State = {
   editPopup: boolean
@@ -23,11 +32,11 @@ export default class Image extends Component<Props, State> {
     const { service, dir, filename } = props.uiParams || {};
     const key = props.id.split('/')[0];
     // {
-    //   service: 'canner' | 'imgur',
+    //   service: 'canner' | 'imgur' | 'firebase',
     //   dir?: string,
     //   filename?: string
     // }
-    // dir 跟 filename 只有用在 canner service 上
+    // dir and filename is needed when you choose canner image service
     this.serviceConfig = createImageService({
       service,
       dir,
@@ -69,17 +78,17 @@ export default class Image extends Component<Props, State> {
     }
 
     return (
-      <div id="react-qa-plugin-image">
+      <div>
         <Button type="primary" onClick={this.showEditPopup}>
-          + Add Images{" "}
-        </Button>{" "}
+          + <FormattedMessage id="string.image.add" defaultMessage={defaultMessage.en["string.image.add"]}/>
+        </Button>
         <EditImage
           onChange={this.onChange}
           editPopup={editPopup}
           serviceConfig={this.serviceConfig}
           closeEditPopup={this.closeEditPopup}
           multiple={false}
-        />{" "}
+        />
       </div>
     );
   }
