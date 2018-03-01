@@ -2,10 +2,10 @@
 import React, { Component } from "react";
 import { Rate } from "antd";
 
-type Props = {
-  id: defaultProps.id,
-  onChange: defaultProps.onChange,
-  value: number,
+// type
+import type {NumberDefaultProps} from 'types/NumberDefaultProps';
+
+type Props = NumberDefaultProps & {
   uiParams: {
     count: number,
     allowHalf: boolean,
@@ -19,17 +19,16 @@ export default class NumberRate extends Component<Props> {
   };
 
   render() {
-    const { value, uiParams } = this.props;
+    const { value, uiParams, disabled } = this.props;
     return (
-      <div>
-        <Rate
-          count={uiParams && uiParams.count}
-          allowHalf={uiParams && uiParams.allowHalf}
-          character={uiParams && uiParams.character}
-          value={+value} // eslint-disable-line
-          onChange={this.onChange}
-        />
-      </div>
+      <Rate
+        disabled={disabled}
+        count={uiParams && uiParams.count}
+        allowHalf={uiParams && uiParams.allowHalf}
+        character={uiParams && uiParams.character}
+        value={+value} // eslint-disable-line
+        onChange={this.onChange}
+      />
     );
   }
 }

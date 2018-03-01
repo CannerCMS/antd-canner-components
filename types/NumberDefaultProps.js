@@ -1,9 +1,9 @@
 // @flow
 import type {FieldId, FieldDisabled} from './DefaultProps';
 
-export type StringDefaultProps = {|
+export type NumberDefaultProps = {|
   id: FieldId,
   disabled: FieldDisabled,
-  value: string,
-  onChange: (id: string, type: string, value: string) => void
+  value: number,
+  onChange: (id: string, type: string, value: number) => void
 |};

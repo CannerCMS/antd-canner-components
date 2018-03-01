@@ -4,15 +4,16 @@ import React, { Component } from "react";
 import { Switch } from "antd";
 import { injectIntl } from "react-intl";
 
-type Props = {
-  id: defaultProps.id,
-  onChange: defaultProps.onChange,
-  value: boolean,
+// type
+import type {BooleanDefaultProps} from 'types/BooleanDefaultProps';
+import type {IntlShape} from 'react-intl';
+
+type Props = BooleanDefaultProps & {
   uiParams: {
     yesText: string,
     noText: string
   },
-  intl: defaultProps.intl
+  intl: IntlShape
 }
 
 @injectIntl
@@ -22,12 +23,13 @@ export default class SwitchBoolean extends Component<Props> {
   }
 
   render() {
-    const { value, uiParams, intl } = this.props;
+    const { value, uiParams, intl, disabled } = this.props;
     const defaultYesText = intl.formatMessage({ id: "boolean.switch.yesText" });
     const defaultNoText = intl.formatMessage({ id: "boolean.switch.noText" });
     return (
       <div>
         <Switch
+          disabled={disabled}
           onChange={this.onChange}
           checked={value}
           checkedChildren={

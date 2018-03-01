@@ -2,10 +2,10 @@
 import React, { Component } from "react";
 import { Slider } from "antd";
 
-type Props = {
-  id: defaultProps.id,
-  onChange: defaultProps.onChange,
-  value: number,
+// type
+import type {NumberDefaultProps} from 'types/NumberDefaultProps';
+
+type Props = NumberDefaultProps & {
   uiParams: {
     min: number,
     max: number,
@@ -20,11 +20,12 @@ export default class NumberSlider extends Component<Props> {
   };
 
   render() {
-    const { value, uiParams } = this.props;
+    const { value, uiParams, disabled } = this.props;
     let tipFormatter =
       uiParams && uiParams.unit ? val => `${val} ${uiParams.unit}` : val => val;
     return (
       <Slider
+        disabled={disabled}
         min={uiParams && uiParams.min}
         max={uiParams && uiParams.max}
         step={uiParams && uiParams.step}

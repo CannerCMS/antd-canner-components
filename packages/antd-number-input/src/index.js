@@ -3,15 +3,14 @@ import React, { PureComponent } from "react";
 import { InputNumber } from "antd";
 import isNaN from "lodash/isNaN";
 
+// type
+import type {NumberDefaultProps} from 'types/NumberDefaultProps';
+
 type State = {
   value: string
 };
 
-type Props = {
-  id: defaultProps.id,
-  onChange: defaultProps.onChange,
-  disabled: defaultProps.disabled,
-  value: string,
+type Props = NumberDefaultProps & {
   uiParams: {
     min: number,
     max: number,
@@ -21,8 +20,8 @@ type Props = {
 };
 
 export default class Input extends PureComponent<Props, State> {
-  onChange = (val: any) => {
-    const value = isNaN(Number(val)) ? 0 : Number(val);
+  onChange = (val: string) => {
+    const value: number = isNaN(Number(val)) ? 0 : Number(val);
     this.props.onChange(this.props.id, "update", value);
   }
 
