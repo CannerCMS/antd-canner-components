@@ -12,6 +12,11 @@ $ npm i -g lerna
 
 $ lerna bootstrap
 $ npm run build
+# or watch for rebuilding
+$ npm run build:watch
+
+# run demo
+$ npm start
 ```
 
 ## Test
