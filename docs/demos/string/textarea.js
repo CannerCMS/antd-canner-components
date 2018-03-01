@@ -1,8 +1,8 @@
 // @flow
-import React, {Component} from 'react';
+import * as React from 'react';
 import Textarea from 'packages/antd-string-textarea';
 
-export default class TextareaDemo extends Component<{}> {
+export default class TextareaDemo extends React.Component<{}> {
   render() {
     return (
       <React.Fragment>

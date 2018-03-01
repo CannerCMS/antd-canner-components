@@ -1,4 +1,6 @@
 [ignore]
+.*/node_modules/protobufjs/.*
+.*/node_modules/fbjs/node_modules/.* 
 
 [include]
 
@@ -13,8 +15,6 @@ module.file_ext=.json
 module.file_ext=.jsx
 module.file_ext=.scss
 module.file_ext=.css
-module.ignore_non_literal_requires=true
 
-module.name_mapper='^utils\/\(.*\)$' -> '<PROJECT_ROOT>/utils/\1'
-
-[strict]
+module.name_mapper='^packages\/\(.*\)$' ->'<PROJECT_ROOT>/packages/\1'
+module.name_mapper='^types\/\(.*\)$' ->'<PROJECT_ROOT>/types/\1'

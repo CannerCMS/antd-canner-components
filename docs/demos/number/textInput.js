@@ -1,8 +1,8 @@
 // @flow
-import React, {Component} from 'react';
+import * as React from 'react';
 import NumberInput from 'packages/antd-number-text-input';
 
-export default class NumberInputDemo extends Component<{}> {
+export default class NumberInputDemo extends React.Component<{}> {
   render() {
     return (
       <React.Fragment>

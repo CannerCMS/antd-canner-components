@@ -10,9 +10,14 @@ import pick from 'lodash/pick';
 import isObject from "lodash/isObject";
 import { FormattedMessage } from "react-intl";
 import defaultMessage from "@canner/cms-locales";
+import type {FieldId, FieldItems, GotoFn} from 'types/DefaultProps';
 const ButtonGroup = Button.Group;
 const confirm = Modal.confirm;
-type Props = defaultProps & {
+
+type Props = {
+  id: FieldId,
+  items: FieldItems,
+  goto: GotoFn,
   value: List<any>,
   uiParams: {
     createAction: Array<string>,

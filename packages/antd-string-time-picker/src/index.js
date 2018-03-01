@@ -5,14 +5,18 @@ import defaultMessage from "@canner/antd-locales";
 import {injectIntl} from 'react-intl';
 import moment from "moment-timezone/moment-timezone";
 
+// types
+import type {FieldId, OnChangeFn} from 'types/DefaultProps';
+import type {IntlShape} from 'react-intl';
+
 type Props = {
-  id: defaultProps.id,
+  id: FieldId,
   value: string,
-  onChange: defaultProps.onChange,
+  onChange: OnChangeFn,
   uiParams: {
     format: string
   },
-  intl: defaultProps.intl
+  intl: IntlShape
 };
 
 @injectIntl

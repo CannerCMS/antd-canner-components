@@ -4,17 +4,20 @@ import { Radio } from "antd";
 import { isObjectLike } from "lodash";
 const RadioGroup = Radio.Group;
 
+import type {FieldId, OnChangeFn} from 'types/DefaultProps';
+
 type Props = {
-  id: defaultProps.id,
+  id: FieldId,
   value: string,
   uiParams: {
     options: Array<{
       text: string,
       value: string
     }>,
-    defaultSelected: number
+    defaultSelected: number,
+    defaultChecked?: number
   },
-  onChange: defaultProps.onChange
+  onChange: OnChangeFn
 };
 
 export default class RadioString extends Component<Props> {

@@ -1,8 +1,8 @@
 // @flow
-import React, {Component} from 'react';
+import * as React from 'react';
 import BooleanCard from 'packages/antd-boolean-card';
 
-export default class BooleanCardDemo extends Component<{}> {
+export default class BooleanCardDemo extends React.Component<{}> {
   render() {
     return (
       <React.Fragment>

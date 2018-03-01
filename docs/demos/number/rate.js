@@ -1,8 +1,8 @@
 // @flow
-import React, {Component} from 'react';
+import * as React from 'react';
 import NumberRate from 'packages/antd-number-rate';
 
-export default class NumberRateDemo extends Component<{}> {
+export default class NumberRateDemo extends React.Component<{}> {
   render() {
     return (
       <React.Fragment>

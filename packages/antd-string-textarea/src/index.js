@@ -3,11 +3,15 @@
 import React, { Component } from "react";
 import { Input } from "antd";
 const { TextArea } = Input;
+
+// types
+import type {FieldDisabled, OnChangeFn} from 'types/DefaultProps';
+
 type Props = {
   value: string,
   id: string,
-  disabled: defaultProps.disabled,
-  onChange: defaultProps.onChange
+  disabled: FieldDisabled,
+  onChange: OnChangeFn
 };
 
 type State = {

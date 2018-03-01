@@ -1,8 +1,8 @@
 // @flow
-import React, {Component} from 'react';
+import * as React from 'react';
 import Input from 'packages/antd-string-input';
 
-export default class InputDemo extends Component<{}> {
+export default class InputDemo extends React.Component<{}> {
   render() {
     return (
       <React.Fragment>

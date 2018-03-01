@@ -1,8 +1,8 @@
 // @flow
-import React, {Component} from 'react';
+import * as React from 'react';
 import StringCard from 'packages/antd-string-card';
 
-export default class StringCardDemo extends Component<{}> {
+export default class StringCardDemo extends React.Component<{}> {
   render() {
     return (
       <React.Fragment>

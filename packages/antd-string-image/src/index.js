@@ -7,11 +7,13 @@ import { Button } from "antd";
 import {FormattedMessage} from "react-intl";
 import createImageService from "@canner/image-service-config";
 import ImageServiceConfig from "@canner/image-service-config/lib/imageService";
+// type
+import type {FieldId, OnChangeFn} from 'types/DefaultProps';
 
 type Props = {
-  id: defaultProps.id,
+  id: FieldId,
   value: string,
-  onChange: defaultProps.onChange,
+  onChange: OnChangeFn,
   uiParams: {
     service: string,
     dir: string,

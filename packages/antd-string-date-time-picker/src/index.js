@@ -9,15 +9,20 @@ import {
   transformStringToMoment
 } from "./transformFormat";
 
+// type
+import type {FieldId, OnChangeFn} from 'types/DefaultProps';
+import type {intlShape} from 'react-intl'
+
 type Props = {
-  id: defaultProps.id,
-  onChange: defaultProps.onChange,
-  value: string | number,
+  id: FieldId,
+  onChange: OnChangeFn,
+  value: string,
   uiParams: {
+    display?: string,
     format: string,
     output: string
   },
-  intl: defaultProps.intl
+  intl: intlShape
 };
 
 @injectIntl

@@ -1,8 +1,8 @@
 // @flow
-import React, {Component} from 'react';
+import * as React from 'react';
 import StringSelect from 'packages/antd-string-select';
 
-export default class SelectDemo extends Component<{}> {
+export default class SelectDemo extends React.Component<{}> {
   render() {
     return (
       <React.Fragment>

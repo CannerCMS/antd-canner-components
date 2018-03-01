@@ -6,10 +6,13 @@ import defaultMessage from "@canner/antd-locales";
 import { FormattedMessage } from "react-intl";
 import styles from "./style/Link.scss";
 
+// type
+import type {FieldId, OnChangeFn} from 'types/DefaultProps';
+
 type Props = {
-  id: defaultProps.id,
+  id: FieldId,
   value: string,
-  onChange: defaultProps.onChange
+  onChange: OnChangeFn
 }
 
 @CSSModules(styles)

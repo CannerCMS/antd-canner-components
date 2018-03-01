@@ -1,7 +1,7 @@
 // @flow
 import moment from 'moment';
 
-export function transformMomentToString(date, input = 'ISO_8601') {
+export function transformMomentToString(date: any, input: string = 'ISO_8601') {
   switch (input) {
     case 'timestamp.seconds':
     case 'epoch':
@@ -15,7 +15,7 @@ export function transformMomentToString(date, input = 'ISO_8601') {
   }
 }
 
-export function transformStringToMoment(dateString, input = moment.ISO_8601) {
+export function transformStringToMoment(dateString: string, input: moment = moment.ISO_8601) {
   let rtnMoment = moment();
   switch (input) {
     case 'timestamp.seconds':

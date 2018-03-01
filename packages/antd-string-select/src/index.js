@@ -5,17 +5,22 @@ import { isObjectLike } from "lodash";
 import { Select } from "antd";
 const Option = Select.Option;
 
+// types
+import type {FieldId, OnChangeFn} from 'types/DefaultProps';
+
+type UIParams = {|
+  options?: Array<{
+    text: string,
+    value: string
+  }>,
+  defaultSelected?: number
+|};
+
 type Props = {
-  id: defaultProps.id,
+  id: FieldId,
   value: string,
-  onChange: defaultProps.onChange,
-  uiParams: {
-    options: Array<{
-      text: string,
-      value: string
-    }>,
-    defaultSelected: number
-  }
+  onChange: OnChangeFn,
+  uiParams: UIParams
 };
 
 export default class SelectString extends Component<Props> {
@@ -26,23 +31,8 @@ export default class SelectString extends Component<Props> {
   render() {
     const { value } = this.props;
     let { uiParams } = this.props;
-    if (Array.isArray(uiParams)) {
-      // backward capable
-      uiParams = {
-        options: uiParams,
-        defaultSelected: 0
-      };
-    }
-
-    if (uiParams.texts) {
-      uiParams.options = uiParams.options.map((opt, i) => {
-        return {
-          value: opt,
-          text: uiParams[i]
-        };
-      });
-    }
-    const options = uiParams.options || [];
+    let options = uiParams.options || [];
+  
     const { defaultSelected } = uiParams;
     return (
       <div id="select">
@@ -57,14 +47,6 @@ export default class SelectString extends Component<Props> {
           onChange={this.onChange}
         >
           {options.map((selection, i) => {
-            /* backward support */
-            if (!isObjectLike(selection)) {
-              return (
-                <Option value={selection} key={i}>
-                  {selection}
-                </Option>
-              );
-            }
             const { text, value } = selection;
             return (
               <Option value={value} key={i}>

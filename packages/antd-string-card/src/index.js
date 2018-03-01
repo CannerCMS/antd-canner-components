@@ -3,19 +3,23 @@ import React, { Component } from "react";
 import Card from "@canner/antd-share-card";
 import { isObjectLike } from "lodash";
 
+// type
+import type {FieldId, OnChangeFn} from 'types/DefaultProps';
+
 type Props = {
   value: string,
-  onChange: defaultProps.onChange,
-  id: defaultProps.id,
+  onChange: OnChangeFn,
+  id: FieldId,
   uiParams: {
     options: Array<{
       text: string,
       value: string
     }>,
-    imgs: Array<string>,
-    imgStyle: { [string]: any },
-    labelStyle: { [string]: any },
-    defaultSelected: number
+    texts?: Array<string>,
+    imgs?: Array<string>,
+    imgStyle?: { [string]: any },
+    labelStyle?: { [string]: any },
+    defaultSelected?: number
   }
 };
 
@@ -34,7 +38,11 @@ export default class CardString extends Component<Props> {
 
     // backward support
     if (texts || imgs) {
-      options = options.map((opt, i) => {
+      options: {
+        value: string,
+        text: string,
+        img: string
+      } = options.map((opt, i) => {
         return {
           value: opt,
           text: texts && texts[i],

@@ -1,8 +1,8 @@
 // @flow
-import React, {Component} from 'react';
+import * as React from 'react';
 import StringRadio from 'packages/antd-string-radio';
 
-export default class RadioDemo extends Component<{}> {
+export default class RadioDemo extends React.Component<{}> {
   render() {
     return (
       <React.Fragment>
