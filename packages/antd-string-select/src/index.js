@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { Select } from "antd";
 import defaultMessage from "@canner/antd-locales";
 import {injectIntl} from 'react-intl';
@@ -24,7 +24,7 @@ type Props = StringDefaultProps & {
 };
 
 @injectIntl
-export default class SelectString extends Component<Props> {
+export default class SelectString extends PureComponent<Props> {
   static defaultProps = {
     uiParams: {
       options: []

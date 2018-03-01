@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { Input } from "antd";
 const { TextArea } = Input;
 
@@ -13,7 +13,7 @@ type State = {
   value: string
 };
 
-export default class TextareaString extends Component<Props, State> {
+export default class TextareaString extends PureComponent<Props, State> {
   isOnComposition: boolean;
   constructor(props: Props) {
     super(props);

@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { Rate } from "antd";
 
 // type
@@ -13,7 +13,7 @@ type Props = NumberDefaultProps & {
   }
 };
 
-export default class NumberRate extends Component<Props> {
+export default class NumberRate extends PureComponent<Props> {
   onChange = (val: number) => {
     this.props.onChange(this.props.id, "update", val);
   };

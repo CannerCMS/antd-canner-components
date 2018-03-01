@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import imagesLoaded from "imagesloaded";
 import { Card, Button, Icon } from "antd";
 import CSSModules from "react-css-modules";
@@ -14,7 +14,7 @@ type Props = {
 }
 
 @CSSModules(styles)
-export default class ShowImage extends Component<Props> {
+export default class ShowImage extends PureComponent<Props> {
   constructor(props: Props) {
     super(props);
     (this: any).deleteImage = this.deleteImage.bind(this);

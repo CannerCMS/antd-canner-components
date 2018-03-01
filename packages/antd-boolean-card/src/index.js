@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import Card from "@canner/antd-share-card";
 
 // type
@@ -11,7 +11,7 @@ type Props = BooleanDefaultProps & {
     noText: string
   }
 };
-export default class CardBoolean extends Component<Props> {
+export default class CardBoolean extends PureComponent<Props> {
   onChange = (val: boolean) => {
     this.props.onChange(this.props.id, "update", val);
   };

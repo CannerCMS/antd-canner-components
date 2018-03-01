@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import InputString from "@canner/antd-string-input";
 import CSSModules from "react-css-modules";
 import defaultMessage from "@canner/antd-locales";
@@ -12,7 +12,7 @@ import type {StringDefaultProps} from 'types/StringDefaultProps';
 type Props = StringDefaultProps
 
 @CSSModules(styles)
-export default class LinkString extends Component<Props> {
+export default class LinkString extends PureComponent<Props> {
   render() {
     const { value, onChange, id, disabled } = this.props;
     return (

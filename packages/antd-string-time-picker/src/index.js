@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { TimePicker } from "antd";
 import defaultMessage from "@canner/antd-locales";
 import {injectIntl} from 'react-intl';
@@ -17,7 +17,7 @@ type Props = StringDefaultProps & {
 };
 
 @injectIntl
-export default class TimePickerPlugin extends Component<Props> {
+export default class TimePickerPlugin extends PureComponent<Props> {
   static defaultProps = {
     uiParams: {
       format: "HH:mm"

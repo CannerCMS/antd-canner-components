@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { Switch } from "antd";
 import { injectIntl } from "react-intl";
 
@@ -17,7 +17,7 @@ type Props = BooleanDefaultProps & {
 }
 
 @injectIntl
-export default class SwitchBoolean extends Component<Props> {
+export default class SwitchBoolean extends PureComponent<Props> {
   onChange = (e: boolean) => {
     this.props.onChange(this.props.id, "update", e);
   }

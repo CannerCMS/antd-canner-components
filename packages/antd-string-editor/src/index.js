@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import ReactQuill, { Quill } from "@canner/react-quill";
 import { SketchPicker } from "react-color";
 import { Popover } from "antd";
@@ -78,7 +78,7 @@ Quill.register(fontSizeStyle, true);
 type Props = StringDefaultProps;
 type State = { color: string };
 
-export default class Editor extends Component<Props, State> {
+export default class Editor extends PureComponent<Props, State> {
   containerId: string;
   reactQuill: ?ReactQuill;
   toolbar: any;

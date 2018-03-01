@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import ShowImage from "./image/ShowImage";
 import EditImage from "@canner/image-upload";
 import defaultMessage from '@canner/antd-locales';
@@ -22,7 +22,7 @@ type State = {
   editPopup: boolean
 };
 
-export default class Image extends Component<Props, State> {
+export default class Image extends PureComponent<Props, State> {
   serviceConfig: ImageServiceConfig;
   constructor(props: Props) {
     super(props);

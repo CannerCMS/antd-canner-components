@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { Radio } from "antd";
 const RadioGroup = Radio.Group;
 
@@ -16,7 +16,7 @@ type Props = StringDefaultProps & {
   }
 };
 
-export default class RadioString extends Component<Props> {
+export default class RadioString extends PureComponent<Props> {
   static defaultProps = {
     uiParams: {
       options: []

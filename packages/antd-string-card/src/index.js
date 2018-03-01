@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import Card from "@canner/antd-share-card";
 
 // type
@@ -15,7 +15,7 @@ type Props = StringDefaultProps & {
   }
 };
 
-export default class CardString extends Component<Props> {
+export default class CardString extends PureComponent<Props> {
   onChange = (val: string) => {
     this.props.onChange(this.props.id, "update", val);
   };

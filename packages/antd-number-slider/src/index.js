@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { Slider } from "antd";
 
 // type
@@ -14,7 +14,7 @@ type Props = NumberDefaultProps & {
   }
 };
 
-export default class NumberSlider extends Component<Props> {
+export default class NumberSlider extends PureComponent<Props> {
   onChange = (val: number) => {
     this.props.onChange(this.props.id, "update", val);
   };

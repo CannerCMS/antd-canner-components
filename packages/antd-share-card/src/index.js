@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import Label from "./label";
 import CSSModules from "react-css-modules";
 import styles from "./style/Card.scss";
@@ -13,7 +13,7 @@ type Props = {
 };
 
 @CSSModules(styles)
-export default class Card extends Component<Props> {
+export default class Card extends PureComponent<Props> {
   onChange = (value: string | boolean) => {
     this.props.onChange(value);
   };
