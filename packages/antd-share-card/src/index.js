@@ -1,7 +1,6 @@
 // @flow
 import React, { Component } from "react";
 import Label from "./label";
-import Img from "./img";
 import CSSModules from "react-css-modules";
 import styles from "./style/Card.scss";
 
@@ -10,9 +9,7 @@ type Props = {
   value: string | boolean,
   onChange: (value: string | boolean) => void,
   text: string,
-  img: string,
-  imgStyle: { [string]: any },
-  labelStyle: { [string]: any }
+  disabled: boolean
 };
 
 @CSSModules(styles)
@@ -25,23 +22,21 @@ export default class Card extends Component<Props> {
     const {
       value,
       checked,
-      img,
-      imgStyle,
-      labelStyle,
-      text
+      text,
+      disabled
     } = this.props;
     let displayText = text || value;
     if (typeof value === "boolean") {
       displayText = text || (value ? "YES" : "NO");
     }
+
     return (
       <label styleName="label">
         <Label
           checked={checked}
-          labelStyle={labelStyle}
+          disabled={disabled}
           onClick={() => this.onChange(value)}
         >
-          {img ? <Img src={img} imgStyle={imgStyle} /> : null}
           {displayText}
         </Label>
       </label>

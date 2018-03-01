@@ -25,6 +25,7 @@ import TextareaDemo from './demos/string/textarea';
 import SelectDemo from './demos/string/select';
 import ImageDemo from './demos/string/image';
 import StringCardDemo from './demos/string/card';
+import EditorDemo from './demos/string/editor';
 
 // array
 import TabTopDemo from './demos/array/tabs-top';
@@ -79,6 +80,7 @@ class Demo extends Component {
               <Menu.Item key="select">select</Menu.Item>
               <Menu.Item key="image">image</Menu.Item>
               <Menu.Item key="card">card</Menu.Item>
+              <Menu.Item key="editor">editor</Menu.Item>
             </SubMenu>
             <SubMenu key="array" title="Array">
               <Menu.Item key="tab-top">tab-top</Menu.Item>
@@ -123,6 +125,7 @@ class Demo extends Component {
             {selectTab === 'string' && selectKey === 'select' ? <SelectDemo/> : null}
             {selectTab === 'string' && selectKey === 'image' ? <ImageDemo/> : null}
             {selectTab === 'string' && selectKey === 'card' ? <StringCardDemo/> : null}
+            {selectTab === 'string' && selectKey === 'editor' ? <EditorDemo/> : null}
 
             {/* array */}
             {selectTab === 'array' && selectKey === 'tab-top' ? <TabTopDemo/> : null}

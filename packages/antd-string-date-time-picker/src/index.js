@@ -10,15 +10,11 @@ import {
 } from "./transformFormat";
 
 // type
-import type {FieldId, OnChangeFn} from 'types/DefaultProps';
+import type {StringDefaultProps} from 'types/StringDefaultProps';
 import type {intlShape} from 'react-intl'
 
-type Props = {
-  id: FieldId,
-  onChange: OnChangeFn,
-  value: string,
+type Props = StringDefaultProps & {
   uiParams: {
-    display?: string,
     format: string,
     output: string
   },
@@ -40,27 +36,23 @@ export default class DateTimePicker extends Component<Props> {
   };
 
   render() {
-    const { value, uiParams = {}, intl } = this.props;
+    const { value, uiParams = {}, intl, disabled } = this.props;
     const moment = transformStringToMoment(value, uiParams.output);
 
-    // backward support
-    if (uiParams.display) uiParams.format = uiParams.display;
-
     return (
-      <div id="date-time-picker">
-        <DatePicker
-          value={moment}
-          showTime
-          format={uiParams && uiParams.format}
-          placeholder={
-            intl.formatMessage({
-              id: "string.datetimepicker.placeholder",
-              defaultMessage: defaultMessage.en["string.datetimepicker.placeholder"]
-            })
-          }
-          onChange={this.onChange}
-        />
-      </div>
+      <DatePicker
+        showTime
+        value={moment}
+        disabled={disabled}
+        format={uiParams && uiParams.format}
+        placeholder={
+          intl.formatMessage({
+            id: "string.datetimepicker.placeholder",
+            defaultMessage: defaultMessage.en["string.datetimepicker.placeholder"]
+          })
+        }
+        onChange={this.onChange}
+      />
     );
   }
 }

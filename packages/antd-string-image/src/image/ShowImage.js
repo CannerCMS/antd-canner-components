@@ -41,7 +41,7 @@ export default class ShowImage extends Component<Props> {
   }
 
   render() {
-    const { value, cardWidth } = this.props;
+    const { value, cardWidth, disabled } = this.props;
     return (
       <Card style={{ width: cardWidth }} bodyStyle={{ padding: 0 }}>
         <div styleName="custom-image" ref={node => (this.imgWrapper = node)}>
@@ -51,11 +51,15 @@ export default class ShowImage extends Component<Props> {
             src={value}
           />
         </div>
-        <div styleName="custom-card" className="custom-card">
-          <Button onClick={this.deleteImage}>
-            <Icon type="close" />
-          </Button>
-        </div>
+        {
+          !disabled ? (
+            <div styleName="custom-card" className="custom-card">
+              <Button onClick={this.deleteImage}>
+                <Icon type="close" />
+              </Button>
+            </div>
+          ) : null
+        }
       </Card>
     );
   }

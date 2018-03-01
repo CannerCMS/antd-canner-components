@@ -12,7 +12,7 @@ export default class ImageDemo extends Component<{}> {
         locale="en"
         messages={cmsLocale["en"]}>
         <Fragment>
-          <Divider>Normal image</Divider>
+          <Divider>Normal image with image</Divider>
           <Image
             id="image"
             value="https://cdn.canner.io/images/logo/logo-word.png"
@@ -22,9 +22,28 @@ export default class ImageDemo extends Component<{}> {
             }}
             />
 
-          <Divider>Normal image uploader with no selected image</Divider>
+          <Divider>Normal image uploader without selected image</Divider>
           <Image
             id="image"
+            uiParams={{service: 'imgur'}}
+            onChange={(id, type, value) => {
+              console.log('id: ', id, ', type: ', type, ', value: ', value);
+            }}
+            />
+          <Divider>Disabled image uploader with image</Divider>
+          <Image
+            id="image"
+            disabled
+            value="https://cdn.canner.io/images/logo/logo-word.png"
+            uiParams={{service: 'imgur'}}
+            onChange={(id, type, value) => {
+              console.log('id: ', id, ', type: ', type, ', value: ', value);
+            }}
+            />
+          <Divider>Disabled image uploader without image</Divider>
+          <Image
+            id="image"
+            disabled
             uiParams={{service: 'imgur'}}
             onChange={(id, type, value) => {
               console.log('id: ', id, ', type: ', type, ', value: ', value);

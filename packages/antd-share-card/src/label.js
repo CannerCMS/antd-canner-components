@@ -1,3 +1,4 @@
+// @flow
 import styled from "styled-components";
 
 const Label = styled.div`
@@ -13,8 +14,12 @@ const Label = styled.div`
     box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.1);
   }
   ${props => {
-    if (props.labelStyle) {
-      return { ...props.labelStyle };
+    if (props.disabled) {
+      return {
+        backgroundColor: '#f5f5f5',
+        color: 'rgba(0, 0, 0, 0.25)',
+        cursor: 'not-allowed'
+      };
     }
   }};
 `;

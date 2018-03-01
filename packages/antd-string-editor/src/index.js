@@ -5,20 +5,24 @@ import ReactQuill, { Quill } from "@canner/react-quill";
 import { SketchPicker } from "react-color";
 import { Popover } from "antd";
 import objectId from 'bson-objectid';
-// $FlowFixMe
+// type
+import type {StringDefaultProps} from 'types/StringDefaultProps';
+
 import "./style/EditorQuill.lib.scss";
+
 let sizes = [];
 for (let i = 10; i <= 72; i += 2) {
   sizes.push(`${i}px`);
 }
 let lineHeights = [];
 for (let now = 0.5; now < 6; now += 0.1) {
-  lineHeights.push(String(now));
+  lineHeights.push(String(now.toFixed(1)));
 }
 // $FlowFixMe
-let letterSpacings = lineHeights.filter(i => i >= 1).map(i => `${i}px`);
+let letterSpacings = lineHeights.filter(i => i >= 1).map(i => `${i} x`);
 var fontSizeStyle = Quill.import("attributors/style/size");
 fontSizeStyle.whitelist = sizes;
+
 const Parchment = Quill.import("parchment");
 const LineHeightStyle = new Parchment.Attributor.Style(
   "lineheight",
@@ -37,24 +41,24 @@ const LetterSpacingStyle = new Parchment.Attributor.Style(
   }
 );
 
-sizes = sizes.map(i => {
-  if (i === "12px")
+sizes = sizes.map((size, i) => {
+  if (size === "12px")
     return (
-      <option selected key={i} value={i}>
-        {i}
+      <option selected key={i} value={size}>
+        {size}
       </option>
     );
   return (
-    <option key={i} value={i}>
-      {i}
+    <option key={i} value={size}>
+      {size}
     </option>
   );
 });
 
-lineHeights = lineHeights.map(i => {
+lineHeights = lineHeights.map((line, i) => {
   return (
-    <option key={i} value={i}>
-      {i}
+    <option key={i} value={line}>
+      {line}
     </option>
   );
 });
@@ -71,7 +75,7 @@ Quill.register(LetterSpacingStyle, true);
 Quill.register(LineHeightStyle, true);
 Quill.register(fontSizeStyle, true);
 
-type Props = defaultProps & { value: string };
+type Props = StringDefaultProps;
 type State = { color: string };
 
 export default class Editor extends Component<Props, State> {
@@ -130,7 +134,7 @@ export default class Editor extends Component<Props, State> {
   }
 
   render() {
-    const { value } = this.props;
+    const { value, disabled } = this.props;
     const { color } = this.state;
     const modules = {
       toolbar: {
@@ -204,6 +208,7 @@ export default class Editor extends Component<Props, State> {
           </span>
         </div>
         <ReactQuill
+          readOnly={disabled}
           ref={quill => (this.reactQuill = quill)}
           value={value}
           onChange={this.onChange}
