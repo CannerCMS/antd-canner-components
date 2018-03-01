@@ -1,61 +1,73 @@
 // @flow
 
 import React, { Component } from "react";
-import { isObjectLike } from "lodash";
 import { Select } from "antd";
+import defaultMessage from "@canner/antd-locales";
+import {injectIntl} from 'react-intl';
 const Option = Select.Option;
 
 // types
-import type {FieldId, OnChangeFn} from 'types/DefaultProps';
+import type {StringDefaultProps} from 'types/StringDefaultProps';
+import type {IntlShape} from 'react-intl';
 
 type UIParams = {|
-  options?: Array<{
+  options: Array<{
     text: string,
     value: string
   }>,
   defaultSelected?: number
 |};
 
-type Props = {
-  id: FieldId,
-  value: string,
-  onChange: OnChangeFn,
-  uiParams: UIParams
+type Props = StringDefaultProps & {
+  uiParams: UIParams,
+  intl: IntlShape
 };
 
+@injectIntl
 export default class SelectString extends Component<Props> {
-  onChange = (val: any) => {
+  static defaultProps = {
+    uiParams: {
+      options: []
+    }
+  };
+
+  onChange = (val: string) => {
     this.props.onChange(this.props.id, "update", val);
   };
 
   render() {
-    const { value } = this.props;
+    const { value, disabled, intl } = this.props;
     let { uiParams } = this.props;
-    let options = uiParams.options || [];
+    let { options } = uiParams;
   
     const { defaultSelected } = uiParams;
     return (
-      <div id="select">
-        <Select
-          style={{ width: 150 }}
-          value={
-            value ||
-            (isObjectLike(options[defaultSelected])
-              ? options[defaultSelected].value
-              : options[defaultSelected])
-          }
-          onChange={this.onChange}
-        >
-          {options.map((selection, i) => {
-            const { text, value } = selection;
-            return (
-              <Option value={value} key={i}>
-                {text || value}
-              </Option>
-            );
-          })}
-        </Select>
-      </div>
+      <Select
+        style={{ width: 150 }}
+        disabled={disabled}
+        value={
+          value ||
+          (defaultSelected
+          && options[defaultSelected]
+          && options[defaultSelected].value)
+        }
+        placeholder={
+          intl.formatMessage({
+            id: "string.select.placeholder",
+            defaultMessage: defaultMessage.en["string.select.placeholder"]
+          })
+        }
+        onChange={this.onChange}
+      >
+        {options.map((opt, i) => {
+          const { text, value } = opt;
+          return (
+            <Option value={value} key={i}>
+              {text || value}
+            </Option>
+          );
+        })}
+      </Select>
     );
   }
 }

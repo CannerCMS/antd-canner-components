@@ -1,12 +1,13 @@
 // @flow
 import * as React from 'react';
 import Textarea from 'packages/antd-string-textarea';
+import {Divider} from 'antd';
 
 export default class TextareaDemo extends React.Component<{}> {
   render() {
     return (
       <React.Fragment>
-        <h1>Normal textarea</h1>
+        <Divider>General textarea</Divider>
         <Textarea
           id="textarea"
           value="this is textarea value"
@@ -14,7 +15,7 @@ export default class TextareaDemo extends React.Component<{}> {
             console.log('id: ', id, ', type: ', type, ', value: ', value);
           }}
           />
-        <h1>Disabled textarea</h1>
+        <Divider>Disabled textarea</Divider>
         <Textarea
           id="textarea"
           value="this is textarea value"

@@ -5,14 +5,9 @@ import { Input } from "antd";
 const { TextArea } = Input;
 
 // types
-import type {FieldDisabled, OnChangeFn} from 'types/DefaultProps';
+import type {StringDefaultProps} from 'types/StringDefaultProps';
 
-type Props = {
-  value: string,
-  id: string,
-  disabled: FieldDisabled,
-  onChange: OnChangeFn
-};
+type Props = StringDefaultProps;
 
 type State = {
   value: string
@@ -59,13 +54,11 @@ export default class TextareaString extends Component<Props, State> {
     const { value } = this.state;
     const { disabled } = this.props;
     return (
-      <div id="input">
-        <TextArea
-          disabled={disabled}
-          value={value}
-          onChange={this.onChange}
-        />
-      </div>
+      <TextArea
+        disabled={disabled}
+        value={value}
+        onChange={this.onChange}
+      />
     );
   }
 }

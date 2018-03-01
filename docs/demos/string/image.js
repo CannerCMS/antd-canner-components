@@ -3,6 +3,7 @@ import React, {Component, Fragment} from 'react';
 import Image from 'packages/antd-string-image';
 import cmsLocale from 'packages/antd-locales';
 import {IntlProvider} from 'react-intl';
+import {Divider} from 'antd';
 
 export default class ImageDemo extends Component<{}> {
   render() {
@@ -11,7 +12,7 @@ export default class ImageDemo extends Component<{}> {
         locale="en"
         messages={cmsLocale["en"]}>
         <Fragment>
-          <h1>Normal image</h1>
+          <Divider>Normal image</Divider>
           <Image
             id="image"
             value="https://cdn.canner.io/images/logo/logo-word.png"
@@ -21,7 +22,7 @@ export default class ImageDemo extends Component<{}> {
             }}
             />
 
-          <h1>Normal image uploader with no selected image</h1>
+          <Divider>Normal image uploader with no selected image</Divider>
           <Image
             id="image"
             uiParams={{service: 'imgur'}}

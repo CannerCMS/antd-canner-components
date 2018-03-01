@@ -23,6 +23,7 @@ export default {
     "string.link.preview": "preview link: ",
     "string.datetimepicker.placeholder": "Select date",
     "string.timepicker.placeholder": "Select time",
+    "string.select.placeholder": "Select a item",
     "string.image.add": "add Image"
   },
   zh: {
@@ -49,6 +50,7 @@ export default {
     "string.link.preview": "預覽連結: ",
     "string.datetimepicker.placeholder": "請選擇日期",
     "string.timepicker.placeholder": "請選擇時間",
+    "string.select.placeholder": "請選擇項目",
     "string.image.add": "新增圖片"
   }
 }

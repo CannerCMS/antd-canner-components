@@ -1,32 +1,34 @@
 // @flow
 import React, { Component } from "react";
 import { Radio } from "antd";
-import { isObjectLike } from "lodash";
 const RadioGroup = Radio.Group;
 
-import type {FieldId, OnChangeFn} from 'types/DefaultProps';
+// types
+import type {StringDefaultProps} from 'types/StringDefaultProps';
 
-type Props = {
-  id: FieldId,
-  value: string,
+type Props = StringDefaultProps & {
   uiParams: {
     options: Array<{
       text: string,
       value: string
     }>,
-    defaultSelected: number,
-    defaultChecked?: number
-  },
-  onChange: OnChangeFn
+    defaultSelected?: number
+  }
 };
 
 export default class RadioString extends Component<Props> {
+  static defaultProps = {
+    uiParams: {
+      options: []
+    }
+  }
+
   onChange = (val: any) => {
     this.props.onChange(this.props.id, "update", val.target.value);
   };
 
   render() {
-    const { value, uiParams } = this.props;
+    const { value, disabled, uiParams } = this.props;
     const radioStyle = {
       display: "block",
       height: "30px",
@@ -34,44 +36,30 @@ export default class RadioString extends Component<Props> {
       margin: "10px 0"
     };
     const options = uiParams.options || [];
-    let { defaultSelected, defaultChecked } = uiParams;
-
-    // backward support
-    if (defaultChecked) {
-      defaultSelected = defaultChecked;
-    }
+    let { defaultSelected } = uiParams;
 
     return (
-      <div id="radio">
-        <RadioGroup
-          onChange={this.onChange}
-          value={
-            value ||
-            (isObjectLike(options[defaultSelected])
-              ? options[defaultSelected].value
-              : options[defaultSelected])
-          }
-        >
-          {options &&
-            options.map((selection, i) => {
-              /* backward support */
-              if (!isObjectLike(selection)) {
-                return (
-                  <Radio style={radioStyle} value={selection} key={i}>
-                    {selection}
-                  </Radio>
-                );
-              }
+      <RadioGroup
+        disabled={disabled}
+        onChange={this.onChange}
+        value={
+          value ||
+          (defaultSelected
+            && options[defaultSelected]
+            && options[defaultSelected].value)
+        }
+      >
+        {options &&
+          options.map((selection, i) => {
 
-              const { text, value } = selection;
-              return (
-                <Radio style={radioStyle} value={value} key={i}>
-                  {text || value}
-                </Radio>
-              );
-            })}
-        </RadioGroup>
-      </div>
+            const { text, value } = selection;
+            return (
+              <Radio style={radioStyle} value={value} key={i}>
+                {text || value}
+              </Radio>
+            );
+          })}
+      </RadioGroup>
     );
   }
 }

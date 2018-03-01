@@ -1,12 +1,13 @@
 // @flow
 import * as React from 'react';
 import Input from 'packages/antd-string-input';
+import {Divider} from 'antd';
 
 export default class InputDemo extends React.Component<{}> {
   render() {
     return (
       <React.Fragment>
-        <h1>Normal input</h1>
+        <Divider>General input</Divider>
         <Input
           id="input"
           value="this is input value"
@@ -14,7 +15,7 @@ export default class InputDemo extends React.Component<{}> {
             console.log('id: ', id, ', type: ', type, ', value: ', value);
           }}
           />
-        <h1>Disabled input</h1>
+        <Divider>Disabled input</Divider>
         <Input
           id="input"
           value="this is input value"

@@ -3,19 +3,14 @@ import React, { PureComponent } from "react";
 import { Input } from "antd";
 
 // type
-import type {FieldId, OnChangeFn, FieldDisabled} from 'types/DefaultProps';
+import type {StringDefaultProps} from 'types/StringDefaultProps';
 
 
 type State = {
   value: string
 };
 
-type Props = {
-  id: FieldId,
-  value: string,
-  disabled: FieldDisabled,
-  onChange: OnChangeFn
-};
+type Props = StringDefaultProps;
 
 export default class StringInput extends PureComponent<Props, State> {
   isOnComposition: boolean;

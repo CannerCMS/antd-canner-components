@@ -1,23 +1,27 @@
+// @flow
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import imagesLoaded from "imagesloaded";
 import { Card, Button, Icon } from "antd";
 import CSSModules from "react-css-modules";
 import styles from "./style/ShowImage.scss";
 import "./style/ShowImage.antd.scss";
 
+type Props = {
+  onChange: (value: Array<string>) => void,
+  value: string,
+  cardWidth?: number,
+  disabled: boolean
+}
+
 @CSSModules(styles)
-export default class ShowImage extends Component {
-  constructor(props) {
+export default class ShowImage extends Component<Props> {
+  constructor(props: Props) {
     super(props);
-    this.deleteImage = this.deleteImage.bind(this);
+    (this: any).deleteImage = this.deleteImage.bind(this);
   }
 
-  static propTypes = {
-    value: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    cardWidth: PropTypes.number
-  };
+  showImage: ?HTMLImageElement
+  imgWrapper: ?HTMLDivElement
 
   static defaultProps = {
     cardWidth: 300
@@ -27,7 +31,8 @@ export default class ShowImage extends Component {
     var that = this;
     var imgLoad = imagesLoaded(this.imgWrapper);
     imgLoad.on("done", function() {}).on("fail", function() {
-      that.showImage.src = "http://i.imgur.com/DUaZWMd.png";
+      if (that.showImage)
+        that.showImage.src = "http://i.imgur.com/DUaZWMd.png";
     });
   }
 

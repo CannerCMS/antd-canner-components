@@ -6,22 +6,18 @@ import defaultMessage from "@canner/antd-locales";
 import { FormattedMessage } from "react-intl";
 import styles from "./style/Link.scss";
 
-// type
-import type {FieldId, OnChangeFn} from 'types/DefaultProps';
+// types
+import type {StringDefaultProps} from 'types/StringDefaultProps';
 
-type Props = {
-  id: FieldId,
-  value: string,
-  onChange: OnChangeFn
-}
+type Props = StringDefaultProps
 
 @CSSModules(styles)
 export default class LinkString extends Component<Props> {
   render() {
-    const { value, onChange, id } = this.props;
+    const { value, onChange, id, disabled } = this.props;
     return (
       <div>
-        <InputString id={id} value={value} onChange={onChange} />
+        <InputString id={id} value={value} onChange={onChange} disabled={disabled}/>
         <div styleName="preview">
           <FormattedMessage
             id="string.link.preview"

@@ -6,13 +6,10 @@ import {injectIntl} from 'react-intl';
 import moment from "moment-timezone/moment-timezone";
 
 // types
-import type {FieldId, OnChangeFn} from 'types/DefaultProps';
+import type {StringDefaultProps} from 'types/StringDefaultProps';
 import type {IntlShape} from 'react-intl';
 
-type Props = {
-  id: FieldId,
-  value: string,
-  onChange: OnChangeFn,
+type Props = StringDefaultProps & {
   uiParams: {
     format: string
   },
@@ -37,22 +34,22 @@ export default class TimePickerPlugin extends Component<Props> {
     const {
       value,
       uiParams: { format },
-      intl
+      intl,
+      disabled
     } = this.props;
     return (
-      <div>
-        <TimePicker
-          value={value && value.length > 0 ? moment(value, format) : null}
-          format={format}
-          placeholder={
-            intl.formatMessage({
-              id: "string.timepicker.placeholder",
-              defaultMessage: defaultMessage.en["string.timepicker.placeholder"]
-            })
-          }
-          onChange={this.onChange}
-        />
-      </div>
+      <TimePicker
+        value={value && value.length > 0 ? moment(value, format) : null}
+        format={format}
+        disabled={disabled}
+        placeholder={
+          intl.formatMessage({
+            id: "string.timepicker.placeholder",
+            defaultMessage: defaultMessage.en["string.timepicker.placeholder"]
+          })
+        }
+        onChange={this.onChange}
+      />
     );
   }
 }

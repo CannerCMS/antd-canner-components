@@ -8,18 +8,16 @@ import {FormattedMessage} from "react-intl";
 import createImageService from "@canner/image-service-config";
 import ImageServiceConfig from "@canner/image-service-config/lib/imageService";
 // type
-import type {FieldId, OnChangeFn} from 'types/DefaultProps';
+import type {StringDefaultProps} from 'types/StringDefaultProps';
 
-type Props = {
-  id: FieldId,
-  value: string,
-  onChange: OnChangeFn,
+type Props = StringDefaultProps & {
   uiParams: {
     service: string,
     dir: string,
     filename: string
   }
 };
+
 type State = {
   editPopup: boolean
 };
@@ -72,16 +70,21 @@ export default class Image extends Component<Props, State> {
   };
 
   render() {
-    const { value } = this.props;
+    const { value, disabled } = this.props;
     const { editPopup } = this.state;
-    // if the image exist, show it ; else let user upload.
+    // if the image exist show it, otherwise let user upload.
     if (value) {
-      return <ShowImage onChange={this.onChange} value={value} />;
+      return (
+        <ShowImage
+          onChange={this.onChange}
+          value={value}
+          disabled={disabled}/>
+      );
     }
 
     return (
       <div>
-        <Button type="primary" onClick={this.showEditPopup}>
+        <Button type="primary" onClick={this.showEditPopup} disabled={disabled}>
           + <FormattedMessage id="string.image.add" defaultMessage={defaultMessage.en["string.image.add"]}/>
         </Button>
         <EditImage
