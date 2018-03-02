@@ -11,6 +11,9 @@
   ],
   "author": "canner",
   "license": "ISC",
+  "dependencies": {
+    "@canner/antd-locales": "^0.0.49"
+  },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
   }

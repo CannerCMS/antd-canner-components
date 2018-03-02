@@ -1,24 +1,34 @@
 // @flow
 import React, { PureComponent } from "react";
 import { Select } from "antd";
-import {List, Iterable} from 'immutable';
+import {List} from 'immutable';
+import defaultMessage from "@canner/antd-locales";
+import {injectIntl, FormattedMessage} from 'react-intl';
 const Option = Select.Option;
 
-type State = {
-  value: string
-};
+// types
+import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
+import type {intlShape} from 'react-intl'
 
-type Props = defaultProps & {
-  value: List<string>,
+type Props = ArrayDefaultProps & {
   uiParams: {
     defaultOptions: Array<string>
   },
+  intl: intlShape,
+  disabled: boolean
 };
 
-export default class TagUi extends PureComponent<Props, State> {
+@injectIntl
+export default class TagUi extends PureComponent<Props> {
   static defaultProps = {
     uiParams: {
-      defaultOptions: ["未分類"]
+      defaultOptions: [
+        <FormattedMessage
+          id="array.tag.defaultoption"
+          key="defaultOpt"
+          defaultMessage={defaultMessage.en["array.tag.placeholder"]}
+          />
+      ]
     },
     value: new List()
   }
@@ -29,15 +39,21 @@ export default class TagUi extends PureComponent<Props, State> {
   }
 
   render() {
-    const { value, uiParams } = this.props;
+    const { value, uiParams, intl, disabled } = this.props;
     let { defaultOptions } = uiParams;
 
     return (
       <Select
         mode="tags"
+        disabled={disabled}
         style={{ width: "100%" }}
-        value={Iterable.isIterable(value) ? value.toJS() : value}
-        searchPlaceholder="選擇標籤"
+        value={List.isList(value) ? value.toJS() : value}
+        searchPlaceholder={
+          intl.formatMessage({
+            id: "array.tag.placeholder",
+            defaultMessage: defaultMessage.en["array.tag.placeholder"]
+          })
+        }
         onChange={this.onChange}
       >
         {defaultOptions.length ? (

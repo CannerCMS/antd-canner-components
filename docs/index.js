@@ -31,6 +31,7 @@ import TabTopDemo from './demos/array/tabs-top';
 import TabBottomDemo from './demos/array/tabs-bottom';
 import TabLeftDemo from './demos/array/tabs-left';
 import TabRightDemo from './demos/array/tabs-right';
+import TagsDemo from './demos/array/tags';
 
 const {SubMenu} = Menu;
 const {Content, Sider} = Layout;
@@ -86,6 +87,7 @@ class Demo extends Component {
               <Menu.Item key="tab-bottom">tab-bottom</Menu.Item>
               <Menu.Item key="tab-left">tab-left</Menu.Item>
               <Menu.Item key="tab-right">tab-right</Menu.Item>
+              <Menu.Item key="tags">tags</Menu.Item>
             </SubMenu>
             <SubMenu key="number" title="Number">
               <Menu.Item key="input">input</Menu.Item>
@@ -129,6 +131,7 @@ class Demo extends Component {
             {selectTab === 'array' && selectKey === 'tab-left' ? <TabLeftDemo/> : null}
             {selectTab === 'array' && selectKey === 'tab-right' ? <TabRightDemo/> : null}
             {selectTab === 'array' && selectKey === 'tab-bottom' ? <TabBottomDemo/> : null}
+            {selectTab === 'array' && selectKey === 'tags' ? <TagsDemo/> : null}
           </Content>
         </Layout>
       </Layout>

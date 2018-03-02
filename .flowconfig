@@ -1,6 +1,6 @@
 [ignore]
 .*/node_modules/protobufjs/.*
-.*/node_modules/fbjs/node_modules/.* 
+.**/node_modules/fbjs/node_modules/.* 
 
 [include]
 

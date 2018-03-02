@@ -12,14 +12,19 @@ import {injectIntl} from 'react-intl';
 import styles from './style/tab.scss';
 import "./style/index.lib.scss";
 
-type Props = defaultProps & {
-  value: List<any>,
+// types
+import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
+import type {RenderChildrenFn} from 'types/DefaultProps';
+import type {intlShape} from 'react-intl'
+
+type Props = ArrayDefaultProps & {
   uiParams: {
     titleKey?: string,
     titlePrefix?: string,
     position?: "top" | "left" | "right" | "bottom"
   },
-  intl: any
+  renderChildren: RenderChildrenFn,
+  intl: intlShape
 };
 
 type State = {
@@ -34,7 +39,6 @@ export default class TabUi extends Component<Props, State> {
     super(props);
     this.state = {
       activeKey: '.$0',
-
     };
   }
 
@@ -103,6 +107,7 @@ export default class TabUi extends Component<Props, State> {
     const {
       value,
       renderChildren,
+      renderButton,
       generateId,
       id,
       uiParams,
@@ -146,14 +151,14 @@ export default class TabUi extends Component<Props, State> {
         >
           {childrenWithProps}
           {
-            // only the top tabs need the button
-            paths.length > 2 ?
-              null :
+            // only the first level tab need to render update button
+            paths.length > 2 && (
               renderButton({
                 disabled: false,
                 key: thisId.split('/')[0],
                 id: item.get('_id')
               })
+            )
           }
         </TabPane>
       );

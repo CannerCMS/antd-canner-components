@@ -24,7 +24,6 @@
     "@canner/antd-number-input": "^0.0.49",
     "@canner/antd-number-rate": "^0.0.49",
     "@canner/antd-number-slider": "^0.0.49",
-    "@canner/antd-number-text-input": "^0.0.49",
     "@canner/antd-object-fieldset": "^0.0.49",
     "@canner/antd-object-map": "^0.0.49",
     "@canner/antd-object-options": "^0.0.49",
