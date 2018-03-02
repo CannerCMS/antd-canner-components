@@ -68,7 +68,7 @@ export default class RelationIdList extends PureComponent<Props, State> {
 
   render() {
     const { modalVisible } = this.state;
-    let { readOnly, value, uiParams, renderChildren, id, relation } = this.props;
+    let { readOnly, value, uiParams, renderChildren, id, relation, rootValue } = this.props;
     value = value && value.toJS ? value.toJS() : [];
     return (
       <div>
@@ -102,6 +102,7 @@ export default class RelationIdList extends PureComponent<Props, State> {
                 defaultMessage={defaultMessage.en["relation.list.choose"]}
               />
             }
+            rootValue={rootValue}
             visible={modalVisible}
             onOk={this.handleOk}
             onCancel={this.handleCancel}

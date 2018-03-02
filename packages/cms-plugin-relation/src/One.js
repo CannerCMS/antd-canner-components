@@ -61,7 +61,7 @@ export default class RelationOneId extends PureComponent<Props, State> {
 
   render() {
     const { modalVisible } = this.state;
-    const { readOnly, value, uiParams, renderChildren, id, relation } = this.props;
+    const { readOnly, value, uiParams, renderChildren, id, relation, rootValue } = this.props;
     return (
       <div>
         {
@@ -91,6 +91,7 @@ export default class RelationOneId extends PureComponent<Props, State> {
                 defaultMessage={defaultMessage.en["relation.one.choose"]}
               />
             }
+            rootValue={rootValue}
             visible={modalVisible}
             onOk={this.handleOk}
             onCancel={this.handleCancel}

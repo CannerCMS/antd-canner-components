@@ -12,6 +12,7 @@ type Props = {
   visible: boolean,
   pickedIds: string[],
   pickOne?: boolean,
+  rootValue: any,
   id: string,
   relation: {
     relationship: string,
@@ -70,8 +71,9 @@ export default class Picker extends React.PureComponent<Props, State> {
   }
 
   fetchData = (pagination: {[string]: number}) => {
-    const {relation, fetchRelation} = this.props;
+    const {relation, fetchRelation, id, rootValue} = this.props;
     const {fetch} = this.context;
+    const record = rootValue && rootValue.get(id.split('/')[1]);
     if (fetchRelation) {
       fetchRelation(null, {start: 0, limit: pagination.start + pagination.limit});
     }
@@ -86,7 +88,9 @@ export default class Picker extends React.PureComponent<Props, State> {
         });
         this.setState({
           totalValue: totalValue,
-          value: ctx.response.body,
+          value: ctx.response.body.filter(val => {
+            return !(record && record.get('_id') === val.get('_id'));
+          }),
           page: ctx.response.pagination.page,
           totalPage: ctx.response.pagination.totalPage
         });
