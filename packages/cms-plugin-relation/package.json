@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-relation",
-  "version": "0.1.0-rc.32",
+  "version": "0.1.0-rc.33",
   "description": "string input",
   "main": "lib/index.js",
   "scripts": {},
@@ -16,6 +16,6 @@
     "react-dom": "16.2.0"
   },
   "dependencies": {
-    "@canner/cms-locales": "^0.1.0-rc.32"
+    "@canner/cms-locales": "^0.1.0-rc.33"
   }
 }
