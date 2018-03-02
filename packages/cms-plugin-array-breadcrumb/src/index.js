@@ -8,7 +8,7 @@ import renderFunc from "./renderFunc";
 import isEmpty from "lodash/isEmpty";
 import pick from 'lodash/pick';
 import isObject from "lodash/isObject";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, injectIntl } from "react-intl";
 import defaultMessage from "@canner/cms-locales";
 const ButtonGroup = Button.Group;
 const confirm = Modal.confirm;
@@ -29,7 +29,8 @@ type Props = defaultProps & {
   id: string,
   deploy: Function,
   rootValue: any,
-  showPagination: boolean
+  showPagination: boolean,
+  intl: any
 };
 
 type State = {
@@ -67,6 +68,7 @@ function findFromItems(items, filter, rtnField, list) {
   return list;
 }
 
+@injectIntl
 export default class ArrayBreadcrumb extends Component<Props, State> {
   editModal: ?HTMLDivElement;
   addModal: ?HTMLDivElement;
@@ -151,7 +153,8 @@ export default class ArrayBreadcrumb extends Component<Props, State> {
       value,
       onChange,
       showPagination,
-      items
+      items,
+      intl
     } = this.props;
     const {relationData} = this.state;
     const addText = (
@@ -173,7 +176,10 @@ export default class ArrayBreadcrumb extends Component<Props, State> {
     // 拿 schema.createAction.schema.items
     const newColumnsRender = renderFunc(newColumns, items.items, relationData);
     newColumnsRender.push({
-      title: 'Actions',
+      title: intl.formatMessage({
+        id: "array.breadcrumb.actions",
+        defaultMessage: defaultMessage.en['array.breadcrumb.actions']
+      }),
       dataIndex: "__settings",
       key: "__settings",
       render: (text, record) => {
