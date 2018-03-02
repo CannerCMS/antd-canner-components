@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-string-image",
-  "version": "0.1.0-rc.31",
+  "version": "0.1.0-rc.32",
   "description": "string image",
   "main": "lib/index.js",
   "scripts": {},
@@ -12,7 +12,7 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/cms-locales": "^0.1.0-rc.31",
+    "@canner/cms-locales": "^0.1.0-rc.32",
     "@canner/image-service-config": "^0.0.8",
     "@canner/image-upload": "^0.5.5",
     "imagesloaded": "^4.1.4"
