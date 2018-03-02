@@ -1,11 +1,11 @@
 // @flow
-import React, {PureComponent} from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import {List, fromJS} from 'immutable';
 import {Modal} from 'antd';
 import {Table} from 'antd';
 type Props = {
-  title: string,
+  title: string | React.Element<*>,
   onOk: Function,
   onCancel: Function,
   renderChildren: Function,
@@ -34,7 +34,7 @@ type State = {
   selectedRowKeys: Array<string>
 };
 
-export default class Picker extends PureComponent<Props, State> {
+export default class Picker extends React.PureComponent<Props, State> {
   componentId: string;
   queue: Array<changeArg>;
   goTo: (page: number) => ({[string]: number});

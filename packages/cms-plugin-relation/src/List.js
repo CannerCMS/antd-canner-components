@@ -4,6 +4,8 @@ import { Tag, Tooltip, Icon } from "antd";
 import type { Map, List } from 'immutable';
 import template from 'lodash/template';
 import difference from "lodash/difference";
+import defaultMessage from "@canner/cms-locales";
+import { FormattedMessage } from "react-intl";
 import Picker from './Picker';
 
 type State = {
@@ -84,11 +86,22 @@ export default class RelationIdList extends PureComponent<Props, State> {
           onClick={this.showModal}
           style={{ background: '#fff', borderStyle: 'dashed' }}
         >
-          <Icon type="plus" /> New Tag
+          <Icon type="plus" />
+          <FormattedMessage 
+            id="relation.list.newTags"
+            tagName="span"
+            defaultMessage={defaultMessage.en["relation.list.newTags"]}
+          />
         </Tag>
         {
           !readOnly && <Picker
-            title="選擇你要的物件"
+            title={
+              <FormattedMessage 
+                id="relation.list.choose"
+                tagName="span"
+                defaultMessage={defaultMessage.en["relation.list.choose"]}
+              />
+            }
             visible={modalVisible}
             onOk={this.handleOk}
             onCancel={this.handleCancel}

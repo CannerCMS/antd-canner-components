@@ -4,6 +4,8 @@ import { Tag, Icon } from "antd";
 import type { Map, List } from 'immutable';
 import template from 'lodash/template';
 import Picker from './Picker';
+import defaultMessage from "@canner/cms-locales";
+import { FormattedMessage } from "react-intl";
 
 type State = {
   modalVisible: boolean
@@ -73,11 +75,22 @@ export default class RelationOneId extends PureComponent<Props, State> {
           onClick={this.showModal}
           style={{ background: '#fff', borderStyle: 'dashed' }}
         >
-          <Icon type="edit" /> Change
+          <Icon type="edit" />
+          <FormattedMessage 
+            id="relation.one.change"
+            tagName="span"
+            defaultMessage={defaultMessage.en["relation.one.change"]}
+          />
         </Tag>
         {
           !readOnly && <Picker
-            title="選擇你要的物件"
+            title={
+              <FormattedMessage 
+                id="relation.one.choose"
+                tagName="span"
+                defaultMessage={defaultMessage.en["relation.one.choose"]}
+              />
+            }
             visible={modalVisible}
             onOk={this.handleOk}
             onCancel={this.handleCancel}
