@@ -16,6 +16,14 @@ export default function(cols, schema, relationData) {
         </div>;
       }
 
+      if (itemSchema && itemSchema.ui === 'dateTime') {
+        try {
+          return new Date(text).toLocaleDateString();
+        } catch (e) {
+          return '';
+        }
+      }
+
       if (itemSchema && itemSchema.ui === 'gallery') {
         const length = text.length;
         const {imageKey = 'src'} = itemSchema.uiParams;
@@ -59,7 +67,7 @@ export default function(cols, schema, relationData) {
         } else if (typeof text === 'string') {
           text = [text];
         }
-        const item = (relationData[itemSchema.__key__] || []).filter(datum => text.indexOf(datum._id) !== -1);
+        const item = (relationData[itemSchema.__key__] || []).filter(datum => text && text.indexOf(datum._id) !== -1);
         let {textCol, subtextCol} = itemSchema.uiParams;
         if (item && item.length === 0) {
           return "";
