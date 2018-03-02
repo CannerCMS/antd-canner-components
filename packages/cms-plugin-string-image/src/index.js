@@ -5,6 +5,8 @@ import EditImage from "@canner/image-upload";
 import { Button } from "antd";
 import createImageService from "@canner/image-service-config";
 import ImageServiceConfig from "@canner/image-service-config/lib/imageService";
+import defaultMessage from "@canner/cms-locales";
+import { FormattedMessage } from "react-intl";
 
 type Props = defaultProps & {
   value: string
@@ -71,7 +73,13 @@ export default class Image extends Component<Props, State> {
     return (
       <div id="react-qa-plugin-image">
         <Button type="primary" onClick={this.showEditPopup}>
-          + Add Images{" "}
+          + 
+          <FormattedMessage
+            id="string.image.addButton"
+            tagName="span"
+            defaultMessage={defaultMessage.en["string.image.addButton"]}
+          />
+          {" "}
         </Button>{" "}
         <EditImage
           onChange={this.onChange}
