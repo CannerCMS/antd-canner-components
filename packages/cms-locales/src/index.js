@@ -21,7 +21,12 @@ export default {
     "object.variants.select": "Selected",
     "object.variants.variantsName": "Category Name",
     "object.variants.table.title": "Name",
-    "string.link.preview": "preview link: "
+    "string.link.preview": "preview link: ",
+    "string.image.addButton": "Add Images",
+    "relation.one.change": "Change",
+    "relation.one.choose": "Choose your item",
+    "relation.list.newTags": "New Tag",
+    "relation.list.choose": "Choose your item",
   },
   zh: {
     "array.panel.delete.confirm": "您確定要刪除這個類別嗎？",
@@ -44,6 +49,11 @@ export default {
     "object.variants.select": "選擇",
     "object.variants.variantsName": "型號名稱",
     "object.variants.table.title": "名稱",
-    "string.link.preview": "預覽連結: "
+    "string.link.preview": "預覽連結: ",
+    "string.image.addButton": "上傳圖片",
+    "relation.one.change": "變更",
+    "relation.one.choose": "選擇你要的物件",
+    "relation.list.newTags": "新增標籤",
+    "relation.list.choose": "選擇你要的物件"
   }
 }

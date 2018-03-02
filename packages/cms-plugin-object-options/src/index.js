@@ -21,9 +21,13 @@ export default class OptionPlugin extends Component<Props, State> {
     super(props);
     const {uiParams, value} = props;
     const {optionKey, options} = uiParams;
-    
+    let selectedKey = value.get(optionKey);
+    if (!selectedKey) {
+      selectedKey = options[0].key
+      this.radioOnChange({target: {value: selectedKey}});
+    }
     this.state = {
-      selectedKey: value.get(optionKey) || options[0].key
+      selectedKey
     };
   }
 
@@ -36,13 +40,14 @@ export default class OptionPlugin extends Component<Props, State> {
 
   radioOnChange = (e: any) => {
     const selectedKey = e.target.value;
-    const {uiParams, onChange, id, createEmptyData, items} = this.props;
+    const {uiParams, onChange, id, createEmptyData, items, value} = this.props;
     const {optionKey = 'type', options} = uiParams;
     const selectedOption = options.find(option => option.key === selectedKey);
     const emptyValue = createEmptyData(items[selectedOption.childName]);
     onChange(`${id}`, 'update', fromJS({
+      ...value.toJS(),
       [optionKey]: selectedKey,
-      [selectedOption.childName]: emptyValue
+      [selectedOption.childName]: value.get(selectedOption.childName) || emptyValue,
     }));
     this.setState({
       selectedKey
