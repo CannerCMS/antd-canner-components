@@ -56,6 +56,9 @@ export type CreateEmptyDataFn = ({[string]: any}) => any;
 // https://github.com/Canner/qa-generator/tree/master/src/utils
 export type TransformDataFn = any => any;
 
+// deploy function in array
+export type DeployFn = (key?: string, id?: string, callback?: Function) => Promise<*>
+
 // parent component will call this method to render their children,
 // in component, their are two required props `id`, `routes`,
 // eg: <div>

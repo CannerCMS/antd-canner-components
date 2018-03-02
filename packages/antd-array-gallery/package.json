@@ -23,14 +23,14 @@
     }
   },
   "peerDependencies": {
-    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0",
+    "immutable": "^3.8.2"
   },
   "dependencies": {
     "@canner/image-service-config": "^0.0.8",
     "@canner/image-upload": "^0.6.0",
     "grid-breakpoint": "^1.1.2",
-    "grid-draggable": "^1.1.2",
-    "immutable": "^3.8.2"
+    "grid-draggable": "^1.1.2"
   },
   "devDependencies": {
     "enzyme": "^3.3.0",

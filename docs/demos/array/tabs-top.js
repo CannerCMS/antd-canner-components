@@ -1,5 +1,6 @@
 // @flow
 import React, {Component} from 'react';
+import {Button} from 'antd';
 import TabTop from 'packages/antd-array-tabs';
 import cmsLocale from 'packages/antd-locales';
 import immutable from 'immutable';
@@ -21,6 +22,7 @@ export default class TabTopDemo extends Component<{}> {
             "content": "content 2"
           }])}
           id="tab-left"
+          renderButton={() => <Button>Submit</Button>}
           generateId={(id, i, type) => `${id}/${i}/${type}`}
           renderChildren={(values) => `this is content: ${values.id}`}
           createEmptyData={createEmptyData}

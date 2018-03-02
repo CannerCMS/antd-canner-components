@@ -10,7 +10,7 @@ const Option = Select.Option;
 import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
 import type {intlShape} from 'react-intl'
 
-type Props = ArrayDefaultProps & {
+type Props = ArrayDefaultProps<string> & {
   uiParams: {
     defaultOptions: Array<string>
   },

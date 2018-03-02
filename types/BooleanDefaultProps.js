@@ -5,5 +5,5 @@ export type BooleanDefaultProps = {|
   id: FieldId,
   disabled: FieldDisabled,
   value: boolean,
-  onChange: (id: string, type: string, value: boolean) => void
+  onChange: (id: string, type: string, value: boolean) => Promise<void>
 |};

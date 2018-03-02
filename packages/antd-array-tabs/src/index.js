@@ -14,16 +14,32 @@ import "./style/index.lib.scss";
 
 // types
 import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
-import type {RenderChildrenFn} from 'types/DefaultProps';
-import type {intlShape} from 'react-intl'
+import type {
+  FieldItems,
+  RenderChildrenFn,
+  GotoFn,
+  DeployFn,
+  GenerateIdFn,
+  CreateEmptyDataFn,
+  RoutesArr
+} from 'types/DefaultProps';
+import type { Node } from "react";
+import {intlShape} from 'react-intl';
 
-type Props = ArrayDefaultProps & {
+type Props = ArrayDefaultProps<FieldItems> & {
   uiParams: {
     titleKey?: string,
     titlePrefix?: string,
     position?: "top" | "left" | "right" | "bottom"
   },
+  items: FieldItems,
+  goto: GotoFn,
+  routes: RoutesArr,
+  generateId: GenerateIdFn,
+  createEmptyData: CreateEmptyDataFn,
   renderChildren: RenderChildrenFn,
+  renderButton: (any) => Node,
+  deploy: DeployFn,
   intl: intlShape
 };
 

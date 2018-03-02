@@ -5,5 +5,5 @@ export type StringDefaultProps = {|
   id: FieldId,
   disabled: FieldDisabled,
   value: string,
-  onChange: (id: string, type: string, value: string) => void
+  onChange: (id: string, type: string, value: string) => Promise<void>
 |};

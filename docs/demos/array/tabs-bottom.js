@@ -1,5 +1,6 @@
 // @flow
 import React, {Component} from 'react';
+import {Button} from 'antd';
 import TabBottom from 'packages/antd-array-tab-bottom';
 import cmsLocale from 'packages/antd-locales';
 import immutable from 'immutable';
@@ -20,6 +21,7 @@ export default class TabBottomDemo extends Component<{}> {
             "content": "content 2"
           }])}
           id="tab-bottom"
+          renderButton={() => <Button>Submit</Button>}
           generateId={(id, i, type) => `${id}/${i}/${type}`}
           renderChildren={() => "this is content"}
           onChange={(datum, evt) => console.log(datum, evt)}
