@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-boolean-switch",
-  "version": "0.1.0-rc.34",
+  "version": "0.1.0-rc.35",
   "description": "boolean-switch",
   "main": "lib/index.js",
   "scripts": {},

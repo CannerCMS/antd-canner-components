@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-array-popup",
-  "version": "0.1.0-rc.34",
+  "version": "0.1.0-rc.35",
   "description": "array popup",
   "main": "lib/index.js",
   "scripts": {},
@@ -12,7 +12,7 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/cms-locales": "^0.1.0-rc.34",
+    "@canner/cms-locales": "^0.1.0-rc.35",
     "prop-types": "^15.6.0"
   }
 }
