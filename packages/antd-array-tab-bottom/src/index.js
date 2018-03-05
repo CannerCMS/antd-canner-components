@@ -2,11 +2,12 @@
 
 import React, { Component } from "react";
 import Tab from "@canner/antd-array-tabs";
+import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
+import type {FieldItems} from 'types/DefaultProps';
 
-type Props = defaultProps & {
-  value: Array<{
-    [string]: any
-  }>
+type Props = ArrayDefaultProps<FieldItems> & {
+  value: Array<FieldItems>,
+  uiParams: {[string]: any}
 };
 
 export default class TabBottom extends Component<Props> {

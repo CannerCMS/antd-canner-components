@@ -1,11 +1,9 @@
-var path = require("path");
-var webpack = require("webpack");
-var pkg = require("./package.json");
-var theme = pkg.theme;
+const path = require("path");
+const pkg = require("./package.json");
+const theme = pkg.theme;
 
 module.exports = {
-  devtool: "eval-source-map",
-  entry: ["webpack-hot-middleware/client", "./docs/index.js"],
+  entry: "./docs/index.js",
   output: {
     path: path.join(__dirname, "dist"),
     filename: "bundle.js",
@@ -25,63 +23,101 @@ module.exports = {
   resolveLoader: {
     moduleExtensions: ["-loader"]
   },
-  performance: {
-    hints: false
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.DefinePlugin({
-      "process.env": {
-        NODE_ENV: JSON.stringify("development")
-      }
-    })
-  ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
-        loaders: ["babel"]
+        use: 'babel',
+        exclude: path.resolve(__dirname, "node_modules")
       },
       {
         test: /\.js$/,
         include: [/node_modules\/@canner\/image-upload/],
-        loaders: ["babel"]
+        use: 'babel'
       },
       {
         test: /\.scss$/,
-        loaders: [
-          "style?sourceMap",
-          "css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]",
-          "resolve-url",
-          "sass?sourceMap"
+        use: [
+          {
+            loader: 'style',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'css',
+            options: {
+              modules: true,
+              importLoaders: 1,
+              localIdentName: "[path]___[name]__[local]___[hash:base64:5]"
+            }
+          }
         ],
         exclude: [/\.antd.scss$/, /\.lib.scss$/]
       },
       {
         test: [/\.antd.scss$/, /\.lib.scss$/],
-        loaders: ["style", "css", "sass"]
+        use: [
+          {
+            loader: 'style'
+          },
+          {
+            loader: 'css'
+          },
+          {
+            loader: 'sass'
+          }
+        ],
       },
       {
         test: /\.css$/,
-        loader: "style!css?modules",
+        use: [
+          {
+            loader: 'style'
+          },
+          {
+            loader: 'css',
+            options: {
+              modules: true
+            }
+          }
+        ],
         include: /flexboxgrid/
       },
       {
         // exclude flexboxgrid is for https://github.com/Canner/react-qa-core-plugins
         test: /\.css$/,
-        loaders: ["style", "css"],
+        use: [
+          {
+            loader: 'style'
+          },
+          {
+            loader: 'css'
+          }
+        ],
         exclude: /flexboxgrid/
       },
       {
         test: /\.less$/,
-        loaders: [
-          "style",
-          "css",
-          // antd customized themes，modifyVars 裡可以放要 overwrite 的 antd styles
-          // https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
-          `less?{"modifyVars":${JSON.stringify(theme)}}`
-        ]
+        use: [
+          {
+            loader: 'style'
+          },
+          {
+            loader: 'css',
+            options: {
+              modules: true
+            }
+          },
+          {
+            loader: 'less',
+            // antd - customized themes
+            // https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
+            options: {
+              modifyVars: theme
+            }
+          }
+        ],
       }
     ]
   }

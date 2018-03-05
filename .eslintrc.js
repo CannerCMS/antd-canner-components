@@ -16,17 +16,6 @@ module.exports = {
     radix: 0
   },
   parser: "babel-eslint",
-  parserOptions: {
-    ecmaVersion: 2017,
-    ecmaFeatures: {
-      jsx: true,
-      modules: true
-    }
-  },
   globals: {
-    process: true,
-    defaultProps: true,
-    otherProps: true,
-    changeArg: true
   }
 };

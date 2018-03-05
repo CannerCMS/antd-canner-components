@@ -1,12 +1,12 @@
 // @flow
 
 import React, { Component } from "react";
-import Tab from "@canner/cms-plugin-array-tabs";
+import Tab from "@canner/antd-array-tabs";
+import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
+import type {FieldItems} from 'types/DefaultProps';
 
-type Props = defaultProps & {
-  value: Array<{
-    [string]: any
-  }>
+type Props = ArrayDefaultProps<FieldItems> & {
+  value: Array<FieldItems>
 };
 
 export default class TabTop extends Component<Props> {

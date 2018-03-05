@@ -1,15 +1,16 @@
 // @flow
 
 import React, { Component } from "react";
-import GridDraggable, { Section } from "@canner/grid-draggable";
-import GridBreakpoint from "@canner/grid-breakpoint";
+import GridDraggable, { Section } from "grid-draggable";
+import GridBreakpoint from "grid-breakpoint";
 import { List } from "immutable";
 import Item from "./item";
 import Add from "./add";
 import EditImage from "@canner/image-upload";
-import "./style/index.css";
 import createImageService from "@canner/image-service-config";
 import typeof ImageServiceConfig from "@canner/image-service-config/lib/imageService";
+
+import "./style/index.css";
 
 type Props = defaultProps & {
   uiParams: {
