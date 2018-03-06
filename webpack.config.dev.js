@@ -104,10 +104,7 @@ module.exports = {
             loader: 'style'
           },
           {
-            loader: 'css',
-            options: {
-              modules: true
-            }
+            loader: 'css'
           },
           {
             loader: 'less',

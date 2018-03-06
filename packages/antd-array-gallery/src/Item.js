@@ -1,5 +1,5 @@
+// @flow
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import imagesLoaded from "imagesloaded";
 import { Card, Button, Icon, Input } from "antd";
 import FaArrows from "react-icons/lib/fa/arrows";
@@ -7,23 +7,26 @@ import CSSModules from "react-css-modules";
 import styles from "./style/Item.scss";
 import "./style/Item.antd.scss";
 
+type Props = {
+  id: string,
+  image: string,
+  title: string,
+  changeTitle: (imageId: string, value: string) => void,
+  deleteImage: (id: string) => void,
+  cardWidth: number | string,
+  disableDrag: boolean
+}
+
 @CSSModules(styles)
-export default class Item extends Component {
-  constructor(props) {
+export default class Item extends Component<Props> {
+  constructor(props: Props) {
     super(props);
-    this.deleteImage = this.deleteImage.bind(this);
-    this.changeTitle = this.changeTitle.bind(this);
+    (this: any).deleteImage = this.deleteImage.bind(this);
+    (this: any).changeTitle = this.changeTitle.bind(this);
   }
 
-  static propTypes = {
-    id: PropTypes.number,
-    image: PropTypes.string,
-    title: PropTypes.string,
-    changeTitle: PropTypes.func.isRequired,
-    deleteImage: PropTypes.func.isRequired,
-    cardWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    disableDrag: PropTypes.bool
-  };
+  imgWrapper: ?HTMLDivElement;
+  showImage: ?HTMLImageElement;
 
   static defaultProps = {
     cardWidth: "100%"
@@ -32,8 +35,10 @@ export default class Item extends Component {
   componentDidMount() {
     var that = this;
     var imgLoad = imagesLoaded(this.imgWrapper);
-    imgLoad.on("done", function() {}).on("fail", function() {
-      that.showImage.src = "http://i.imgur.com/DUaZWMd.png";
+    imgLoad.on("fail", function() {
+      if (that.showImage) {
+        that.showImage.src = "http://i.imgur.com/DUaZWMd.png";
+      }
     });
   }
 

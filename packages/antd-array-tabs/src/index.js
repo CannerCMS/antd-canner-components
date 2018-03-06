@@ -17,7 +17,6 @@ import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
 import type {
   FieldItems,
   RenderChildrenFn,
-  GotoFn,
   DeployFn,
   GenerateIdFn,
   CreateEmptyDataFn,
@@ -33,7 +32,6 @@ type Props = ArrayDefaultProps<FieldItems> & {
     position?: "top" | "left" | "right" | "bottom"
   },
   items: FieldItems,
-  goto: GotoFn,
   routes: RoutesArr,
   generateId: GenerateIdFn,
   createEmptyData: CreateEmptyDataFn,

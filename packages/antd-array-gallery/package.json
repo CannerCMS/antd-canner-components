@@ -30,7 +30,7 @@
     "@canner/image-service-config": "^0.0.8",
     "@canner/image-upload": "^0.6.0",
     "grid-breakpoint": "1.2.1",
-    "grid-draggable": "^2.0.1"
+    "grid-draggable": "^2.0.2"
   },
   "devDependencies": {
     "enzyme": "^3.3.0",

@@ -12,13 +12,25 @@ import typeof ImageServiceConfig from "@canner/image-service-config/lib/imageSer
 
 import "./style/index.css";
 
-type Props = defaultProps & {
+// types
+import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
+import type {GenerateIdFn} from 'types/DefaultProps';
+
+type FieldItem = {
+  [string]: any
+}
+
+type Props = ArrayDefaultProps<FieldItem> & {
   uiParams: {
     imageKey: string,
     thumbKey: string,
-    titleKey: string,
+    titleKey?: string,
+    service?: string,
+    dir?: string,
+    filename?: string,
     disableDrag: boolean
   },
+  generateId: GenerateIdFn,
   value: List<any>,
   transformData: Function
 };
@@ -30,17 +42,21 @@ type State = {
 export default class Gallery extends Component<Props, State> {
   imageKey: string;
   thumbKey: string;
-  titleKey: string;
+  titleKey: ?string;
   serviceConfig: ImageServiceConfig;
+
   constructor(props: Props) {
     super(props);
     const { uiParams } = props;
     this.imageKey = uiParams.imageKey || "image";
     this.thumbKey = uiParams.thumbKey || this.imageKey;
-    this.titleKey = uiParams.titleKey || "title";
+    this.titleKey = uiParams.titleKey;
+
     this.state = {
       editPopup: false
     };
+
+    // service settings
     const { service, dir, filename } = uiParams;
     const key = this.props.id.split('/')[0];
     this.serviceConfig = createImageService({
@@ -55,7 +71,7 @@ export default class Gallery extends Component<Props, State> {
     uiParams: {}
   };
 
-  onSwap = (fromKey: string, toKey: string) => {
+  onSwap = (fromKey: number, toKey: number) => {
     const { generateId, id } = this.props;
     const prevIndex = generateId(id, fromKey, "array");
     const currIndex = generateId(id, toKey, "array");
@@ -128,13 +144,14 @@ export default class Gallery extends Component<Props, State> {
             disableDrag={uiParams.disableDrag}
             deleteImage={this.deleteImage}
             changeTitle={this.changeTitle}
-            id={i}
+            id={`${i}`}
             key={i}
           />
         );
       }
 
       return (
+        // $FlowFixMe
         <Section key={i} handle=".handle" dragClassName="drag">
           <Item
             image={item && item.get(this.imageKey)}
@@ -142,7 +159,7 @@ export default class Gallery extends Component<Props, State> {
             disableDrag={uiParams.disableDrag}
             deleteImage={this.deleteImage}
             changeTitle={this.changeTitle}
-            id={i}
+            id={`${i}`}
             key={i}
           />
         </Section>

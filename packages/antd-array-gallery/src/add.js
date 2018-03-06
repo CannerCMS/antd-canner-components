@@ -1,14 +1,15 @@
+// @flow
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { Icon } from "antd";
 import CSSModules from "react-css-modules";
 import styles from "./style/add.scss";
 
+type Props = {
+  onClick: () => void;
+}
+
 @CSSModules(styles)
-export default class Add extends Component {
-  static propTypes = {
-    onClick: PropTypes.func
-  };
+export default class Add extends Component<Props> {
 
   render() {
     return (
