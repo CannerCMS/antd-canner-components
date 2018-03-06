@@ -47,7 +47,7 @@ export default class Item extends Component<Props> {
     deleteImage(id);
   }
 
-  changeTitle(e) {
+  changeTitle(e: any) {
     const { id, changeTitle } = this.props;
     changeTitle(id, e.target.value);
   }
