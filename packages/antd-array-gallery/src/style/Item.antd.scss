@@ -1,32 +1,32 @@
-@import './color.scss';
-.custom-card {
-  .ant-btn {
-    margin:10px 0px 0px 5px;
-    &.handle {
-      border-color: #ce4034;
-      background: #ce4034;
-      color: white;
-      &:hover {
-        border-color: #ce4034;
-        background: white;
-        color: #ce4034;
-        i {
-          color: #ce4034;
-        }
-      }
-    }
-    &.remove-button {
-      border-color: $orangish;
-      background: $orangish;
-      color: white;
-      &:hover {
-        border-color: $apricot;
-        background: white;
-        color: $apricot;
-        i {
-          color: $apricot;
-        }
-      }
-    }
-  }
-}
+// @import './color.scss';
+// .custom-card {
+//   .ant-btn {
+//     margin:10px 0px 0px 5px;
+//     &.handle {
+//       border-color: #ce4034;
+//       background: #ce4034;
+//       color: white;
+//       &:hover {
+//         border-color: #ce4034;
+//         background: white;
+//         color: #ce4034;
+//         i {
+//           color: #ce4034;
+//         }
+//       }
+//     }
+//     &.remove-button {
+//       border-color: $orangish;
+//       background: $orangish;
+//       color: white;
+//       &:hover {
+//         border-color: $apricot;
+//         background: white;
+//         color: $apricot;
+//         i {
+//           color: $apricot;
+//         }
+//       }
+//     }
+//   }
+// }

@@ -168,13 +168,13 @@ export default class Gallery extends Component<Props, State> {
 
     list = list.push(<Add key="add" onClick={this.showEditPopup} />);
     return (
-      <div>
+      <div style={{maxWidth: '800px'}}>
         {uiParams.disableDrag ? (
-          <GridBreakpoint lg={4} md={3} xs={6}>
+          <GridBreakpoint lg={4} md={4} sm={12} xs={12}>
             {list.toJS()}
           </GridBreakpoint>
         ) : (
-          <GridDraggable onSwap={this.onSwap} lg={4} md={3} xs={6}>
+          <GridDraggable onSwap={this.onSwap} lg={4} md={6} sm={12} xs={12}>
             {list}
           </GridDraggable>
         )}

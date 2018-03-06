@@ -55,14 +55,14 @@ export default class Item extends Component<Props> {
   render() {
     const { image, title, cardWidth, disableDrag } = this.props;
     return (
-      <div styleName="container">
-        <Card style={{ width: cardWidth }} bodyStyle={{ padding: 0 }}>
+      <div style={{padding: '5px'}}>
+        <Card style={{ width: cardWidth }}>
           <div styleName="custom-image" ref={node => (this.imgWrapper = node)}>
             <img ref={showImage => (this.showImage = showImage)} src={image} />
           </div>
           <div styleName="custom-card" className="custom-card">
             <Input value={title} onChange={this.changeTitle} />
-            {!disableDrag ? ( // eslint-disable-line
+            {!disableDrag ? (
               <Button type="primary" className="handle">
                 <FaArrows />
               </Button>

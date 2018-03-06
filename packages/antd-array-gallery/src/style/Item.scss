@@ -1,11 +1,10 @@
-.container {
-  margin-bottom: 10px;
-}
-
 .custom-image {
   height: 200px;
   overflow: hidden;
   background-color: rgba(3, 3, 3, 0.2);
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }
 
 .custom-image img {

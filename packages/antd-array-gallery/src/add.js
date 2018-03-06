@@ -13,8 +13,10 @@ export default class Add extends Component<Props> {
 
   render() {
     return (
-      <div styleName="add-container" onClick={this.props.onClick}>
-        <Icon type="plus-circle" />
+      <div style={{padding: '5px'}}>
+        <div styleName="add-container" onClick={this.props.onClick}>
+          <Icon type="plus-circle" style={{fontSize: 60}}/>
+        </div>
       </div>
     );
   }

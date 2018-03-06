@@ -22,6 +22,14 @@ export default class GalleryDemo extends React.Component<{}> {
               image: "https://i.imgur.com/seGYsJW.jpg"
             }, {
               image: "https://i.imgur.com/sMsPiL9.jpg"
+            }, {
+              image: "https://i.imgur.com/seGYsJW.jpg"
+            }, {
+              image: "https://i.imgur.com/sMsPiL9.jpg"
+            }, {
+              image: "https://i.imgur.com/seGYsJW.jpg"
+            }, {
+              image: "https://i.imgur.com/sMsPiL9.jpg"
             }])}
             id="gallery"
             generateId={(id, i, type) => `${id}/${i}/${type}`}
