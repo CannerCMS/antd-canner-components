@@ -1,8 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
-import Label from "./label";
-import CSSModules from "react-css-modules";
-import styles from "./style/Card.scss";
+import styled from 'styled-components';
 
 type Props = {
   checked: boolean,
@@ -12,7 +10,29 @@ type Props = {
   disabled: boolean
 };
 
-@CSSModules(styles)
+const Label = styled.div`
+  display: inline-block;
+  margin: 10px;
+  border: ${props =>
+    props.checked ? "2px solid #fc9d6c" : "2px solid transparent"};
+  padding: 20px 40px;
+  font-size: 50px;
+  border-radius: 10px;
+  text-align: center;
+  &:hover {
+    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.1);
+  }
+  ${props => {
+    if (props.disabled) {
+      return {
+        backgroundColor: '#f5f5f5',
+        color: 'rgba(0, 0, 0, 0.25)',
+        cursor: 'not-allowed'
+      };
+    }
+  }};
+`;
+
 export default class Card extends PureComponent<Props> {
   onChange = (value: string | boolean) => {
     this.props.onChange(value);
@@ -31,15 +51,13 @@ export default class Card extends PureComponent<Props> {
     }
 
     return (
-      <label styleName="label">
-        <Label
-          checked={checked}
-          disabled={disabled}
-          onClick={() => this.onChange(value)}
-        >
-          {displayText}
-        </Label>
-      </label>
+      <Label
+        checked={checked}
+        disabled={disabled}
+        onClick={() => this.onChange(value)}
+      >
+        {displayText}
+      </Label>
     );
   }
 }

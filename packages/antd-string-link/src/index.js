@@ -1,24 +1,26 @@
 // @flow
 import React, { PureComponent } from "react";
 import InputString from "@canner/antd-string-input";
-import CSSModules from "react-css-modules";
 import defaultMessage from "@canner/antd-locales";
 import { FormattedMessage } from "react-intl";
-import styles from "./style/Link.scss";
+import styled from 'styled-components';
 
 // types
 import type {StringDefaultProps} from 'types/StringDefaultProps';
 
 type Props = StringDefaultProps
 
-@CSSModules(styles)
+const PreviewContainer = styled.div`
+  margin: 10px 0;
+`
+
 export default class LinkString extends PureComponent<Props> {
   render() {
     const { value, onChange, id, disabled } = this.props;
     return (
       <div>
         <InputString id={id} value={value} onChange={onChange} disabled={disabled}/>
-        <div styleName="preview">
+        <PreviewContainer>
           <FormattedMessage
             id="string.link.preview"
             defaultMessage={defaultMessage.en["string.link.preview"]}
@@ -26,7 +28,7 @@ export default class LinkString extends PureComponent<Props> {
           <a href={value} target="_blank">
             {value}
           </a>
-        </div>
+        </PreviewContainer>
       </div>
     );
   }

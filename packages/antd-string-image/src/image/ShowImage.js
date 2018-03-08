@@ -1,19 +1,15 @@
 // @flow
 import React, { PureComponent } from "react";
-import imagesLoaded from "imagesloaded";
 import { Card, Button, Icon } from "antd";
-import CSSModules from "react-css-modules";
-import styles from "./style/ShowImage.scss";
-import "./style/ShowImage.antd.scss";
+import ImageLoader from 'react-loading-image';
 
 type Props = {
   onChange: (value: Array<string>) => void,
   value: string,
-  cardWidth?: number,
+  cardWidth: number,
   disabled: boolean
 }
 
-@CSSModules(styles)
 export default class ShowImage extends PureComponent<Props> {
   constructor(props: Props) {
     super(props);
@@ -27,15 +23,6 @@ export default class ShowImage extends PureComponent<Props> {
     cardWidth: 300
   };
 
-  componentDidMount() {
-    var that = this;
-    var imgLoad = imagesLoaded(this.imgWrapper);
-    imgLoad.on("done", function() {}).on("fail", function() {
-      if (that.showImage)
-        that.showImage.src = "http://i.imgur.com/DUaZWMd.png";
-    });
-  }
-
   deleteImage() {
     this.props.onChange([""]);
   }
@@ -44,16 +31,25 @@ export default class ShowImage extends PureComponent<Props> {
     const { value, cardWidth, disabled } = this.props;
     return (
       <Card style={{ width: cardWidth }} bodyStyle={{ padding: 0 }}>
-        <div styleName="custom-image" ref={node => (this.imgWrapper = node)}>
-          <img
-            ref={showImage => (this.showImage = showImage)}
-            width="100%"
-            src={value}
+        <ImageLoader
+          src={value}
+          style={{width: '100%'}}
+          error={() => (
+            <img
+              style={{width: '100%'}}
+              src="http://i.imgur.com/DUaZWMd.png"/>
+          )}
+          loading={() => {
+            return (
+              <div style={{margin: '20px'}}>
+                <Icon type="loading" style={{ fontSize: 24 }} spin />
+              </div>
+            );
+          }}
           />
-        </div>
         {
           !disabled ? (
-            <div styleName="custom-card" className="custom-card">
+            <div style={{padding: '10px 16px', textAlign: 'right'}}>
               <Button onClick={this.deleteImage}>
                 <Icon type="close" />
               </Button>

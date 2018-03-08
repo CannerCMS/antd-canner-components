@@ -65,7 +65,7 @@ export default class Image extends PureComponent<Props, State> {
     });
   };
 
-  onChange = (value: Array<string>) => {
+  onChange = (value: Array<string> | string) => {
     this.props.onChange(this.props.id, "update", value[0]);
   };
 

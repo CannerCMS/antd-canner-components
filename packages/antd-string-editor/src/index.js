@@ -8,7 +8,7 @@ import objectId from 'bson-objectid';
 // type
 import type {StringDefaultProps} from 'types/StringDefaultProps';
 
-import "./style/EditorQuill.lib.scss";
+import "./style/EditorQuill.css";
 
 let sizes = [];
 for (let i = 10; i <= 72; i += 2) {

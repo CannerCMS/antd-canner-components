@@ -31,11 +31,6 @@ module.exports = {
         exclude: path.resolve(__dirname, "node_modules")
       },
       {
-        test: /\.js$/,
-        include: [/node_modules\/@canner\/image-upload/],
-        use: 'babel'
-      },
-      {
         test: /\.scss$/,
         use: [
           {
@@ -76,26 +71,9 @@ module.exports = {
             loader: 'style'
           },
           {
-            loader: 'css',
-            options: {
-              modules: true
-            }
-          }
-        ],
-        include: /flexboxgrid/
-      },
-      {
-        // exclude flexboxgrid is for https://github.com/Canner/react-qa-core-plugins
-        test: /\.css$/,
-        use: [
-          {
-            loader: 'style'
-          },
-          {
             loader: 'css'
           }
-        ],
-        exclude: /flexboxgrid/
+        ]
       },
       {
         test: /\.less$/,

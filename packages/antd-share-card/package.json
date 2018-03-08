@@ -11,10 +11,9 @@
   ],
   "author": "canner",
   "license": "ISC",
-  "dependencies": {
-    "styled-components": "^2.4.0"
-  },
   "peerDependencies": {
+    "styled-components": ">=3.2.0",
+    "antd": ">=3.2.0",
     "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
   }
 }
