@@ -17,7 +17,8 @@ module.exports = {
     extensions: [".js"],
     alias: {
       packages: path.resolve(__dirname, "./packages"),
-      utils: path.resolve(__dirname, "./utils")
+      utils: path.resolve(__dirname, "./utils"),
+      'styled-components': path.resolve(__dirname, 'node_modules', 'styled-components'),
     }
   },
   resolveLoader: {
