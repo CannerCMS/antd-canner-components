@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import {Card} from 'antd';
+import Inspector from 'react-inspector';
 
 export default (defaultValue: string) => (ConfigOrComposedComponent: React.Element<*>) => {
   class ExamplePrimitiveValueWrapper extends ConfigOrComposedComponent {
@@ -15,7 +15,7 @@ export default (defaultValue: string) => (ConfigOrComposedComponent: React.Eleme
 
     onChange = (id: string, type: string, value: string) => {
       let {log} = this.state;
-      log.unshift(JSON.stringify({id, type, value}));
+      log.unshift({id, type, value});
       
       this.setState({log, value});
     }
@@ -33,13 +33,13 @@ export default (defaultValue: string) => (ConfigOrComposedComponent: React.Eleme
           {log.length ?
           <div>
             <h4>onChange log:</h4>
-            <Card>
+            <div style={{border: '1px solid #CCC', padding: '10px'}}>
               {log.map((item, i) => {
                 return (
-                  <p key={i}>{item}</p>
+                  <Inspector data={item} key={i}/>
                 );
               })}
-            </Card>
+            </div>
           </div> : null}
         </div>
       );

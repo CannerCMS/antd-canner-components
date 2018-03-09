@@ -25,7 +25,7 @@ type Props = StringDefaultProps & {
 export default class DateTimePicker extends PureComponent<Props> {
   static defaultProps = {
     uiParams: {
-      format: "YYYY/MM/DD HH:mm",
+      format: "YYYY/MM/DD",
       output: "ISO_8601"
     }
   };
@@ -38,11 +38,10 @@ export default class DateTimePicker extends PureComponent<Props> {
   render() {
     const { value, uiParams = {}, intl, disabled } = this.props;
     const moment = transformStringToMoment(value, uiParams.output);
-
+    console.log(moment)
     return (
       <DatePicker
-        showTime
-        value={moment}
+        defaultValue={moment}
         disabled={disabled}
         format={uiParams && uiParams.format}
         placeholder={

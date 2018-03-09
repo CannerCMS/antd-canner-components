@@ -32,6 +32,7 @@
     "prettier": "^1.9.2",
     "react": "16.2.0",
     "react-dom": "16.2.0",
+    "react-inspector": "^2.2.2",
     "react-test-renderer": "^16.2.0",
     "resolve-url-loader": "^2.3.0",
     "sass-loader": "^6.0.7",
@@ -56,7 +57,7 @@
   "dependencies": {
     "@canner/image-service-config": "^0.2.0",
     "@canner/react-cms-core": "0.0.4",
-    "antd": "^3.2.1",
+    "antd": "^3.2.3",
     "immutable": "^4.0.0-rc.9",
     "lodash": "^4.17.4",
     "react-css-modules": "^4.7.1",
