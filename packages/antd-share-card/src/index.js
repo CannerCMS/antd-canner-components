@@ -19,6 +19,7 @@ const Label = styled.div`
   font-size: 50px;
   border-radius: 10px;
   text-align: center;
+  cursor: pointer;
   &:hover {
     box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.1);
   }
@@ -54,7 +55,7 @@ export default class Card extends PureComponent<Props> {
       <Label
         checked={checked}
         disabled={disabled}
-        onClick={() => this.onChange(value)}
+        onClick={!disabled ? () => this.onChange(value) : null}
       >
         {displayText}
       </Label>

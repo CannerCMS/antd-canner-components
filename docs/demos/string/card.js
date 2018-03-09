@@ -2,16 +2,20 @@
 import * as React from 'react';
 import StringCard from 'packages/antd-string-card';
 import {Divider} from 'antd';
+import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
+import type {PrimitiveTypes} from '../PrimitiveTypes';
 
-export default class StringCardDemo extends React.Component<{}> {
+@ExamplePrimitiveValueWrapper('world')
+class StringCardDemo1 extends React.Component<PrimitiveTypes<string>> {
   render() {
+    const {value, onChange} = this.props;
     return (
       <React.Fragment>
         <Divider>String card</Divider>
         <StringCard
           id="string-card"
           checked={false}
-          value="world"
+          value={value}
           uiParams={{
             options: [{
               text: "this is hello",
@@ -21,16 +25,26 @@ export default class StringCardDemo extends React.Component<{}> {
               value: "world"
             }]
           }}
-          onChange={(id, type, value) => {
-            console.log('id: ', id, ', type: ', type, ', value: ', value);
-          }}
+          onChange={onChange}
           />
+      </React.Fragment>
+    );
+  }
+}
+
+
+@ExamplePrimitiveValueWrapper('world')
+class StringCardDemo2 extends React.Component<PrimitiveTypes<string>> {
+  render() {
+    const {value, onChange} = this.props;
+    return (
+      <React.Fragment>
         <Divider>Disabled string card</Divider>
         <StringCard
           id="string-card"
           checked={false}
           disabled
-          value="world"
+          value={value}
           uiParams={{
             options: [{
               text: "this is hello",
@@ -40,11 +54,20 @@ export default class StringCardDemo extends React.Component<{}> {
               value: "world"
             }]
           }}
-          onChange={(id, type, value) => {
-            console.log('id: ', id, ', type: ', type, ', value: ', value);
-          }}
+          onChange={onChange}
           />
       </React.Fragment>
     );
+  }
+}
+
+export default class Demo extends React.Component<{}> {
+  render() {
+    return (
+      <React.Fragment>
+        <StringCardDemo1/>
+        <StringCardDemo2/>
+      </React.Fragment>
+    )
   }
 }

@@ -54,7 +54,8 @@
     "build:watch": "lerna exec --parallel -- babel src -d lib --copy-files -w"
   },
   "dependencies": {
-    "@canner/image-service-config": "^0.0.7",
+    "@canner/image-service-config": "^0.2.0",
+    "@canner/react-cms-core": "0.0.4",
     "antd": "^3.2.1",
     "immutable": "^4.0.0-rc.9",
     "lodash": "^4.17.4",

@@ -87,33 +87,40 @@ export default class Gallery extends Component<Props, State> {
     this.setState({ editPopup: false });
   };
 
-  addImages = (values: Array<any>) => {
+  addImages = (values: string | Array<string>) => {
     const { id, transformData, onChange } = this.props;
     const that = this;
 
-    const createValues = values.map((img: string) => {
-      // + i to create multiple ids when upload multi data.
-      const thumb = img.split("/");
-      // if source is imgur, get min size image
-      if (img.indexOf("imgur.com") > -1) {
-        const filename = thumb[thumb.length - 1].split(".");
-        thumb[thumb.length - 1] = `${filename[0]}m.${filename[1]}`; // change thumb to `m` size
-      }
-      const newData = {
-        [that.thumbKey]: thumb.join("/"),
-        [that.imageKey]: img
-      };
-      if (that.titleKey) {
-        newData[that.titleKey] = "";
-      }
+    if (Array.isArray(values)) {
+      const createValues = values.map((img: string) => {
+        // + i to create multiple ids when upload multi data.
+        const thumb = img.split("/");
+        // if source is imgur, get min size image
+        if (img.indexOf("imgur.com") > -1) {
+          const filename = thumb[thumb.length - 1].split(".");
+          thumb[thumb.length - 1] = `${filename[0]}m.${filename[1]}`; // change thumb to `m` size
+        }
+        const newData = {
+          [that.thumbKey]: thumb.join("/"),
+          [that.imageKey]: img
+        };
+        if (that.titleKey) {
+          newData[that.titleKey] = "";
+        }
 
-      return {
-        id,
-        type: "create",
-        value: transformData(newData)
-      };
-    });
-    onChange(createValues);
+        return {
+          id: 'test',
+          type: "create",
+          value: transformData(newData)
+        };
+      });
+      onChange(createValues);
+    } else {
+      onChange(id, "create", List([{
+        [that.thumbKey]: values,
+        [that.imageKey]: values
+      }]));
+    }
     this.closeEditPopup();
   };
 

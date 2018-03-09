@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from "react";
-import imagesLoaded from "imagesloaded";
+// import imagesLoaded from "imagesloaded";
 import { Card, Button, Icon, Input } from "antd";
 import FaArrows from "react-icons/lib/fa/arrows";
 import CSSModules from "react-css-modules";

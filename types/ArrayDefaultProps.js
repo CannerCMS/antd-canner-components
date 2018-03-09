@@ -6,6 +6,11 @@ export type ArrayDefaultProps<T> = {|
   id: FieldId,
   transformData: TransformDataFn,
   value: List<T>,
-  onChange: (id: string | {[string]: string}, type: string, value?: List<T>) => Promise<void>
-    | (Array<{id: string | {[string]: string}, type: string, value?: List<T>}>) => Promise<void>
+  onChange:
+    (id: string | {[string]: string}, type: string, value?: List<T>) => Promise<void>
+    | (Array<{
+      id: string | {[string]: string},
+      type: string,
+      value?: any
+    }>) => Promise<void>
 |};
