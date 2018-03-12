@@ -136,7 +136,7 @@ export default class Gallery extends Component<Props, State> {
   changeTitle = (imageId: string, value: string) => {
     const { id, onChange, generateId, transformData } = this.props;
     const changeId = generateId(id, `${imageId}/${this.titleKey}`, "array"); // !!!!need to refactor key concat
-    onChange(changeId, "update", transformData(value));
+    onChange(id, "update", transformData(value));
   };
 
   render() {

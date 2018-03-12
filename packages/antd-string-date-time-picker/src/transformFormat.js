@@ -29,9 +29,12 @@ export function transformStringToMoment(dateString: string, input: moment = mome
         rtnMoment = moment(Number(dateString));
       }
       break;
+    case 'ISO_8601':
+      rtnMoment = moment(dateString, moment.ISO_8601);
+      break;
     default:
-     rtnMoment = moment(dateString, input);
-     break;
+      rtnMoment = moment(dateString, input);
+      break;
   }
   if (rtnMoment.isValid())
     return rtnMoment;

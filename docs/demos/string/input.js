@@ -2,19 +2,31 @@
 import * as React from 'react';
 import Input from 'packages/antd-string-input';
 import {Divider} from 'antd';
+import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
+import type {PrimitiveTypes} from '../PrimitiveTypes';
 
-export default class InputDemo extends React.Component<{}> {
+@ExamplePrimitiveValueWrapper('This is input value')
+class InputDemo1 extends React.Component<PrimitiveTypes<string>> {
   render() {
+    const {value, onChange} = this.props;
     return (
       <React.Fragment>
         <Divider>General input</Divider>
         <Input
           id="input"
-          value="this is input value"
-          onChange={(id, type, value) => {
-            console.log('id: ', id, ', type: ', type, ', value: ', value);
-          }}
+          value={value}
+          onChange={onChange}
           />
+      </React.Fragment>
+    );
+  }
+}
+
+@ExamplePrimitiveValueWrapper()
+class InputDemo2 extends React.Component<PrimitiveTypes<string>> {
+  render() {
+    return (
+      <React.Fragment>
         <Divider>Disabled input</Divider>
         <Input
           id="input"
@@ -22,6 +34,17 @@ export default class InputDemo extends React.Component<{}> {
           disabled
           />
       </React.Fragment>
-    );
+    )
+  }
+}
+
+export default class Demo extends React.Component<{}> {
+  render() {
+    return (
+      <React.Fragment>
+        <InputDemo1/>
+        <InputDemo2/>
+      </React.Fragment>
+    )
   }
 }

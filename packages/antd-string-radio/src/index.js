@@ -44,7 +44,7 @@ export default class RadioString extends PureComponent<Props> {
         onChange={this.onChange}
         value={
           value ||
-          (defaultSelected
+          (defaultSelected !== undefined
             && options[defaultSelected]
             && options[defaultSelected].value)
         }

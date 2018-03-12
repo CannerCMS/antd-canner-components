@@ -38,7 +38,7 @@ export default class DateTimePicker extends PureComponent<Props> {
   render() {
     const { value, uiParams = {}, intl, disabled } = this.props;
     const moment = transformStringToMoment(value, uiParams.output);
-    console.log(moment)
+
     return (
       <DatePicker
         defaultValue={moment}

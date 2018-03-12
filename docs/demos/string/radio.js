@@ -2,15 +2,19 @@
 import * as React from 'react';
 import StringRadio from 'packages/antd-string-radio';
 import {Divider} from 'antd';
+import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
+import type {PrimitiveTypes} from '../PrimitiveTypes';
 
-export default class RadioDemo extends React.Component<{}> {
+@ExamplePrimitiveValueWrapper("1")
+class RadioDemo1 extends React.Component<PrimitiveTypes<string>> {
   render() {
+    const {value, onChange} = this.props
     return (
       <React.Fragment>
         <Divider>General radio</Divider>
         <StringRadio
           id="radio"
-          value="1"
+          value={value}
           uiParams={{
             options: [{
               text: 'option 1',
@@ -21,14 +25,23 @@ export default class RadioDemo extends React.Component<{}> {
             }],
             defaultSelected: 1
           }}
-          onChange={(id, type, value) => {
-            console.log('id: ', id, ', type: ', type, ', value: ', value);
-          }}
+          onChange={onChange}
           />
+      </React.Fragment>
+    );
+  }
+}
+
+@ExamplePrimitiveValueWrapper()
+class RadioDemo2 extends React.Component<PrimitiveTypes<string>> {
+  render() {
+    const {value, onChange} = this.props;
+    return (
+      <React.Fragment>
         <Divider>radio with default value</Divider>
         <StringRadio
           id="radio"
-          value="1"
+          value={value}
           uiParams={{
             options: [{
               text: 'option 1',
@@ -39,14 +52,23 @@ export default class RadioDemo extends React.Component<{}> {
             }],
             defaultSelected: 1
           }}
-          onChange={(id, type, value) => {
-            console.log('id: ', id, ', type: ', type, ', value: ', value);
-          }}
+          onChange={onChange}
           />
+      </React.Fragment>
+    );
+  }
+}
+
+@ExamplePrimitiveValueWrapper("1")
+class RadioDemo3 extends React.Component<PrimitiveTypes<string>> {
+  render() {
+    const {value, onChange} = this.props;
+    return (
+      <React.Fragment>
         <Divider>Disabled radio</Divider>
         <StringRadio
           id="radio"
-          value="1"
+          value={value}
           disabled
           uiParams={{
             options: [{
@@ -58,11 +80,21 @@ export default class RadioDemo extends React.Component<{}> {
             }],
             defaultSelected: 1
           }}
-          onChange={(id, type, value) => {
-            console.log('id: ', id, ', type: ', type, ', value: ', value);
-          }}
+          onChange={onChange}
           />
       </React.Fragment>
-    );
+    )
+  }
+}
+
+export default class Demo extends React.Component<{}> {
+  render() {
+    return (
+      <React.Fragment>
+        <RadioDemo1/>
+        <RadioDemo2/>
+        <RadioDemo3/>
+      </React.Fragment>
+    )
   }
 }
