@@ -2,37 +2,59 @@
 import * as React from 'react';
 import BooleanCard from 'packages/antd-boolean-card';
 import {Divider} from 'antd';
+import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
+import type {PrimitiveTypes} from '../PrimitiveTypes';
 
-export default class BooleanCardDemo extends React.Component<{}> {
+@ExamplePrimitiveValueWrapper(false)
+class BooleanCardDemo1 extends React.Component<PrimitiveTypes<boolean>> {
   render() {
+    const {value, onChange} = this.props;
     return (
       <React.Fragment>
         <Divider>Boolean card</Divider>
         <BooleanCard
           id="boolean-card"
-          value={false}
+          value={value}
           uiParams={{
             yesText: "YES!!",
             noText: "NO!!"
           }}
-          onChange={(id, type, value) => {
-            console.log('id: ', id, ', type: ', type, ', value: ', value);
-          }}
+          onChange={onChange}
           />
+      </React.Fragment>
+    );
+  }
+}
+
+@ExamplePrimitiveValueWrapper(false)
+class BooleanCardDemo2 extends React.Component<PrimitiveTypes<boolean>> {
+  render() {
+    const {value, onChange} = this.props;
+    return (
+      <React.Fragment>
         <Divider>Disabled boolean card</Divider>
         <BooleanCard
           id="boolean-card"
           disabled
-          value={false}
+          value={value}
           uiParams={{
             yesText: "YES!!",
             noText: "NO!!"
           }}
-          onChange={(id, type, value) => {
-            console.log('id: ', id, ', type: ', type, ', value: ', value);
-          }}
+          onChange={onChange}
           />
       </React.Fragment>
     );
+  }
+}
+
+export default class Demo extends React.Component<{}> {
+  render() {
+    return (
+      <React.Fragment>
+        <BooleanCardDemo1/>
+        <BooleanCardDemo2/>
+      </React.Fragment>
+    )
   }
 }

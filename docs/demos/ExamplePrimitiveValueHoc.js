@@ -2,7 +2,9 @@
 import * as React from 'react';
 import Inspector from 'react-inspector';
 
-export default (defaultValue: string) => (ConfigOrComposedComponent: React.Element<*>) => {
+type PrimitiveValue = string | boolean | number;
+
+export default (defaultValue: PrimitiveValue) => (ConfigOrComposedComponent: React.Element<*>) => {
   class ExamplePrimitiveValueWrapper extends ConfigOrComposedComponent {
     constructor(props: any) {
       super(props);
@@ -13,7 +15,7 @@ export default (defaultValue: string) => (ConfigOrComposedComponent: React.Eleme
       };
     }
 
-    onChange = (id: string, type: string, value: string) => {
+    onChange = (id: string, type: string, value: PrimitiveValue) => {
       let {log} = this.state;
       log.unshift({id, type, value});
       
