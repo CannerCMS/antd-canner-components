@@ -26,19 +26,6 @@ class BooleanSwitchDemo1 extends Component<PrimitiveTypes<boolean>> {
             }}
             onChange={onChange}
             />
-          <Divider>Disabled boolean switch</Divider>
-          <BooleanSwitch
-            id="boolean-switch"
-            disabled
-            value={true}
-            uiParams={{
-              yesText: "YES!!",
-              noText: "NO!!"
-            }}
-            onChange={(id, type, value) => {
-              console.log('id: ', id, ', type: ', type, ', value: ', value);
-            }}
-            />
         </Fragment>
       </IntlProvider>
     );
