@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { Modal } from "antd";
 
 import { FormattedMessage } from "react-intl";
-import defaultMessage from "@canner/cms-locales";
+import defaultMessage from "@canner/antd-locales";
 
 type Props = {
   onChange: (id: any, type: string, value: any) => void,

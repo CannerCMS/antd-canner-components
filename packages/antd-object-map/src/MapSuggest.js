@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Geosuggest from "react-geosuggest";
 
 import "./style/react-geosuggest.css";
-import defaultMessage from "@canner/cms-locales";
+import defaultMessage from "@canner/antd-locales";
 import { FormattedMessage } from 'react-intl';
 
 type Props = {

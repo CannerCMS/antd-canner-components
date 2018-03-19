@@ -52,54 +52,54 @@ export default function(cols, schema, relationData) {
         return <div dangerouslySetInnerHTML={{__html: compiled(record)}} />;
       }
 
-      if (itemSchema && itemSchema.type === "relation") {
-        const {relationTo, relationship} = itemSchema.relation;
-        if (relationship === 'oneToMany.idMap') {
-          text = Object.keys(text || {});
-        } else if (typeof text === 'string') {
-          text = [text];
-        }
-        const item = (relationData[itemSchema.__key__] || []).filter(datum => text.indexOf(datum._id) !== -1);
-        let {textCol, subtextCol} = itemSchema.uiParams;
-        if (item && item.length === 0) {
-          return "";
-        }
-        if (textCol && (textCol.indexOf('<%') === -1 || textCol.indexOf('%>') === -1)) {
-          // not template string
-          // change it
-          textCol = `<%=${textCol}%>`;
-        }
-        if (subtextCol && (subtextCol.indexOf('<%') === -1 || subtextCol.indexOf('%>') === -1)) {
-          // not template string
-          // change it
-          subtextCol = `<%=${subtextCol}%>`;
-        }
-        const textCompiled = template(textCol || '');
-        const subtextCompiled = template(subtextCol || '');
+      // if (itemSchema && itemSchema.type === "relation") {
+      //   const {relationTo, relationship} = itemSchema.relation;
+      //   if (relationship === 'oneToMany.idMap') {
+      //     text = Object.keys(text || {});
+      //   } else if (typeof text === 'string') {
+      //     text = [text];
+      //   }
+      //   const item = (relationData[itemSchema.__key__] || []).filter(datum => text.indexOf(datum._id) !== -1);
+      //   let {textCol, subtextCol} = itemSchema.uiParams;
+      //   if (item && item.length === 0) {
+      //     return "";
+      //   }
+      //   if (textCol && (textCol.indexOf('<%') === -1 || textCol.indexOf('%>') === -1)) {
+      //     // not template string
+      //     // change it
+      //     textCol = `<%=${textCol}%>`;
+      //   }
+      //   if (subtextCol && (subtextCol.indexOf('<%') === -1 || subtextCol.indexOf('%>') === -1)) {
+      //     // not template string
+      //     // change it
+      //     subtextCol = `<%=${subtextCol}%>`;
+      //   }
+      //   const textCompiled = template(textCol || '');
+      //   const subtextCompiled = template(subtextCol || '');
         
         
-        const texts = item.map(value => {
-          let title = '';
-          let subText = '';
-          try {
-            title = textCompiled(value);
-            subText = subtextCompiled(value);
-          } catch (e) {
-            title = '';
-            subText = '';
-          }
-          return `${title} ${subText ? `(${subText})` : ""}`;
-        })
-        return <div>
-          {texts.map(text => {
-            const isLongTag = text.length > 10;
-            return <Tag key={text} closable={false}>
-              {isLongTag ? `${text.slice(0, 10)}...` : text}
-            </Tag>
-          })}
+      //   const texts = item.map(value => {
+      //     let title = '';
+      //     let subText = '';
+      //     try {
+      //       title = textCompiled(value);
+      //       subText = subtextCompiled(value);
+      //     } catch (e) {
+      //       title = '';
+      //       subText = '';
+      //     }
+      //     return `${title} ${subText ? `(${subText})` : ""}`;
+      //   })
+      //   return <div>
+      //     {texts.map(text => {
+      //       const isLongTag = text.length > 10;
+      //       return <Tag key={text} closable={false}>
+      //         {isLongTag ? `${text.slice(0, 10)}...` : text}
+      //       </Tag>
+      //     })}
         
-        </div>
-      }
+      //   </div>
+      // }
 
       if (isBoolean(text)) {
         if (text) {

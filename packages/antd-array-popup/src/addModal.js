@@ -5,7 +5,7 @@ import { Modal } from "antd";
 
 // import ChangeMethodComponent from "./changeMethodComponent";
 import { FormattedMessage } from "react-intl";
-import defaultMessage from "@canner/cms-locales";
+import defaultMessage from "@canner/antd-locales";
 import pick from "lodash/pick";
 import PropTypes from 'prop-types';
 

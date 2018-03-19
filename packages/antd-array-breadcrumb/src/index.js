@@ -9,7 +9,7 @@ import isEmpty from "lodash/isEmpty";
 import pick from 'lodash/pick';
 import isObject from "lodash/isObject";
 import { FormattedMessage } from "react-intl";
-import defaultMessage from "@canner/cms-locales";
+import defaultMessage from "@canner/antd-locales";
 import type {FieldId, FieldItems, GotoFn} from 'types/DefaultProps';
 const ButtonGroup = Button.Group;
 const confirm = Modal.confirm;
