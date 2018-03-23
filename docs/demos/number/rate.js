@@ -2,23 +2,34 @@
 import * as React from 'react';
 import NumberRate from 'packages/antd-number-rate';
 import {Divider} from 'antd';
+import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
+import type {PrimitiveTypes} from '../PrimitiveTypes';
 
-export default class NumberRateDemo extends React.Component<{}> {
+@ExamplePrimitiveValueWrapper(2)
+class NumberRateDemo1 extends React.Component<PrimitiveTypes<number>> {
   render() {
+    const {value, onChange}= this.props;
     return (
       <React.Fragment>
         <Divider>Number rate</Divider>
         <NumberRate
           id="number-rate"
-          value={2.5}
+          value={value}
           uiParams={{
             allowHalf: true
           }}
-          onChange={(id, type, value) => {
-            console.log('id: ', id, ', type: ', type, ', value: ', value);
-          }}
+          onChange={onChange}
           />
+      </React.Fragment>
+    )
+  }
+}
 
+
+class NumberRateDemo2 extends React.Component<{}> {
+  render() {
+    return (
+      <React.Fragment>
         <Divider>Disabled number rate</Divider>
         <NumberRate
           id="number-rate"
@@ -33,5 +44,16 @@ export default class NumberRateDemo extends React.Component<{}> {
           />
       </React.Fragment>
     );
+  }
+}
+
+export default class Demo extends React.Component<{}> {
+  render() {
+    return (
+      <React.Fragment>
+        <NumberRateDemo1/>
+        <NumberRateDemo2/>
+      </React.Fragment>
+    )
   }
 }

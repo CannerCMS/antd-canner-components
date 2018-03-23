@@ -3,7 +3,10 @@ import React, { Component } from "react";
 import { Slider } from "antd";
 import {List} from 'immutable';
 
-type Props = defaultProps & {
+// types
+import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
+
+type Props = ArrayDefaultProps<number> & {
   value: List<number>,
   uiParams: {
     min: number,
