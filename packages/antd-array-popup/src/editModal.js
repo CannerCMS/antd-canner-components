@@ -12,11 +12,14 @@ type Props = {
   updateAction: Array<string>,
   id: string,
   renderChildren: Function,
-  items: {[string]: any},
-  createEmptyData: Function
 }
 
-export default class EditModal extends Component<Props> {
+type State = {
+  visible: boolean,
+  order: number
+}
+
+export default class EditModal extends Component<Props, State> {
   static contextTypes = {
     deploy: PropTypes.func,
     reset: PropTypes.func
@@ -27,7 +30,6 @@ export default class EditModal extends Component<Props> {
     this.state = {
       visible: false,
       order: 0,
-      errors: []
     };
   }
 
@@ -39,23 +41,13 @@ export default class EditModal extends Component<Props> {
   }
 
   closeModalAndReset = () => {
-    const {id, query} = this.props;
-    const key = id.split('/')[0];
     this.setState({
       visible: false
     });
-    this.context.reset(key, query);
   }
 
   handleCancel = () => {
     this.closeModalAndReset();
-  }
-
-  handleOk = () => {
-    const {deploy} = this.context;
-    deploy().then(() => {
-      this.closeModalAndReset();
-    });
   }
 
   render() {
@@ -65,27 +57,27 @@ export default class EditModal extends Component<Props> {
       <Modal
         width="80%"
         visible={visible}
-        onOk={this.handleOk}
         onCancel={this.handleCancel}
-        okText={
-          <FormattedMessage
-            id="array.popup.modal.okText"
-            defaultMessage={defaultMessage.en["array.popup.modal.okText"]}
-          />
-        }
-        cancelText={
-          <FormattedMessage
-            id="array.popup.modal.cancelText"
-            defaultMessage={defaultMessage.en["array.popup.modal.cancelText"]}
-          />
-        }
+        footer={null}
       >
         {visible
           ? renderChildren(child => ({
               id: `${id}/${order}`,
               // not work now, need to resolve it
               readOnly: updateAction.indexOf(child.name) === -1
-            }))
+            }), {
+              text:  <FormattedMessage
+                id="array.popup.modal.okText"
+                defaultMessage={defaultMessage.en["array.popup.modal.okText"]}
+              />,
+              callback: this.closeModalAndReset
+            }, {
+              text:  <FormattedMessage
+                id="array.popup.modal.cancelText"
+                defaultMessage={defaultMessage.en["array.popup.modal.cancelText"]}
+              />,
+              callback: this.closeModalAndReset
+            })
           : null}
       </Modal>
     );

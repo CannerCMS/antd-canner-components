@@ -65,7 +65,17 @@ export type DeployFn = (key?: string, id?: string, callback?: Function) => Promi
 //   {renderChildren({id: `${this.props.id}/${index}`, routes: this.props.routes})}
 // </div>
 // https://github.com/Canner/qa-generator/blob/master/src/index.js
-export type RenderChildrenFn = (node: any, props: any | (any => any)) => Node;
+export type BtnProps = {
+  disabled?: boolean,
+  style?: Object,
+  key?: string,
+  id?: string,
+  onClick?: (key?: string, id?: string, callback?: Function) => Promise<*>,
+  callback?: Function,
+  text?: Node | string,
+  hidden?: boolean
+}
+export type RenderChildrenFn = (props: any | (any => any), deployBtnProps?: BtnProps, clearBtnProps?: BtnProps) => Node;
 
 // only relation component get this
 export type Relation = {

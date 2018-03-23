@@ -7,7 +7,6 @@ import { Modal } from "antd";
 import { FormattedMessage } from "react-intl";
 import defaultMessage from "@canner/antd-locales";
 import pick from "lodash/pick";
-import PropTypes from 'prop-types';
 
 type Props = {
   onChange: (id: any, type: string, value: any) => void,
@@ -18,18 +17,17 @@ type Props = {
   createEmptyData: Function
 }
 
-export default class AddModal extends Component<Props> {
-  static contextTypes = {
-    deploy: PropTypes.func,
-    reset: PropTypes.func
-  }
+type State = {
+  order: number,
+  visible: boolean
+}
 
+export default class AddModal extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
       visible: false,
       order: 0,
-      errors: []
     };
   }
 
@@ -45,54 +43,43 @@ export default class AddModal extends Component<Props> {
 
 
   closeModalAndReset = () => {
-    const {id, query} = this.props;
-    const key = id.split('/')[0];
     this.setState({
       visible: false
     });
-    this.context.reset(key, query);
   }
 
   handleCancel = () => {
     this.closeModalAndReset();
   }
 
-  handleOk = () => {
-    const {deploy} = this.context;
-    deploy().then(() => {
-      this.closeModalAndReset();
-    });
-  }
-
   render() {
-    const { createAction, renderChildren, id, rootValue } = this.props;
+    const { createAction, renderChildren, id } = this.props;
     const { visible, order } = this.state;
     return (
       <Modal
         width="80%"
         visible={visible}
-        onOk={this.handleOk}
         onCancel={this.handleCancel}
-        okText={
-          <FormattedMessage
-            id="array.popup.modal.okText"
-            defaultMessage={defaultMessage.en["array.popup.modal.okText"]}
-          />
-        }
-        cancelText={
-          <FormattedMessage
-            id="array.popup.modal.cancelText"
-            defaultMessage={defaultMessage.en["array.popup.modal.cancelText"]}
-          />
-        }
+        footer={null}
       >
         {visible
           ? renderChildren(child => ({
               id: `${id}/${order}`,
-              rootValue,
               // not work now, need to resolve it
               readOnly: createAction.indexOf(child.name) === -1
-            }))
+            }), {
+              text: <FormattedMessage
+                id="array.popup.modal.okText"
+                defaultMessage={defaultMessage.en["array.popup.modal.okText"]}
+              />,
+              callback: this.closeModalAndReset
+            }, {
+              text:  <FormattedMessage
+                id="array.popup.modal.cancelText"
+                defaultMessage={defaultMessage.en["array.popup.modal.cancelText"]}
+              />,
+              callback: this.closeModalAndReset
+            })
           : null}
       </Modal>
     );

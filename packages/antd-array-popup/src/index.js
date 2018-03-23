@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 import { Table, Button } from "antd";
-import { List, Map } from "immutable";
+import { List } from "immutable";
 import renderFunc from "./renderFunc";
 import showDeleteConfirm from "./showDeleteConfirm";
 import PropTypes from "prop-types";
@@ -10,8 +10,6 @@ import EditModal from "./editModal";
 import AddModal from "./addModal";
 import isEmpty from "lodash/isEmpty";
 import isNull from "lodash/isNull";
-import isObject from 'lodash/isObject';
-import pick from 'lodash/pick';
 import { FormattedMessage } from "react-intl";
 import defaultMessage from "@canner/antd-locales";
 
@@ -167,8 +165,7 @@ export default class PopupArrayPlugin extends Component<Props, State> {
           renderChildren={renderChildren}
           updateAction={updateAction}
           onChange={onChange}
-          rootValue={rootValue}
-          query={query}
+          query={query}w
         />
         <AddModal
           ref={modal => (this.addModal = modal)}

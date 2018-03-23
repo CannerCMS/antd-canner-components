@@ -121,7 +121,6 @@ export default class TabUi extends Component<Props, State> {
     const {
       value,
       renderChildren,
-      renderButton,
       generateId,
       id,
       uiParams,
@@ -155,8 +154,12 @@ export default class TabUi extends Component<Props, State> {
       const childrenWithProps = renderChildren({
         id: thisId,
         routes: this.props.routes
+      }, {
+        key: thisId.split('/')[0],
+        id: item.get('_id')
+      }, {
+        id: item.get('_id')
       });
-      const paths = thisId.split('/');
       panelFields.push(
         <TabPane
           tab={activeKey === `.$${i}` ? [title, ' ', deleteBtn(i)] : title}
@@ -164,16 +167,6 @@ export default class TabUi extends Component<Props, State> {
           key={`${i}`}
         >
           {childrenWithProps}
-          {
-            // only the first level tab need to render update button
-            paths.length > 2 && (
-              renderButton({
-                disabled: false,
-                key: thisId.split('/')[0],
-                id: item.get('_id')
-              })
-            )
-          }
         </TabPane>
       );
     });
