@@ -1,5 +1,4 @@
 // @flow
-
 import React, { Component } from "react";
 import Tabs, { TabPane } from "@canner/rc-tabs";
 import TabContent from "@canner/rc-tabs/lib/TabContent";
@@ -7,10 +6,8 @@ import ScrollableInkTabBar from "@canner/rc-tabs/lib/ScrollableInkTabBar";
 import { Button, Icon } from "antd";
 import Sortable from "react-sortablejs";
 import { List } from "immutable";
-import CSSModules from "react-css-modules";
 import {injectIntl} from 'react-intl';
-import styles from './style/tab.scss';
-import "./style/index.lib.scss";
+import 'antd/lib/tabs/style';
 
 // types
 import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
@@ -46,13 +43,12 @@ type State = {
 };
 
 @injectIntl
-@CSSModules(styles)
 export default class TabUi extends Component<Props, State> {
   prevIndex: number;
   constructor(props: Props) {
     super(props);
     this.state = {
-      activeKey: '.$0',
+      activeKey: '0',
     };
   }
 
@@ -85,7 +81,7 @@ export default class TabUi extends Component<Props, State> {
     } = this.props;
     const size = value.size;
     onChange(`${id}`, 'create', createEmptyData(items));
-    this.setState({ activeKey: `.$${size}` });
+    this.setState({ activeKey: `${size}` });
   };
 
   handleDelete = (index: number) => {
@@ -100,7 +96,7 @@ export default class TabUi extends Component<Props, State> {
         })
         .then(() => {
           this.setState({
-            activeKey: `.$${value.size - 1}`
+            activeKey: `${value.size - 1}`
           });
         });
     }
@@ -113,7 +109,7 @@ export default class TabUi extends Component<Props, State> {
     const prevIndex = generateId(id, oldIndex - 1, "array");
     const currIndex = generateId(id, newIndex - 1, "array");
 
-    this.setState({activeKey: `.$${newIndex - 1}`});
+    this.setState({activeKey: `${newIndex - 1}`});
     onChange({firstId: currIndex, secondId: prevIndex}, "swap")
   };
 
@@ -160,9 +156,16 @@ export default class TabUi extends Component<Props, State> {
       }, {
         id: item.get('_id')
       });
+
+      if (position === 'right' && activeKey === `${i}`) {
+        title = [title, ' ', deleteBtn(i)];
+      } else if (activeKey === `${i}`) {
+        title = [deleteBtn(i), ' ', title];
+      }
+
       panelFields.push(
         <TabPane
-          tab={activeKey === `.$${i}` ? [title, ' ', deleteBtn(i)] : title}
+          tab={title}
           id={thisId}
           key={`${i}`}
         >
@@ -172,8 +175,10 @@ export default class TabUi extends Component<Props, State> {
     });
     
     return (
-      <div styleName="tab-container">
+      <div style={{width: '100%'}}>
         <Tabs
+          prefixCls='ant-tabs'
+          className={position === 'left' || position === 'right' ? 'ant-tabs-vertical' : null}
           activeKey={`${activeKey}`}
           tabBarPosition={position}
           navWrapper={(content) => (
@@ -184,7 +189,7 @@ export default class TabUi extends Component<Props, State> {
           renderTabBar={() => (
             <ScrollableInkTabBar
               extraContent={
-                <Button onClick={this.handleCreate}>+ Add Item</Button>
+                <Button style={{margin: '6px'}}onClick={this.handleCreate}>+ Add</Button>
               }
               />
           )}
