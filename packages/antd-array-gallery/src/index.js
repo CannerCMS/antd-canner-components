@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import { List } from "immutable";
 import Gallery from 'canner-image-gallery';
 import type ImageServiceConfig from "@canner/image-service-config/lib/imageService";
+
 // types
 import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
 import type {GenerateIdFn, RenderChildrenFn} from 'types/DefaultProps';
@@ -63,6 +64,7 @@ export default class ArrayGallery extends Component<Props> {
           })
         };
       });
+      // $FlowFixMe
       onChange(createValues);
     } else {
       onChange(id, "create", List([{
@@ -82,11 +84,12 @@ export default class ArrayGallery extends Component<Props> {
 
   render() {
     const { value, id, generateId, renderChildren, imageServiceConfig, uiParams } = this.props;
-    const galleryValue = value.map(photo => photo[this.imageKey]).toJS()
+    const galleryValue = value.map(photo => photo.get(this.imageKey)).toJS()
 
     return (
       <div style={{maxWidth: '800px'}}>
         <Gallery
+          // $FlowFixMe
           value={galleryValue}
           renderContent={
             (i) => {
@@ -98,6 +101,7 @@ export default class ArrayGallery extends Component<Props> {
           onDelete={this.deleteImage}
           onCreate={this.createImages}
           onSwap={this.onSwap}
+          // $FlowFixMe
           serviceConfig={imageServiceConfig}
           />
       </div>
