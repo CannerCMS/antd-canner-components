@@ -13,24 +13,14 @@
   },
   "author": "canner",
   "license": "ISC",
-  "jest": {
-    "transformIgnorePatterns": [
-      "node_modules/(?!(@canner/image-upload)/)"
-    ],
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
-      "\\.(css|less|scss)$": "identity-obj-proxy"
-    }
-  },
   "peerDependencies": {
     "immutable": "^3.8.2",
-    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0",
+    "styled-components": ">=3.2.3"
   },
   "dependencies": {
-    "@canner/image-service-config": "^0.0.8",
-    "@canner/image-upload": "^0.9.4",
-    "grid-breakpoint": "^1.4.0",
-    "grid-draggable": "2.0.3"
+    "@canner/image-service-config": "^0.3.0",
+    "canner-image-gallery": "^0.1.1"
   },
   "devDependencies": {
     "enzyme": "^3.3.0",
