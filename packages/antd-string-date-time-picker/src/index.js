@@ -31,8 +31,8 @@ export default class DateTimePicker extends PureComponent<Props> {
   };
 
   onChange = (date: any) => {
-    const { onChange, id, uiParams = {} } = this.props;
-    onChange(id, "update", transformMomentToString(date, uiParams.output));
+    const { onChange, refId, uiParams = {} } = this.props;
+    onChange(refId, "update", transformMomentToString(date, uiParams.output));
   };
 
   render() {

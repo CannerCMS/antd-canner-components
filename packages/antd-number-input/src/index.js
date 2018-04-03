@@ -21,8 +21,9 @@ type Props = NumberDefaultProps & {
 
 export default class Input extends PureComponent<Props, State> {
   onChange = (val: string) => {
+    const {onChange, refId} = this.props;
     const value: number = isNaN(Number(val)) ? 0 : Number(val);
-    this.props.onChange(this.props.id, "update", value);
+    onChange(refId, "update", value);
   }
 
   render() {

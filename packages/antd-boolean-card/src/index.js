@@ -13,7 +13,8 @@ type Props = BooleanDefaultProps & {
 };
 export default class CardBoolean extends PureComponent<Props> {
   onChange = (val: boolean) => {
-    this.props.onChange(this.props.id, "update", val);
+    const {onChange, refId} = this.props
+    onChange(refId, "update", val);
   };
 
   render() {

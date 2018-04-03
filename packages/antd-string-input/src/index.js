@@ -36,7 +36,7 @@ export default class StringInput extends PureComponent<Props, State> {
       },
       () => {
         if (!this.isOnComposition) {
-          this.props.onChange(this.props.id, "update", this.state.value);
+          this.props.onChange(this.props.refId, "update", this.state.value);
         }
       }
     );
@@ -48,7 +48,7 @@ export default class StringInput extends PureComponent<Props, State> {
 
   onCompositionEnd = () => {
     this.isOnComposition = false;
-    this.props.onChange(this.props.id, "update", this.state.value);
+    this.props.onChange(this.props.refId, "update", this.state.value);
   };
 
   render() {

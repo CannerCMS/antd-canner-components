@@ -4,19 +4,24 @@ import React, { Component } from "react";
 import { Button, Icon } from "antd";
 import { Form, Input, Select } from "antd";
 import { flatten, map, reduce, isEqual } from "lodash";
-import { fromJS, List } from "immutable";
 import CSSModules from "react-css-modules";
 import styles from "./style/variants.scss";
 import {injectIntl} from 'react-intl';
+import {Item, createEmptyData, transformData} from '@canner/react-cms-helpers';
+import type {List} from 'immutable';
+import type {ObjectDefaultProps} from 'types/ObjectDefaultProps';
+
+type Props = ObjectDefaultProps & {
+  intl: any,
+  items: any
+};
+
 const FormItem = Form.Item;
-const defaultData = fromJS({
+const defaultData = transformData({
   variants: [],
   options: []
 });
 
-type Props = defaultProps & {
-  intl: any
-};
 @injectIntl
 @CSSModules(styles)
 export default class Variants extends Component<Props> {
@@ -26,11 +31,11 @@ export default class Variants extends Component<Props> {
   };
 
   updateTag = (val: List<string>, order: number) => {
-    const { value, items, createEmptyData, id, onChange } = this.props;
+    const { value, items, onChange, refId } = this.props;
     const variants = value.get("variants");
     const options = value
-      .get("options")
-      .setIn([order, "values"], List(val));
+      .get("options", transformData([]))
+      .setIn([order, "values"], transformData(val));
     const types = this.cartesianProduct(options.toJS());
     const variantsObj = types.map(type => {
       const newVariants = type.join("-");
@@ -46,9 +51,9 @@ export default class Variants extends Component<Props> {
       };
     });
     onChange(
-      id,
+      refId.child(order),
       "update",
-      fromJS({
+      transformData({
         options,
         variants: variantsObj
       })
@@ -56,13 +61,13 @@ export default class Variants extends Component<Props> {
   }
 
   updateVariantsAfterRemoveOption = (i: number) => {
-    const { value, items, createEmptyData, id, onChange } = this.props;
-    const options = value.get("options").remove(i);
+    const { value, items, refId, onChange } = this.props;
+    const options = value.get("options", transformData([])).remove(i);
     const variants = value.get("variants");
     const types = this.cartesianProduct(options.toJS());
     const variantsObj = types.filter(type => type.length).map(type => {
       const newVariants = type.join("-");
-      const originVariants = variants.find(variant =>
+      const originVariants = variants && variants.find(variant =>
         isEqual(variant.get("options"), newVariants)
       );
       if (originVariants) {
@@ -74,9 +79,9 @@ export default class Variants extends Component<Props> {
       };
     });
     onChange(
-      id,
+      refId,
       "update",
-      fromJS({
+      transformData({
         options,
         variants: variantsObj
       })
@@ -105,9 +110,9 @@ export default class Variants extends Component<Props> {
   }
 
   addOptions = () => {
-    const { id, items, createEmptyData, onChange } = this.props;
+    const { refId, items, onChange } = this.props;
     onChange(
-      `${id}/options`,
+      refId.child('options'),
       "create",
       createEmptyData(items.options.items)
     );
@@ -118,13 +123,13 @@ export default class Variants extends Component<Props> {
   }
 
   changeOptionName = (i: number, e: any) => {
-    const { id, onChange } = this.props;
-    onChange(`${id}/options/${i}/name`, "update", e.target.value);
+    const { refId, onChange } = this.props;
+    onChange(refId.child(`options/${i}/name`), "update", e.target.value);
   }
 
   render() {
     
-    const { value, items, id, intl, routes } = this.props;
+    const { value, items, refId, intl } = this.props;
     // for now, use panel instead of popup to quick fix
     // let { columns } = uiParams;
     // columns = columns || [];
@@ -140,7 +145,7 @@ export default class Variants extends Component<Props> {
     action.splice(action.indexOf("options"), 1);
     return (
       <div>
-        {value.get("options", List()).map((opt, i) => {
+        {value.get("options", []).map((opt, i) => {
           return (
             <div key={i} styleName="opt">
               <Icon
@@ -182,13 +187,9 @@ export default class Variants extends Component<Props> {
           {intl.formatMessage({ id: "object.variants.addVariants" })}
         </Button>
         <div styleName="variants">
-          {this.props.renderChildren({
-            uiParams:{
-              titleKey: 'options'
-            },
-            id: id,
-            routes: routes
-          })}
+          <Item
+            refId={refId.child('options')}
+          />
         </div>
       </div>
     );

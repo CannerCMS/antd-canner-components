@@ -24,7 +24,7 @@ export default class RadioString extends PureComponent<Props> {
   }
 
   onChange = (val: any) => {
-    this.props.onChange(this.props.id, "update", val.target.value);
+    this.props.onChange(this.props.refId, "update", val.target.value);
   };
 
   render() {

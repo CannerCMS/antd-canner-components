@@ -19,7 +19,8 @@ type Props = BooleanDefaultProps & {
 @injectIntl
 export default class SwitchBoolean extends PureComponent<Props> {
   onChange = (e: boolean) => {
-    this.props.onChange(this.props.id, "update", e);
+    const {onChange, refId} = this.props;
+    onChange(refId, "update", e);
   }
 
   render() {

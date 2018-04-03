@@ -7,19 +7,16 @@ import { Button, Icon } from "antd";
 import Sortable from "react-sortablejs";
 import { List } from "immutable";
 import {injectIntl} from 'react-intl';
+import {Item, ConfirmButton} from '@canner/react-cms-helpers';
 import 'antd/lib/tabs/style';
 
 // types
 import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
 import type {
   FieldItems,
-  RenderChildrenFn,
   DeployFn,
   GenerateIdFn,
-  CreateEmptyDataFn,
-  RoutesArr
 } from 'types/DefaultProps';
-import type { Node } from "react";
 import {intlShape} from 'react-intl';
 
 type Props = ArrayDefaultProps<FieldItems> & {
@@ -29,11 +26,7 @@ type Props = ArrayDefaultProps<FieldItems> & {
     position?: "top" | "left" | "right" | "bottom"
   },
   items: FieldItems,
-  routes: RoutesArr,
   generateId: GenerateIdFn,
-  createEmptyData: CreateEmptyDataFn,
-  renderChildren: RenderChildrenFn,
-  renderButton: (any) => Node,
   deploy: DeployFn,
   intl: intlShape
 };
@@ -74,13 +67,11 @@ export default class TabUi extends Component<Props, State> {
   handleCreate = () => {
     const {
       value,
-      id,
-      items,
-      createEmptyData,
+      refId,
       onChange,
     } = this.props;
     const size = value.size;
-    onChange(`${id}`, 'create', createEmptyData(items));
+    onChange(refId, 'create');
     this.setState({ activeKey: `${size}` });
   };
 
@@ -88,11 +79,10 @@ export default class TabUi extends Component<Props, State> {
     const { intl, onChange, deploy, value } = this.props;
     const r = confirm(intl.formatMessage({ id: "array.tab.delete.confirm" }));
     if (r) {
-      const { id, generateId } = this.props;
-      const deleteId = generateId(id, index, "array");
-      onChange(deleteId, "delete")
+      const { refId } = this.props;
+      onChange(refId.child(index), "delete")
         .then(() => {
-          return deploy(id, value.getIn([index, '_id']));
+          return deploy(refId);
         })
         .then(() => {
           this.setState({
@@ -104,21 +94,19 @@ export default class TabUi extends Component<Props, State> {
 
   dragItem = (order: any, sortable: any, evt: any) => {
     const {newIndex, oldIndex} = evt;
-    const {id, generateId, onChange} = this.props;
+    const {refId, onChange} = this.props;
 
-    const prevIndex = generateId(id, oldIndex - 1, "array");
-    const currIndex = generateId(id, newIndex - 1, "array");
+    const prevRefId = refId.child(oldIndex - 1);
+    const currRefId = refId.child(newIndex - 1);
 
     this.setState({activeKey: `${newIndex - 1}`});
-    onChange({firstId: currIndex, secondId: prevIndex}, "swap")
+    onChange({firstId: prevRefId, secondId: currRefId}, "swap")
   };
 
   render() {
     const {
       value,
-      renderChildren,
-      generateId,
-      id,
+      refId,
       uiParams,
       intl
     } = this.props;
@@ -128,7 +116,7 @@ export default class TabUi extends Component<Props, State> {
 
     // set array content
     value.forEach((item, i) => {
-      const thisId = generateId(id, i, "array");
+      const thisId = refId.child(i);
 
       // generate panel title
       let title;
@@ -147,15 +135,6 @@ export default class TabUi extends Component<Props, State> {
       const deleteBtn = (index: number) => (
         <Icon type="close-circle" onClick={() => this.handleDelete(index)} />
       );
-      const childrenWithProps = renderChildren({
-        id: thisId,
-        routes: this.props.routes
-      }, {
-        key: thisId.split('/')[0],
-        id: item.get('_id')
-      }, {
-        id: item.get('_id')
-      });
 
       if (position === 'right' && activeKey === `${i}`) {
         title = [title, ' ', deleteBtn(i)];
@@ -169,7 +148,13 @@ export default class TabUi extends Component<Props, State> {
           id={thisId}
           key={`${i}`}
         >
-          {childrenWithProps}
+          <Item
+            refId={thisId}
+          />
+          <div>
+            <ConfirmButton />
+            <CancelButton />
+          </div>
         </TabPane>
       );
     });

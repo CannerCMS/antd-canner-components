@@ -2,12 +2,11 @@
 import React, { Component } from "react";
 import { Slider } from "antd";
 import {List} from 'immutable';
-
+import {transformData} from '@canner/react-cms-helpers';
 // types
 import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
 
 type Props = ArrayDefaultProps<number> & {
-  value: List<number>,
   uiParams: {
     min: number,
     max: number,
@@ -22,8 +21,8 @@ export default class RangeSlider extends Component<Props> {
   }
 
   onChange = (val: Array<number>) => {
-    const { id, transformData } = this.props;
-    this.props.onChange(id, "update", transformData(val));
+    const { refId } = this.props;
+    this.props.onChange(refId, "update", transformData(val));
   }
 
   render() {

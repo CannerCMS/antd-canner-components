@@ -2,8 +2,8 @@
 import type {FieldId, FieldDisabled} from './DefaultProps';
 
 export type NumberDefaultProps = {|
-  id: FieldId,
+  refId: FieldId,
   disabled: FieldDisabled,
   value: number,
-  onChange: (id: string, type: string, value: number) => Promise<void>
+  onChange: (id: FieldId, type: string, value: number) => Promise<void>
 |};

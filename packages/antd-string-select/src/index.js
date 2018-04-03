@@ -32,7 +32,7 @@ export default class SelectString extends PureComponent<Props> {
   };
 
   onChange = (val: string) => {
-    this.props.onChange(this.props.id, "update", val);
+    this.props.onChange(this.props.refId, "update", val);
   };
 
   render() {

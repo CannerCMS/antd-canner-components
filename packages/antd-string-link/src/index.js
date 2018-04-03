@@ -16,10 +16,10 @@ const PreviewContainer = styled.div`
 
 export default class LinkString extends PureComponent<Props> {
   render() {
-    const { value, onChange, id, disabled } = this.props;
+    const { value, onChange, refId, disabled } = this.props;
     return (
       <div>
-        <InputString id={id} value={value} onChange={onChange} disabled={disabled}/>
+        <InputString refId={refId} value={value} onChange={onChange} disabled={disabled}/>
         <PreviewContainer>
           <FormattedMessage
             id="string.link.preview"
