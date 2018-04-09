@@ -5,7 +5,6 @@ import { Table, Button } from "antd";
 import { List } from "immutable";
 import renderFunc from "./renderFunc";
 import showDeleteConfirm from "./showDeleteConfirm";
-import PropTypes from "prop-types";
 import EditModal from "./editModal";
 import AddModal from "./addModal";
 import isEmpty from "lodash/isEmpty";
@@ -29,10 +28,11 @@ type Props = ArrayDefaultProps<FieldItem> & {
       key: string,
       dataIndex: number,
       renderTemplate: string
-    }>
+    }>,
   },
   showPagination: boolean,
-  items: FieldItems
+  items: FieldItems,
+  deploy: Function
 };
 
 export default class PopupArrayPlugin extends Component<Props> {
@@ -44,10 +44,6 @@ export default class PopupArrayPlugin extends Component<Props> {
     schema: {}
   };
 
-  static contextTypes = {
-    deploy: PropTypes.func
-  }
-
   render() {
     const {
       refId,
@@ -56,8 +52,8 @@ export default class PopupArrayPlugin extends Component<Props> {
       onChange,
       showPagination,
       items,
+      deploy
     } = this.props;
-    const {deploy} = this.context;
     const editText = (
       <FormattedMessage
         id="array.popup.editText"
