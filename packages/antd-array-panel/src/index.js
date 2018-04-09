@@ -1,12 +1,9 @@
 // @flow
 import React, { PureComponent } from "react";
-import { Button, Icon } from "antd";
+import { Button, Icon, Collapse } from "antd";
 import {injectIntl} from 'react-intl';
 import {List} from 'immutable';
-import Collapse from "@canner/rc-collapse";
 const Panel = Collapse.Panel;
-import "./style/panel.antd.scss";
-import "./style/panel.lib.scss";
 
 type State = {
   activeKey: string
@@ -49,18 +46,6 @@ export default class PanelUi extends PureComponent<Props, State> {
     if (r) {
       this.props.onChange(id, "delete");
     }
-  }
-
-  switchTab = (id: string) => {
-    this.setState({ activeKey: id });
-  }
-
-  onSwap = (fromIndex: number, toIndex: number) => {
-    const { id, generateId, onChange } = this.props;
-    const fromId = generateId(id, fromIndex, "array");
-    const toId = generateId(id, toIndex, "array");
-
-    onChange({ firstId: toId, secondId: fromId }, "swap");
   }
 
   render() {
