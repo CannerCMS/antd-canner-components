@@ -6,6 +6,7 @@ import {IntlProvider} from 'react-intl';
 import {Divider} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../PrimitiveTypes';
+import RefId from 'canner-ref-id';
 
 @ExamplePrimitiveValueWrapper("2")
 class SelectDemo1 extends React.Component<PrimitiveTypes<string>> {
@@ -18,7 +19,7 @@ class SelectDemo1 extends React.Component<PrimitiveTypes<string>> {
         <React.Fragment>
           <Divider>Select with value</Divider>
           <StringSelect
-            id="select"
+            refId={new RefId("select")}
             uiParams={{
               options: [{
                 text: 'option 1',
@@ -48,7 +49,7 @@ class SelectDemo2 extends React.Component<PrimitiveTypes<string>> {
         <React.Fragment>
           <Divider>Select with default value</Divider>
           <StringSelect
-            id="select"
+            refId={new RefId("select")}
             value={value}
             uiParams={{
               options: [{
@@ -79,7 +80,7 @@ class SelectDemo3 extends React.Component<PrimitiveTypes<string>> {
         <React.Fragment>
           <Divider>Disabled select</Divider>
           <StringSelect
-            id="select"
+            refId={new RefId("select")}
             disabled
             value={value}
             uiParams={{

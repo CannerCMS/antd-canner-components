@@ -4,6 +4,7 @@ import StringRadio from 'packages/antd-string-radio';
 import {Divider} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../PrimitiveTypes';
+import RefId from 'canner-ref-id';
 
 @ExamplePrimitiveValueWrapper("1")
 class RadioDemo1 extends React.Component<PrimitiveTypes<string>> {
@@ -13,7 +14,7 @@ class RadioDemo1 extends React.Component<PrimitiveTypes<string>> {
       <React.Fragment>
         <Divider>General radio</Divider>
         <StringRadio
-          id="radio"
+          refId={new RefId("radio")}
           value={value}
           uiParams={{
             options: [{
@@ -40,7 +41,7 @@ class RadioDemo2 extends React.Component<PrimitiveTypes<string>> {
       <React.Fragment>
         <Divider>radio with default value</Divider>
         <StringRadio
-          id="radio"
+          refId={new RefId("radio")}
           value={value}
           uiParams={{
             options: [{
@@ -67,7 +68,7 @@ class RadioDemo3 extends React.Component<PrimitiveTypes<string>> {
       <React.Fragment>
         <Divider>Disabled radio</Divider>
         <StringRadio
-          id="radio"
+          refId={new RefId("radio")}
           value={value}
           disabled
           uiParams={{

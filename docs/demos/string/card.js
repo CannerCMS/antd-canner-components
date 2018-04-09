@@ -4,6 +4,7 @@ import StringCard from 'packages/antd-string-card';
 import {Divider} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../PrimitiveTypes';
+import RefId from 'canner-ref-id';
 
 @ExamplePrimitiveValueWrapper('world')
 class StringCardDemo1 extends React.Component<PrimitiveTypes<string>> {
@@ -13,7 +14,7 @@ class StringCardDemo1 extends React.Component<PrimitiveTypes<string>> {
       <React.Fragment>
         <Divider>String card</Divider>
         <StringCard
-          id="string-card"
+          refId={new RefId("string-card")}
           checked={false}
           value={value}
           uiParams={{
@@ -41,7 +42,7 @@ class StringCardDemo2 extends React.Component<PrimitiveTypes<string>> {
       <React.Fragment>
         <Divider>Disabled string card</Divider>
         <StringCard
-          id="string-card"
+          refId={new RefId("string-card")}
           checked={false}
           disabled
           value={value}

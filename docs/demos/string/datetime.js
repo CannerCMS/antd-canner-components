@@ -6,6 +6,7 @@ import {IntlProvider} from 'react-intl';
 import {Divider} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../PrimitiveTypes';
+import RefId from 'canner-ref-id';
 
 @ExamplePrimitiveValueWrapper('2018-03-24T16:00:00.201Z')
 class DatetimeDemo1 extends Component<PrimitiveTypes<string>> {
@@ -18,7 +19,7 @@ class DatetimeDemo1 extends Component<PrimitiveTypes<string>> {
         <Fragment>
           <Divider>General date time picker</Divider>
           <Datetime
-            id="input"
+            refId={new RefId("input")}
             value={value}
             onChange={onChange}
             />
@@ -39,7 +40,7 @@ class DatetimeDemo2 extends Component<PrimitiveTypes<string>> {
         <Fragment>
           <Divider>Disabled time picker</Divider>
           <Datetime
-            id="input"
+            refId={new RefId("input")}
             disabled
             value={value}
             onChange={onChange}

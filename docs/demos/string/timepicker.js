@@ -6,6 +6,7 @@ import {IntlProvider} from 'react-intl';
 import {Divider} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../PrimitiveTypes';
+import RefId from 'canner-ref-id';
 
 @ExamplePrimitiveValueWrapper("16:18")
 class TimePickerDemo1 extends Component<PrimitiveTypes<string>> {
@@ -18,7 +19,7 @@ class TimePickerDemo1 extends Component<PrimitiveTypes<string>> {
         <Fragment>
           <Divider>General</Divider>
           <TimePicker
-            id="input"
+            refId={new RefId("input")}
             value={value}
             onChange={onChange}
             />
@@ -41,7 +42,7 @@ class TimePickerDemo2 extends Component<PrimitiveTypes<string>> {
           <Divider>Disabled</Divider>
           <TimePicker
             disabled={true}
-            id="input"
+            refId={new RefId("input")}
             value={value}
             onChange={onChange}
           />

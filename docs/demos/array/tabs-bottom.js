@@ -1,10 +1,10 @@
 // @flow
 import React, {Component} from 'react';
-import {Button} from 'antd';
 import TabBottom from 'packages/antd-array-tab-bottom';
 import cmsLocale from 'packages/antd-locales';
 import immutable from 'immutable';
 import {IntlProvider} from 'react-intl';
+import RefId from 'canner-ref-id';
 
 export default class TabBottomDemo extends Component<{}> {
   render() {
@@ -20,10 +20,7 @@ export default class TabBottomDemo extends Component<{}> {
             "title": "title 2",
             "content": "content 2"
           }])}
-          id="tab-bottom"
-          renderButton={() => <Button>Submit</Button>}
-          generateId={(id, i, type) => `${id}/${i}/${type}`}
-          renderChildren={() => "this is content"}
+          refId={new RefId("tab-bottom")}
           onChange={(datum, evt) => console.log(datum, evt)}
           />
       </IntlProvider>

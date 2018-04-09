@@ -4,6 +4,7 @@ import BooleanCard from 'packages/antd-boolean-card';
 import {Divider} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../PrimitiveTypes';
+import RefId from 'canner-ref-id';
 
 @ExamplePrimitiveValueWrapper(false)
 class BooleanCardDemo1 extends React.Component<PrimitiveTypes<boolean>> {
@@ -13,7 +14,7 @@ class BooleanCardDemo1 extends React.Component<PrimitiveTypes<boolean>> {
       <React.Fragment>
         <Divider>Boolean card</Divider>
         <BooleanCard
-          id="boolean-card"
+          refId={new RefId("boolean-card")}
           value={value}
           uiParams={{
             yesText: "YES!!",
@@ -34,7 +35,7 @@ class BooleanCardDemo2 extends React.Component<PrimitiveTypes<boolean>> {
       <React.Fragment>
         <Divider>Disabled boolean card</Divider>
         <BooleanCard
-          id="boolean-card"
+          refId={new RefId("boolean-card")}
           disabled
           value={value}
           uiParams={{
