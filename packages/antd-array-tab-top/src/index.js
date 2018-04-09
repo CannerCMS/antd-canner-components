@@ -3,10 +3,9 @@
 import React, { Component } from "react";
 import Tab from "@canner/antd-array-tabs";
 import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
-import type {FieldItems} from 'types/DefaultProps';
 
-type Props = ArrayDefaultProps<FieldItems> & {
-  value: Array<FieldItems>
+type Props = ArrayDefaultProps<{[string]: any}> & {
+  uiParams: {[string]: any}
 };
 
 export default class TabTop extends Component<Props> {

@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import {List, fromJS} from 'immutable';
 import {Modal} from 'antd';
 import {Table} from 'antd';
+
+import type {FieldId} from 'types/DefaultProps';
+
 type Props = {
   title: string,
   onOk: Function,
@@ -12,7 +15,7 @@ type Props = {
   visible: boolean,
   pickedIds: string[],
   pickOne?: boolean,
-  id: string,
+  refId: FieldId,
   relation: {
     relationship: string,
     relationTo: string,
@@ -36,7 +39,7 @@ type State = {
 
 export default class Picker extends PureComponent<Props, State> {
   componentId: string;
-  queue: Array<changeArg>;
+
   goTo: (page: number) => ({[string]: number});
   static contextTypes = {
     fetch: PropTypes.func,
@@ -52,7 +55,7 @@ export default class Picker extends PureComponent<Props, State> {
       totalPage: 1,
       selectedRowKeys: props.pickedIds ? props.pickedIds : []
     };
-    this.componentId = `${props.id}/PICK`;
+    this.componentId = `${props.refId.toString()}/PICK`;
   }
   
   componentWillReceiveProps(nextProps: Props) {
@@ -128,6 +131,7 @@ export default class Picker extends PureComponent<Props, State> {
         }}
         size="middle"
         columns={columns}
+        // $FlowFixMe
         dataSource={value.toJS().map(v => ({key: v._id, ...v}))}
       />
     </Modal>

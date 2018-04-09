@@ -101,14 +101,14 @@ export default class Editor extends PureComponent<Props, State> {
 
   // 如果不先設預設值，value="" 會讓dangerousHtml break
   setDefaultValue = (props: Props) => {
-    const { id, value, onChange } = props;
+    const { refId, value, onChange } = props;
     if (onChange && (!value || value.length === 0)) {
-      onChange(id, "update", "<div>&nbsp;<br></div>");
+      onChange(refId, "update", "<div>&nbsp;<br></div>");
     }
   };
 
   onChange = (value: string) => {
-    const { id, onChange } = this.props;
+    const { refId, onChange } = this.props;
     if (!this.reactQuill) return;
     const textValue = this.reactQuill
       .getEditor()
@@ -116,10 +116,10 @@ export default class Editor extends PureComponent<Props, State> {
       .trim();
     if (textValue.length === 0) {
       // if the length is 0, set empty string
-      onChange(id, "update", "<div>&nbsp;<br></div>");
+      onChange(refId, "update", "<div>&nbsp;<br></div>");
     } else {
       // else set origin value
-      onChange(id, "update", value);
+      onChange(refId, "update", value);
     }
   };
 

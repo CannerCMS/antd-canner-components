@@ -15,7 +15,8 @@ type Props = NumberDefaultProps & {
 
 export default class NumberRate extends PureComponent<Props> {
   onChange = (val: number) => {
-    this.props.onChange(this.props.id, "update", val);
+    const {onChange, refId} = this.props;
+    onChange(refId, "update", val);
   };
 
   render() {

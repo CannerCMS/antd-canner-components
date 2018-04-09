@@ -146,6 +146,12 @@
     store "^2.0.12"
     styled-components "^3.2.1"
 
+"@canner/react-cms-helpers@^0.1.3":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@canner/react-cms-helpers/-/react-cms-helpers-0.1.3.tgz#a2724536fbafaf805c1ef432798ec7d2aebb3843"
+  dependencies:
+    immutable "^4.0.0-rc.9"
+
 "@firebase/app-types@0.1.1":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@firebase/app-types/-/app-types-0.1.1.tgz#1b794e101c779310763b1bfce8c24e7728fb9a91"

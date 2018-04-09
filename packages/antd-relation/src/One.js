@@ -5,17 +5,23 @@ import type { Map, List } from 'immutable';
 import template from 'lodash/template';
 import Picker from './Picker';
 
+// type 
+import type {RelationDefaultProps} from 'types/RelationDefaultProps';
+import type {FieldDisabled} from 'types/DefaultProps';
+
 type State = {
   modalVisible: boolean
 };
 
-type Props = defaultProps & {
-  value: Map<string, any>,
+type Props = RelationDefaultProps & {
   uiParams: {
     textCol: string,
     subtextCol: string,
-    renderText?: string
-  }
+    renderText?: string,
+    columns: Array<*>
+  },
+  rootValue: any,
+  disabled: FieldDisabled
 };
 
 export default class RelationOneId extends PureComponent<Props, State> {
@@ -40,9 +46,9 @@ export default class RelationOneId extends PureComponent<Props, State> {
   }
 
   handleOk = (queue: List<any>) => {
-    const {onChange, id} = this.props;
+    const {onChange, refId} = this.props;
     // get the first, and only one from picker
-    onChange(id, 'update', queue.get(0));
+    onChange(refId, 'update', queue.get(0));
     this.handleCancel();
   }
 
@@ -53,18 +59,19 @@ export default class RelationOneId extends PureComponent<Props, State> {
   }
 
   handleClose = () => {
-    const {onChange, id} = this.props;
-    onChange(id, 'update', null);
+    const {onChange, refId} = this.props;
+    onChange(refId, 'update', null);
   }
 
   render() {
     const { modalVisible } = this.state;
-    const { readOnly, value, uiParams, renderChildren, id, relation } = this.props;
+    const { disabled, value, uiParams, refId, relation } = this.props;
     return (
       <div>
         {
           value && value.size ?
             <Tag key={value.getIn([0, "_id"])} closable={true} afterClose={this.handleClose}>
+              {/* $FlowFixMe */}
               {getTag(value.toJS()[0], uiParams)}
             </Tag> :
             null
@@ -76,16 +83,16 @@ export default class RelationOneId extends PureComponent<Props, State> {
           <Icon type="edit" /> Change
         </Tag>
         {
-          !readOnly && <Picker
+          !disabled && <Picker
             title="選擇你要的物件"
             visible={modalVisible}
             onOk={this.handleOk}
             onCancel={this.handleCancel}
-            renderChildren={renderChildren}
             pickOne={true}
+            // $FlowFixMe
             pickedIds={[value && value.getIn([0, "_id"])]}
             columns={uiParams.columns}
-            id={id}
+            refId={refId}
             relation={relation}
           />
         }

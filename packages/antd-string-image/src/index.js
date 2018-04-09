@@ -30,7 +30,7 @@ export default class Image extends PureComponent<Props, State> {
       editPopup: false
     };
     const { service, dir, filename } = props.uiParams || {};
-    const key = props.id.split('/')[0];
+    const key = props.refId.getPathArr()[0];
     // {
     //   service: 'canner' | 'imgur' | 'firebase',
     //   dir?: string,
@@ -66,7 +66,7 @@ export default class Image extends PureComponent<Props, State> {
   };
 
   onChange = (value: Array<string> | string) => {
-    this.props.onChange(this.props.id, "update", value[0]);
+    this.props.onChange(this.props.refId, "update", value[0]);
   };
 
   render() {

@@ -6,18 +6,22 @@ import type { Node } from "react";
 | pass from parent
 |--------------------------------------------------
 */
-export type FieldId = string;
+
+type RefId = any;
+
+export type FieldId = RefId;
 // pass the rest routes to let hoc know whether components should be rendered
 // eg: ['posts', '0', 'title']
 export type RoutesArr = Array<string>;
 
 // hoc: withRequest
 // https://github.com/Canner/qa-generator/blob/master/src/hocs/withRequest.js
-export type OnChangeFn = (
-  id: string | { firstId: string, secondId: string } | Array<OnChangeFn>,
-  type?: string,
+
+export type OnChangeFn = ((refId: FieldId | {[string]: FieldId}, type: string, value?: any) => Promise<void>) & (Array<{
+  refId: FieldId | {[string]: FieldId},
+  type: string,
   value?: any
-) => void;
+}> => Promise<void>);
 
 // hoc: withRelation
 // only used in relation
@@ -57,28 +61,10 @@ export type CreateEmptyDataFn = ({[string]: any}) => any;
 export type TransformDataFn = any => any;
 
 // deploy function in array
-export type DeployFn = (key?: string, id?: string, callback?: Function) => Promise<*>
-
-// parent component will call this method to render their children,
-// in component, their are two required props `id`, `routes`,
-// eg: <div>
-//   {renderChildren({id: `${this.props.id}/${index}`, routes: this.props.routes})}
-// </div>
-// https://github.com/Canner/qa-generator/blob/master/src/index.js
-export type BtnProps = {
-  disabled?: boolean,
-  style?: Object,
-  key?: string,
-  id?: string,
-  onClick?: (key?: string, id?: string, callback?: Function) => Promise<*>,
-  callback?: Function,
-  text?: Node | string,
-  hidden?: boolean
-}
-export type RenderChildrenFn = (props: any | (any => any), deployBtnProps?: BtnProps, clearBtnProps?: BtnProps) => Node;
+export type DeployFn = (fieldId: FieldId, callback?: Function) => Promise<*>
 
 // only relation component get this
-export type Relation = {
+export type FieldRelation = {
   relationship: string,
   relationTo: string,
   pickOne?: string,
@@ -89,11 +75,6 @@ export type Relation = {
 // goTo('/my/url')
 // https://github.com/Canner/qa-generator/blob/master/src/index.js
 export type GotoFn = string => void;
-
-// the baseUrl
-// eg: in canner-web, the baseUrl=/apps/APP-URL/restfulqa
-// https://github.com/Canner/qa-generator/blob/master/src/index.js
-export type BaseUrl = string;
 
 // not supported
 export type Loading = boolean; // The endpoint HOC will pass this value to the first layer plugins to let them know whether data is fetched, so only object and array plugins have to deal with loading status.

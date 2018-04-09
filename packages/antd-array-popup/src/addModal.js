@@ -6,15 +6,19 @@ import { Modal } from "antd";
 // import ChangeMethodComponent from "./changeMethodComponent";
 import { FormattedMessage } from "react-intl";
 import defaultMessage from "@canner/antd-locales";
-import pick from "lodash/pick";
+import { Item, ConfirmButton, CancelButton } from "@canner/react-cms-helpers";
+import type {FieldId} from "types/DefaultProps";
 
 type Props = {
-  onChange: (id: any, type: string, value: any) => void,
+  onChange: (refId: FieldId | {[string]: FieldId}, type: string, value?: any) => Promise<void>
+  | (Array<{
+    refId: FieldId | {[string]: FieldId},
+    type: string,
+    value?: any
+  }>) => Promise<void>,
   createAction: Array<string>,
-  id: string,
-  renderChildren: Function,
-  items: {[string]: any},
-  createEmptyData: Function
+  refId: FieldId,
+  items: {[string]: any}
 }
 
 type State = {
@@ -32,9 +36,8 @@ export default class AddModal extends Component<Props, State> {
   }
 
   showModal = (value: any, order: number) => {
-    const { createAction, createEmptyData, items, onChange, id } = this.props;
-    const schema = pick(items, createAction);
-    onChange(id, "create", createEmptyData(schema));
+    const {onChange, refId} = this.props;
+    onChange(refId, "create");
     this.setState({
       visible: true,
       order
@@ -53,34 +56,35 @@ export default class AddModal extends Component<Props, State> {
   }
 
   render() {
-    const { createAction, renderChildren, id } = this.props;
+    const { createAction, refId } = this.props;
     const { visible, order } = this.state;
+    const footer = <div>
+      <ConfirmButton
+        text={<FormattedMessage
+          id="array.popup.modal.okText"
+          defaultMessage={defaultMessage.en["array.popup.modal.okText"]}
+        />}
+        callback={this.closeModalAndReset}
+      />
+      <CancelButton
+        text={<FormattedMessage
+          id="array.popup.modal.cancelText"
+          defaultMessage={defaultMessage.en["array.popup.modal.cancelText"]}
+        />}
+        callback={this.closeModalAndReset}
+      />
+    </div>;
     return (
       <Modal
         width="80%"
         visible={visible}
         onCancel={this.handleCancel}
-        footer={null}
+        footer={footer}
       >
-        {visible
-          ? renderChildren(child => ({
-              id: `${id}/${order}`,
-              // not work now, need to resolve it
-              readOnly: createAction.indexOf(child.name) === -1
-            }), {
-              text: <FormattedMessage
-                id="array.popup.modal.okText"
-                defaultMessage={defaultMessage.en["array.popup.modal.okText"]}
-              />,
-              callback: this.closeModalAndReset
-            }, {
-              text:  <FormattedMessage
-                id="array.popup.modal.cancelText"
-                defaultMessage={defaultMessage.en["array.popup.modal.cancelText"]}
-              />,
-              callback: this.closeModalAndReset
-            })
-          : null}
+        <Item
+          refId={refId.child(order)}
+          filter={child => createAction.indexOf(child.name) !== -1}
+        />
       </Modal>
     );
   }

@@ -1,23 +1,15 @@
 // @flow
-import React, { Component } from "react";
+import * as React from "react";
+import {Item} from '@canner/react-cms-helpers';
 
-type Props = defaultProps & {
-  value: {[string]: any}
-}
-
-export default class Fieldset extends Component<Props> {
+export default class Fieldset extends React.Component<*> {
   render() {
-    const { id, renderChildren, routes } = this.props;
     /**
      * pass onChange, and id to each child
      */
-    const childrenWithProps = renderChildren({
-      id,
-      routes
-    });
     return (
       <fieldset style={{border: 0}}>
-        {childrenWithProps}
+        <Item />
       </fieldset>
     );
   }

@@ -12,12 +12,18 @@ import isEmpty from "lodash/isEmpty";
 import isNull from "lodash/isNull";
 import { FormattedMessage } from "react-intl";
 import defaultMessage from "@canner/antd-locales";
+import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
+import type {FieldItems} from 'types/DefaultProps';
 
-type Props = defaultProps & {
-  value: List<any>,
+type FieldItem = {
+  [string]: any,
+};
+
+type Props = ArrayDefaultProps<FieldItem> & {
   uiParams: {
     createAction: Array<string>,
     updateAction: Array<string>,
+    deleteAction: boolean,
     columns: Array<{
       title: string,
       key: string,
@@ -25,17 +31,13 @@ type Props = defaultProps & {
       renderTemplate: string
     }>
   },
-  rootValue: any,
-  showPagination: boolean
+  showPagination: boolean,
+  items: FieldItems
 };
 
-type State = {
-  relationData: ?{[string]: any}
-}
-
-export default class PopupArrayPlugin extends Component<Props, State> {
-  editModal: ?HTMLDivElement;
-  addModal: ?HTMLDivElement;
+export default class PopupArrayPlugin extends Component<Props> {
+  editModal: ?EditModal;
+  addModal: ?AddModal;
   static defaultProps = {
     value: new List(),
     showPagination: true,
@@ -48,16 +50,12 @@ export default class PopupArrayPlugin extends Component<Props, State> {
 
   render() {
     const {
-      id,
+      refId,
       uiParams,
       value,
       onChange,
-      createEmptyData,
-      renderChildren,
       showPagination,
       items,
-      rootValue,
-      query
     } = this.props;
     const {deploy} = this.context;
     const editText = (
@@ -124,7 +122,7 @@ export default class PopupArrayPlugin extends Component<Props, State> {
               type="ghost"
               onClick={() =>
                 showDeleteConfirm({
-                  id,
+                  refId,
                   onChange,
                   deploy,
                   order: record.__index
@@ -142,8 +140,8 @@ export default class PopupArrayPlugin extends Component<Props, State> {
         <Table
           pagination={showPagination}
           dataSource={value.toJS().map((datum, i) => {
-            datum.__index = i;
-            datum.key = datum.key || i;
+            (datum: any).__index = i;
+            (datum: any).key = (datum: any).key || i;
             return datum;
           })}
           columns={newColumnsRender}
@@ -161,22 +159,16 @@ export default class PopupArrayPlugin extends Component<Props, State> {
         )}
         <EditModal
           ref={modal => (this.editModal = modal)}
-          id={id}
-          renderChildren={renderChildren}
+          refId={refId}
           updateAction={updateAction}
           onChange={onChange}
-          query={query}w
         />
         <AddModal
           ref={modal => (this.addModal = modal)}
-          id={id}
-          renderChildren={renderChildren}
+          refId={refId}
           createAction={createAction}
           onChange={onChange}
           items={items.items}
-          createEmptyData={createEmptyData}
-          rootValue={rootValue}
-          query={query}
         />
       </div>
     );

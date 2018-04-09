@@ -4,11 +4,17 @@ import React, { Component } from "react";
 import { Radio } from "antd";
 import { Map, fromJS } from "immutable";
 const { Group, Button } = Radio;
+import {Item, createEmptyData} from '@canner/react-cms-helpers';
 
-type Props = defaultProps & {
+import type {ObjectDefaultProps} from 'types/ObjectDefaultProps';
+
+type Props = ObjectDefaultProps & {
   uiParams: {
     options: Array<{title: string, key: string, childName: string}>,
     optionKey: string
+  },
+  items: {
+
   }
 };
 
@@ -36,11 +42,13 @@ export default class OptionPlugin extends Component<Props, State> {
 
   radioOnChange = (e: any) => {
     const selectedKey = e.target.value;
-    const {uiParams, onChange, id, createEmptyData, items} = this.props;
+    const {uiParams, onChange, refId, items} = this.props;
     const {optionKey = 'type', options} = uiParams;
     const selectedOption = options.find(option => option.key === selectedKey);
+    if (!selectedOption)
+      return;
     const emptyValue = createEmptyData(items[selectedOption.childName]);
-    onChange(`${id}`, 'update', fromJS({
+    onChange(refId, 'update', fromJS({
       [optionKey]: selectedKey,
       [selectedOption.childName]: emptyValue
     }));
@@ -50,10 +58,10 @@ export default class OptionPlugin extends Component<Props, State> {
   }
 
   render() {
-    const { uiParams, renderChildren, id, routes } = this.props;
+    const { uiParams } = this.props;
     const { options } = uiParams;
     const { selectedKey } = this.state;
-    const selectedOpion = options.find(option => option.key === selectedKey) || options[0];
+    const selectedOption = options.find(option => option.key === selectedKey) || options[0];
     return (
       <div>
         <Group
@@ -65,17 +73,10 @@ export default class OptionPlugin extends Component<Props, State> {
             return <Button key={i} value={option.key}>{option.title}</Button>;
           })}
         </Group>
-        {renderChildren(child => {
-          let hidden = false;
-          if (child.name !== selectedOpion.childName) {
-            hidden = true;
-          }
-          return {
-            id,
-            routes,
-            hidden
-          }
-        })}
+
+        <Item
+          filter={child => child.keyName === selectedOption.childName}
+        />
       </div>
     );
   }

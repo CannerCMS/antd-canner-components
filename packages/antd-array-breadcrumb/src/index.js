@@ -3,11 +3,9 @@
 import React, { Component } from "react";
 import { Table, Button, Modal } from "antd";
 import PropTypes from 'prop-types';
-import { List, Map } from "immutable";
+import { List } from "immutable";
 import renderFunc from "./renderFunc";
 import isEmpty from "lodash/isEmpty";
-import pick from 'lodash/pick';
-import isObject from "lodash/isObject";
 import { FormattedMessage } from "react-intl";
 import defaultMessage from "@canner/antd-locales";
 import type {FieldId, FieldItems, GotoFn} from 'types/DefaultProps';
@@ -15,9 +13,9 @@ const ButtonGroup = Button.Group;
 const confirm = Modal.confirm;
 
 type Props = {
-  id: FieldId,
+  refId: FieldId,
   items: FieldItems,
-  goto: GotoFn,
+  goTo: GotoFn,
   value: List<any>,
   uiParams: {
     createAction: Array<string>,
@@ -37,42 +35,7 @@ type Props = {
   showPagination: boolean
 };
 
-type State = {
-  relationData: {[string]: any}
-}
-
-function findFromItems(items, filter, rtnField, list) {
-  list = list || [];
-  if (!isObject(items)) {
-    return list;
-  }
-  if (items && filter(items)) {
-    try {
-      list.push(pick(items, rtnField));
-    } catch (e) {
-      list.push(items);
-      // eslint-disable-next-line
-      console.error(e);
-    }
-    return list;
-  }
-
-  if ('items' in items ) {
-    list = list.concat(findFromItems(items.items, filter, rtnField));
-  } else {
-    list = Object.keys(items).reduce((acc, key) => {
-      const item = items[key];
-      if (isObject(item)) {
-        item.__key__ = key;
-        return acc.concat(findFromItems(item, filter, rtnField));
-      }
-      return acc;
-    }, list);
-  }
-  return list;
-}
-
-export default class ArrayBreadcrumb extends Component<Props, State> {
+export default class ArrayBreadcrumb extends Component<Props> {
   editModal: ?HTMLDivElement;
   addModal: ?HTMLDivElement;
   static defaultProps = {
@@ -92,45 +55,14 @@ export default class ArrayBreadcrumb extends Component<Props, State> {
     };
   }
 
-  componentWillMount() {
-    const { fetch } = this.context;
-    const { items, id, value } = this.props;
-    const relationList = findFromItems(items, schema => {
-      return schema.type === 'relation';
-    }, ['relation', '__key__']);
-    relationList.forEach(item => {
-      const { __key__, relation } = item;
-      const { relationTo, relationship } = relation;
-      let idList = new List();
-      value.forEach(v => {
-        // $FlowFixMe
-        if (relationship === 'oneToMany.idMap') {
-          idList = idList.concat((v.get(__key__) || new Map()).keySeq().toJS());
-        } else {
-          idList = idList.concat((v.get(__key__) || new List()));
-        }
-      });
-      fetch(relationTo, `${id}/__RELATION__`, {filter: {_id: {$in: idList.toJS()}}, pagination: {start: 0, limit: 40}})
-        .then(ctx => {
-          const data = ctx.response.body;
-          this.setState(state => ({
-            relationData: {
-              ...state.relationData,
-              [__key__]: data && data.toJS ? data.toJS() : []
-            }
-          }));
-        });
-    });
-  }
-
   add = () => {
-    const {goTo, id, baseUrl} = this.props;
-    goTo(`${baseUrl}/${id}?op=create`);
+    const {goTo, id} = this.props;
+    goTo(`${id}?op=create`);
   }
 
   edit = (recordId: string) => {
-    const {goTo, id, baseUrl} = this.props;
-    goTo(`${baseUrl}/${id}/${recordId}`);
+    const {goTo, id} = this.props;
+    goTo(`${id}/${recordId}`);
   }
 
   remove = (index: number) => {
@@ -151,14 +83,11 @@ export default class ArrayBreadcrumb extends Component<Props, State> {
 
   render() {
     const {
-      id,
       uiParams,
       value,
-      onChange,
       showPagination,
       items
     } = this.props;
-    const {relationData} = this.state;
     const addText = (
       <FormattedMessage
         id="array.popup.addText"
@@ -176,7 +105,7 @@ export default class ArrayBreadcrumb extends Component<Props, State> {
     const newColumns = columns.slice();
     // 為了向後相容 當 schema.items undefined時
     // 拿 schema.createAction.schema.items
-    const newColumnsRender = renderFunc(newColumns, items.items, relationData);
+    const newColumnsRender = renderFunc(newColumns, items.items);
     newColumnsRender.push({
       title: 'Actions',
       dataIndex: "__settings",

@@ -1,17 +1,22 @@
 // @flow
 
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { Modal } from "antd";
 
 import { FormattedMessage } from "react-intl";
 import defaultMessage from "@canner/antd-locales";
+import {Item, ConfirmButton, CancelButton} from '@canner/react-cms-helpers';
+import type {FieldId} from 'types/DefaultProps';
 
 type Props = {
-  onChange: (id: any, type: string, value: any) => void,
+  onChange: (refId: FieldId | {[string]: FieldId}, type: string, value?: any) => Promise<void>
+  | (Array<{
+    refId: FieldId | {[string]: FieldId},
+    type: string,
+    value?: any
+  }>) => Promise<void>,
   updateAction: Array<string>,
-  id: string,
-  renderChildren: Function,
+  refId: FieldId,
 }
 
 type State = {
@@ -20,11 +25,6 @@ type State = {
 }
 
 export default class EditModal extends Component<Props, State> {
-  static contextTypes = {
-    deploy: PropTypes.func,
-    reset: PropTypes.func
-  };
-
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -52,33 +52,34 @@ export default class EditModal extends Component<Props, State> {
 
   render() {
     const { visible, order } = this.state;
-    const { updateAction, renderChildren, id } = this.props;
+    const { updateAction, refId } = this.props;
+    const footer = <div>
+      <ConfirmButton
+        text={<FormattedMessage
+          id="array.popup.modal.okText"
+          defaultMessage={defaultMessage.en["array.popup.modal.okText"]}
+        />}
+        callback={this.closeModalAndReset}
+      />
+      <CancelButton
+        text={<FormattedMessage
+          id="array.popup.modal.cancelText"
+          defaultMessage={defaultMessage.en["array.popup.modal.cancelText"]}
+        />}
+        callback={this.closeModalAndReset}
+      />
+    </div>;
     return (
       <Modal
         width="80%"
         visible={visible}
         onCancel={this.handleCancel}
-        footer={null}
+        footer={footer}
       >
-        {visible
-          ? renderChildren(child => ({
-              id: `${id}/${order}`,
-              // not work now, need to resolve it
-              readOnly: updateAction.indexOf(child.name) === -1
-            }), {
-              text:  <FormattedMessage
-                id="array.popup.modal.okText"
-                defaultMessage={defaultMessage.en["array.popup.modal.okText"]}
-              />,
-              callback: this.closeModalAndReset
-            }, {
-              text:  <FormattedMessage
-                id="array.popup.modal.cancelText"
-                defaultMessage={defaultMessage.en["array.popup.modal.cancelText"]}
-              />,
-              callback: this.closeModalAndReset
-            })
-          : null}
+        <Item
+          refId={refId.child(order)}
+          filter={child => updateAction.indexOf(child.name) !== -1}
+        />
       </Modal>
     );
   }

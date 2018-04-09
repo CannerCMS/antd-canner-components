@@ -5,8 +5,10 @@ import {List} from 'immutable';
 import defaultMessage from "@canner/antd-locales";
 import {injectIntl, FormattedMessage} from 'react-intl';
 const Option = Select.Option;
+import {transformData} from '@canner/react-cms-helpers';
 
 // types
+import type {FieldDisabled} from 'types/DefaultProps';
 import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
 import type {intlShape} from 'react-intl'
 
@@ -15,7 +17,7 @@ type Props = ArrayDefaultProps<string> & {
     defaultOptions: Array<string>
   },
   intl: intlShape,
-  disabled: boolean
+  disabled: FieldDisabled
 };
 
 @injectIntl
@@ -34,8 +36,8 @@ export default class TagUi extends PureComponent<Props> {
   }
 
   onChange = (value: Array<string>) => {
-    const { onChange, id, transformData } = this.props;
-    onChange(id, "update", transformData(value));
+    const { onChange, refId } = this.props;
+    onChange(refId, "update", transformData(value));
   }
 
   render() {

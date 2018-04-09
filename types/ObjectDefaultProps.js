@@ -1,10 +1,10 @@
 // @flow
 import type {FieldId} from './DefaultProps';
-import type {List} from 'immutable';
+import type {List, Map} from 'immutable';
 
-export type ArrayDefaultProps<T> = {|
+export type ObjectDefaultProps = {|
   refId: FieldId,
-  value: List<T>,
+  value: Map<string, *>,
   onChange:
     (refId: FieldId | {[string]: FieldId}, type: string, value?: any) => Promise<void>
     | (Array<{
