@@ -4,7 +4,7 @@ import React from 'react';
 import {Button, message} from 'antd';
 import RefId from 'canner-ref-id';
 
-export const contextValue =  {
+export default {
   renderChildren: () => 'this is the content',
   renderConfirmButton: function ConfirmButton({
     disabled = false,

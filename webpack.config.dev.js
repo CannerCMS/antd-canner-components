@@ -18,6 +18,7 @@ module.exports = {
     alias: {
       packages: path.resolve(__dirname, "./packages"),
       utils: path.resolve(__dirname, "./utils"),
+      '@canner/react-cms-helpers': path.resolve(__dirname, 'node_modules', '@canner/react-cms-helpers'),
       'styled-components': path.resolve(__dirname, 'node_modules', 'styled-components')
     }
   },
