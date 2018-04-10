@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-string-card",
-  "version": "0.1.0-rc.35",
+  "version": "0.1.0-no8.1",
   "description": "string card",
   "main": "lib/index.js",
   "scripts": {},
@@ -12,7 +12,7 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/cms-plugin-share-card": "^0.1.0-rc.35",
+    "@canner/cms-plugin-share-card": "^0.1.0-no8.1",
     "lodash": "^4.17.4"
   }
 }
