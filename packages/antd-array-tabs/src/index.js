@@ -152,8 +152,8 @@ export default class TabUi extends Component<Props, State> {
             refId={thisId}
           />
           <div>
-            <ConfirmButton />
-            <CancelButton />
+            <ConfirmButton refId={thisId}/>
+            <CancelButton refId={thisId}/>
           </div>
         </TabPane>
       );
