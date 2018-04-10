@@ -34,7 +34,7 @@ export default class Variants extends Component<Props> {
     const types = this.cartesianProduct(options.toJS());
     const variantsObj = types.map(type => {
       const newVariants = type.join("-");
-      const originVariants = (variants, []).find(variant =>
+      const originVariants = (variants || []).find(variant =>
         isEqual(variant.get("options"), newVariants)
       );
       if (originVariants) {
@@ -62,7 +62,7 @@ export default class Variants extends Component<Props> {
     const types = this.cartesianProduct(options.toJS());
     const variantsObj = types.filter(type => type.length).map(type => {
       const newVariants = type.join("-");
-      const originVariants = variants.find(variant =>
+      const originVariants = (variants || []).find(variant =>
         isEqual(variant.get("options"), newVariants)
       );
       if (originVariants) {
