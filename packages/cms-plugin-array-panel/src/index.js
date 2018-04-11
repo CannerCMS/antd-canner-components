@@ -115,9 +115,6 @@ export default class PanelUi extends PureComponent<Props, State> {
             })}
           </Collapse>
         ) : null}
-        <Button type="primary" onClick={this.create}>
-          ＋
-        </Button>
       </div>
     );
   }
