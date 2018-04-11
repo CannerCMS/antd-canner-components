@@ -1,6 +1,6 @@
 {
   "name": "@canner/cms-plugin-array-tab-bottom",
-  "version": "0.1.0-no8.1",
+  "version": "0.1.0-no8.2",
   "description": "array tab bottom",
   "main": "lib/index.js",
   "scripts": {},
