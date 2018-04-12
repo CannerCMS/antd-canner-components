@@ -6,6 +6,7 @@ import {IntlProvider} from 'react-intl';
 import {Divider} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../PrimitiveTypes';
+import RefId from 'canner-ref-id';
 
 @ExamplePrimitiveValueWrapper("https://cdn.canner.io/images/logo/logo-word.png")
 class ImageDemo1 extends Component<PrimitiveTypes<string>> {
@@ -18,7 +19,7 @@ class ImageDemo1 extends Component<PrimitiveTypes<string>> {
         <Fragment>
           <Divider>Normal image with image</Divider>
           <Image
-            id="image"
+            refId={new RefId("image")}
             value={value}
             uiParams={{service: 'imgur'}}
             onChange={onChange}
@@ -40,7 +41,7 @@ class ImageDemo2 extends Component<PrimitiveTypes<string>> {
         <Fragment>
           <Divider>Normal image uploader without selected image</Divider>
           <Image
-            id="image"
+            refId={new RefId("image")}
             value={value}
             uiParams={{service: 'imgur'}}
             onChange={onChange}
@@ -62,7 +63,7 @@ class ImageDemo3 extends Component<PrimitiveTypes<string>> {
         <Fragment>
           <Divider>Disabled image uploader with image</Divider>
           <Image
-            id="image"
+            refId={new RefId("image")}
             disabled
             value={value}
             uiParams={{service: 'imgur'}}
@@ -85,7 +86,7 @@ class ImageDemo4 extends Component<PrimitiveTypes<string>> {
         <Fragment>
           <Divider>Disabled image uploader without image</Divider>
           <Image
-            id="image"
+            refId={new RefId("image")}
             disabled
             value={value}
             uiParams={{service: 'imgur'}}

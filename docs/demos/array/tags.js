@@ -4,8 +4,8 @@ import Tag from 'packages/antd-array-tag';
 import cmsLocale from 'packages/antd-locales';
 import immutable from 'immutable';
 import {IntlProvider} from 'react-intl';
-import transformData from '@canner/qa-generator/lib/utils/transformData'
 import {Divider} from 'antd';
+import RefId from 'canner-ref-id';
 
 export default class TagDemo extends React.Component<{}> {
   render() {
@@ -17,9 +17,7 @@ export default class TagDemo extends React.Component<{}> {
           <Divider>General tag - value using immutable list</Divider>
           <Tag
             value={immutable.fromJS(["tag 1", "tag 2"])}
-            id="tag"
-            generateId={(id, i, type) => `${id}/${i}/${type}`}
-            transformData={transformData}
+            refId={new RefId("tag")}
             onChange={(id, type, value) => {
               console.log('id: ', id, ', type: ', type, ', value: ', value);
             }}
@@ -27,9 +25,7 @@ export default class TagDemo extends React.Component<{}> {
           <Divider>General tag - value using array</Divider>
           <Tag
             value={["tag 1", "tag 2"]}
-            id="tag"
-            generateId={(id, i, type) => `${id}/${i}/${type}`}
-            transformData={transformData}
+            refId={new RefId("tag")}
             onChange={(id, type, value) => {
               console.log('id: ', id, ', type: ', type, ', value: ', value);
             }}
@@ -38,9 +34,7 @@ export default class TagDemo extends React.Component<{}> {
           <Tag
             value={["tag 1", "tag 2"]}
             disabled
-            id="tag"
-            generateId={(id, i, type) => `${id}/${i}/${type}`}
-            transformData={transformData}
+            refId={new RefId("tag")}
             onChange={(id, type, value) => {
               console.log('id: ', id, ', type: ', type, ', value: ', value);
             }}

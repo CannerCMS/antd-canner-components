@@ -6,6 +6,7 @@ import {IntlProvider} from 'react-intl';
 import {Divider} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../PrimitiveTypes';
+import RefId from 'canner-ref-id';
 
 @ExamplePrimitiveValueWrapper('this is link value')
 class LinkDemo1 extends Component<PrimitiveTypes<string>> {
@@ -18,7 +19,7 @@ class LinkDemo1 extends Component<PrimitiveTypes<string>> {
         <Fragment>
           <Divider>General link</Divider>
           <Link
-            id="link"
+            refId={new RefId("link")}
             value={value}
             onChange={onChange}
             />
@@ -39,7 +40,7 @@ class LinkDemo2 extends Component<PrimitiveTypes<string>> {
         <Fragment>
           <Divider>Disabled link</Divider>
           <Link
-            id="link"
+            refId={new RefId("link")}
             value={value}
             disabled
             onChange={onChange}

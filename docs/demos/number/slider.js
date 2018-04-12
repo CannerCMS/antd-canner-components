@@ -4,6 +4,7 @@ import NumberSlider from 'packages/antd-number-slider';
 import {Divider} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../PrimitiveTypes';
+import RefId from 'canner-ref-id';
 
 @ExamplePrimitiveValueWrapper(4)
 class NumberSliderDemo1 extends React.Component<PrimitiveTypes<number>> {
@@ -13,7 +14,7 @@ class NumberSliderDemo1 extends React.Component<PrimitiveTypes<number>> {
       <React.Fragment>
         <Divider>Number slider</Divider>
         <NumberSlider
-          id="number-slider"
+          refId={new RefId("number-slider")}
           value={value}
           uiParams={{
             min: 2,
@@ -36,7 +37,7 @@ class NumberSliderDemo2 extends React.Component<PrimitiveTypes<number>> {
       <React.Fragment>
         <Divider>Disabled number slider</Divider>
         <NumberSlider
-          id="number-slider"
+          refId={new RefId("number-slider")}
           value={value}
           disabled
           uiParams={{

@@ -4,6 +4,7 @@ import Input from 'packages/antd-string-input';
 import {Divider} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../PrimitiveTypes';
+import RefId from 'canner-ref-id';
 
 @ExamplePrimitiveValueWrapper('This is input value')
 class InputDemo1 extends React.Component<PrimitiveTypes<string>> {
@@ -13,7 +14,7 @@ class InputDemo1 extends React.Component<PrimitiveTypes<string>> {
       <React.Fragment>
         <Divider>General input</Divider>
         <Input
-          id="input"
+          refId={new RefId("input")}
           value={value}
           onChange={onChange}
           />
@@ -29,7 +30,7 @@ class InputDemo2 extends React.Component<PrimitiveTypes<string>> {
       <React.Fragment>
         <Divider>Disabled input</Divider>
         <Input
-          id="input"
+          refId={new RefId("input")}
           value="this is input value"
           disabled
           />

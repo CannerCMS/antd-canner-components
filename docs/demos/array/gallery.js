@@ -4,8 +4,8 @@ import Gallery from 'packages/antd-array-gallery';
 import cmsLocale from 'packages/antd-locales';
 import immutable from 'immutable';
 import {ImgurService} from "@canner/image-service-config";
+import RefId from 'canner-ref-id';
 import {IntlProvider} from 'react-intl';
-import transformData from '@canner/qa-generator/lib/utils/transformData'
 import {Divider} from 'antd';
 
 export default class GalleryDemo extends React.Component<{}> {
@@ -32,9 +32,7 @@ export default class GalleryDemo extends React.Component<{}> {
             }, {
               image: "https://images.unsplash.com/photo-1522205432273-e6a178a9edd2?ixlib=rb-0.3.5&s=24dfd46e1b916c0a3d5644b23a782a75&auto=format&fit=crop&w=3300&q=80"
             }])}
-            id="gallery"
-            generateId={(id, i, type) => `${id}/${i}/${type}`}
-            transformData={transformData}
+            refId={new RefId("gallery")}
             imageServiceConfig={new ImgurService({
               mashapeKey: '<mashapeKey>',
               clientId: '<clientId>'

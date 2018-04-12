@@ -4,6 +4,7 @@ import Editor from 'packages/antd-string-editor';
 import {Divider} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../PrimitiveTypes';
+import RefId from 'canner-ref-id';
 
 @ExamplePrimitiveValueWrapper("This is an editor")
 class EditorDemo1 extends Component<PrimitiveTypes<string>> {
@@ -13,7 +14,7 @@ class EditorDemo1 extends Component<PrimitiveTypes<string>> {
       <Fragment>
         <Divider>General editor</Divider>
         <Editor
-          id="editor"
+          refId={new RefId("editor")}
           value={value}
           onChange={onChange}
           />
@@ -30,7 +31,7 @@ class EditorDemo2 extends Component<PrimitiveTypes<string>> {
       <Fragment>
         <Divider>Disabled general editor</Divider>
         <Editor
-          id="editor"
+          refId={new RefId("editor")}
           disabled
           value={value}
           onChange={onChange}

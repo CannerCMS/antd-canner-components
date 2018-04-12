@@ -6,6 +6,7 @@ import {IntlProvider} from 'react-intl';
 import {Divider} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../PrimitiveTypes';
+import RefId from 'canner-ref-id';
 
 @ExamplePrimitiveValueWrapper(true)
 class BooleanSwitchDemo1 extends Component<PrimitiveTypes<boolean>> {
@@ -18,7 +19,7 @@ class BooleanSwitchDemo1 extends Component<PrimitiveTypes<boolean>> {
         <Fragment>
           <Divider>Boolean switch</Divider>
           <BooleanSwitch
-            id="boolean-switch"
+            refId={new RefId("boolean-switch")}
             value={value}
             uiParams={{
               yesText: "YES!!",

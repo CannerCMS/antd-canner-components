@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import Inspector from 'react-inspector';
+import type RefId from 'canner-ref-id';
 
 type PrimitiveValue = string | boolean | number;
 
@@ -15,9 +16,9 @@ export default (defaultValue: PrimitiveValue) => (ConfigOrComposedComponent: Rea
       };
     }
 
-    onChange = (id: string, type: string, value: PrimitiveValue) => {
+    onChange = (refId: RefId, type: string, value: PrimitiveValue) => {
       let {log} = this.state;
-      log.unshift({id, type, value});
+      log.unshift({refId, type, value});
       
       this.setState({log, value});
     }

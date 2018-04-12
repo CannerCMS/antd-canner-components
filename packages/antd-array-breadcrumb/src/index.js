@@ -29,7 +29,6 @@ type Props = {
   },
   baseUrl: string,
   onChange: Function,
-  id: string,
   deploy: Function,
   rootValue: any,
   showPagination: boolean
@@ -48,33 +47,26 @@ export default class ArrayBreadcrumb extends Component<Props> {
     fetch: PropTypes.func
   }
 
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      relationData: {}
-    };
-  }
-
   add = () => {
-    const {goTo, id} = this.props;
-    goTo(`${id}?op=create`);
+    const {goTo, refId} = this.props;
+    goTo(`${refId.toString()}?op=create`);
   }
 
   edit = (recordId: string) => {
-    const {goTo, id} = this.props;
-    goTo(`${id}/${recordId}`);
+    const {goTo, refId} = this.props;
+    goTo(`${refId.toString()}/${recordId}`);
   }
 
   remove = (index: number) => {
-    const {onChange, deploy, id, value} = this.props;
+    const {onChange, deploy, refId, value} = this.props;
     confirm({
       title: 'Are you sure delete this task?',
       okText: 'Yes',
       okType: 'danger',
       cancelText: 'No',
       onOk() {
-        onChange(`${id}/${index}`, 'delete').then(() => {
-          deploy(id.split('/')[0], value.getIn([index, '_id']));
+        onChange(`${refId.toString()}/${index}`, 'delete').then(() => {
+          deploy(refId.getPathArr()[0], value.getIn([index, '_id']));
         });
       }
     });
@@ -128,7 +120,7 @@ export default class ArrayBreadcrumb extends Component<Props> {
       <div>
         <Table
           pagination={showPagination}
-          dataSource={value.toJS().map((datum, i) => {
+          dataSource={(value.toJS(): any).map((datum, i) => {
             datum.__index = i;
             datum.key = datum.key || i;
             return datum;

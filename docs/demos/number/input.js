@@ -4,6 +4,7 @@ import NumberInput from 'packages/antd-number-input';
 import {Divider} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../PrimitiveTypes';
+import RefId from 'canner-ref-id';
 
 @ExamplePrimitiveValueWrapper(6)
 class NumberInputDemo1 extends React.Component<PrimitiveTypes<number>> {
@@ -13,7 +14,7 @@ class NumberInputDemo1 extends React.Component<PrimitiveTypes<number>> {
       <React.Fragment>
         <Divider>Number input</Divider>
         <NumberInput
-          id="number-input"
+          refId={new RefId("number-input")}
           value={value}
           uiParams={{
             min: 1,
@@ -36,7 +37,7 @@ class NumberInputDemo2 extends React.Component<PrimitiveTypes<number>> {
       <React.Fragment>
         <Divider>Disabled number input</Divider>
         <NumberInput
-          id="number-input"
+          refId={new RefId("number-input")}
           disabled
           value={value}
           uiParams={{

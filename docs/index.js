@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 import ReactDOM from "react-dom";
 import {Menu, Layout} from 'antd';
-
+import contextValue from './context';
+import {Context} from '@canner/react-cms-helpers';
 // share
 import ShareCardDemo from './demos/share/card';
 
@@ -33,7 +34,6 @@ import TabLeftDemo from './demos/array/tabs-left';
 import TabRightDemo from './demos/array/tabs-right';
 import TagsDemo from './demos/array/tags';
 import GalleryDemo from './demos/array/gallery';
-
 const {SubMenu} = Menu;
 const {Content, Sider} = Layout;
 
@@ -104,6 +104,7 @@ class Demo extends Component {
         </Sider>
         <Layout style={{ padding: '0 24px 24px' }}>
           <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
+            <Context.Provider value={contextValue}>
             {/* share */}
             {selectTab === 'share' && selectKey === 'card' ? <ShareCardDemo/> : null}
 
@@ -135,6 +136,7 @@ class Demo extends Component {
             {selectTab === 'array' && selectKey === 'tab-bottom' ? <TabBottomDemo/> : null}
             {selectTab === 'array' && selectKey === 'tags' ? <TagsDemo/> : null}
             {selectTab === 'array' && selectKey === 'gallery' ? <GalleryDemo/> : null}
+            </Context.Provider>
           </Content>
         </Layout>
       </Layout>

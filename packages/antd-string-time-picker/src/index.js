@@ -25,9 +25,9 @@ export default class TimePickerPlugin extends PureComponent<Props> {
   };
 
   onChange = (time: any) => {
-    const { uiParams: {format}, onChange, id } = this.props;
+    const { uiParams: {format}, onChange, refId } = this.props;
     const timeString = moment(time).format(format);
-    onChange(id, "update", timeString);
+    onChange(refId, "update", timeString);
   };
 
   render() {
