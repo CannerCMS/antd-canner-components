@@ -17,11 +17,36 @@ export default (defaultValue: ArrayValue<any>) => (ConfigOrComposedComponent: Re
       };
     }
 
-    onChange = (refId: RefId, type: string, value: ArrayValue<any>) => {
-      let {log} = this.state;
-      log.unshift({refId, type, value});
+    onChange = (refId: RefId | {firstRefId: RefId, secondRefId: RefId}, type: string, delta: ArrayValue<any>) => {
+      let {log, value} = this.state;
+
+      if (type === 'update') {
+        log.unshift({refId, type, delta});
+        return this.setState({log, value: delta});
+      } else if (type === 'delete' && !refId.firstRefId) {
+        log.unshift({refId, type});
+        const pathArr = refId.getPathArr();
+        const delValue = value.remove(pathArr[pathArr.length - 1])
+        return this.setState({log, value: delValue})
+      } else if (type === 'create') {
+        log.unshift({refId, type});
+        const createVal = value.push({})
+        return this.setState({log, value: createVal})
+      } else if (type === 'swap' && refId.firstRefId) {
+        log.unshift({refId, type});
+
+        // $FlowFixMe
+        const {firstRefId, secondRefId} = refId;
+        const firstRefIdArr = firstRefId.getPathArr();
+        const secondRefIdArr = secondRefId.getPathArr();
+        const firstIndex = firstRefIdArr[firstRefIdArr.length - 1];
+        const secondIndex = secondRefIdArr[secondRefIdArr.length - 1];
+        let newValue = value.set(firstIndex, value.get(secondIndex));
+        newValue = newValue.set(secondIndex, value.get(firstIndex));
+
+        return this.setState({log, value: newValue});
+      }
       
-      this.setState({log, value});
     }
 
     render() {

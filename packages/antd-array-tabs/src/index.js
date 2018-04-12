@@ -100,7 +100,7 @@ export default class TabUi extends Component<Props, State> {
     const currRefId = refId.child(newIndex - 1);
 
     this.setState({activeKey: `${newIndex - 1}`});
-    onChange({firstId: prevRefId, secondId: currRefId}, "swap")
+    onChange({firstRefId: prevRefId, secondRefId: currRefId}, "swap")
   };
 
   render() {

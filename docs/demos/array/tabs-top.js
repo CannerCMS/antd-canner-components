@@ -5,24 +5,29 @@ import cmsLocale from 'packages/antd-locales';
 import immutable from 'immutable';
 import {IntlProvider} from 'react-intl';
 import RefId from 'canner-ref-id';
+import ExampleArrayValueWrapper from '../ExampleArrayValueHoc';
+import type {ArrayTypes} from '../types';
 
-export default class TabTopDemo extends Component<{}> {
+const initData = [{
+  "title": "title 1",
+  "content": "content 1"
+}, {
+  "title": "title 2",
+  "content": "content 2"
+}]
+
+@ExampleArrayValueWrapper(immutable.List(initData))
+export default class TabTopDemo extends Component<ArrayTypes<any>> {
   render() {
+    const {value, onChange} = this.props;
     return (
       <IntlProvider
         locale="en"
         messages={cmsLocale["en"]}>
         <TabTop
-          value={immutable.fromJS([{
-            "title": "title 1",
-            "content": "content 1"
-          }, {
-            "title": "title 2",
-            "content": "content 2"
-          }])}
-          refId={new RefId("tab-left")}
-          items={{}}
-          onChange={(datum, evt) => console.log(datum, evt)}
+          value={value}
+          refId={new RefId("tab-top")}
+          onChange={onChange}
           />
       </IntlProvider>
     );

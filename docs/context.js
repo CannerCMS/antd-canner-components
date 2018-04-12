@@ -5,7 +5,7 @@ import {Button, message} from 'antd';
 import RefId from 'canner-ref-id';
 
 export default {
-  renderChildren: () => 'this is the content',
+  renderChildren: (i: any) => `this is the content ${i.refId.toString()}`,
   renderConfirmButton: function ConfirmButton({
     disabled = false,
     style = {},
