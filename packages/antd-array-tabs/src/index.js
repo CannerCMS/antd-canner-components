@@ -7,7 +7,7 @@ import { Button, Icon, Modal } from "antd";
 import Sortable from "react-sortablejs";
 import { List } from "immutable";
 import {injectIntl} from 'react-intl';
-import {Item, ConfirmButton, CancelButton} from '@canner/react-cms-helpers';
+import {Item, ConfirmButton, ResetButton} from '@canner/react-cms-helpers';
 import 'antd/lib/tabs/style';
 
 // types
@@ -157,7 +157,7 @@ export default class TabUi extends Component<Props, State> {
           />
           <div>
             <ConfirmButton refId={thisId}/>
-            <CancelButton refId={thisId}/>
+            <ResetButton refId={thisId}/>
           </div>
         </TabPane>
       );

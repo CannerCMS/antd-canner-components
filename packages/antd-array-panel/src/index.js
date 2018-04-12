@@ -3,7 +3,7 @@ import React, { PureComponent } from "react";
 import { Button, Icon, Collapse, Modal } from "antd";
 import {injectIntl, intlShape} from 'react-intl';
 import {List} from 'immutable';
-import {Item, ConfirmButton, CancelButton} from '@canner/react-cms-helpers';
+import {Item, ConfirmButton, ResetButton} from '@canner/react-cms-helpers';
 import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
 import type {
   FieldItems,
@@ -119,7 +119,7 @@ export default class PanelUi extends PureComponent<Props, State> {
                   />
                   <div>
                     <ConfirmButton refId={thisId}/>
-                    <CancelButton refId={thisId}/>
+                    <ResetButton refId={thisId}/>
                   </div>
                 </Panel>
               );

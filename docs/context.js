@@ -8,7 +8,7 @@ export default {
   renderChildren: (i: any) => `this is the content ${i.refId.toString()}`,
   renderConfirmButton: function ConfirmButton({
     disabled = false,
-    style = {},
+    style = {marginRight: '10px'},
     refId = new RefId(""),
     onClick = () => message.success('confirm'),
     callback = () => {},
@@ -28,10 +28,10 @@ export default {
     disabled = false,
     style = {},
     refId = new RefId(""),
-    onClick = () => message.warning('cancel'),
+    onClick = () => message.warning('Reset content'),
     callback = () => {},
     // $FlowFixMe
-    text = 'Cancel',
+    text = 'Reset',
     // $FlowFixMe
     component = Button
   }: Object = {}) {

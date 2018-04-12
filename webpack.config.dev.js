@@ -33,40 +33,6 @@ module.exports = {
         exclude: path.resolve(__dirname, "node_modules")
       },
       {
-        test: /\.scss$/,
-        use: [
-          {
-            loader: 'style',
-            options: {
-              sourceMap: true
-            }
-          },
-          {
-            loader: 'css',
-            options: {
-              modules: true,
-              importLoaders: 1,
-              localIdentName: "[path]___[name]__[local]___[hash:base64:5]"
-            }
-          }
-        ],
-        exclude: [/\.antd.scss$/, /\.lib.scss$/]
-      },
-      {
-        test: [/\.antd.scss$/, /\.lib.scss$/],
-        use: [
-          {
-            loader: 'style'
-          },
-          {
-            loader: 'css'
-          },
-          {
-            loader: 'sass'
-          }
-        ],
-      },
-      {
         test: /\.css$/,
         use: [
           {
