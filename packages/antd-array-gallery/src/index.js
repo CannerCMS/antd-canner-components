@@ -3,11 +3,16 @@
 import React, { Component } from "react";
 import { List } from "immutable";
 import Gallery from 'canner-image-gallery';
+import {Modal} from 'antd';
 import { Item, transformData } from '@canner/react-cms-helpers';
+import {injectIntl} from 'react-intl';
+const {confirm} = Modal;
+
 import type ImageServiceConfig from "@canner/image-service-config/lib/imageService";
 
 // types
 import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
+import {intlShape} from 'react-intl';
 
 type FieldItem = {
   [string]: any
@@ -24,8 +29,10 @@ type Props = ArrayDefaultProps<FieldItem> & {
     disableDrag: boolean
   },
   imageServiceConfig: ImageServiceConfig,
+  intl: intlShape
 };
 
+@injectIntl
 export default class ArrayGallery extends Component<Props> {
   imageKey: string;
 
@@ -45,7 +52,7 @@ export default class ArrayGallery extends Component<Props> {
     const prevIndex = refId.child(fromKey);
     const currIndex = refId.child(toKey);
 
-    this.props.onChange({ firstId: currIndex, secondId: prevIndex }, "swap");
+    this.props.onChange({ firstRefId: currIndex, secondRefId: prevIndex }, "swap");
   };
 
   createImages = (values: ImageItem | Array<ImageItem>) => {
@@ -72,11 +79,13 @@ export default class ArrayGallery extends Component<Props> {
   };
 
   deleteImage = (imageIndex: number) => {
-    const r = confirm("Are you sure to delete this item?");
-    if (r) {
-      const { refId, onChange } = this.props;
-      onChange(refId.child(imageIndex), "delete");
-    }
+    const { intl, refId, onChange } = this.props;
+    confirm({
+      title: intl.formatMessage({ id: "array.tab.delete.confirm" }),
+      onOk() {
+        onChange(refId.child(imageIndex), "delete")
+      }
+    })
   };
 
   render() {

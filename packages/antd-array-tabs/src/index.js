@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Tabs, { TabPane } from "@canner/rc-tabs";
 import TabContent from "@canner/rc-tabs/lib/TabContent";
 import ScrollableInkTabBar from "@canner/rc-tabs/lib/ScrollableInkTabBar";
-import { Button, Icon } from "antd";
+import { Button, Icon, Modal } from "antd";
 import Sortable from "react-sortablejs";
 import { List } from "immutable";
 import {injectIntl} from 'react-intl';
@@ -18,6 +18,8 @@ import type {
   GenerateIdFn,
 } from 'types/DefaultProps';
 import {intlShape} from 'react-intl';
+
+const {confirm} = Modal;
 
 type Props = ArrayDefaultProps<FieldItems> & {
   uiParams: {
@@ -76,20 +78,25 @@ export default class TabUi extends Component<Props, State> {
   };
 
   handleDelete = (index: number) => {
-    const { intl, onChange, deploy, value } = this.props;
-    const r = confirm(intl.formatMessage({ id: "array.tab.delete.confirm" }));
-    if (r) {
-      const { refId } = this.props;
-      onChange(refId.child(index), "delete")
-        .then(() => {
-          return deploy(refId);
-        })
-        .then(() => {
-          this.setState({
-            activeKey: `${value.size - 1}`
+    const { intl, onChange, deploy, value, refId } = this.props;
+    confirm({
+      title: intl.formatMessage({ id: "array.tab.delete.confirm" }),
+      onOk() {
+        onChange(refId.child(index), "delete")
+          .then(() => {
+            if (deploy) {
+              return deploy(refId);
+            }
+
+            return Promise.resolve();
+          })
+          .then(() => {
+            this.setState({
+              activeKey: `${value.size - 1}`
+            });
           });
-        });
-    }
+      }
+    })
   };
 
   dragItem = (order: any, sortable: any, evt: any) => {
