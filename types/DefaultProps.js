@@ -48,10 +48,6 @@ export type FieldUiParams = { [string]: any };
 export type FieldDisabled = boolean;
 export type FieldReadOnly = boolean;
 
-// just combine the id, used in array
-// https://github.com/Canner/qa-generator/tree/master/src/utils
-export type GenerateIdFn = (...any) => string;
-
 // in array, use this function to create empty data
 // https://github.com/Canner/qa-generator/tree/master/src/utils
 export type CreateEmptyDataFn = ({[string]: any}) => any;

@@ -14,8 +14,7 @@ import 'antd/lib/tabs/style';
 import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
 import type {
   FieldItems,
-  DeployFn,
-  GenerateIdFn,
+  DeployFn
 } from 'types/DefaultProps';
 import {intlShape} from 'react-intl';
 
@@ -27,8 +26,6 @@ type Props = ArrayDefaultProps<FieldItems> & {
     titlePrefix?: string,
     position?: "top" | "left" | "right" | "bottom"
   },
-  items: FieldItems,
-  generateId: GenerateIdFn,
   deploy: DeployFn,
   intl: intlShape
 };

@@ -12,9 +12,9 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "immutable": "^3.8.2"
   },
   "peerDependencies": {
-    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0",
+    "immutable": "^3.8.2"
   }
 }

@@ -1,21 +1,27 @@
 // @flow
 import React, { PureComponent } from "react";
-import { Button, Icon, Collapse } from "antd";
-import {injectIntl} from 'react-intl';
+import { Button, Icon, Collapse, Modal } from "antd";
+import {injectIntl, intlShape} from 'react-intl';
 import {List} from 'immutable';
+import {Item, ConfirmButton, CancelButton} from '@canner/react-cms-helpers';
+import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
+import type {
+  FieldItems,
+  DeployFn
+} from 'types/DefaultProps';
 const Panel = Collapse.Panel;
+const {confirm} = Modal;
 
 type State = {
   activeKey: string
 };
 
-type Props = defaultProps & {
-  value: List<any>,
+type Props = ArrayDefaultProps<FieldItems> & {
   uiParams: {
     titleKey: string
   },
-  intl: any,
-  allowSwap: boolean
+  intl: intlShape,
+  deploy: DeployFn
 };
 
 @injectIntl
@@ -23,84 +29,104 @@ export default class PanelUi extends PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      activeKey: ''
+      activeKey: "0"
     };
   }
 
   static defaultProps = {
-    allowSwap: true,
     uiParams: {},
     value: new List()
   };
 
-  create = () => {
-    const { value, id, items, createEmptyData } = this.props;
+  onChange = (key: string) => {
+    this.setState({ activeKey: key });
+  };
+
+  onCreate = () => {
+    const { value, refId, onChange } = this.props;
     const size = value.size;
-    this.props.onChange(id, "create", createEmptyData(items.items));
-    this.setState({ activeKey: size });
+    onChange(refId, "create");
+    this.setState({ activeKey: `${size}` });
   }
 
-  delete = (id: string) => {
-    const { intl } = this.props;
-    const r = confirm(intl.formatMessage({ id: "array.panel.delete.confirm" }));
-    if (r) {
-      this.props.onChange(id, "delete");
-    }
+  onDelete = (index: number) => {
+    const { intl, onChange, refId, deploy, value } = this.props;
+
+    confirm({
+      title: intl.formatMessage({ id: "array.panel.delete.confirm" }),
+      onOk() {
+        onChange(refId.child(index), "delete")
+          .then(() => {
+            if (deploy) {
+              return deploy(refId);
+            }
+
+            return Promise.resolve();
+          })
+          .then(() => {
+            this.setState({
+              activeKey: `${value.size - 1}`
+            });
+          });
+      }
+    });
   }
 
   render() {
-    const { activeKey } = this.state;
-
     const {
       value,
       uiParams,
-      id,
-      generateId,
-      allowSwap,
-      intl,
-      renderChildren,
-      routes
+      refId,
+      intl
     } = this.props;
-    const titleKey = uiParams.titleKey;
+    const { activeKey } = this.state;
     return (
-      <div className="react-qa-plugin-panel">
+      <div>
         {value.size ? (
           <Collapse
-            drag={allowSwap}
             accordion
-            value={value.toJS()}
-            onChange={id => this.switchTab(id)}
-            onSwap={this.onSwap}
+            activeKey={activeKey}
+            onChange={this.onChange}
           >
-            {value.map((category, i) => {
-              const thisId = generateId(id, i, "array");
+            {value.map((item, i) => {
+              const thisId = refId.child(i);
+              let title;
+              const defaultTitle = `${intl.formatMessage({
+                id: "array.tab.item"
+              })} ${i + 1}`;
+
+              if (uiParams.titleKey) {
+                title = item.get(uiParams.titleKey) || defaultTitle;
+              } else {
+                title = defaultTitle;
+              }
+              
               const header = (
                 <span>
-                  <h3 style={{ display: "inline-block" }}>
-                    {category.get(titleKey) ||
-                      `${intl.formatMessage({ id: "array.panel.item" })} ${i +
-                        1}`}
-                    {activeKey === thisId ? (
-                      <Icon
-                        type="close-circle"
-                        onClick={() => this.delete(thisId)}
-                      />
-                    ) : null}
-                  </h3>
+                  {title + ' '}
+                  {activeKey === `${i}` ? (
+                    <Icon
+                      type="close-circle"
+                      onClick={() => this.onDelete(thisId)}
+                    />
+                  ) : null}
                 </span>
               );
               return (
-                <Panel header={header} key={thisId}>
-                  {renderChildren({
-                    id: thisId,
-                    routes: routes
-                  })}
+                <Panel header={header} key={i}>
+                  <Item
+                    refId={thisId}
+                  />
+                  <div>
+                    <ConfirmButton refId={thisId}/>
+                    <CancelButton refId={thisId}/>
+                  </div>
                 </Panel>
               );
             })}
           </Collapse>
         ) : null}
-        <Button type="primary" onClick={this.create}>
+        <Button type="primary" onClick={this.onCreate} style={{marginTop: '10px'}}>
           ＋
         </Button>
       </div>
