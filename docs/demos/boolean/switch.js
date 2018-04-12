@@ -5,7 +5,7 @@ import cmsLocale from 'packages/antd-locales';
 import {IntlProvider} from 'react-intl';
 import {Divider} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
-import type {PrimitiveTypes} from '../PrimitiveTypes';
+import type {PrimitiveTypes} from '../types';
 import RefId from 'canner-ref-id';
 
 @ExamplePrimitiveValueWrapper(true)

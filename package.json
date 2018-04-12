@@ -45,8 +45,8 @@
   },
   "theme": {
     "primary-color": "#f2b173",
-    "item-active-bg": "rgba(242, 177, 115, 0.1)",
-    "item-hover-bg": "rgba(242, 177, 115, 0.3)",
+    "primary-3": "rgba(242, 177, 115, 0.5)",
+    "primary-4": "rgba(242, 177, 115, 0.7)",
     "font-size-base": "14px"
   },
   "scripts": {

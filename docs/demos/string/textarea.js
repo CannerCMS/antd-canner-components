@@ -3,7 +3,7 @@ import * as React from 'react';
 import Textarea from 'packages/antd-string-textarea';
 import {Divider} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
-import type {PrimitiveTypes} from '../PrimitiveTypes';
+import type {PrimitiveTypes} from '../types';
 import RefId from 'canner-ref-id';
 
 @ExamplePrimitiveValueWrapper("this is textarea value")

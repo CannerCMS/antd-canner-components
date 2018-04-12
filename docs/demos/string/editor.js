@@ -3,7 +3,7 @@ import React, {Component, Fragment} from 'react';
 import Editor from 'packages/antd-string-editor';
 import {Divider} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
-import type {PrimitiveTypes} from '../PrimitiveTypes';
+import type {PrimitiveTypes} from '../types';
 import RefId from 'canner-ref-id';
 
 @ExamplePrimitiveValueWrapper("This is an editor")

@@ -3,7 +3,7 @@ import * as React from 'react';
 import ShareCard from 'packages/antd-share-card';
 import {Divider} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
-import type {PrimitiveTypes} from '../PrimitiveTypes';
+import type {PrimitiveTypes} from '../types';
 
 @ExamplePrimitiveValueWrapper("hello")
 class ShareCardDemo1 extends React.Component<PrimitiveTypes<string>> {

@@ -3,7 +3,7 @@ import * as React from 'react';
 import NumberRate from 'packages/antd-number-rate';
 import {Divider} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
-import type {PrimitiveTypes} from '../PrimitiveTypes';
+import type {PrimitiveTypes} from '../types';
 import RefId from 'canner-ref-id';
 
 @ExamplePrimitiveValueWrapper(2)
