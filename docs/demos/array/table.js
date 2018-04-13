@@ -28,9 +28,11 @@ export default class PanelDemo extends Component<ArrayTypes<any>> {
           value={value}
           refId={new RefId("table")}
           uiParams={{
-            title: "title",
-            key: "title",
-            dataIndex: "title"
+            columns: [{
+              title: "title",
+              key: "title",
+              dataIndex: "title"
+            }]
           }}
           items={{
             type: "object",

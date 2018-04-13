@@ -6,12 +6,12 @@ export default function(cols, schema) {
     const itemSchema = schema[col.dataIndex];
     const func = (text, record) => {
       if (text === undefined) {
-        return "無此資料";
+        return "NULL";
       }
 
       if (itemSchema && itemSchema.ui === 'image') {
         return <div>
-          <img alt="無圖片" src={text} width="50" height="50"></img>
+          <img alt="Picture" src={text} width="50" height="50"></img>
         </div>;
       }
 
@@ -23,10 +23,10 @@ export default function(cols, schema) {
               display: 'flex'
             }}
           >
-          <img src={text[0] ? text[0][imageKey] : ''} alt="無圖片" width="50" height="50"></img>
+          <img src={text[0] ? text[0][imageKey] : ''} alt="Picture" width="50" height="50"></img>
           {
             length > 1 ?
-            <img src={text[1] ? text[1][imageKey] : ''} alt="無圖片" width="50" height="50"></img>
+            <img src={text[1] ? text[1][imageKey] : ''} alt="Picture" width="50" height="50"></img>
             : null
           }
           {
@@ -39,7 +39,7 @@ export default function(cols, schema) {
                 justifyContent: 'center',
                 background: "#ddd"
               }}>
-                共 {length} 張
+                {length} pictures
               </div>
               : null
           }
@@ -53,9 +53,9 @@ export default function(cols, schema) {
 
       if (isBoolean(text)) {
         if (text) {
-          return "是";
+          return "True";
         }
-        return "否";
+        return "False";
       }
 
       if (isArray(text)) {
@@ -63,7 +63,7 @@ export default function(cols, schema) {
           return text.join(", ");
         }
 
-        return "無";
+        return "NO";
       }
 
       return text && text.toString();
