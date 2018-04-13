@@ -1,3 +1,8 @@
+// @flow
+import renderFunc from './renderFunc';
+
+export const renderValue = renderFunc;
+
 export default {
   en: {
     "array.panel.delete.confirm": "Are you sure to delete this item?",

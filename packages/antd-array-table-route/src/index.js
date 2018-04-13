@@ -4,11 +4,11 @@ import React, { Component } from "react";
 import { Table, Button, Modal } from "antd";
 import PropTypes from 'prop-types';
 import { List } from "immutable";
-import renderFunc from "./renderFunc";
 import isEmpty from "lodash/isEmpty";
 import { FormattedMessage } from "react-intl";
 import defaultMessage from "@canner/antd-locales";
 import type {FieldId, FieldItems, GotoFn} from 'types/DefaultProps';
+import {renderValue} from '@canner/antd-locales';
 const ButtonGroup = Button.Group;
 const confirm = Modal.confirm;
 
@@ -97,7 +97,7 @@ export default class ArrayBreadcrumb extends Component<Props> {
     const newColumns = columns.slice();
     // 為了向後相容 當 schema.items undefined時
     // 拿 schema.createAction.schema.items
-    const newColumnsRender = renderFunc(newColumns, items.items);
+    const newColumnsRender = renderValue(newColumns, items.items);
     newColumnsRender.push({
       title: 'Actions',
       dataIndex: "__settings",

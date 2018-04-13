@@ -1,12 +1,12 @@
 {
-  "name": "@canner/antd-array-breadcrumb",
+  "name": "@canner/antd-array-table-route",
   "version": "0.0.49",
-  "description": "array breadcrumb",
+  "description": "array table-route",
   "main": "lib/index.js",
   "scripts": {},
   "keywords": [
     "cms",
-    "breadcrumb",
+    "table",
     "canner"
   ],
   "author": "canner",

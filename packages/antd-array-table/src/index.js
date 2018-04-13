@@ -3,12 +3,11 @@
 import React, { Component } from "react";
 import { Table, Button } from "antd";
 import { List } from "immutable";
-import renderFunc from "./renderFunc";
 import showDeleteConfirm from "./showDeleteConfirm";
 import EditModal from "./editModal";
 import AddModal from "./addModal";
 import { FormattedMessage } from "react-intl";
-import defaultMessage from "@canner/antd-locales";
+import defaultMessage, {renderValue} from "@canner/antd-locales";
 import {injectIntl} from 'react-intl';
 
 import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
@@ -85,7 +84,7 @@ export default class TableArrayPlugin extends Component<Props> {
 
     // add update button and delete button
     const newColumns = columns.slice(); // create a new copy of columns
-    const newColumnsRender = renderFunc(newColumns, items.items);
+    const newColumnsRender = renderValue(newColumns, items.items);
 
     if (!updateKeys || updateKeys.length > 0) {
       newColumnsRender.push({

@@ -63,7 +63,7 @@ export default function(cols, schema) {
           return text.join(", ");
         }
 
-        return "NO";
+        return "No";
       }
 
       return text && text.toString();
