@@ -1,6 +1,6 @@
 // @flow
 import React, {Component} from 'react';
-import Table from 'packages/antd-array-table';
+import Table from 'packages/antd-array-table-route';
 import cmsLocale from 'packages/antd-locales';
 import immutable from 'immutable';
 import {IntlProvider} from 'react-intl';
@@ -17,7 +17,7 @@ const initData = [{
 }]
 
 @ExampleArrayValueWrapper(immutable.List(initData))
-export default class TableDemo extends Component<ArrayTypes<any>> {
+export default class TableRouteDemo extends Component<ArrayTypes<any>> {
   render() {
     const {value, onChange} = this.props;
     return (
@@ -26,7 +26,8 @@ export default class TableDemo extends Component<ArrayTypes<any>> {
         messages={cmsLocale["en"]}>
         <Table
           value={value}
-          refId={new RefId("table")}
+          refId={new RefId("table-route")}
+          goTo={(route) => console.log('goto: ', route)}
           uiParams={{
             columns: [{
               title: "title",

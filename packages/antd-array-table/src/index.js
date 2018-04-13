@@ -14,6 +14,8 @@ import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
 import type {FieldItems} from 'types/DefaultProps';
 import {intlShape} from 'react-intl';
 
+const ButtonGroup = Button.Group;
+
 type FieldItem = {
   [string]: any,
 };
@@ -56,18 +58,6 @@ export default class TableArrayPlugin extends Component<Props> {
       deploy,
       intl
     } = this.props;
-    const editText = (
-      <FormattedMessage
-        id="array.table.editText"
-        defaultMessage={defaultMessage.en["array.table.editText"]}
-      />
-    );
-    const deleteText = (
-      <FormattedMessage
-        id="array.table.deleteText"
-        defaultMessage={defaultMessage.en["array.table.deleteText"]}
-      />
-    );
     const addText = (
       <FormattedMessage
         id="array.table.addText"
@@ -86,52 +76,43 @@ export default class TableArrayPlugin extends Component<Props> {
     const newColumns = columns.slice(); // create a new copy of columns
     const newColumnsRender = renderValue(newColumns, items.items);
 
-    if (!updateKeys || updateKeys.length > 0) {
+    if ((!updateKeys || updateKeys.length > 0) || !disableDelete) {
       newColumnsRender.push({
-        title: editText,
+        title: intl.formatMessage({ id: "array.table.actions" }),
         dataIndex: "__settings",
         key: "__settings",
         render: (text, record) => {
           return (
-            <Button
-              type="primary"
-              onClick={() => {
-                if (this.editModal)
-                  this.editModal.showModal(value, record.__index);
-              }}
-            >
-              {editText}
-            </Button>
+            <ButtonGroup>
+              {(!updateKeys || updateKeys.length > 0) && (
+                <Button
+                  icon="edit"
+                  onClick={() => {
+                    if (this.editModal)
+                      this.editModal.showModal(value, record.__index);
+                  }}
+                />
+              )}
+              {!disableDelete && (
+                <Button
+                  icon="delete"
+                  onClick={() =>
+                    showDeleteConfirm({
+                      refId,
+                      onChange,
+                      intl,
+                      deploy,
+                      order: record.__index
+                    })
+                  }
+                />
+              )}
+            </ButtonGroup>
           );
         }
       });
     }
 
-    if (!disableDelete) {
-      newColumnsRender.push({
-        title: deleteText,
-        dataIndex: "__delete",
-        key: "__delete",
-        render: (text, record) => {
-          return (
-            <Button
-              type="ghost"
-              onClick={() =>
-                showDeleteConfirm({
-                  refId,
-                  onChange,
-                  intl,
-                  deploy,
-                  order: record.__index
-                })
-              }
-            >
-              {deleteText}
-            </Button>
-          );
-        }
-      });
-    }
     return (
       <div>
         <Table
