@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
-import { Button, Icon, Collapse, Modal } from "antd";
+import { Button, Collapse, Modal } from "antd";
 import {injectIntl, intlShape} from 'react-intl';
 import {List} from 'immutable';
 import {Item, ConfirmButton, ResetButton} from '@canner/react-cms-helpers';
@@ -104,12 +104,14 @@ export default class PanelUi extends PureComponent<Props, State> {
               const header = (
                 <span>
                   {title + ' '}
-                  {activeKey === `${i}` ? (
-                    <Icon
-                      type="close-circle"
-                      onClick={() => this.onDelete(thisId)}
-                    />
-                  ) : null}
+                  <Button
+                    style={{left: '80%', fontSize: 12}}
+                    size="small"
+                    icon="delete"
+                    type="danger"
+                    onClick={() => this.onDelete(thisId)}>
+                    Delete
+                  </Button>
                 </span>
               );
               return (
