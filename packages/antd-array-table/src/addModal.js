@@ -1,12 +1,13 @@
 // @flow
 
-import React, { Component } from "react";
+import React, {Component} from "react";
 import { Modal } from "antd";
 
+// import ChangeMethodComponent from "./changeMethodComponent";
 import { FormattedMessage } from "react-intl";
 import defaultMessage from "@canner/antd-locales";
-import {Item, ConfirmButton, CancelButton} from '@canner/react-cms-helpers';
-import type {FieldId} from 'types/DefaultProps';
+import { Item, ConfirmButton, ResetButton } from "@canner/react-cms-helpers";
+import type {FieldId} from "types/DefaultProps";
 
 type Props = {
   onChange: (refId: FieldId | {[string]: FieldId}, type: string, value?: any) => Promise<void>
@@ -15,16 +16,17 @@ type Props = {
     type: string,
     value?: any
   }>) => Promise<void>,
-  updateAction: Array<string>,
+  createKeys?: Array<string>,
   refId: FieldId,
+  items: {[string]: any}
 }
 
 type State = {
-  visible: boolean,
-  order: number
+  order: number,
+  visible: boolean
 }
 
-export default class EditModal extends Component<Props, State> {
+export default class AddModal extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -33,12 +35,17 @@ export default class EditModal extends Component<Props, State> {
     };
   }
 
-  showModal = (value: any, i: number) => {
+  showModal = (value: any, order: number) => {
+    const {onChange, refId} = this.props;
+
+    // need to create before update new data
+    onChange(refId, "create");
     this.setState({
       visible: true,
-      order: i
+      order
     });
   }
+
 
   closeModalAndReset = () => {
     this.setState({
@@ -51,20 +58,20 @@ export default class EditModal extends Component<Props, State> {
   }
 
   render() {
+    const { createKeys, refId } = this.props;
     const { visible, order } = this.state;
-    const { updateAction, refId } = this.props;
     const footer = <div>
       <ConfirmButton
         text={<FormattedMessage
-          id="array.popup.modal.okText"
-          defaultMessage={defaultMessage.en["array.popup.modal.okText"]}
+          id="array.table.modal.okText"
+          defaultMessage={defaultMessage.en["array.table.modal.okText"]}
         />}
         callback={this.closeModalAndReset}
       />
-      <CancelButton
+      <ResetButton
         text={<FormattedMessage
-          id="array.popup.modal.cancelText"
-          defaultMessage={defaultMessage.en["array.popup.modal.cancelText"]}
+          id="array.table.modal.cancelText"
+          defaultMessage={defaultMessage.en["array.table.modal.cancelText"]}
         />}
         callback={this.closeModalAndReset}
       />
@@ -78,7 +85,7 @@ export default class EditModal extends Component<Props, State> {
       >
         <Item
           refId={refId.child(order)}
-          filter={child => updateAction.indexOf(child.name) !== -1}
+          filter={createKeys && (child => createKeys.indexOf(child.name) !== -1)}
         />
       </Modal>
     );

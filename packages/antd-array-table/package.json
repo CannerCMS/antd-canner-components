@@ -1,7 +1,7 @@
 {
-  "name": "@canner/antd-array-popup",
+  "name": "@canner/antd-array-table",
   "version": "0.0.50",
-  "description": "array popup",
+  "description": "array table",
   "main": "lib/index.js",
   "scripts": {},
   "keywords": [

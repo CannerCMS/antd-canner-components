@@ -36,6 +36,8 @@ import TagsDemo from './demos/array/tags';
 import GalleryDemo from './demos/array/gallery';
 import SliderDemo from './demos/array/slider';
 import PanelDemo from './demos/array/panel';
+import TableDemo from './demos/array/table';
+
 
 const {SubMenu} = Menu;
 const {Content, Sider} = Layout;
@@ -95,6 +97,7 @@ class Demo extends Component {
               <Menu.Item key="gallery">gallery</Menu.Item>
               <Menu.Item key="slider">slider</Menu.Item>
               <Menu.Item key="panel">panel</Menu.Item>
+              <Menu.Item key="table">table</Menu.Item>
             </SubMenu>
             <SubMenu key="number" title="Number">
               <Menu.Item key="input">input</Menu.Item>
@@ -143,6 +146,7 @@ class Demo extends Component {
             {selectTab === 'array' && selectKey === 'gallery' ? <GalleryDemo/> : null}
             {selectTab === 'array' && selectKey === 'slider' ? <SliderDemo/> : null}
             {selectTab === 'array' && selectKey === 'panel' ? <PanelDemo/> : null}
+            {selectTab === 'array' && selectKey === 'table' ? <TableDemo/> : null}
             </Context.Provider>
           </Content>
         </Layout>

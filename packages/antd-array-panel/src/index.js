@@ -105,7 +105,7 @@ export default class PanelUi extends PureComponent<Props, State> {
                 <span>
                   {title + ' '}
                   <Button
-                    style={{left: '80%', fontSize: 12}}
+                    style={{float: 'right', fontSize: 12, marginRight: '20px'}}
                     size="small"
                     icon="delete"
                     type="danger"

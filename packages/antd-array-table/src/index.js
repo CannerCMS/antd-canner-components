@@ -7,12 +7,13 @@ import renderFunc from "./renderFunc";
 import showDeleteConfirm from "./showDeleteConfirm";
 import EditModal from "./editModal";
 import AddModal from "./addModal";
-import isEmpty from "lodash/isEmpty";
-import isNull from "lodash/isNull";
 import { FormattedMessage } from "react-intl";
 import defaultMessage from "@canner/antd-locales";
+import {injectIntl} from 'react-intl';
+
 import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
 import type {FieldItems} from 'types/DefaultProps';
+import {intlShape} from 'react-intl';
 
 type FieldItem = {
   [string]: any,
@@ -20,28 +21,29 @@ type FieldItem = {
 
 type Props = ArrayDefaultProps<FieldItem> & {
   uiParams: {
-    createAction: Array<string>,
-    updateAction: Array<string>,
-    deleteAction: boolean,
+    createKeys?: Array<string>,
+    updateKeys?: Array<string>,
+    disableDelete?: boolean,
     columns: Array<{
       title: string,
       key: string,
-      dataIndex: number,
+      dataIndex: string,
       renderTemplate: string
     }>,
   },
   showPagination: boolean,
   items: FieldItems,
-  deploy: Function
+  deploy: Function,
+  intl: intlShape
 };
 
-export default class PopupArrayPlugin extends Component<Props> {
+@injectIntl
+export default class TableArrayPlugin extends Component<Props> {
   editModal: ?EditModal;
   addModal: ?AddModal;
   static defaultProps = {
     value: new List(),
-    showPagination: true,
-    schema: {}
+    showPagination: true
   };
 
   render() {
@@ -52,41 +54,40 @@ export default class PopupArrayPlugin extends Component<Props> {
       onChange,
       showPagination,
       items,
-      deploy
+      deploy,
+      intl
     } = this.props;
     const editText = (
       <FormattedMessage
-        id="array.popup.editText"
-        defaultMessage={defaultMessage.en["array.popup.editText"]}
+        id="array.table.editText"
+        defaultMessage={defaultMessage.en["array.table.editText"]}
       />
     );
     const deleteText = (
       <FormattedMessage
-        id="array.popup.deleteText"
-        defaultMessage={defaultMessage.en["array.popup.deleteText"]}
+        id="array.table.deleteText"
+        defaultMessage={defaultMessage.en["array.table.deleteText"]}
       />
     );
     const addText = (
       <FormattedMessage
-        id="array.popup.addText"
-        defaultMessage={defaultMessage.en["array.popup.addText"]}
+        id="array.table.addText"
+        defaultMessage={defaultMessage.en["array.table.addText"]}
       />
     );
-    const schema = items.items;
-    const schemaKeys = Object.keys(schema);
+
     let {
-      createAction = schemaKeys,
-      updateAction = schemaKeys,
-      deleteAction = true,
+      createKeys,
+      updateKeys,
+      disableDelete,
       columns = []
     } = uiParams;
 
-    // push update button and delete button
-    const newColumns = columns.slice();
-    // 為了向後相容 當 schema.items undefined時
-    // 拿 schema.createAction.schema.items
+    // add update button and delete button
+    const newColumns = columns.slice(); // create a new copy of columns
     const newColumnsRender = renderFunc(newColumns, items.items);
-    if (!isEmpty(updateAction)) {
+
+    if (!updateKeys || updateKeys.length > 0) {
       newColumnsRender.push({
         title: editText,
         dataIndex: "__settings",
@@ -107,7 +108,7 @@ export default class PopupArrayPlugin extends Component<Props> {
       });
     }
 
-    if (deleteAction !== false && !isNull(deleteAction)) {
+    if (!disableDelete) {
       newColumnsRender.push({
         title: deleteText,
         dataIndex: "__delete",
@@ -120,6 +121,7 @@ export default class PopupArrayPlugin extends Component<Props> {
                 showDeleteConfirm({
                   refId,
                   onChange,
+                  intl,
                   deploy,
                   order: record.__index
                 })
@@ -142,7 +144,7 @@ export default class PopupArrayPlugin extends Component<Props> {
           })}
           columns={newColumnsRender}
         />
-        {isEmpty(createAction) ? null : (
+        {(!createKeys || createKeys.length > 0) && (
           <Button
             type="primary"
             onClick={() => {
@@ -156,13 +158,13 @@ export default class PopupArrayPlugin extends Component<Props> {
         <EditModal
           ref={modal => (this.editModal = modal)}
           refId={refId}
-          updateAction={updateAction}
+          updateKeys={updateKeys}
           onChange={onChange}
         />
         <AddModal
           ref={modal => (this.addModal = modal)}
           refId={refId}
-          createAction={createAction}
+          createKeys={createKeys}
           onChange={onChange}
           items={items.items}
         />

@@ -10,7 +10,10 @@ export default {
     disabled = false,
     style = {marginRight: '10px'},
     refId = new RefId(""),
-    onClick = () => message.success('confirm'),
+    onClick = (refId, cb) => {
+      message.success('confirm');
+      cb();
+    },
     callback = () => {},
     // $FlowFixMe
     text = 'Confirm',
@@ -28,7 +31,10 @@ export default {
     disabled = false,
     style = {},
     refId = new RefId(""),
-    onClick = () => message.warning('Reset content'),
+    onClick = (refId, cb) => {
+      message.warning('Reset content');
+      cb();
+    },
     callback = () => {},
     // $FlowFixMe
     text = 'Reset',
