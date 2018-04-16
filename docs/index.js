@@ -39,6 +39,9 @@ import PanelDemo from './demos/array/panel';
 import TableDemo from './demos/array/table';
 import TableRouteDemo from './demos/array/table-route';
 
+// object
+import OptionsDemo from './demos/object/options';
+
 const {SubMenu} = Menu;
 const {Content, Sider} = Layout;
 
@@ -109,6 +112,9 @@ class Demo extends Component {
               <Menu.Item key="card">card</Menu.Item>
               <Menu.Item key="switch">switch</Menu.Item>
             </SubMenu>
+            <SubMenu key="object" title="Object">
+              <Menu.Item key="options">options</Menu.Item>
+            </SubMenu>
           </Menu>
         </Sider>
         <Layout style={{ padding: '0 24px 24px' }}>
@@ -149,6 +155,9 @@ class Demo extends Component {
             {selectTab === 'array' && selectKey === 'panel' ? <PanelDemo/> : null}
             {selectTab === 'array' && selectKey === 'table' ? <TableDemo/> : null}
             {selectTab === 'array' && selectKey === 'table-route' ? <TableRouteDemo/> : null}
+
+            {/* object */}
+            {selectTab === 'object' && selectKey === 'options' ? <OptionsDemo/> : null}
             </Context.Provider>
           </Content>
         </Layout>

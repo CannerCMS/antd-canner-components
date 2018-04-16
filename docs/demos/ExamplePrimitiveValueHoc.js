@@ -3,7 +3,7 @@ import * as React from 'react';
 import Inspector from 'react-inspector';
 import type RefId from 'canner-ref-id';
 
-type PrimitiveValue = string | boolean | number;
+type PrimitiveValue = string | boolean | number | Object;
 
 export default (defaultValue: PrimitiveValue) => (ConfigOrComposedComponent: React.Element<*>) => {
   class ExamplePrimitiveValueWrapper extends ConfigOrComposedComponent {

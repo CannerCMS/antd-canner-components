@@ -3,19 +3,17 @@
 import React, { Component } from "react";
 import { Radio } from "antd";
 import { Map, fromJS } from "immutable";
-const { Group, Button } = Radio;
 import {Item, createEmptyData} from '@canner/react-cms-helpers';
 
 import type {ObjectDefaultProps} from 'types/ObjectDefaultProps';
+const { Group, Button } = Radio;
 
 type Props = ObjectDefaultProps & {
   uiParams: {
-    options: Array<{title: string, key: string, childName: string}>,
+    options: Array<{title: string, key: string}>,
     optionKey: string
   },
-  items: {
-
-  }
+  items: any
 };
 
 type State = {
@@ -36,21 +34,22 @@ export default class OptionPlugin extends Component<Props, State> {
   static defaultProps = {
     value: Map(), // eslint-disable-line
     uiParams: {
-      optionKey: 'type'
+      optionKey: 'selectedKey'
     }
   };
 
   radioOnChange = (e: any) => {
     const selectedKey = e.target.value;
     const {uiParams, onChange, refId, items} = this.props;
-    const {optionKey = 'type', options} = uiParams;
+    const {optionKey = 'selectedKey', options} = uiParams;
     const selectedOption = options.find(option => option.key === selectedKey);
     if (!selectedOption)
       return;
-    const emptyValue = createEmptyData(items[selectedOption.childName]);
+
+    const emptyValue = createEmptyData(items[selectedOption.key]);
     onChange(refId, 'update', fromJS({
       [optionKey]: selectedKey,
-      [selectedOption.childName]: emptyValue
+      [selectedOption.key]: emptyValue
     }));
     this.setState({
       selectedKey
@@ -58,7 +57,7 @@ export default class OptionPlugin extends Component<Props, State> {
   }
 
   render() {
-    const { uiParams } = this.props;
+    const { uiParams, refId } = this.props;
     const { options } = uiParams;
     const { selectedKey } = this.state;
     const selectedOption = options.find(option => option.key === selectedKey) || options[0];
@@ -75,7 +74,8 @@ export default class OptionPlugin extends Component<Props, State> {
         </Group>
 
         <Item
-          filter={child => child.keyName === selectedOption.childName}
+          refId={refId}
+          filter={child => child.keyName === selectedOption.key}
         />
       </div>
     );

@@ -5,14 +5,16 @@ import {Button, message} from 'antd';
 import RefId from 'canner-ref-id';
 
 export default {
-  renderChildren: (i: any) => `this is the content ${i.refId.toString()}`,
+  renderChildren: (i: any) => {
+    return `this is the content ${i.refId.toString()}`
+  },
   renderConfirmButton: function ConfirmButton({
     disabled = false,
     style = {marginRight: '10px'},
     refId = new RefId(""),
     onClick = (refId, cb) => {
       message.success('confirm');
-      cb();
+      cb(); 
     },
     callback = () => {},
     // $FlowFixMe
