@@ -119,7 +119,7 @@ class Demo extends Component {
         </Sider>
         <Layout style={{ padding: '0 24px 24px' }}>
           <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
-            <Context.Provider value={contextValue}>
+            <Context.Provider value={contextValue()}>
             {/* share */}
             {selectTab === 'share' && selectKey === 'card' ? <ShareCardDemo/> : null}
 

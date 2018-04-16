@@ -61,6 +61,7 @@ export default class OptionPlugin extends Component<Props, State> {
     const { options } = uiParams;
     const { selectedKey } = this.state;
     const selectedOption = options.find(option => option.key === selectedKey) || options[0];
+
     return (
       <div>
         <Group

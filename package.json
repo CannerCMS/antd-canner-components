@@ -58,7 +58,7 @@
   "dependencies": {
     "@canner/image-service-config": "^0.2.0",
     "@canner/react-cms-core": "0.0.4",
-    "@canner/react-cms-helpers": "^0.1.5",
+    "@canner/react-cms-helpers": "^0.1.6",
     "antd": "^3.2.3",
     "immutable": "^4.0.0-rc.9",
     "lodash": "^4.17.4",

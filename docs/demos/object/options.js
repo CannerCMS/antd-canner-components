@@ -6,6 +6,8 @@ import {Divider} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../types';
 import RefId from 'canner-ref-id';
+import {Context} from '@canner/react-cms-helpers';
+import contextValue from '../../context';
 
 @ExamplePrimitiveValueWrapper(fromJS({
   selectedKey: "option1",
@@ -19,8 +21,20 @@ import RefId from 'canner-ref-id';
 class OptionsDemo1 extends React.Component<PrimitiveTypes<boolean>> {
   render() {
     const {value, onChange} = this.props;
+    const items = {
+      option1: {
+        type: "string",
+        keyName: "option1"
+      },
+      option2: {
+        keyName: "option2",
+        type: "string",
+        ui: "editor"
+      }
+    };
+
     return (
-      <React.Fragment>
+      <Context.Provider value={contextValue(items)}>
         <Divider>Object option switch</Divider>
         <Options
           refId={new RefId("option-switch")}
@@ -35,18 +49,10 @@ class OptionsDemo1 extends React.Component<PrimitiveTypes<boolean>> {
             }],
             optionKey: 'selectedKey'
           }}
-          items={{
-            option1: {
-              type: "string"
-            },
-            option2: {
-              type: "string",
-              ui: "editor"
-            }
-          }}
+          items={items}
           onChange={onChange}
           />
-      </React.Fragment>
+      </Context.Provider>
     );
   }
 }

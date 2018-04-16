@@ -146,9 +146,9 @@
     store "^2.0.12"
     styled-components "^3.2.1"
 
-"@canner/react-cms-helpers@^0.1.5":
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/@canner/react-cms-helpers/-/react-cms-helpers-0.1.5.tgz#172d2f8f8ea7f1fd566cd0a2313cb2c76e9b4f68"
+"@canner/react-cms-helpers@^0.1.6":
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@canner/react-cms-helpers/-/react-cms-helpers-0.1.6.tgz#987efc028ef1b4e42f93ed501b347b605ed61cd8"
   dependencies:
     immutable "^4.0.0-rc.9"
     lodash "^4.17.5"
