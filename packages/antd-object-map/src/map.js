@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from "react";
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 
@@ -5,7 +6,7 @@ import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 // and name it GettingStartedGoogleMap
 const SimpleGoogleMap = withGoogleMap(props => (
   <GoogleMap defaultZoom={15} center={props.center}>
-    <Marker position={props.center} />
+    <Marker position={props.center}/>
   </GoogleMap>
 ));
 
