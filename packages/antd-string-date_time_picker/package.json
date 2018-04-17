@@ -1,5 +1,5 @@
 {
-  "name": "@canner/antd-string-date-time-picker",
+  "name": "@canner/antd-string-date_time_picker",
   "version": "0.0.49",
   "description": "string date time picker",
   "main": "lib/index.js",
