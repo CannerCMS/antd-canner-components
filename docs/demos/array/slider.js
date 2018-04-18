@@ -4,7 +4,7 @@ import Slider from 'packages/antd-array-slider';
 import {List} from 'immutable';
 import RefId from 'canner-ref-id';
 import {Divider} from 'antd';
-import ExampleArrayValueWrapper from '../ExampleArrayValueHoc';
+import ExampleArrayValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {ArrayTypes} from '../types';
 
 @ExampleArrayValueWrapper(List([5, 11]))

@@ -6,7 +6,7 @@ import immutable from 'immutable';
 import {IntlProvider} from 'react-intl';
 import {Divider} from 'antd';
 import RefId from 'canner-ref-id';
-import ExampleArrayValueWrapper from '../ExampleArrayValueHoc';
+import ExampleArrayValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {ArrayTypes} from '../types';
 
 @ExampleArrayValueWrapper(immutable.List(["tag 1", "tag 2"]))

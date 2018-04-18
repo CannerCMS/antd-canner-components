@@ -42,6 +42,7 @@ import TableRouteDemo from './demos/array/table-route';
 // object
 import OptionsDemo from './demos/object/options';
 import MapDemo from './demos/object/map';
+import VariantsDemo from './demos/object/variants';
 
 const {SubMenu} = Menu;
 const {Content, Sider} = Layout;
@@ -116,6 +117,7 @@ class Demo extends Component {
             <SubMenu key="object" title="Object">
               <Menu.Item key="options">options</Menu.Item>
               <Menu.Item key="map">map</Menu.Item>
+              <Menu.Item key="variants">variants</Menu.Item>
             </SubMenu>
           </Menu>
         </Sider>
@@ -161,6 +163,7 @@ class Demo extends Component {
             {/* object */}
             {selectTab === 'object' && selectKey === 'options' ? <OptionsDemo/> : null}
             {selectTab === 'object' && selectKey === 'map' ? <MapDemo/> : null}
+            {selectTab === 'object' && selectKey === 'variants' ? <VariantsDemo/> : null}
             </Context.Provider>
           </Content>
         </Layout>

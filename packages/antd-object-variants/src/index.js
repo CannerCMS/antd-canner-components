@@ -1,11 +1,10 @@
 // @flow
 
 import React, { Component } from "react";
-import { Button, Icon } from "antd";
-import { Form, Input, Select } from "antd";
+import { Button, Icon, Form, Input, Select } from "antd";
 import { flatten, map, reduce, isEqual } from "lodash";
-import CSSModules from "react-css-modules";
-import styles from "./style/variants.scss";
+import { Option, VariantsContainer, Remove} from './components';
+
 import {injectIntl} from 'react-intl';
 import {Item, createEmptyData, transformData} from '@canner/react-cms-helpers';
 import type {List} from 'immutable';
@@ -23,7 +22,6 @@ const defaultData = transformData({
 });
 
 @injectIntl
-@CSSModules(styles)
 export default class Variants extends Component<Props> {
   static defaultProps = {
     uiParams: {},
@@ -147,12 +145,13 @@ export default class Variants extends Component<Props> {
       <div>
         {value.get("options", []).map((opt, i) => {
           return (
-            <div key={i} styleName="opt">
-              <Icon
-                type="close-circle"
-                styleName="remove"
-                onClick={() => this.removeOption(i)}
-              />
+            <Option key={i}>
+              <Remove>
+                <Icon
+                  type="close-circle"
+                  onClick={() => this.removeOption(i)}
+                />
+              </Remove>
               <FormItem
                 label={intl.formatMessage({
                   id: "object.variants.variantsName"
@@ -178,19 +177,22 @@ export default class Variants extends Component<Props> {
                   onChange={val => this.updateTag(val, i)}
                 />
               </FormItem>
-            </div>
+            </Option>
           );
         })}
 
-        <Button type="dashed" onClick={() => this.addOptions()} styleName="add">
+        <Button
+          type="dashed"
+          onClick={() => this.addOptions()}
+          style={{width: '100%', textAlign: 'center'}}>
           <Icon type="plus-circle" />
           {intl.formatMessage({ id: "object.variants.addVariants" })}
         </Button>
-        <div styleName="variants">
+        <VariantsContainer>
           <Item
             refId={refId.child('options')}
           />
-        </div>
+        </VariantsContainer>
       </div>
     );
   }

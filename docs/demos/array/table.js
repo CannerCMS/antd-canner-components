@@ -5,7 +5,7 @@ import cmsLocale from 'packages/antd-locales';
 import immutable from 'immutable';
 import {IntlProvider} from 'react-intl';
 import RefId from 'canner-ref-id';
-import ExampleArrayValueWrapper from '../ExampleArrayValueHoc';
+import ExampleArrayValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {ArrayTypes} from '../types';
 
 const initData = [{

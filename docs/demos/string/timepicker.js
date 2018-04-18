@@ -1,6 +1,6 @@
 // @flow
 import React, {Component, Fragment} from 'react';
-import TimePicker from 'packages/antd-string-time-picker';
+import TimePicker from 'packages/antd-string-time_picker';
 import cmsLocale from 'packages/antd-locales';
 import {IntlProvider} from 'react-intl';
 import {Divider} from 'antd';

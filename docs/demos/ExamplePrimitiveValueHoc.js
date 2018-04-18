@@ -3,7 +3,7 @@ import * as React from 'react';
 import Inspector from 'react-inspector';
 import type RefId from 'canner-ref-id';
 
-type PrimitiveValue = string | boolean | number | Object;
+type PrimitiveValue = string | boolean | number | Object | Array<any>;
 
 export default (defaultValue: PrimitiveValue) => (ConfigOrComposedComponent: React.Element<*>) => {
   class ExamplePrimitiveValueWrapper extends ConfigOrComposedComponent {
@@ -16,11 +16,52 @@ export default (defaultValue: PrimitiveValue) => (ConfigOrComposedComponent: Rea
       };
     }
 
-    onChange = (refId: RefId, type: string, value: PrimitiveValue) => {
-      let {log} = this.state;
-      log.unshift({refId, type, value});
-      
-      this.setState({log, value});
+    onChange = (refId: RefId | {firstRefId: RefId, secondRefId: RefId}, type: string, delta: PrimitiveValue): Promise<void> => {
+      let {log, value} = this.state;
+
+      if (type === 'update') {
+        // $FlowFixMe
+        if (refId.getPathArr()[0] !== 'variants') {
+          log.unshift({refId, type, delta});
+          this.setState({log, value: delta});
+        } else {
+          log.unshift({refId, type});
+          // $FlowFixMe
+          const createVal = value.setIn(refId.getPathArr().slice(1), delta)
+          this.setState({log, value: createVal})
+        }
+      } else if (type === 'delete' && !refId.firstRefId) {
+        log.unshift({refId, type});
+        const pathArr = refId.getPathArr();
+        const delValue = value.remove(pathArr[pathArr.length - 1])
+        this.setState({log, value: delValue})
+      } else if (type === 'create') {
+        // $FlowFixMe
+        if (refId.getPathArr()[0] !== 'variants') {
+          log.unshift({refId, type});
+          const createVal = value.push({})
+          this.setState({log, value: createVal})
+        } else {
+          log.unshift({refId, type});
+          // $FlowFixMe
+          const createVal = value.update(refId.getPathArr()[1], list => list.push(delta))
+          this.setState({log, value: createVal})
+        }
+      } else if (type === 'swap' && refId.firstRefId) {
+        log.unshift({refId, type});
+
+        // $FlowFixMe
+        const {firstRefId, secondRefId} = refId;
+        const firstRefIdArr = firstRefId.getPathArr();
+        const secondRefIdArr = secondRefId.getPathArr();
+        const firstIndex = firstRefIdArr[firstRefIdArr.length - 1];
+        const secondIndex = secondRefIdArr[secondRefIdArr.length - 1];
+        let newValue = value.set(firstIndex, value.get(secondIndex));
+        newValue = newValue.set(secondIndex, value.get(firstIndex));
+        this.setState({log, value: newValue});
+      }
+
+      return Promise.resolve();
     }
 
     render() {

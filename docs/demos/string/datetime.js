@@ -1,6 +1,6 @@
 // @flow
 import React, {Component, Fragment} from 'react';
-import Datetime from 'packages/antd-string-date-time-picker';
+import Datetime from 'packages/antd-string-date_time_picker';
 import cmsLocale from 'packages/antd-locales';
 import {IntlProvider} from 'react-intl';
 import {Divider} from 'antd';
