@@ -1,5 +1,5 @@
 {
-  "name": "@canner/antd-relation",
+  "name": "@canner/antd-share-relation",
   "version": "0.0.49",
   "description": "string input",
   "main": "lib/index.js",

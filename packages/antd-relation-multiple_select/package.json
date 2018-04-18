@@ -1,0 +1,23 @@
+{
+  "name": "@canner/antd-relation-multiple-select",
+  "version": "0.0.49",
+  "description": "Relationship for selecting multiple selections",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "variants",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {
+    "styled-components": "^3.2.6",
+    "@canner/antd-share-relation": "^0.0.49",
+    "lodash.template": "^4.4.0"
+  },
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0",
+    "immutable": "^3.8.2"
+  }
+}

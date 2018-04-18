@@ -3,7 +3,7 @@ import React, { PureComponent } from "react";
 import { Tag, Icon } from "antd";
 import type { Map, List } from 'immutable';
 import template from 'lodash/template';
-import Picker from './Picker';
+import Picker from 'antd-share-relation';
 
 // type 
 import type {RelationDefaultProps} from 'types/RelationDefaultProps';
