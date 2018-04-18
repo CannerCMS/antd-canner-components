@@ -70,7 +70,7 @@ export default class RelationOneId extends PureComponent<Props, State> {
       <div>
         {
           value && value.size ?
-            <Tag key={value.getIn([0, "_id"])} closable={true} afterClose={this.handleClose}>
+            <Tag key={value.getIn([0, "_id"])} closable={true} afterClose={this.handleClose} style={{fontSize: 16}}>
               {/* $FlowFixMe */}
               {getTag(value.toJS()[0], uiParams)}
             </Tag> :

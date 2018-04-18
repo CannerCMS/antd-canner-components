@@ -84,7 +84,7 @@ export default class RelationIdList extends PureComponent<Props, State> {
           const isLongTag = tag.length > 20;
           const tagElem = (
             // $FlowFixMe
-            <Tag key={v._id} closable={true} afterClose={() => this.handleClose(index)}>
+            <Tag key={v._id} closable={true} afterClose={() => this.handleClose(index)} style={{fontSize: 16}}>
               {isLongTag ? `${tag.slice(0, 20)}...` : tag}
             </Tag>
           );
