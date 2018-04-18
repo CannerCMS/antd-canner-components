@@ -3,7 +3,7 @@ import React, { PureComponent } from "react";
 import { Tag, Tooltip, Icon } from "antd";
 import template from 'lodash/template';
 import difference from "lodash/difference";
-import Picker from './Picker';
+import Picker from 'antd-share-relation';
 
 // type
 import type {List} from 'immutable';
