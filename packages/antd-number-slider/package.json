@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-number-slider",
-  "version": "0.0.49",
+  "version": "0.1.0",
   "description": "number slider",
   "main": "lib/index.js",
   "scripts": {},

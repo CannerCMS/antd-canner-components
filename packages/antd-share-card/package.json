@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-share-card",
-  "version": "0.0.49",
+  "version": "0.1.0",
   "description": "string card",
   "main": "lib/index.js",
   "scripts": {},
