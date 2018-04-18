@@ -27,6 +27,7 @@ export type OnChangeFn = ((refId: FieldId | {[string]: FieldId}, type: string, v
 // only used in relation
 // https://github.com/Canner/qa-generator/blob/master/src/hocs/relation.js
 export type FetchRelationFn = Function;
+export type Fetch = Function;
 
 /**
 |--------------------------------------------------

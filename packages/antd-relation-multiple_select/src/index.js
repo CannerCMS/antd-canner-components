@@ -3,7 +3,7 @@ import React, { PureComponent } from "react";
 import { Tag, Tooltip, Icon } from "antd";
 import template from 'lodash/template';
 import difference from "lodash/difference";
-import Picker from 'antd-share-relation';
+import Picker from '@canner/antd-share-relation';
 
 // type
 import type {List} from 'immutable';
@@ -74,7 +74,7 @@ export default class RelationIdList extends PureComponent<Props, State> {
 
   render() {
     const { modalVisible } = this.state;
-    let { disabled, value, uiParams, refId, relation } = this.props;
+    let { disabled, value, uiParams, refId, relation, fetch, fetchRelation } = this.props;
     value = value && value.toJS ? value.toJS() : [];
     return (
       <div>
@@ -108,6 +108,8 @@ export default class RelationIdList extends PureComponent<Props, State> {
             columns={uiParams.columns}
             refId={refId}
             relation={relation}
+            fetch={fetch}
+            fetchRelation={fetchRelation}
           />
         }
       </div>

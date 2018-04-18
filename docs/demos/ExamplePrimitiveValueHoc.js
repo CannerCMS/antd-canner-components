@@ -5,30 +5,42 @@ import type RefId from 'canner-ref-id';
 
 type PrimitiveValue = string | boolean | number | Object | Array<any>;
 
-export default (defaultValue: PrimitiveValue) => (ConfigOrComposedComponent: React.Element<*>) => {
+export default (defaultValue: PrimitiveValue, rootValue: PrimitiveValue) => (ConfigOrComposedComponent: React.Element<*>) => {
   class ExamplePrimitiveValueWrapper extends ConfigOrComposedComponent {
     constructor(props: any) {
       super(props);
 
       this.state = {
         log: [],
-        value: defaultValue
+        value: defaultValue,
+        rootValue: defaultValue || rootValue
       };
     }
 
     onChange = (refId: RefId | {firstRefId: RefId, secondRefId: RefId}, type: string, delta: PrimitiveValue): Promise<void> => {
-      let {log, value} = this.state;
-
+      if (refId.length) {
+        // $FlowFixMe
+        return refId.map(v => this.onChange(v.refId, v.type, v.value));
+      }
+      let {log, value, rootValue} = this.state;
       if (type === 'update') {
         // $FlowFixMe
-        if (refId.getPathArr()[0] !== 'variants') {
-          log.unshift({refId, type, delta});
-          this.setState({log, value: delta});
-        } else {
+        if (refId.getPathArr()[0] === 'variants') {
           log.unshift({refId, type});
           // $FlowFixMe
           const createVal = value.setIn(refId.getPathArr().slice(1), delta)
           this.setState({log, value: createVal})
+          // $FlowFixMe
+        } else if (refId.getPathArr()[0] === 'relation') {
+          log.unshift({refId, type, delta});
+          this.setState({log, value: rootValue.filter(v => {
+            if (typeof delta === 'string') return v.get('_id') === delta;
+            // $FlowFixMe
+            return (delta || []).indexOf(v.get('_id')) !== -1;
+          })});
+        } else {
+          log.unshift({refId, type, delta});
+          this.setState({log, value: delta});
         }
       } else if (type === 'delete' && !refId.firstRefId) {
         log.unshift({refId, type});
@@ -37,14 +49,18 @@ export default (defaultValue: PrimitiveValue) => (ConfigOrComposedComponent: Rea
         this.setState({log, value: delValue})
       } else if (type === 'create') {
         // $FlowFixMe
-        if (refId.getPathArr()[0] !== 'variants') {
-          log.unshift({refId, type});
-          const createVal = value.push({})
-          this.setState({log, value: createVal})
-        } else {
+        if (refId.getPathArr()[0] === 'variants') {
           log.unshift({refId, type});
           // $FlowFixMe
           const createVal = value.update(refId.getPathArr()[1], list => list.push(delta))
+          this.setState({log, value: createVal})
+          // $FlowFixMe
+        } else if (refId.getPathArr()[0] === 'relation'){
+          log.unshift({refId, type, delta});
+          this.setState({log, value: value.push(delta)});
+        } else {
+          log.unshift({refId, type});
+          const createVal = value.push({})
           this.setState({log, value: createVal})
         }
       } else if (type === 'swap' && refId.firstRefId) {

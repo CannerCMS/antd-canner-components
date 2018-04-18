@@ -8,5 +8,6 @@
     "init": {
       "exact": true
     }
-  }
+  },
+  "npmClient": "yarn"
 }

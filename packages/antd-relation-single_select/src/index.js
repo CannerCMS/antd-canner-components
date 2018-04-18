@@ -3,7 +3,7 @@ import React, { PureComponent } from "react";
 import { Tag, Icon } from "antd";
 import type { Map, List } from 'immutable';
 import template from 'lodash/template';
-import Picker from 'antd-share-relation';
+import Picker from '@canner/antd-share-relation';
 
 // type 
 import type {RelationDefaultProps} from 'types/RelationDefaultProps';
@@ -47,7 +47,7 @@ export default class RelationOneId extends PureComponent<Props, State> {
 
   handleOk = (queue: List<any>) => {
     const {onChange, refId} = this.props;
-    // get the first, and only one from picker
+    // get the first one from picker
     onChange(refId, 'update', queue.get(0));
     this.handleCancel();
   }
@@ -65,7 +65,7 @@ export default class RelationOneId extends PureComponent<Props, State> {
 
   render() {
     const { modalVisible } = this.state;
-    const { disabled, value, uiParams, refId, relation } = this.props;
+    const { disabled, value, uiParams, refId, relation, fetch, fetchRelation } = this.props;
     return (
       <div>
         {
@@ -84,6 +84,8 @@ export default class RelationOneId extends PureComponent<Props, State> {
         </Tag>
         {
           !disabled && <Picker
+            fetch={fetch}
+            fetchRelation={fetchRelation}
             title="選擇你要的物件"
             visible={modalVisible}
             onOk={this.handleOk}

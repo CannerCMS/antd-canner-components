@@ -21,6 +21,7 @@ type Props = {
     relationTo: string,
     relationOn?: string
   },
+  fetch: Function,
   fetchRelation?: Function,
   columns: Array<{
     title: string,
@@ -41,10 +42,6 @@ export default class Picker extends PureComponent<Props, State> {
   componentId: string;
 
   goTo: (page: number) => ({[string]: number});
-  static contextTypes = {
-    fetch: PropTypes.func,
-    subscribe: PropTypes.func
-  }
 
   constructor(props: Props) {
     super(props);
@@ -73,8 +70,7 @@ export default class Picker extends PureComponent<Props, State> {
   }
 
   fetchData = (pagination: {[string]: number}) => {
-    const {relation, fetchRelation} = this.props;
-    const {fetch} = this.context;
+    const {relation, fetchRelation, fetch} = this.props;
     if (fetchRelation) {
       fetchRelation(null, {start: 0, limit: pagination.start + pagination.limit});
     }

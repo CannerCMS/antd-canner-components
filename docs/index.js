@@ -5,6 +5,7 @@ import contextValue from './context';
 import {Context} from '@canner/react-cms-helpers';
 // share
 import ShareCardDemo from './demos/share/card';
+import ShareRelationDemo from './demos/share/relation';
 
 // boolean
 import BooleanCardDemo from './demos/boolean/card';
@@ -44,6 +45,10 @@ import OptionsDemo from './demos/object/options';
 import MapDemo from './demos/object/map';
 import VariantsDemo from './demos/object/variants';
 
+// relation
+import SingleSelectDemo from './demos/relation/single-select';
+import MultipleSelectDemo from './demos/relation/multiple-select';
+
 const {SubMenu} = Menu;
 const {Content, Sider} = Layout;
 
@@ -80,6 +85,7 @@ class Demo extends Component {
           >
             <SubMenu key="share" title="Share">
               <Menu.Item key="card">card</Menu.Item>
+              <Menu.Item key="relation">relation</Menu.Item>
             </SubMenu>
             <SubMenu key="string" title="String">
               <Menu.Item key="input">input</Menu.Item>
@@ -119,6 +125,10 @@ class Demo extends Component {
               <Menu.Item key="map">map</Menu.Item>
               <Menu.Item key="variants">variants</Menu.Item>
             </SubMenu>
+            <SubMenu key="relation" title="Relation">
+              <Menu.Item key="single-select">single-select</Menu.Item>
+              <Menu.Item key="multiple-select">multiple-select</Menu.Item>
+            </SubMenu>
           </Menu>
         </Sider>
         <Layout style={{ padding: '0 24px 24px' }}>
@@ -126,6 +136,7 @@ class Demo extends Component {
             <Context.Provider value={contextValue()}>
             {/* share */}
             {selectTab === 'share' && selectKey === 'card' ? <ShareCardDemo/> : null}
+            {selectTab === 'share' && selectKey === 'relation' ? <ShareRelationDemo /> : null}
 
             {/* boolean */}
             {selectTab === 'boolean' && selectKey === 'card' ? <BooleanCardDemo/> : null}
@@ -164,6 +175,11 @@ class Demo extends Component {
             {selectTab === 'object' && selectKey === 'options' ? <OptionsDemo/> : null}
             {selectTab === 'object' && selectKey === 'map' ? <MapDemo/> : null}
             {selectTab === 'object' && selectKey === 'variants' ? <VariantsDemo/> : null}
+
+            {/* relation */}
+            {selectTab === 'relation' && selectKey === 'single-select' ? <SingleSelectDemo/> : null}
+            {selectTab === 'relation' && selectKey === 'multiple-select' ? <MultipleSelectDemo/> : null}
+            
             </Context.Provider>
           </Content>
         </Layout>
