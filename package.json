@@ -41,7 +41,9 @@
     "styled-components": "^3.2.1",
     "webpack": "^4.0.1",
     "webpack-cli": "^2.0.10",
-    "webpack-dev-server": "^3.1.0"
+    "webpack-dev-server": "^3.1.0",
+    "ncp": "^2.0.0",
+    "git-directory-deploy": "^1.5.1"
   },
   "theme": {
     "primary-color": "#f2b173",
@@ -53,7 +55,11 @@
     "start": "./node_modules/.bin/webpack-dev-server --config webpack.config.dev.js --mode development",
     "lint": "prettier --write ./packages/*/src/**/*.js && eslint ./packages/*/src/**/*.js",
     "build": "lerna exec --parallel -- babel src -d lib --copy-files",
-    "build:watch": "lerna exec --parallel -- babel src -d lib --copy-files -w"
+    "build:watch": "lerna exec --parallel -- babel src -d lib --copy-files -w",
+    "gh-pages:clean": "rimraf _gh-pages && ncp ./docs ./_gh-pages",
+    "gh-pages:build": "./node_modules/.bin/webpack --config webpack.config.ghPage.js",
+    "gh-pages:publish": "git-directory-deploy --directory _gh-pages",
+    "gh-pages": "npm run build && npm run gh-pages:clean && npm run gh-pages:build && npm run gh-pages:publish"
   },
   "dependencies": {
     "@canner/image-service-config": "^0.2.0",
