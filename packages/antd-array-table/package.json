@@ -14,5 +14,10 @@
   "dependencies": {
     "@canner/antd-locales": "^0.1.0",
     "prop-types": "^15.6.0"
+  },
+  "canner": {
+    "cannerDataType": "array",
+    "cacheActions": true,
+    "controlDeployAndResetButtons": true
   }
 }
