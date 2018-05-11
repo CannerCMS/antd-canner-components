@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-array-table_route",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "array table-route",
   "main": "lib/index.js",
   "scripts": {},
@@ -16,5 +16,10 @@
   },
   "dependencies": {
     "@canner/antd-locales": "^0.1.0"
+  },
+  "canner": {
+    "cannerDataType": "array",
+    "cacheActions": true,
+    "controlDeployAndResetButtons": true
   }
 }
