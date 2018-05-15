@@ -9,37 +9,47 @@ import RefId from 'canner-ref-id';
 import ExampleArrayValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {ArrayTypes} from '../types';
 
-let list = immutable.fromJS([{
-  _id: 'item1',
-  title: 'item1'
-}, {
-  _id: 'item2',
-  title: 'item2'
-}, {
-  _id: 'item3',
-  title: 'item3'
-}, {
-  _id: 'item4',
-  title: 'item4'
-}, {
-  _id: 'item5',
-  title: 'item5'
-}]);
-
-const rtnCtx = {
-  response: {
-    pagination: {
-      goTo: () => {
-        return {}
-      },
-      totalPage: 1,
-      page: 1,
-    },
-    body: list
+const connection = immutable.fromJS({
+  edges: [{
+    cursor: 'item1',
+    node: {
+      id: 'item1',
+      title: 'item1'
+    }
+  }, {
+    cursor: 'item2',
+    node: {
+      id: 'item2',
+      title: 'item2'
+    }
+  }, {
+    cursor: 'item3',
+    node: {
+      id: 'item3',
+      title: 'item3'
+    }
+  }, {
+    cursor: 'item4',
+    node: {
+      id: 'item4',
+      title: 'item4'
+    }
+  }, {
+    cursor: 'item5',
+    node: {
+      id: 'item5',
+      title: 'item5'
+    }
+  }],
+  pageInfo: {
+    hasNextInfo: false
   }
-}
+});
 
-@ExampleArrayValueWrapper(list)
+// $FlowFixMe
+const value = connection.get('edges').map(edge => edge.get('node'));
+
+@ExampleArrayValueWrapper(value)
 class SingleSelectDemo extends React.Component<ArrayTypes<string>> {
   render() {
     const {value, onChange} = this.props;
@@ -52,7 +62,8 @@ class SingleSelectDemo extends React.Component<ArrayTypes<string>> {
           <SingleSelect
             value={value}
             relation={{
-              relationTo: 'posts'
+              to: 'posts',
+              type: 'toOne'
             }}
             uiParams={{
               textCol: 'title',
@@ -61,7 +72,9 @@ class SingleSelectDemo extends React.Component<ArrayTypes<string>> {
                 dataIndex: 'title'
               }]
             }}
-            fetch={() => Promise.resolve(rtnCtx)}
+            fetch={() => Promise.resolve(connection)}
+            subscribe={() => ({unsubscribe: () => {}})}
+            updateQuery={console.log}
             refId={new RefId("relation")}
             onChange={onChange}
           />

@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import { Tag, Icon } from "antd";
-import type { Map, List } from 'immutable';
+import type { List } from 'immutable';
 import template from 'lodash/template';
 import Picker from '@canner/antd-share-relation';
 
@@ -21,7 +21,9 @@ type Props = RelationDefaultProps & {
     columns: Array<*>
   },
   rootValue: any,
-  disabled: FieldDisabled
+  subscribe: Function,
+  disabled: FieldDisabled,
+  updateQuery: Function
 };
 
 export default class RelationOneId extends PureComponent<Props, State> {
@@ -48,7 +50,7 @@ export default class RelationOneId extends PureComponent<Props, State> {
   handleOk = (queue: List<any>) => {
     const {onChange, refId} = this.props;
     // get the first one from picker
-    onChange(refId, 'update', queue.get(0));
+    onChange(refId, 'connect', queue.get(0));
     this.handleCancel();
   }
 
@@ -59,18 +61,18 @@ export default class RelationOneId extends PureComponent<Props, State> {
   }
 
   handleClose = () => {
-    const {onChange, refId} = this.props;
-    onChange(refId, 'update', null);
+    const {onChange, refId, value} = this.props;
+    onChange(refId, 'disconnect', value.get(0));
   }
 
   render() {
     const { modalVisible } = this.state;
-    const { disabled, value, uiParams, refId, relation, fetch, fetchRelation } = this.props;
+    const { disabled, value, uiParams, refId, relation, fetch, fetchRelation, subscribe, updateQuery } = this.props;
     return (
       <div>
         {
           value && value.size ?
-            <Tag key={value.getIn([0, "_id"])} closable={true} afterClose={this.handleClose} style={{fontSize: 16}}>
+            <Tag key={value.getIn([0, "id"])} closable={true} afterClose={this.handleClose} style={{fontSize: 16}}>
               {/* $FlowFixMe */}
               {getTag(value.toJS()[0], uiParams)}
             </Tag> :
@@ -85,14 +87,16 @@ export default class RelationOneId extends PureComponent<Props, State> {
         {
           !disabled && <Picker
             fetch={fetch}
+            subscribe={subscribe}
             fetchRelation={fetchRelation}
             title="選擇你要的物件"
             visible={modalVisible}
             onOk={this.handleOk}
             onCancel={this.handleCancel}
+            updateQuery={updateQuery}
             pickOne={true}
             // $FlowFixMe
-            pickedIds={[value && value.getIn([0, "_id"])]}
+            pickedIds={[value && value.getIn([0, "id"])]}
             columns={uiParams.columns}
             refId={refId}
             relation={relation}

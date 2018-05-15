@@ -23,7 +23,9 @@ type Props = RelationDefaultProps & {
   },
   goTo: GotoFn,
   rootValue: any,
-  disabled: FieldDisabled
+  disabled: FieldDisabled,
+  updateQuery: Function,
+  subscribe: Function
 };
 
 export default class RelationIdList extends PureComponent<Props, State> {
@@ -52,11 +54,12 @@ export default class RelationIdList extends PureComponent<Props, State> {
     value = value && value.toJS ? value.toJS() : [];
     queue = (queue.toJS(): any);
     // $FlowFixMe
-    const currentIds = value.map(v => v._id);
+    const currentIds = value.map(v => v.id);
+
     const idsShouldCreate = difference(queue, currentIds);
     const idsShouldRemove = difference(currentIds, queue);
-    const createActions = idsShouldCreate.map(_id => ({refId, type: "create", value: originData.find(data => data.get('_id') === _id)}));
-    const delActions = idsShouldRemove.map(_id => ({refId: refId.child(`${currentIds.findIndex(v => v === _id)}`), type: "delete"}));
+    const createActions = idsShouldCreate.map(id => ({refId, type: "connect", value: originData.find(data => data.get('id') === id)}));
+    const delActions = idsShouldRemove.map(id => ({refId: refId.child(`${currentIds.findIndex(v => v === id)}`), type: "disconnect", value: originData.find(data => data.get('id') === id)}));
     onChange([...createActions, ...delActions]);
     this.handleCancel();
   }
@@ -68,13 +71,13 @@ export default class RelationIdList extends PureComponent<Props, State> {
   }
 
   handleClose = (index:  number) => {
-    const {onChange, refId} = this.props;
-    onChange(refId.child(index), 'delete');
+    const {onChange, refId, value} = this.props;
+    onChange(refId.child(index), 'disconnnect', value.get(index));
   }
 
   render() {
     const { modalVisible } = this.state;
-    let { disabled, value, uiParams, refId, relation, fetch, fetchRelation } = this.props;
+    let { disabled, value, uiParams, refId, relation, fetch, fetchRelation, updateQuery, subscribe } = this.props;
     value = value && value.toJS ? value.toJS() : [];
     return (
       <div>
@@ -84,12 +87,12 @@ export default class RelationIdList extends PureComponent<Props, State> {
           const isLongTag = tag.length > 20;
           const tagElem = (
             // $FlowFixMe
-            <Tag key={v._id} closable={true} afterClose={() => this.handleClose(index)} style={{fontSize: 16}}>
+            <Tag key={v.id} closable={true} afterClose={() => this.handleClose(index)} style={{fontSize: 16}}>
               {isLongTag ? `${tag.slice(0, 20)}...` : tag}
             </Tag>
           );
             // $FlowFixMe
-          return isLongTag ? <Tooltip title={tag} key={v._id}>{tagElem}</Tooltip> : tagElem;
+          return isLongTag ? <Tooltip title={tag} key={v.id}>{tagElem}</Tooltip> : tagElem;
         })}
         <Tag
           onClick={this.showModal}
@@ -104,11 +107,13 @@ export default class RelationIdList extends PureComponent<Props, State> {
             onOk={this.handleOk}
             onCancel={this.handleCancel}
             // $FlowFixMe
-            pickedIds={value.map(v => v._id)}
+            pickedIds={value.map(v => v.id)}
             columns={uiParams.columns}
             refId={refId}
             relation={relation}
             fetch={fetch}
+            subscribe={subscribe}
+            updateQuery={updateQuery}
             fetchRelation={fetchRelation}
           />
         }

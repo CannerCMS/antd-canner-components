@@ -16,8 +16,8 @@
     "prop-types": "^15.6.0"
   },
   "canner": {
-    "cannerDataType": "array",
     "cacheActions": true,
-    "controlDeployAndResetButtons": true
+    "controlDeployAndResetButtons": true,
+    "cannerDataType": "array"
   }
 }

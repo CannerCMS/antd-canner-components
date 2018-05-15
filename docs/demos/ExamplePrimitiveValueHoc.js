@@ -22,7 +22,7 @@ export default (defaultValue: PrimitiveValue, rootValue: PrimitiveValue) => (Con
         // $FlowFixMe
         return refId.map(v => this.onChange(v.refId, v.type, v.value));
       }
-      let {log, value, rootValue} = this.state;
+      let {log, value} = this.state;
       if (type === 'update') {
         // $FlowFixMe
         if (refId.getPathArr()[0] === 'variants') {
@@ -31,13 +31,6 @@ export default (defaultValue: PrimitiveValue, rootValue: PrimitiveValue) => (Con
           const createVal = value.setIn(refId.getPathArr().slice(1), delta)
           this.setState({log, value: createVal})
           // $FlowFixMe
-        } else if (refId.getPathArr()[0] === 'relation') {
-          log.unshift({refId, type, delta});
-          this.setState({log, value: rootValue.filter(v => {
-            if (typeof delta === 'string') return v.get('_id') === delta;
-            // $FlowFixMe
-            return (delta || []).indexOf(v.get('_id')) !== -1;
-          })});
         } else {
           log.unshift({refId, type, delta});
           this.setState({log, value: delta});
@@ -75,6 +68,13 @@ export default (defaultValue: PrimitiveValue, rootValue: PrimitiveValue) => (Con
         let newValue = value.set(firstIndex, value.get(secondIndex));
         newValue = newValue.set(secondIndex, value.get(firstIndex));
         this.setState({log, value: newValue});
+      } else if (type === 'connect') {
+        log.unshift({refId, type, delta});
+        this.setState({refId, log, value: value.push(delta)});
+      } else if (type === 'disconnect') {
+        log.unshift({refId, type, delta});
+        const delValue = value.filter(v => v.get('id') !== (delta: any).get('id'));
+        this.setState({log, value: delValue})
       }
 
       return Promise.resolve();

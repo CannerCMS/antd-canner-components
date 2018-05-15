@@ -1,11 +1,10 @@
 // @flow
 import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
-import {List, fromJS} from 'immutable';
-import {Modal} from 'antd';
-import {Table} from 'antd';
-
+import {Map, List, fromJS} from 'immutable';
+import {Modal, Table, Button, Icon} from 'antd';
+const ButtonGroup = Button.Group;
 import type {FieldId} from 'types/DefaultProps';
+import styled from 'styled-components';
 
 type Props = {
   title: string,
@@ -17,39 +16,42 @@ type Props = {
   pickOne?: boolean,
   refId: FieldId,
   relation: {
-    relationship: string,
-    relationTo: string,
-    relationOn?: string
+    to: string,
+    type: string,
   },
+  updateQuery: Function,
   fetch: Function,
   fetchRelation?: Function,
   columns: Array<{
     title: string,
     key: string,
     datIndex: string
-  }>
+  }>,
+  subscribe: Function,
 };
 
 type State = {
   totalValue: List<*>,
   value: List<*>,
-  page: number,
-  totalPage: number,
+  hasNextPage: boolean,
   selectedRowKeys: Array<string>
 };
 
+const ButtonWrapper = styled.div`
+  text-align: right;
+  margin-top: 16px;
+`;
+
 export default class Picker extends PureComponent<Props, State> {
   componentId: string;
-
-  goTo: (page: number) => ({[string]: number});
+  subscription: any;
 
   constructor(props: Props) {
     super(props);
     this.state = {
       totalValue: new List(),
       value: new List(),
-      page: 1,
-      totalPage: 1,
+      hasNextPage: false,
       selectedRowKeys: props.pickedIds ? props.pickedIds : []
     };
     this.componentId = `${props.refId.toString()}/PICK`;
@@ -62,34 +64,64 @@ export default class Picker extends PureComponent<Props, State> {
   }
 
   componentDidMount() {
-    this.fetchData({start: 0, limit: 10});
+    this.fetchData();
   }
 
-  changePage = (page: number) => {
-    this.fetchData(this.goTo(page));
-  }
-
-  fetchData = (pagination: {[string]: number}) => {
-    const {relation, fetchRelation, fetch} = this.props;
-    if (fetchRelation) {
-      fetchRelation(null, {start: 0, limit: pagination.start + pagination.limit});
-    }
-    return fetch(relation.relationTo, this.componentId, {pagination})
-      .then(ctx => {
-        this.goTo = ctx.response.pagination.goTo;
-        let totalValue = this.state.totalValue;
-        ctx.response.body.forEach(val => {
-          if (!totalValue.find(nv => nv.get('_id') === val.get('_id'))) {
-            totalValue = totalValue.push(val);
-          }
-        });
-        this.setState({
-          totalValue: totalValue,
-          value: ctx.response.body,
-          page: ctx.response.pagination.page,
-          totalPage: ctx.response.pagination.totalPage
-        });
+  nextPage = () => {
+    const {updateQuery, relation} = this.props;
+    const {hasNextPage, value} = this.state;
+    if (hasNextPage) {
+      updateQuery([relation.to], {
+        pagination: {
+          after: (value.last() || new Map()).get('id'),
+          first: 10
+        }
       });
+    }
+  }
+
+  prevPage = () => {
+    const {updateQuery, relation} = this.props;
+    const {value} = this.state;
+    updateQuery([relation.to], {
+      pagination: {
+        before: (value.first() || new Map()).get('id'),
+        last: 10
+      }
+    });
+  }
+
+  fetchData = () => {
+    const {relation, fetch} = this.props;
+
+    return fetch(relation.to)
+      .then(data => {
+        this.updateData(data);
+        this.subscribe();
+      });
+  }
+
+  updateData = (data: any) => {
+    let {totalValue} = this.state;
+    const list = data.get('edges').map(edge => edge.get('node'));
+    list.forEach(item => {
+      const index = totalValue.findIndex(v => v.get('id') === item.get('id'));
+      if (index === -1) {
+        totalValue = totalValue.push(item);
+      } else {
+        totalValue.set(index, item);
+      }
+    });
+    this.setState({
+      totalValue,
+      value: list,
+      hasNextPage: data.getIn(['pageInfo', 'hasNextPage']),
+    });
+  }
+
+  subscribe = () => {
+    const {subscribe, relation} = this.props
+    this.subscription = subscribe(relation.to, this.updateData);
   }
 
   handleCancel = () => {
@@ -106,9 +138,17 @@ export default class Picker extends PureComponent<Props, State> {
     });
   }
 
+  componentWillUnmount() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+      delete this.subscription;
+    }
+  }
+
   render() {
     const { visible, columns, pickOne = false } = this.props;
-    const { value, selectedRowKeys, page, totalPage } = this.state;
+    const { value, selectedRowKeys, hasNextPage } = this.state;
+
     return <Modal
       onOk={this.handleOk}
       onCancel={this.handleCancel}
@@ -120,16 +160,24 @@ export default class Picker extends PureComponent<Props, State> {
           onChange: this.rowSelectOnChange,
           selectedRowKeys: selectedRowKeys
         }}
-        pagination={{
-          onChange: this.changePage,
-          current: page,
-          total: totalPage * 10
-        }}
         size="middle"
         columns={columns}
         // $FlowFixMe
-        dataSource={value.toJS().map(v => ({key: v._id, ...v}))}
+        dataSource={value.toJS().map(v => ({key: v.id, ...v}))}
+        pagination={false}
       />
+      <ButtonWrapper>
+        <ButtonGroup>
+          <Button onClick={this.prevPage}>
+            <Icon type="left" />
+            Previous Page
+          </Button>
+          <Button disabled={!hasNextPage} onClick={this.nextPage}>
+            Next Page
+            <Icon type="right" />
+          </Button>
+        </ButtonGroup>
+      </ButtonWrapper>
     </Modal>
   }
 }
