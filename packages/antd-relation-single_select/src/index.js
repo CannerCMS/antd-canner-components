@@ -47,10 +47,10 @@ export default class RelationOneId extends PureComponent<Props, State> {
     });
   }
 
-  handleOk = (queue: List<any>) => {
+  handleOk = (queue: List<any>, originData: List<any>) => {
     const {onChange, refId} = this.props;
     // get the first one from picker
-    onChange(refId, 'connect', queue.get(0));
+    onChange(refId, 'connect', originData.find(item => item.get('id') === queue.get(0)));
     this.handleCancel();
   }
 

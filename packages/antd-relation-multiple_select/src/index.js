@@ -72,7 +72,7 @@ export default class RelationIdList extends PureComponent<Props, State> {
 
   handleClose = (index:  number) => {
     const {onChange, refId, value} = this.props;
-    onChange(refId.child(index), 'disconnnect', value.get(index));
+    onChange(refId, 'disconnect', value.get(index));
   }
 
   render() {
