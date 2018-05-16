@@ -96,7 +96,7 @@ export default class RelationOneId extends PureComponent<Props, State> {
             updateQuery={updateQuery}
             pickOne={true}
             // $FlowFixMe
-            pickedIds={[value && value.getIn([0, "id"])]}
+            pickedIds={[value && value.get("id")]}
             columns={uiParams.columns}
             refId={refId}
             relation={relation}

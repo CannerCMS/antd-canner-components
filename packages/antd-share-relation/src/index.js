@@ -103,7 +103,9 @@ export default class Picker extends PureComponent<Props, State> {
 
   updateData = (data: any) => {
     let {totalValue} = this.state;
-    const list = data.get('edges').map(edge => edge.get('node'));
+    const {relation} = this.props;
+
+    const list = data.getIn([relation.to, 'edges']).map(edge => edge.get('node'));
     list.forEach(item => {
       const index = totalValue.findIndex(v => v.get('id') === item.get('id'));
       if (index === -1) {
@@ -115,7 +117,7 @@ export default class Picker extends PureComponent<Props, State> {
     this.setState({
       totalValue,
       value: list,
-      hasNextPage: data.getIn(['pageInfo', 'hasNextPage']),
+      hasNextPage: data.getIn([relation.to, 'pageInfo', 'hasNextPage']),
     });
   }
 
