@@ -1,4 +1,4 @@
-# react-cms-components
+# antd-canner-components
 
 This repository provide CMS components for developers to assemble CMS interface using Canner CMS.
 

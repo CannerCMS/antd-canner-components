@@ -5,7 +5,7 @@ import {List} from 'immutable';
 import defaultMessage from "@canner/antd-locales";
 import {injectIntl, FormattedMessage} from 'react-intl';
 const Option = Select.Option;
-import {transformData} from '@canner/react-cms-helpers';
+import {transformData} from 'canner-helpers';
 
 // types
 import type {FieldDisabled} from 'types/DefaultProps';

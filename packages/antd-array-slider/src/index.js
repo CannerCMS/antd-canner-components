@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import { Slider } from "antd";
 import {List} from 'immutable';
-import {transformData} from '@canner/react-cms-helpers';
+import {transformData} from 'canner-helpers';
 // types
 import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
 

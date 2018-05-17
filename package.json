@@ -1,8 +1,7 @@
 {
-  "name": "react-cms-components",
+  "name": "antd-canner-components",
   "version": "10000.0.0",
   "devDependencies": {
-    "@canner/qa-generator": "^0.1.0-rc.17",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.1.2",
@@ -63,8 +62,7 @@
   },
   "dependencies": {
     "@canner/image-service-config": "^0.2.0",
-    "@canner/react-cms-core": "0.0.4",
-    "@canner/react-cms-helpers": "^0.1.6",
+    "canner-helpers": "^0.1.8",
     "antd": "^3.2.3",
     "immutable": "^4.0.0-rc.9",
     "lodash": "^4.17.4",

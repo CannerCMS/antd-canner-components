@@ -5,7 +5,7 @@ import { Modal } from "antd";
 
 import { FormattedMessage } from "react-intl";
 import defaultMessage from "@canner/antd-locales";
-import {Item, ConfirmButton, ResetButton} from '@canner/react-cms-helpers';
+import {Item, ConfirmButton, ResetButton} from 'canner-helpers';
 import type {FieldId} from 'types/DefaultProps';
 
 type Props = {

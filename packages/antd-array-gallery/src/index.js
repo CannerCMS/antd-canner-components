@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import { List } from "immutable";
 import Gallery from 'canner-image-gallery';
 import {Modal} from 'antd';
-import { Item, transformData } from '@canner/react-cms-helpers';
+import { Item, transformData } from 'canner-helpers';
 import {injectIntl} from 'react-intl';
 const {confirm} = Modal;
 

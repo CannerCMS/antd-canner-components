@@ -7,7 +7,7 @@ import { Button, Icon, Modal } from "antd";
 import Sortable from "react-sortablejs";
 import { List } from "immutable";
 import {injectIntl} from 'react-intl';
-import {Item, ConfirmButton, ResetButton} from '@canner/react-cms-helpers';
+import {Item, ConfirmButton, ResetButton} from 'canner-helpers';
 import 'antd/lib/tabs/style';
 
 // types

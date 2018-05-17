@@ -6,7 +6,7 @@ import { flatten, map, reduce, isEqual } from "lodash";
 import { Option, VariantsContainer, Remove} from './components';
 
 import {injectIntl} from 'react-intl';
-import {Item, createEmptyData, transformData} from '@canner/react-cms-helpers';
+import {Item, createEmptyData, transformData} from 'canner-helpers';
 import type {List} from 'immutable';
 import type {ObjectDefaultProps} from 'types/ObjectDefaultProps';
 

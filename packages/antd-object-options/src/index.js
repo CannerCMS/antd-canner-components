@@ -3,7 +3,7 @@
 import React, { Component } from "react";
 import { Radio } from "antd";
 import { Map, fromJS } from "immutable";
-import {Item, createEmptyData} from '@canner/react-cms-helpers';
+import {Item, createEmptyData} from 'canner-helpers';
 
 import type {ObjectDefaultProps} from 'types/ObjectDefaultProps';
 const { Group, Button } = Radio;
