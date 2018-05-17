@@ -55,6 +55,7 @@
     "lint": "prettier --write ./packages/*/src/**/*.js && eslint ./packages/*/src/**/*.js",
     "build": "lerna exec --parallel -- babel src -d lib --copy-files",
     "build:watch": "lerna exec --parallel -- babel src -d lib --copy-files -w",
+    "release": "npm run build && lerna publish",
     "gh-pages:clean": "rimraf _gh-pages && ncp ./docs ./_gh-pages",
     "gh-pages:build": "./node_modules/.bin/webpack --config webpack.config.ghPage.js",
     "gh-pages:publish": "git-directory-deploy --directory _gh-pages",
