@@ -76,6 +76,7 @@ export default class TabUi extends Component<Props, State> {
 
   handleDelete = (index: number) => {
     const { intl, onChange, deploy, value, refId } = this.props;
+    const that = this;
     confirm({
       title: intl.formatMessage({ id: "array.tab.delete.confirm" }),
       onOk() {
@@ -88,7 +89,7 @@ export default class TabUi extends Component<Props, State> {
             return Promise.resolve();
           })
           .then(() => {
-            this.setState({
+            that.setState({
               activeKey: `${value.size - 1}`
             });
           });
