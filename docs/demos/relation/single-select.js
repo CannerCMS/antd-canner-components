@@ -49,7 +49,7 @@ const connection = immutable.fromJS({
 // $FlowFixMe
 const value = connection.get('edges').map(edge => edge.get('node'));
 
-@ExampleArrayValueWrapper(value)
+@ExampleArrayValueWrapper(value[0])
 class SingleSelectDemo extends React.Component<ArrayTypes<string>> {
   render() {
     const {value, onChange} = this.props;

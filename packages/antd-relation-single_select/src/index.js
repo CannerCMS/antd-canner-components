@@ -21,6 +21,7 @@ type Props = RelationDefaultProps & {
     columns: Array<*>
   },
   rootValue: any,
+  value: any,
   subscribe: Function,
   disabled: FieldDisabled,
   updateQuery: Function
@@ -72,9 +73,9 @@ export default class RelationOneId extends PureComponent<Props, State> {
       <div>
         {
           value && value.size ?
-            <Tag key={value.getIn([0, "id"])} closable={true} afterClose={this.handleClose} style={{fontSize: 16}}>
+            <Tag key={(value: any).get('id')} closable={true} afterClose={this.handleClose} style={{fontSize: 16}}>
               {/* $FlowFixMe */}
-              {getTag(value.toJS()[0], uiParams)}
+              {getTag(value.toJS(), uiParams)}
             </Tag> :
             null
         }
