@@ -152,6 +152,9 @@ export default class TabUi extends Component<Props, State> {
           tab={title}
           id={thisId}
           key={`${i}`}
+          style={{
+            overflow: 'hidden'
+          }}
         >
           <Item
             refId={thisId}
