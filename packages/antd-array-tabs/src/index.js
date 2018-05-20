@@ -90,7 +90,7 @@ export default class TabUi extends Component<Props, State> {
           })
           .then(() => {
             that.setState({
-              activeKey: `${value.size - 1}`
+              activeKey: `${value.size - 2}`
             });
           });
       }
