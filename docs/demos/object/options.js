@@ -6,7 +6,7 @@ import {Divider} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../types';
 import RefId from 'canner-ref-id';
-import {Context} from '@canner/react-cms-helpers';
+import {Context} from 'canner-helpers';
 import contextValue from '../../context';
 
 @ExamplePrimitiveValueWrapper(fromJS({

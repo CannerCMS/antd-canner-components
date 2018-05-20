@@ -109,7 +109,7 @@ export default class PanelUi extends PureComponent<Props, State> {
                     size="small"
                     icon="delete"
                     type="danger"
-                    onClick={() => this.onDelete(thisId)}>
+                    onClick={() => this.onDelete(i)}>
                     Delete
                   </Button>
                 </span>

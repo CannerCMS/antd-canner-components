@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import ReactDOM from "react-dom";
 import {Menu, Layout} from 'antd';
 import contextValue from './context';
-import {Context} from '@canner/react-cms-helpers';
+import {Context} from 'canner-helpers';
 // share
 import ShareCardDemo from './demos/share/card';
 import ShareRelationDemo from './demos/share/relation';
