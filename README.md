@@ -4,6 +4,16 @@ This repository provide CMS components for developers to assemble CMS interface 
 
 > This project use **Lerna** to maintain multiple packages.
 
+## Introduction
+
+Learn how to use these default UI in Canner
+
+https://framework.canner.io/docs/advance-component-types.html
+
+## Demo
+
+http://antd-cms-component.canner.io/
+
 ## Develop
 
 ```
