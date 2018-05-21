@@ -59,7 +59,7 @@ export default class RelationIdList extends PureComponent<Props, State> {
     const idsShouldCreate = difference(queue, currentIds);
     const idsShouldRemove = difference(currentIds, queue);
     const createActions = idsShouldCreate.map(id => ({refId, type: "connect", value: originData.find(data => data.get('id') === id)}));
-    const delActions = idsShouldRemove.map(id => ({refId: refId.child(`${currentIds.findIndex(v => v === id)}`), type: "disconnect", value: originData.find(data => data.get('id') === id)}));
+    const delActions = idsShouldRemove.map(id => ({refId, type: "disconnect", value: originData.find(data => data.get('id') === id)}));
     onChange([...createActions, ...delActions]);
     this.handleCancel();
   }
