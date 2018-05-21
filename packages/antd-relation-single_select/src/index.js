@@ -63,7 +63,7 @@ export default class RelationOneId extends PureComponent<Props, State> {
 
   handleClose = () => {
     const {onChange, refId, value} = this.props;
-    onChange(refId, 'disconnect', value.get(0));
+    onChange(refId, 'disconnect', value);
   }
 
   render() {
