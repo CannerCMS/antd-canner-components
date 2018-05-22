@@ -24,7 +24,6 @@ import DatetimeDemo from './demos/string/datetime';
 import TimepickerDemo from './demos/string/timepicker';
 import TextareaDemo from './demos/string/textarea';
 import SelectDemo from './demos/string/select';
-import ImageDemo from './demos/string/image';
 import StringCardDemo from './demos/string/card';
 import EditorDemo from './demos/string/editor';
 
@@ -44,6 +43,7 @@ import TableRouteDemo from './demos/array/table-route';
 import OptionsDemo from './demos/object/options';
 import MapDemo from './demos/object/map';
 import VariantsDemo from './demos/object/variants';
+import ImageDemo from './demos/object/image';
 
 // relation
 import SingleSelectDemo from './demos/relation/single-select';
@@ -95,7 +95,6 @@ class Demo extends Component {
               <Menu.Item key="timepicker">timepicker</Menu.Item>
               <Menu.Item key="textarea">textarea</Menu.Item>
               <Menu.Item key="select">select</Menu.Item>
-              <Menu.Item key="image">image</Menu.Item>
               <Menu.Item key="card">card</Menu.Item>
               <Menu.Item key="editor">editor</Menu.Item>
             </SubMenu>
@@ -124,6 +123,7 @@ class Demo extends Component {
               <Menu.Item key="options">options</Menu.Item>
               <Menu.Item key="map">map</Menu.Item>
               <Menu.Item key="variants">variants</Menu.Item>
+              <Menu.Item key="image">image</Menu.Item>
             </SubMenu>
             <SubMenu key="relation" title="Relation">
               <Menu.Item key="single-select">single-select</Menu.Item>
@@ -155,7 +155,6 @@ class Demo extends Component {
             {selectTab === 'string' && selectKey === 'timepicker' ? <TimepickerDemo/> : null}
             {selectTab === 'string' && selectKey === 'textarea' ? <TextareaDemo/> : null}
             {selectTab === 'string' && selectKey === 'select' ? <SelectDemo/> : null}
-            {selectTab === 'string' && selectKey === 'image' ? <ImageDemo/> : null}
             {selectTab === 'string' && selectKey === 'card' ? <StringCardDemo/> : null}
             {selectTab === 'string' && selectKey === 'editor' ? <EditorDemo/> : null}
 
@@ -175,6 +174,7 @@ class Demo extends Component {
             {selectTab === 'object' && selectKey === 'options' ? <OptionsDemo/> : null}
             {selectTab === 'object' && selectKey === 'map' ? <MapDemo/> : null}
             {selectTab === 'object' && selectKey === 'variants' ? <VariantsDemo/> : null}
+            {selectTab === 'object' && selectKey === 'image' ? <ImageDemo/> : null}
 
             {/* relation */}
             {selectTab === 'relation' && selectKey === 'single-select' ? <SingleSelectDemo/> : null}

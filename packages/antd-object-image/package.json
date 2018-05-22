@@ -1,7 +1,7 @@
 {
-  "name": "@canner/antd-string-image",
+  "name": "@canner/antd-object-image",
   "version": "0.1.3",
-  "description": "string image",
+  "description": "object image",
   "main": "lib/index.js",
   "scripts": {},
   "keywords": [
@@ -19,5 +19,8 @@
   },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
+  },
+  "canner": {
+    "cannerDataType": "image"
   }
 }

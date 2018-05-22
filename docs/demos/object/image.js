@@ -1,17 +1,26 @@
 // @flow
 import React, {Component, Fragment} from 'react';
-import Image from 'packages/antd-string-image';
+import Image from 'packages/antd-object-image';
 import cmsLocale from 'packages/antd-locales';
 import {IntlProvider} from 'react-intl';
 import {Divider} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../types';
 import RefId from 'canner-ref-id';
+import {fromJS} from 'immutable';
 
-@ExamplePrimitiveValueWrapper("https://cdn.canner.io/images/logo/logo-word.png")
+const defaultValue = fromJS({
+  contentType: "image/png",
+  name: "logo-word.jpg",
+  size: 1233,
+  url: "https://cdn.canner.io/images/logo/logo-word.png"
+});
+
+@ExamplePrimitiveValueWrapper(defaultValue)
 class ImageDemo1 extends Component<PrimitiveTypes<string>> {
   render() {
     const {value, onChange} = this.props;
+    console.log(value);
     return (
       <IntlProvider
         locale="en"
@@ -30,7 +39,7 @@ class ImageDemo1 extends Component<PrimitiveTypes<string>> {
   }
 }
 
-@ExamplePrimitiveValueWrapper()
+@ExamplePrimitiveValueWrapper(defaultValue.set('url', ''))
 class ImageDemo2 extends Component<PrimitiveTypes<string>> {
   render() {
     const {value, onChange} = this.props;
@@ -52,7 +61,7 @@ class ImageDemo2 extends Component<PrimitiveTypes<string>> {
   }
 }
 
-@ExamplePrimitiveValueWrapper("https://cdn.canner.io/images/logo/logo-word.png")
+@ExamplePrimitiveValueWrapper(defaultValue)
 class ImageDemo3 extends Component<PrimitiveTypes<string>> {
   render() {
     const {value, onChange} = this.props;
@@ -75,7 +84,7 @@ class ImageDemo3 extends Component<PrimitiveTypes<string>> {
   }
 }
 
-@ExamplePrimitiveValueWrapper()
+@ExamplePrimitiveValueWrapper(defaultValue.set('url', ''))
 class ImageDemo4 extends Component<PrimitiveTypes<string>> {
   render() {
     const {value, onChange} = this.props;

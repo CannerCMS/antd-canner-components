@@ -3,19 +3,22 @@ import React, { PureComponent } from "react";
 import ShowImage from "./image/ShowImage";
 import EditImage from "@canner/image-upload";
 import defaultMessage from '@canner/antd-locales';
+import {isArray} from 'lodash';
 import { Button } from "antd";
 import {FormattedMessage} from "react-intl";
 import createImageService from "@canner/image-service-config";
 import ImageServiceConfig from "@canner/image-service-config/lib/imageService";
-// type
-import type {StringDefaultProps} from 'types/StringDefaultProps';
 
-type Props = StringDefaultProps & {
+// type
+import type {ObjectDefaultProps} from 'types/ObjectDefaultProps';
+
+type Props = ObjectDefaultProps & {
   uiParams: {
     service: string,
     dir: string,
     filename: string
-  }
+  },
+  disabled: boolean
 };
 
 type State = {
@@ -46,7 +49,7 @@ export default class Image extends PureComponent<Props, State> {
 
   componentWillReceiveProps(nextProps: Props) {
     // if value exist, hide edit popup
-    if (nextProps.value) {
+    if (nextProps.value.get('url')) {
       this.setState({
         editPopup: false
       });
@@ -65,19 +68,24 @@ export default class Image extends PureComponent<Props, State> {
     });
   };
 
-  onChange = (value: Array<string> | string) => {
-    this.props.onChange(this.props.refId, "update", value[0]);
+  onChange = (newValue: Array<string> | string) => {
+    const {value} = this.props;
+    let url = newValue;
+    if (isArray(newValue)) {
+      url = newValue[0];
+    }
+    this.props.onChange(this.props.refId, "update", value.set('url', url));
   };
 
   render() {
     const { value, disabled } = this.props;
     const { editPopup } = this.state;
     // if the image exist show it, otherwise let user upload.
-    if (value) {
+    if (value && value.get('url')) {
       return (
         <ShowImage
           onChange={this.onChange}
-          value={value}
+          value={(value: any).get('url')}
           disabled={disabled}/>
       );
     }

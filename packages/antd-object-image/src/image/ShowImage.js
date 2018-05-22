@@ -24,7 +24,7 @@ export default class ShowImage extends PureComponent<Props> {
   };
 
   deleteImage() {
-    this.props.onChange([""]);
+    this.props.onChange("");
   }
 
   render() {
