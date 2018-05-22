@@ -53,7 +53,7 @@ export default (defaultValue: PrimitiveValue, rootValue: PrimitiveValue) => (Con
           this.setState({log, value: value.push(delta)});
         } else {
           log.unshift({refId, type});
-          const createVal = value.push({})
+          const createVal = value.push(delta);
           this.setState({log, value: createVal})
         }
       } else if (type === 'swap' && refId.firstRefId) {

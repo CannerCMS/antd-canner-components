@@ -58,23 +58,26 @@ export default class ArrayGallery extends Component<Props> {
   createImages = (values: ImageItem | Array<ImageItem>) => {
     const { refId, onChange } = this.props;
     const that = this;
-
     if (Array.isArray(values)) {
       const createValues = values.map((val) => {
         return {
-          id: `${val.index}`,
+          refId,
           type: "create",
           value: transformData({
-            [this.imageKey]: val.image
+            [that.imageKey]: {
+              url: val.image
+            }
           })
         };
       });
       // $FlowFixMe
       onChange(createValues);
     } else {
-      onChange(refId, "create", List([{
-        [that.imageKey]: values.image
-      }]));
+      onChange(refId, "create", transformData({
+        [that.imageKey]: {
+          url: values.image
+        }
+      }));
     }
   };
 
@@ -90,7 +93,7 @@ export default class ArrayGallery extends Component<Props> {
 
   render() {
     const { value, refId, imageServiceConfig, uiParams } = this.props;
-    const galleryValue = value.map(photo => photo.get(this.imageKey)).toJS()
+    const galleryValue = value.map(photo => photo.getIn([this.imageKey, 'url'])).toJS()
 
     return (
       <div style={{maxWidth: '800px'}}>
