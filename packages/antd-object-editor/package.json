@@ -1,0 +1,23 @@
+{
+  "name": "@canner/antd-object-editor",
+  "version": "0.1.0",
+  "description": "object editor",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "editor",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "dependencies": {
+    "canner-slate-editor": "^0.4.2",
+    "markup-it": "^8.0.2",
+    "slate": "^0.33.6",
+    "slate-react": "^0.12.6"
+  },
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
+  }
+}

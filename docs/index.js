@@ -44,6 +44,7 @@ import OptionsDemo from './demos/object/options';
 import MapDemo from './demos/object/map';
 import VariantsDemo from './demos/object/variants';
 import ImageDemo from './demos/object/image';
+import SlateDemo from './demos/object/editor';
 
 // relation
 import SingleSelectDemo from './demos/relation/single-select';
@@ -124,6 +125,7 @@ class Demo extends Component {
               <Menu.Item key="map">map</Menu.Item>
               <Menu.Item key="variants">variants</Menu.Item>
               <Menu.Item key="image">image</Menu.Item>
+              <Menu.Item key="editor">editor</Menu.Item>
             </SubMenu>
             <SubMenu key="relation" title="Relation">
               <Menu.Item key="single-select">single-select</Menu.Item>
@@ -175,6 +177,7 @@ class Demo extends Component {
             {selectTab === 'object' && selectKey === 'map' ? <MapDemo/> : null}
             {selectTab === 'object' && selectKey === 'variants' ? <VariantsDemo/> : null}
             {selectTab === 'object' && selectKey === 'image' ? <ImageDemo/> : null}
+            {selectTab === 'object' && selectKey === 'editor' ? <SlateDemo/> : null}
 
             {/* relation */}
             {selectTab === 'relation' && selectKey === 'single-select' ? <SingleSelectDemo/> : null}
