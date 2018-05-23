@@ -26,7 +26,7 @@ export default class Editor extends PureComponent<Props, State> {
     this.state = {
       value: Value.fromJSON(JSON.parse(state || "{}")),
     };
-    props.onDeploy(value => {
+    props.onDeploy(() => {
       const state = this.state.value;
       const html = htmlSerializer.serializeDocument(state.document);
       return {

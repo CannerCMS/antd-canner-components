@@ -4,7 +4,7 @@ import { Card, Button, Icon } from "antd";
 import ImageLoader from 'react-loading-image';
 
 type Props = {
-  onChange: (value: Array<string>) => void,
+  onChange: (value: Array<string> | string) => void,
   value: string,
   cardWidth: number,
   disabled: boolean
