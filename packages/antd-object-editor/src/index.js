@@ -13,6 +13,27 @@ type Props = ObjectDefaultProps & {
   onDeploy: Function
 }
 
+const defaultState = {
+    document: {
+      nodes: [
+        {
+          object: 'block',
+          type: 'paragraph',
+          nodes: [
+            {
+              object: 'text',
+              leaves: [
+                {
+                  text: '',
+                }
+              ],
+            },
+          ],
+        },
+      ],
+    }
+  }
+};
 
 export default class Editor extends PureComponent<Props, State> {
   stateKey: string;
@@ -30,7 +51,7 @@ export default class Editor extends PureComponent<Props, State> {
       const state = this.state.value;
       const html = htmlSerializer.serializeDocument(state.document);
       return {
-        [this.stateKey]: JSON.stringify(state),
+        [this.stateKey]: state ? JSON.stringify(state) : defaultState,
         [this.htmlKey]: html
       };
     });

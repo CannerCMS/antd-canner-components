@@ -42,7 +42,7 @@ export default class TagUi extends PureComponent<Props> {
 
   render() {
     const { value, uiParams, intl, disabled } = this.props;
-    let { defaultOptions } = uiParams;
+    let { defaultOptions = [] } = uiParams;
 
     return (
       <Select
