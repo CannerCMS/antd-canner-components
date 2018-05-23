@@ -6,6 +6,8 @@ import {Value} from 'slate';
 import {State} from "markup-it";
 import html from 'markup-it/lib/html';
 const htmlSerializer = State.create(html);
+import {transformData} from "canner-helpers";
+
 // type
 import type {ObjectDefaultProps} from 'types/ObjectDefaultProps';
 
@@ -45,19 +47,21 @@ export default class Editor extends PureComponent<Props, State> {
     this.htmlKey = 'html';
     const state = props.value.get(this.stateKey);
     this.state = {
-      value: Value.fromJSON(JSON.parse(state || "{}")),
+      value: Value.fromJSON(state ? JSON.parse(state) : defaultState),
     };
     props.onDeploy(() => {
       const state = this.state.value;
       const html = htmlSerializer.serializeDocument(state.document);
       return {
-        [this.stateKey]: state ? JSON.stringify(state) : defaultState,
+        [this.stateKey]: JSON.stringify(state),
         [this.htmlKey]: html
       };
     });
   }
 
   onChange = ({value}: {value: Value}) => {
+    const {refId} = this.props;
+    this.onChange(refId, 'update', transformData({}));
     this.setState({
       value
     });
