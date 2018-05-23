@@ -75,7 +75,9 @@ Quill.register(LetterSpacingStyle, true);
 Quill.register(LineHeightStyle, true);
 Quill.register(fontSizeStyle, true);
 
-type Props = StringDefaultProps;
+type Props = StringDefaultProps & {
+  onDeploy: Function
+};
 type State = { color: string };
 
 export default class Editor extends PureComponent<Props, State> {
