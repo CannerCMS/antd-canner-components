@@ -6,8 +6,7 @@ import defaultMessage from '@canner/antd-locales';
 import {isArray} from 'lodash';
 import { Button } from "antd";
 import {FormattedMessage} from "react-intl";
-import createImageService from "@canner/image-service-config";
-import ImageServiceConfig from "@canner/image-service-config/lib/imageService";
+import type ImageServiceConfig from "@canner/image-service-config/lib/imageService";
 
 // type
 import type {ObjectDefaultProps} from 'types/ObjectDefaultProps';
@@ -18,7 +17,8 @@ type Props = ObjectDefaultProps & {
     dir: string,
     filename: string
   },
-  disabled: boolean
+  disabled: boolean,
+  imageServiceConfig: ImageServiceConfig,
 };
 
 type State = {
@@ -26,25 +26,11 @@ type State = {
 };
 
 export default class Image extends PureComponent<Props, State> {
-  serviceConfig: ImageServiceConfig;
   constructor(props: Props) {
     super(props);
     this.state = {
       editPopup: false
     };
-    const { service, dir, filename } = props.uiParams || {};
-    const key = props.refId.getPathArr()[0];
-    // {
-    //   service: 'canner' | 'imgur' | 'firebase',
-    //   dir?: string,
-    //   filename?: string
-    // }
-    // dir and filename is needed when you choose canner image service
-    this.serviceConfig = createImageService({
-      service,
-      dir,
-      filename
-    }, {key}).getServiceConfig();
   }
 
   componentWillReceiveProps(nextProps: Props) {
@@ -78,7 +64,7 @@ export default class Image extends PureComponent<Props, State> {
   };
 
   render() {
-    const { value, disabled } = this.props;
+    const { value, disabled, imageServiceConfig } = this.props;
     const { editPopup } = this.state;
     // if the image exist show it, otherwise let user upload.
     if (value && value.get('url')) {
@@ -98,7 +84,7 @@ export default class Image extends PureComponent<Props, State> {
         <EditImage
           onChange={this.onChange}
           editPopup={editPopup}
-          serviceConfig={this.serviceConfig}
+          serviceConfig={imageServiceConfig}
           closeEditPopup={this.closeEditPopup}
           multiple={false}
         />

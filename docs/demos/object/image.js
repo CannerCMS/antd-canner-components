@@ -8,6 +8,7 @@ import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../types';
 import RefId from 'canner-ref-id';
 import {fromJS} from 'immutable';
+import {ImgurService} from "@canner/image-service-config";
 
 const defaultValue = fromJS({
   contentType: "image/png",
@@ -100,7 +101,11 @@ class ImageDemo4 extends Component<PrimitiveTypes<string>> {
             value={value}
             uiParams={{service: 'imgur'}}
             onChange={onChange}
-            />
+            imageServiceConfig={new ImgurService({
+              mashapeKey: '<mashapeKey>',
+              clientId: '<clientId>'
+            })}
+          />
         </Fragment>
       </IntlProvider>
     )
