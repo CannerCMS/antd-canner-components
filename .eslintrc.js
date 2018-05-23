@@ -15,7 +15,7 @@ module.exports = {
     "no-alert": 0,
     "no-implicit-coercion": 0,
     "react/display-name": 0,
-    "react/prop-types": 0
+    "react/prop-types": 0,
     radix: 0
   },
   parser: "babel-eslint",
