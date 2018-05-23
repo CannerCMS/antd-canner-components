@@ -88,24 +88,17 @@ export default class Editor extends PureComponent<Props, State> {
       color: "#333"
     };
     this.containerId = objectId().toString();
-  }
-
-  componentDidMount() {
-    this.setDefaultValue(this.props);
+    // prevent dangerousHtml break
+    props.onDeploy(v => {
+      if (!v) return "<div>&nbsp;<br></div>";
+      return v;
+    });
   }
 
   shouldComponentUpdate(nextProps: Props, nextState: State) {
     return nextProps.value !== this.props.value ||
      nextState.color !== this.state.color;
   }
-
-  // 如果不先設預設值，value="" 會讓dangerousHtml break
-  setDefaultValue = (props: Props) => {
-    const { refId, value, onChange } = props;
-    if (onChange && (!value || value.length === 0)) {
-      onChange(refId, "update", "<div>&nbsp;<br></div>");
-    }
-  };
 
   onChange = (value: string) => {
     const { refId, onChange } = this.props;
