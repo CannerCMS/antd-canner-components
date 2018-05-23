@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-object-image",
-  "version": "0.1.7",
+  "version": "0.1.10",
   "description": "object image",
   "main": "lib/index.js",
   "scripts": {},
