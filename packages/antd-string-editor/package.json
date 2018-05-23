@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-string-editor",
-  "version": "0.1.3",
+  "version": "0.1.8",
   "description": "string editor",
   "main": "lib/index.js",
   "scripts": {},

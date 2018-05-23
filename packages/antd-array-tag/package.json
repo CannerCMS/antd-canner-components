@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-array-tag",
-  "version": "0.1.3",
+  "version": "0.1.8",
   "description": "array tag",
   "main": "lib/index.js",
   "scripts": {},
