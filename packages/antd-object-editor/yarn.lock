@@ -349,9 +349,9 @@ camelcase@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-3.0.0.tgz#32fc4b9fcdaf845fcdf7e73bb97cac2261f0ab0a"
 
-canner-slate-editor@^0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/canner-slate-editor/-/canner-slate-editor-0.4.2.tgz#d6729cb6ffcafbd6fb8758ad056ad2d701b1ad8d"
+canner-slate-editor@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/canner-slate-editor/-/canner-slate-editor-0.4.3.tgz#71d8ade29c6f941935e41c6e11559685e33e7554"
   dependencies:
     "@canner/slate-constant" "^1.0.9"
     "@canner/slate-helper-block-list" "^0.1.12"
@@ -382,7 +382,7 @@ canner-slate-editor@^0.4.2:
     slate-edit-blockquote "^0.5.0"
     slate-edit-code "^0.15.0"
     slate-edit-list "^0.11.2"
-    slate-md-editor "^0.3.2"
+    slate-md-editor "^0.3.3"
     slate-prism "^0.5.0"
     slate-sidebar "^0.2.4"
     slate-toolbar "^0.11.0"
@@ -1404,9 +1404,9 @@ slate-hotkeys@^0.1.2:
     is-hotkey "^0.1.1"
     slate-dev-environment "^0.1.2"
 
-slate-md-editor@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/slate-md-editor/-/slate-md-editor-0.3.2.tgz#0dd634405a92d33e719d0bfd36936af9411fbdcc"
+slate-md-editor@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/slate-md-editor/-/slate-md-editor-0.3.3.tgz#e3a89d05071d83ffcd6a0dc702e8e2657c9484d7"
   dependencies:
     "@canner/slate-helper-block-list" "^0.1.12"
     "@canner/slate-helper-mark-removeall" "^0.1.3"
