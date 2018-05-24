@@ -16,24 +16,23 @@ type Props = ObjectDefaultProps & {
 }
 
 const defaultState = {
-    document: {
-      nodes: [
-        {
-          object: 'block',
-          type: 'paragraph',
-          nodes: [
-            {
-              object: 'text',
-              leaves: [
-                {
-                  text: '',
-                }
-              ],
-            },
-          ],
-        },
-      ],
-    }
+  document: {
+    nodes: [
+      {
+        object: 'block',
+        type: 'paragraph',
+        nodes: [
+          {
+            object: 'text',
+            leaves: [
+              {
+                text: '',
+              }
+            ],
+          },
+        ],
+      },
+    ],
   }
 };
 
@@ -60,8 +59,8 @@ export default class Editor extends PureComponent<Props, State> {
   }
 
   onChange = ({value}: {value: Value}) => {
-    const {refId} = this.props;
-    this.onChange(refId, 'update', transformData({}));
+    const {refId, onChange} = this.props;
+    onChange(refId, 'update', transformData({}));
     this.setState({
       value
     });
