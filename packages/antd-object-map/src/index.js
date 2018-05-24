@@ -21,10 +21,12 @@ export default class MapUI extends Component<Props> {
 
   render() {
     const { value } = this.props;
+    const defaultValue = value.set('key', value.get('placeId', ''))
+    .set('label', value.get('address', ''));
     return (
       <div>
         {/* $FlowFixMe */}
-        <GeoSuggest defaultValue={[value.toJS()]} onChange={this.onChange}/>
+        <GeoSuggest defaultValue={[defaultValue.toJS()]} onChange={this.onChange}/>
         {value && (
           <MapComponent
             location={{
