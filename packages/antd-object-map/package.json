@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-object-map",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "description": "object map",
   "main": "lib/index.js",
   "scripts": {},
