@@ -19,5 +19,8 @@
     "cacheActions": true,
     "controlDeployAndResetButtons": true,
     "cannerDataType": "array"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

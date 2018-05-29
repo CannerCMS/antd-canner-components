@@ -21,5 +21,8 @@
   },
   "canner": {
     "cannerDataType": "geoPoint"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

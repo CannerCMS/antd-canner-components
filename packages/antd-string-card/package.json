@@ -13,5 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "@canner/antd-share-card": "^0.1.3"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

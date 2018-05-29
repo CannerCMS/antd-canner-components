@@ -15,10 +15,13 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/rc-tabs": "^9.2.5",
+    "@canner/rc-tabs": "^9.2.6",
     "antd": "^3.2.0",
     "immutable": "4.0.0-rc.9",
     "react-sortablejs": "^1.3.6",
     "sortablejs": "^1.7.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

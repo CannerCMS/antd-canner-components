@@ -13,5 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "@canner/antd-array-tabs": "^0.1.6"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

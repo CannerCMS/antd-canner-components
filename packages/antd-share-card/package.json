@@ -17,5 +17,8 @@
   },
   "dependencies": {
     "styled-components": "3.2.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

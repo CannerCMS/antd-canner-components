@@ -16,5 +16,8 @@
   },
   "dependencies": {
     "@canner/antd-locales": "^0.1.3"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
