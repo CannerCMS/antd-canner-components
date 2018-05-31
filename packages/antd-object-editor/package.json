@@ -12,7 +12,7 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "canner-slate-editor": "^0.4.3",
+    "canner-slate-editor": "^0.4.4",
     "markup-it": "^8.0.2",
     "slate": "^0.33.6",
     "slate-react": "^0.12.6"

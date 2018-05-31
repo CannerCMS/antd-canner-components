@@ -349,9 +349,9 @@ camelcase@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-3.0.0.tgz#32fc4b9fcdaf845fcdf7e73bb97cac2261f0ab0a"
 
-canner-slate-editor@^0.4.3:
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/canner-slate-editor/-/canner-slate-editor-0.4.3.tgz#71d8ade29c6f941935e41c6e11559685e33e7554"
+canner-slate-editor@^0.4.4:
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/canner-slate-editor/-/canner-slate-editor-0.4.4.tgz#83066fecb8de8840f45dc905ad9cc03b7e7f3a12"
   dependencies:
     "@canner/slate-constant" "^1.0.9"
     "@canner/slate-helper-block-list" "^0.1.12"
