@@ -40,6 +40,11 @@ export default class Editor extends PureComponent<Props, State> {
   stateKey: string;
   htmlKey: string;
 
+  // quick fix,
+  // slate-editor will call onChange when mounted,
+  // use this variable to check it's the first call or not
+  firstOnChange = false;
+
   constructor(props: Props) {
     super(props);
     this.stateKey = 'state';
@@ -60,7 +65,11 @@ export default class Editor extends PureComponent<Props, State> {
 
   onChange = ({value}: {value: Value}) => {
     const {refId, onChange} = this.props;
-    onChange(refId, 'update', transformData({}));
+    if (this.firstOnChange) {
+      onChange(refId, 'update', transformData({}));
+    } else {
+      this.firstOnChange = true;
+    }
     this.setState({
       value
     });
