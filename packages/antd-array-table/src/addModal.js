@@ -10,6 +10,7 @@ import { Item, ConfirmButton, ResetButton } from "canner-helpers";
 import type {FieldId} from "types/DefaultProps";
 
 type Props = {
+  updateShowModal: (showModal: boolean) => void,
   onChange: (refId: FieldId | {[string]: FieldId}, type: string, value?: any) => Promise<void>
   | (Array<{
     refId: FieldId | {[string]: FieldId},
@@ -36,10 +37,11 @@ export default class AddModal extends Component<Props, State> {
   }
 
   showModal = (value: any, order: number) => {
-    const {onChange, refId} = this.props;
+    const {onChange, refId, updateShowModal} = this.props;
 
     // need to create before update new data
     onChange(refId, "create");
+    updateShowModal(true);
     this.setState({
       visible: true,
       order
@@ -50,7 +52,7 @@ export default class AddModal extends Component<Props, State> {
   closeModalAndReset = () => {
     this.setState({
       visible: false
-    });
+    }, () => this.props.updateShowModal(false));
   }
 
   handleCancel = () => {
@@ -80,13 +82,15 @@ export default class AddModal extends Component<Props, State> {
       <Modal
         width="80%"
         visible={visible}
-        onCancel={this.handleCancel}
+        afterClose={this.handleCancel}
         footer={footer}
       >
-        <Item
-          refId={refId.child(order)}
-          filter={createKeys && (child => createKeys.indexOf(child.name) !== -1)}
-        />
+        {visible && (
+          <Item
+            refId={refId.child(order)}
+            filter={createKeys && (child => createKeys.indexOf(child.name) !== -1)}
+          />
+        )}
       </Modal>
     );
   }

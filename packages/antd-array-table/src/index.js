@@ -38,14 +38,22 @@ type Props = ArrayDefaultProps<FieldItem> & {
   intl: intlShape
 };
 
+type State = {
+  showAddModal: boolean
+}
+
 @injectIntl
-export default class TableArrayPlugin extends Component<Props> {
+export default class TableArrayPlugin extends Component<Props, State> {
   editModal: ?EditModal;
   addModal: ?AddModal;
   static defaultProps = {
     value: new List(),
     showPagination: true
   };
+
+  state = {
+    showAddModal: false
+  }
 
   render() {
     const {
@@ -58,6 +66,9 @@ export default class TableArrayPlugin extends Component<Props> {
       deploy,
       intl
     } = this.props;
+
+    const {showAddModal} = this.state;
+
     const addText = (
       <FormattedMessage
         id="array.table.addText"
@@ -73,7 +84,7 @@ export default class TableArrayPlugin extends Component<Props> {
     } = uiParams;
 
     // add update button and delete button
-    const newColumns = columns.slice(); // create a new copy of columns
+    const newColumns = showAddModal ? columns.slice(0, -1) : columns.slice(); // create a new copy of columns
     const newColumnsRender = renderValue(newColumns, items.items);
 
     if ((!updateKeys || updateKeys.length > 0) || !disableDelete) {
@@ -127,9 +138,11 @@ export default class TableArrayPlugin extends Component<Props> {
         {(!createKeys || createKeys.length > 0) && (
           <Button
             type="primary"
+            style={{marginTop: "10px"}}
             onClick={() => {
-              if (this.addModal)
+              if (this.addModal) {
                 this.addModal.showModal(value, value.size);
+              }
             }}
           >
             {addText}
@@ -144,6 +157,7 @@ export default class TableArrayPlugin extends Component<Props> {
         <AddModal
           ref={modal => (this.addModal = modal)}
           refId={refId}
+          updateShowModal={(state) => this.setState({showAddModal: state})}
           createKeys={createKeys}
           onChange={onChange}
           items={items.items}
