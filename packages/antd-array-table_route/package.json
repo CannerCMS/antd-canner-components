@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-array-table_route",
-  "version": "0.1.22",
+  "version": "0.1.25",
   "description": "array table-route",
   "main": "lib/index.js",
   "scripts": {},
