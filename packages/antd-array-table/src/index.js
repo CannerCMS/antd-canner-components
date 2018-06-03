@@ -84,7 +84,7 @@ export default class TableArrayPlugin extends Component<Props, State> {
     } = uiParams;
 
     // add update button and delete button
-    const newColumns = showAddModal ? columns.slice(0, -1) : columns.slice(); // create a new copy of columns
+    const newColumns = columns.slice(); // create a new copy of columns
     const newColumnsRender = renderValue(newColumns, items.items);
 
     if ((!updateKeys || updateKeys.length > 0) || !disableDelete) {
@@ -124,15 +124,19 @@ export default class TableArrayPlugin extends Component<Props, State> {
       });
     }
 
+    const originalData = value.toJS().map((datum, i) => {
+      (datum: any).__index = i;
+      (datum: any).key = (datum: any).key || i;
+      return datum;
+    });
+
+    const data = showAddModal ? originalData.slice(0, -1) : originalData;
+
     return (
       <div>
         <Table
           pagination={showPagination}
-          dataSource={value.toJS().map((datum, i) => {
-            (datum: any).__index = i;
-            (datum: any).key = (datum: any).key || i;
-            return datum;
-          })}
+          dataSource={data}
           columns={newColumnsRender}
         />
         {(!createKeys || createKeys.length > 0) && (
