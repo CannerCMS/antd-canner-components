@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-array-tabs",
-  "version": "0.1.20",
+  "version": "0.1.22",
   "description": "array tabs",
   "main": "lib/index.js",
   "scripts": {},

@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-object-map",
-  "version": "0.1.18",
+  "version": "0.1.22",
   "description": "object map",
   "main": "lib/index.js",
   "scripts": {},
@@ -12,7 +12,7 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/antd-locales": "^0.1.18",
+    "@canner/antd-locales": "^0.1.22",
     "antd-geosuggest": "^0.2.3",
     "react-google-maps": "^9.4.5"
   },

@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-array-panel",
-  "version": "0.1.18",
+  "version": "0.1.22",
   "description": "string input",
   "main": "lib/index.js",
   "scripts": {},
