@@ -34,3 +34,9 @@ $ npm start
 ```
 $ lerna run test
 ```
+
+## Release
+
+```
+$ npm run release
+```
