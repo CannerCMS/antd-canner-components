@@ -129,6 +129,7 @@ export default class ArrayBreadcrumb extends Component<Props> {
         {(!createKeys || createKeys.length > 0) && (
           <Button
             type="primary"
+            style={{marginTop: '10px'}}
             onClick={this.add}
           >
             {addText}
