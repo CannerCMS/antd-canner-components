@@ -79,10 +79,12 @@ export default class EditModal extends Component<Props, State> {
         onCancel={this.handleCancel}
         footer={footer}
       >
-        <Item
-          refId={refId.child(order)}
-          filter={updateKeys && (child => updateKeys.indexOf(child.name) !== -1)}
-        />
+        {visible && (
+          <Item
+            refId={refId.child(order)}
+            filter={updateKeys && (child => updateKeys.indexOf(child.name) !== -1)}
+          />
+        )}
       </Modal>
     );
   }

@@ -82,6 +82,7 @@ export default class AddModal extends Component<Props, State> {
       <Modal
         width="80%"
         visible={visible}
+        onCancel={this.handleCancel}
         afterClose={this.handleCancel}
         footer={footer}
       >

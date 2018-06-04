@@ -20,15 +20,17 @@ export default class LinkString extends PureComponent<Props> {
     return (
       <div>
         <InputString refId={refId} value={value} onChange={onChange} disabled={disabled}/>
-        <PreviewContainer>
-          <FormattedMessage
-            id="string.link.preview"
-            defaultMessage={defaultMessage.en["string.link.preview"]}
-          />
-          <a href={value} target="_blank">
-            {value}
-          </a>
-        </PreviewContainer>
+        {value && (
+          <PreviewContainer>
+            <FormattedMessage
+              id="string.link.preview"
+              defaultMessage={defaultMessage.en["string.link.preview"]}
+            />
+            <a href={value} target="_blank">
+              {value}
+            </a>
+          </PreviewContainer>
+        )}
       </div>
     );
   }
