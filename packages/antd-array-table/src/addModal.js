@@ -17,6 +17,7 @@ type Props = {
     type: string,
     value?: any
   }>) => Promise<void>,
+  reset: Function,
   createKeys?: Array<string>,
   refId: FieldId,
   items: {[string]: any}
@@ -56,6 +57,7 @@ export default class AddModal extends Component<Props, State> {
   }
 
   handleCancel = () => {
+    this.props.reset();
     this.closeModalAndReset();
   }
 
