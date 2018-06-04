@@ -35,7 +35,8 @@ type Props = ArrayDefaultProps<FieldItem> & {
   showPagination: boolean,
   items: FieldItems,
   deploy: Function,
-  intl: intlShape
+  intl: intlShape,
+  reset: Function
 };
 
 type State = {
@@ -64,7 +65,8 @@ export default class TableArrayPlugin extends Component<Props, State> {
       showPagination,
       items,
       deploy,
-      intl
+      intl,
+      reset
     } = this.props;
 
     const {showAddModal} = this.state;
@@ -161,6 +163,7 @@ export default class TableArrayPlugin extends Component<Props, State> {
         <AddModal
           ref={modal => (this.addModal = modal)}
           refId={refId}
+          reset={reset}
           updateShowModal={(state) => this.setState({showAddModal: state})}
           createKeys={createKeys}
           onChange={onChange}
