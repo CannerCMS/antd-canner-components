@@ -3,11 +3,6 @@
   "packages": [
     "packages/*"
   ],
-  "version": "0.1.29",
-  "command": {
-    "init": {
-      "exact": true
-    }
-  },
+  "version": "0.1.30",
   "npmClient": "yarn"
 }
