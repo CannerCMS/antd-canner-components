@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-number-rate",
-  "version": "0.1.27",
+  "version": "0.1.31",
   "description": "string input",
   "main": "lib/index.js",
   "scripts": {},

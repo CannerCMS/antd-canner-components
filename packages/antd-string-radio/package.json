@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-string-radio",
-  "version": "0.1.27",
+  "version": "0.1.31",
   "description": "string radio",
   "main": "lib/index.js",
   "scripts": {

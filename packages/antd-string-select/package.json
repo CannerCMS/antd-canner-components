@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-string-select",
-  "version": "0.1.27",
+  "version": "0.1.31",
   "description": "string select",
   "main": "lib/index.js",
   "scripts": {},
@@ -12,7 +12,7 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/antd-locales": "^0.1.27"
+    "@canner/antd-locales": "^0.1.31"
   },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
