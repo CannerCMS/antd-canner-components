@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-string-link",
-  "version": "0.1.22",
+  "version": "0.1.26",
   "description": "string input",
   "main": "lib/index.js",
   "scripts": {
