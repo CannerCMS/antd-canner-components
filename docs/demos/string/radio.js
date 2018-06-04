@@ -19,10 +19,10 @@ class RadioDemo1 extends React.Component<PrimitiveTypes<string>> {
           uiParams={{
             options: [{
               text: 'option 1',
-              value: "1"
+              value: "value 1"
             }, {
               text: 'option 2',
-              value: "2"
+              value: "value 2"
             }],
             defaultSelected: 1
           }}
@@ -46,10 +46,10 @@ class RadioDemo2 extends React.Component<PrimitiveTypes<string>> {
           uiParams={{
             options: [{
               text: 'option 1',
-              value: "1"
+              value: "value 1"
             }, {
               text: 'option 2',
-              value: "2"
+              value: "value 2"
             }],
             defaultSelected: 1
           }}

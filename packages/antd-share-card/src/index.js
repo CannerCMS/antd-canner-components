@@ -15,8 +15,8 @@ const Label = styled.div`
   margin: 10px;
   border: ${props =>
     props.checked ? "2px solid #fc9d6c" : "2px solid transparent"};
-  padding: 20px 40px;
-  font-size: 50px;
+  padding: 5px 10px;
+  font-size: 20px;
   border-radius: 10px;
   text-align: center;
   cursor: pointer;

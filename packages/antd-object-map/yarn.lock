@@ -2,18 +2,6 @@
 # yarn lockfile v1
 
 
-"@canner/antd-locales@^0.1.3":
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@canner/antd-locales/-/antd-locales-0.1.3.tgz#53bb243986592c83d4752691475077f4ad178bf3"
-
-"@canner/antd-object-map@^0.1.13":
-  version "0.1.13"
-  resolved "https://registry.yarnpkg.com/@canner/antd-object-map/-/antd-object-map-0.1.13.tgz#4d58b3a989a7c1ee9b834a6699394c4aeb5bc5be"
-  dependencies:
-    "@canner/antd-locales" "^0.1.3"
-    antd-geosuggest "^0.2.3"
-    react-google-maps "^9.4.5"
-
 add-dom-event-listener@1.x:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/add-dom-event-listener/-/add-dom-event-listener-1.0.2.tgz#8faed2c41008721cf111da1d30d995b85be42bed"

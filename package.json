@@ -70,5 +70,6 @@
     "react-css-modules": "^4.7.1",
     "react-icons": "^2.2.7",
     "react-intl": "^2.4.0"
-  }
+  },
+  "license": "Apache 2.0"
 }

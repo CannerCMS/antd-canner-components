@@ -34,14 +34,14 @@ export default class CardBoolean extends PureComponent<Props> {
           checked={value === true}
           onChange={this.onChange}
           value={true}
-          text={yesText}
+          text={yesText || 'Yes'}
         />
         <Card
           disabled={disabled}
           checked={value === false}
           onChange={this.onChange}
           value={false}
-          text={noText}
+          text={noText || 'No'}
         />
       </div>
     );
