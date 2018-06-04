@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-array-table",
-  "version": "0.1.27",
+  "version": "0.1.28",
   "description": "array table",
   "main": "lib/index.js",
   "scripts": {},
