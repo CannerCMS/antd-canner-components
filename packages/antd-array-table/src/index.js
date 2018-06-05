@@ -159,6 +159,7 @@ export default class TableArrayPlugin extends Component<Props, State> {
           refId={refId}
           updateKeys={updateKeys}
           onChange={onChange}
+          reset={reset}
         />
         <AddModal
           ref={modal => (this.addModal = modal)}

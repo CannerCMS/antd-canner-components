@@ -72,10 +72,8 @@ export default class Picker extends PureComponent<Props, State> {
     const {hasNextPage, value} = this.state;
     if (hasNextPage) {
       updateQuery([relation.to], {
-        pagination: {
-          after: (value.last() || new Map()).get('id'),
-          first: 10
-        }
+        after: (value.last() || new Map()).get('id'),
+        first: 10
       });
     }
   }
@@ -84,10 +82,8 @@ export default class Picker extends PureComponent<Props, State> {
     const {updateQuery, relation} = this.props;
     const {value} = this.state;
     updateQuery([relation.to], {
-      pagination: {
-        before: (value.first() || new Map()).get('id'),
-        last: 10
-      }
+      before: (value.first() || new Map()).get('id'),
+      last: 10
     });
   }
 
