@@ -51,9 +51,13 @@ export default class AddModal extends Component<Props, State> {
 
 
   closeModalAndReset = () => {
+    const {updateShowModal, reset, refId} = this.props;
     this.setState({
       visible: false
-    }, () => this.props.updateShowModal(false));
+    }, () => {
+      updateShowModal(false);
+      reset(refId);
+    });
   }
 
   handleCancel = () => {

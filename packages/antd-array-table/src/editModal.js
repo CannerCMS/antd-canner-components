@@ -17,6 +17,7 @@ type Props = {
   }>) => Promise<void>,
   updateKeys?: Array<string>,
   refId: FieldId,
+  reset: Function
 }
 
 type State = {
@@ -41,9 +42,10 @@ export default class EditModal extends Component<Props, State> {
   }
 
   closeModalAndReset = () => {
+    const {reset, refId} = this.props;
     this.setState({
       visible: false
-    });
+    }, () => reset(refId));
   }
 
   handleCancel = () => {
