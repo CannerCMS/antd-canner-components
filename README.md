@@ -8,11 +8,11 @@ This repository provide CMS components for developers to assemble CMS interface 
 
 Learn how to use these default UI in Canner
 
-https://framework.canner.io/docs/advance-component-types.html
+https://www.canner.io/docs/advance-component-types.html
 
 ## Demo
 
-http://antd-cms-component.canner.io/
+http://www.canner.io/component
 
 ## Develop
 
