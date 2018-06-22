@@ -2,10 +2,11 @@
 
 import c from 'canner-script';
 
-export default ({attributes}) => {
+export default ({attributes, children}) => {
   return (
     <array {...attributes}>
-      <image />
+      <image keyName={(attributes.uiParams || {}).imageKey || "image"}/>
+      {children}
     </array>
   )
 }
