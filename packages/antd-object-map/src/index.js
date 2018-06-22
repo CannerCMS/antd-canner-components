@@ -15,6 +15,7 @@ export default class MapUI extends Component<Props> {
   onChange = (value: any) => {
     const { refId } = this.props;
     if (value.length > 0) {
+      delete value[0].gmaps;
       this.props.onChange(refId, "update", fromJS(value[0]));
     }
   }
