@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-locales",
-  "version": "0.1.34",
+  "version": "0.1.35",
   "description": "plugins locals",
   "main": "lib/index.js",
   "scripts": {},
