@@ -11,10 +11,6 @@ type Props = {
 };
 
 export default class ShowImage extends PureComponent<Props> {
-  constructor(props: Props) {
-    super(props);
-    (this: any).deleteImage = this.deleteImage.bind(this);
-  }
 
   showImage: ?HTMLImageElement;
   imgWrapper: ?HTMLDivElement;
@@ -23,14 +19,14 @@ export default class ShowImage extends PureComponent<Props> {
     cardWidth: 300
   };
 
-  deleteImage() {
+  deleteImage = () => {
     this.props.onChange("");
   }
 
   render() {
     const { value, cardWidth, disabled } = this.props;
     return (
-      <Card style={{ width: cardWidth }} bodyStyle={{ padding: 0 }}>
+      <Card style={{ width: cardWidth, backgroundColor: "#EEE" }} bodyStyle={{ padding: 0 }}>
         <ImageLoader
           src={value}
           style={{ width: "100%" }}
@@ -49,7 +45,7 @@ export default class ShowImage extends PureComponent<Props> {
           }}
         />
         {!disabled ? (
-          <div style={{ padding: "10px 16px", textAlign: "right" }}>
+          <div style={{ padding: "10px 16px", textAlign: "right", backgroundColor: '#FFF' }}>
             <Button onClick={this.deleteImage}>
               <Icon type="close" />
             </Button>
