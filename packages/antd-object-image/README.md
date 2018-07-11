@@ -1,4 +1,4 @@
-# @canner/antd-string-textarea
+# @canner/antd-object-image
 
 ## API
 
