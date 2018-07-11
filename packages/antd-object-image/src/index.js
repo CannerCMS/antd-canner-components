@@ -26,12 +26,9 @@ type State = {
 };
 
 export default class Image extends PureComponent<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      editPopup: false
-    };
-  }
+  state = {
+    editPopup: false
+  };
 
   componentWillReceiveProps(nextProps: Props) {
     // if value exist, hide edit popup
