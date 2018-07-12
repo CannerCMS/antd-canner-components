@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-relation-single_select",
-  "version": "0.1.35",
+  "version": "0.2.0",
   "description": "relation single selection",
   "main": "lib/index.js",
   "scripts": {},
@@ -12,7 +12,7 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/antd-share-relation": "^0.1.35",
+    "@canner/antd-share-relation": "^0.2.0",
     "lodash.template": "^4.4.0",
     "styled-components": "^3.2.6"
   },
