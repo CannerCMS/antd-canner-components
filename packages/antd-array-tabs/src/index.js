@@ -8,7 +8,6 @@ import Sortable from "react-sortablejs";
 import { List } from "immutable";
 import {injectIntl} from 'react-intl';
 import {Item, ConfirmButton, ResetButton} from 'canner-helpers';
-import 'antd/lib/tabs/style';
 
 // types
 import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';

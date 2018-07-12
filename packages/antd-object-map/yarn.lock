@@ -8,9 +8,9 @@ add-dom-event-listener@1.x:
   dependencies:
     object-assign "4.x"
 
-antd-geosuggest@^0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/antd-geosuggest/-/antd-geosuggest-0.2.3.tgz#bd0a8fdbe0f65ea98bb670dacb719bbd42ca8f03"
+antd-geosuggest@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/antd-geosuggest/-/antd-geosuggest-0.3.1.tgz#5e3264aea3968982d4511e0a0771b5c0354c5a80"
   dependencies:
     antd "^3.4.1"
     lodash.debounce "^4.0.8"

@@ -10,12 +10,12 @@
     promise-polyfill "^7.0.0"
     whatwg-fetch "^2.0.3"
 
-"@canner/image-upload@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@canner/image-upload/-/image-upload-0.10.0.tgz#2277038e91073723d9e3e2ccb1c38726c1e393eb"
+"@canner/image-upload@^0.12.0":
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/@canner/image-upload/-/image-upload-0.12.0.tgz#344281b635ed9a5d29f0d9dd5788366ea74c7f42"
   dependencies:
     react-intl "^2.4.0"
-    react-loading-image "^0.3.0"
+    react-loading-image "^0.4.1"
     styled-components "^3.2.0"
 
 "@types/node@*":
@@ -52,15 +52,15 @@ buffer@^5.0.3:
     base64-js "^1.0.2"
     ieee754 "^1.1.4"
 
-canner-image-gallery@^0.1.3:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/canner-image-gallery/-/canner-image-gallery-0.1.3.tgz#ccdae267c08dc1f8e752c440c353650f7fe4c206"
+canner-image-gallery@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/canner-image-gallery/-/canner-image-gallery-0.2.0.tgz#732fb1f312663fb03f0d574b5b52906e895fd7fc"
   dependencies:
     "@canner/image-service-config" "^0.3.0"
-    "@canner/image-upload" "^0.10.0"
+    "@canner/image-upload" "^0.12.0"
     grid-breakpoint "^1.6.2"
     grid-draggable "3.2.2"
-    react-loading-image "^0.3.0"
+    react-loading-image "^0.4.1"
     styled-components "^3.2.3"
 
 cheerio@^1.0.0-rc.2:
@@ -634,9 +634,9 @@ react-is@^16.3.1:
   version "16.4.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.4.0.tgz#cc9fdc855ac34d2e7d9d2eb7059bbc240d35ffcf"
 
-react-loading-image@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/react-loading-image/-/react-loading-image-0.3.0.tgz#8a91e6771e6a3fbd828ab679088163e8c8762556"
+react-loading-image@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/react-loading-image/-/react-loading-image-0.4.1.tgz#084a7600a410c8c4c34e313ddd28781184a99992"
 
 react-reconciler@^0.7.0:
   version "0.7.0"

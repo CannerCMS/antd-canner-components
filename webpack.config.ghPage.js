@@ -1,6 +1,4 @@
 const path = require("path");
-const pkg = require("./package.json");
-const theme = pkg.theme;
 
 module.exports = {
   entry: './_gh-pages/index.js',
@@ -42,25 +40,6 @@ module.exports = {
             loader: 'css'
           }
         ]
-      },
-      {
-        test: /\.less$/,
-        use: [
-          {
-            loader: 'style'
-          },
-          {
-            loader: 'css'
-          },
-          {
-            loader: 'less',
-            // antd - customized themes
-            // https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
-            options: {
-              modifyVars: theme
-            }
-          }
-        ],
       }
     ]
   }

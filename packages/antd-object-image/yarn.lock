@@ -10,12 +10,12 @@
     promise-polyfill "^7.0.0"
     whatwg-fetch "^2.0.3"
 
-"@canner/image-upload@^0.9.4":
-  version "0.9.4"
-  resolved "https://registry.yarnpkg.com/@canner/image-upload/-/image-upload-0.9.4.tgz#05a120ae15372162803a99538d72fe5c33e011eb"
+"@canner/image-upload@^0.12.0":
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/@canner/image-upload/-/image-upload-0.12.0.tgz#344281b635ed9a5d29f0d9dd5788366ea74c7f42"
   dependencies:
     react-intl "^2.4.0"
-    react-loading-image "^0.2.0"
+    react-loading-image "^0.4.1"
     styled-components "^3.2.0"
 
 asap@~2.0.3:
@@ -213,9 +213,9 @@ react-is@^16.3.1:
   version "16.3.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.3.2.tgz#f4d3d0e2f5fbb6ac46450641eb2e25bf05d36b22"
 
-react-loading-image@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/react-loading-image/-/react-loading-image-0.2.0.tgz#5b18a35d49f388951d7770e559d02488c6b9b1ed"
+react-loading-image@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/react-loading-image/-/react-loading-image-0.4.1.tgz#084a7600a410c8c4c34e313ddd28781184a99992"
 
 setimmediate@^1.0.5:
   version "1.0.5"
