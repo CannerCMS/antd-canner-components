@@ -2,10 +2,6 @@
 # yarn lockfile v1
 
 
-"@canner/antd-locales@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@canner/antd-locales/-/antd-locales-0.2.0.tgz#39145338edf961af81058376c166d62857e2dfbd"
-
 antd-geosuggest@^0.3.2:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/antd-geosuggest/-/antd-geosuggest-0.3.2.tgz#91421a3e89df03400d72be4ee56d784e155a54e9"

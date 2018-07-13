@@ -9,7 +9,8 @@ module.exports = {
   },
   externals: {
     react: "React",
-    "react-dom": "ReactDOM"
+    "react-dom": "ReactDOM",
+    "canner-slate-editor": "CannerSlateEditor"
   },
   resolve: {
     extensions: [".js"],
