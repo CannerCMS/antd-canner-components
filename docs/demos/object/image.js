@@ -21,7 +21,6 @@ const defaultValue = fromJS({
 class ImageDemo1 extends Component<PrimitiveTypes<string>> {
   render() {
     const {value, onChange} = this.props;
-    console.log(value);
     return (
       <IntlProvider
         locale="en"

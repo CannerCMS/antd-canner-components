@@ -29,10 +29,10 @@ export default class ShowImage extends PureComponent<Props> {
       <Card style={{ width: cardWidth, backgroundColor: "#EEE" }} bodyStyle={{ padding: 0 }}>
         <ImageLoader
           src={value}
-          style={{ width: "100%" }}
+          style={{ maxHeight: "200px" }}
           error={() => (
             <img
-              style={{ width: "100%" }}
+              style={{ maxHeight: "200px" }}
               src="http://i.imgur.com/DUaZWMd.png"
             />
           )}
