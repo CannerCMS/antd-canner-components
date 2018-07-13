@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-array-table",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "array table",
   "main": "lib/index.js",
   "scripts": {},
@@ -12,7 +12,7 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/antd-locales": "^0.2.0",
+    "@canner/antd-locales": "^0.2.1",
     "prop-types": "^15.6.0"
   },
   "canner": {

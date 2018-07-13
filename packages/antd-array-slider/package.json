@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-array-slider",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "array-slider",
   "main": "lib/index.js",
   "scripts": {},
