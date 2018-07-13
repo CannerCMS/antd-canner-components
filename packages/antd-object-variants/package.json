@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-object-variants",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "object variants",
   "main": "lib/index.js",
   "scripts": {},
