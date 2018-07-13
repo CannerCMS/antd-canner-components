@@ -30,6 +30,12 @@ export default class ShowImage extends PureComponent<Props> {
         <ImageLoader
           src={value}
           style={{ maxHeight: "200px" }}
+          image={({src}) => (
+            <img
+              src={src}
+              style={{width: "100%"}}
+              />
+          )}
           error={() => (
             <img
               style={{ maxHeight: "200px" }}
