@@ -43,9 +43,6 @@ const ButtonWrapper = styled.div`
 `;
 
 export default class Picker extends PureComponent<Props, State> {
-  componentId: string;
-  subscription: any;
-
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -54,7 +51,6 @@ export default class Picker extends PureComponent<Props, State> {
       hasNextPage: false,
       selectedRowKeys: props.pickedIds ? props.pickedIds : []
     };
-    this.componentId = `${props.refId.toString()}/PICK`;
   }
   
   componentWillReceiveProps(nextProps: Props) {
@@ -75,6 +71,7 @@ export default class Picker extends PureComponent<Props, State> {
         after: (value.last() || new Map()).get('id'),
         first: 10
       });
+      this.fetchData();
     }
   }
 
@@ -85,6 +82,7 @@ export default class Picker extends PureComponent<Props, State> {
       before: (value.first() || new Map()).get('id'),
       last: 10
     });
+    this.fetchData();
   }
 
   fetchData = () => {
@@ -93,7 +91,6 @@ export default class Picker extends PureComponent<Props, State> {
     return fetch(relation.to)
       .then(data => {
         this.updateData(data);
-        this.subscribe();
       });
   }
 
@@ -117,11 +114,6 @@ export default class Picker extends PureComponent<Props, State> {
     });
   }
 
-  subscribe = () => {
-    const {subscribe, relation} = this.props
-    this.subscription = subscribe(relation.to, this.updateData);
-  }
-
   handleCancel = () => {
     this.props.onCancel();
   }
@@ -134,13 +126,6 @@ export default class Picker extends PureComponent<Props, State> {
     this.setState({
       selectedRowKeys
     });
-  }
-
-  componentWillUnmount() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-      delete this.subscription;
-    }
   }
 
   render() {
