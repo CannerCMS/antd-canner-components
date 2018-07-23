@@ -34,6 +34,7 @@ type State = {
   totalValue: List<*>,
   value: List<*>,
   hasNextPage: boolean,
+  hasPreviousPage: boolean,
   selectedRowKeys: Array<string>
 };
 
@@ -49,6 +50,7 @@ export default class Picker extends PureComponent<Props, State> {
       totalValue: new List(),
       value: new List(),
       hasNextPage: false,
+      hasPreviousPage: false,
       selectedRowKeys: props.pickedIds ? props.pickedIds : []
     };
   }
@@ -77,12 +79,14 @@ export default class Picker extends PureComponent<Props, State> {
 
   prevPage = () => {
     const {updateQuery, relation} = this.props;
-    const {value} = this.state;
-    updateQuery([relation.to], {
-      before: (value.first() || new Map()).get('id'),
-      last: 10
-    });
-    this.fetchData();
+    const {hasPreviousPage, value} = this.state;
+    if (hasPreviousPage) {
+      updateQuery([relation.to], {
+        before: (value.first() || new Map()).get('id'),
+        last: 10
+      });
+      this.fetchData();
+    }
   }
 
   fetchData = () => {
@@ -111,6 +115,7 @@ export default class Picker extends PureComponent<Props, State> {
       totalValue,
       value: list,
       hasNextPage: data.getIn([relation.to, 'pageInfo', 'hasNextPage']),
+      hasPreviousPage: data.getIn([relation.to, 'pageInfo', 'hasPreviousPage'])
     });
   }
 
@@ -130,7 +135,7 @@ export default class Picker extends PureComponent<Props, State> {
 
   render() {
     const { visible, columns, pickOne = false } = this.props;
-    const { value, selectedRowKeys, hasNextPage } = this.state;
+    const { value, selectedRowKeys, hasNextPage, hasPreviousPage } = this.state;
 
     return <Modal
       onOk={this.handleOk}
@@ -151,7 +156,7 @@ export default class Picker extends PureComponent<Props, State> {
       />
       <ButtonWrapper>
         <ButtonGroup>
-          <Button onClick={this.prevPage}>
+          <Button disabled={!hasPreviousPage} onClick={this.prevPage}>
             <Icon type="left" />
             Previous Page
           </Button>
