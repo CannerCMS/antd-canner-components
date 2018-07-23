@@ -1,10 +1,10 @@
 /* eslint-disable require-jsdoc */
-import {template} from "lodash";
+import {template, get} from "lodash";
 import {Icon, Tag} from 'antd';
 import React from 'react';
 export default function(cols, schema) {
   return cols.map(col => {
-    const itemSchema = getSchema(schema, col.dataIndex);
+    const itemSchema = getSchema(schema, col.dataIndex.split('.'));
     if (col.render) {
       return col;
     }
@@ -22,6 +22,10 @@ export default function(cols, schema) {
 }
 
 function renderField(schema, value) {
+  if (!schema) {
+    return value;
+  }
+
   switch (schema.type) {
     case 'boolean': {
       if (value) {
@@ -61,7 +65,7 @@ function getSchema(schema, dataIndex) {
   if (!dataIndex || dataIndex.length === 0) {
     return schema;
   }
-  
+
   if (!('type' in schema) || typeof schema.type !== 'string') {
     const key = dataIndex[0];
     return getSchema(schema[key], dataIndex.slice(1));
@@ -74,5 +78,6 @@ function getSchema(schema, dataIndex) {
   if (schema.type === 'array') {
     return getSchema(schema.items, dataIndex);
   }
+
   return undefined;
 }
