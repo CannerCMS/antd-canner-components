@@ -2,7 +2,7 @@
 import * as React from 'react';
 import Editor from 'packages/antd-object-editor';
 import {fromJS} from 'immutable';
-import {Divider, Button} from 'antd';
+import {Divider} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../types';
 import RefId from 'canner-ref-id';
@@ -15,7 +15,7 @@ class EditorComponentDemo1 extends React.Component<PrimitiveTypes<boolean>> {
 
     return (
       <React.Fragment>
-        <Divider>Slate</Divider>
+        <Divider>Editor</Divider>
         <Editor
           refId={new RefId("map")}
           value={value}
