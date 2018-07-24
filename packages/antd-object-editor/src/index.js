@@ -35,21 +35,25 @@ export default class Editor extends PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     this.htmlKey = 'html';
+    this.state = {
+      value: props.value[this.htmlKey]
+    };
   }
 
   handleChange = (value: string) => {
     const {refId, onChange} = this.props;
 
     onChange(refId, 'update', {[this.htmlKey]: value});
+    this.setState({value});
   }
 
   render() {
-    const {value} = this.props;
+    const {value} = this.state;
     return (
       <ReactQuill
         modules={modules}
         formats={formats}
-        value={value && value[this.htmlKey]}
+        value={value}
         onChange={this.handleChange} />
     )
   }
