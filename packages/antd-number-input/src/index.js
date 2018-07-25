@@ -20,7 +20,7 @@ type Props = NumberDefaultProps & {
 };
 
 export default class Input extends PureComponent<Props, State> {
-  onChange = (val: string) => {
+  onChange = (val: number) => {
     const {onChange, refId} = this.props;
     onChange(refId, "update", val);
   }
@@ -37,7 +37,7 @@ export default class Input extends PureComponent<Props, State> {
         max={uiParams && uiParams.max}
         step={uiParams && uiParams.step}
         formatter={formatter}
-        value={value}
+        defaultValue={value}
         onChange={this.onChange}
       />
     );
