@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-number-input",
-  "version": "0.2.6-beta.2",
+  "version": "0.3.0-beta.0",
   "description": "number input",
   "main": "lib/index.js",
   "scripts": {},

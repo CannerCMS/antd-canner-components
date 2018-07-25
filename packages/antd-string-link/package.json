@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-string-link",
-  "version": "0.2.6-beta.2",
+  "version": "0.3.0-beta.0",
   "description": "string input",
   "main": "lib/index.js",
   "scripts": {
@@ -20,8 +20,8 @@
     }
   },
   "dependencies": {
-    "@canner/antd-locales": "^0.2.6-beta.2",
-    "@canner/antd-string-input": "^0.2.6-beta.2",
+    "@canner/antd-locales": "^0.3.0-beta.0",
+    "@canner/antd-string-input": "^0.3.0-beta.0",
     "react-intl": "^2.4.0"
   },
   "peerDependencies": {
