@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-string-time_picker",
-  "version": "0.3.0-beta.0",
+  "version": "0.3.0-beta.1",
   "description": "string time picker",
   "main": "lib/index.js",
   "scripts": {},
@@ -12,7 +12,7 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/antd-locales": "^0.3.0-beta.0",
+    "@canner/antd-locales": "^0.3.0-beta.1",
     "moment-timezone": "^0.5.14"
   },
   "peerDependencies": {
