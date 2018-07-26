@@ -2,6 +2,7 @@
 import {template, get} from "lodash";
 import {Icon, Tag} from 'antd';
 import React from 'react';
+import dayjs from 'dayjs';
 export default function(cols, schema) {
   return cols.map(col => {
     const itemSchema = getSchema(schema, col.dataIndex.split('.'));
@@ -38,6 +39,9 @@ function renderField(schema, value) {
     }
     case 'string': {
       return value;
+    }
+    case 'dateTime': {
+      return dayjs(value).format('YYYY/MM/DD HH:mm');
     }
     case 'image': {
       return (
