@@ -37,7 +37,7 @@ export default class Input extends PureComponent<Props, State> {
         max={uiParams && uiParams.max}
         step={uiParams && uiParams.step}
         formatter={formatter}
-        defaultValue={value}
+        value={value}
         onChange={this.onChange}
       />
     );
