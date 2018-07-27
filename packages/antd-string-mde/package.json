@@ -1,0 +1,31 @@
+{
+  "name": "@canner/antd-string-mde",
+  "version": "0.2.10",
+  "description": "string markdown editor",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "../../node_modules/.bin/jest"
+  },
+  "keywords": [
+    "cms",
+    "mde",
+    "canner"
+  ],
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less|scss)$": "identity-obj-proxy"
+    }
+  },
+  "author": "canner",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
+  },
+  "dependencies": {
+    "react-simplemde-editor": "3.6.16"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

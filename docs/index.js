@@ -18,6 +18,7 @@ import NumberRateDemo from './demos/number/rate';
 
 // string
 import InputDemo from './demos/string/input';
+import MdeDemo from './demos/string/mde';
 import LinkDemo from './demos/string/link';
 import RadioDemo from './demos/string/radio';
 import DatetimeDemo from './demos/string/datetime';
@@ -89,6 +90,7 @@ class Demo extends Component {
             </SubMenu>
             <SubMenu key="string" title="String">
               <Menu.Item key="input">input</Menu.Item>
+              <Menu.Item key="mde">markdown editor</Menu.Item>
               <Menu.Item key="link">link</Menu.Item>
               <Menu.Item key="radio">radio</Menu.Item>
               <Menu.Item key="datetime">datetime</Menu.Item>
@@ -156,6 +158,7 @@ class Demo extends Component {
             {selectTab === 'string' && selectKey === 'textarea' ? <TextareaDemo/> : null}
             {selectTab === 'string' && selectKey === 'select' ? <SelectDemo/> : null}
             {selectTab === 'string' && selectKey === 'card' ? <StringCardDemo/> : null}
+            {selectTab === 'string' && selectKey === 'mde' ? <MdeDemo/> : null}
 
             {/* array */}
             {selectTab === 'array' && selectKey === 'tab-top' ? <TabTopDemo/> : null}

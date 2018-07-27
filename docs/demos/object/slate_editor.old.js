@@ -2,25 +2,53 @@
 import * as React from 'react';
 import Editor from 'packages/antd-object-editor';
 import {fromJS} from 'immutable';
-import {Divider} from 'antd';
+import {Divider, Button} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../types';
 import RefId from 'canner-ref-id';
 
-@ExamplePrimitiveValueWrapper(fromJS({html: ''}))
+@ExamplePrimitiveValueWrapper(fromJS({state: JSON.stringify({
+  document: {
+    nodes: [
+      {
+        object: 'block',
+        type: 'paragraph',
+        nodes: [
+          {
+            object: 'text',
+            leaves: [
+              {
+                text: 'A line of text in a paragraph.',
+              }
+            ],
+          },
+        ],
+      },
+    ],
+  },
+})}))
 class EditorComponentDemo1 extends React.Component<PrimitiveTypes<boolean>> {
+  onDeploy = (callback) => {
+    this.cb = callback;
+  }
+
+  callback = () => {
+    console.log(this.cb());
+  }
 
   render() {
     const {value, onChange} = this.props;
 
     return (
       <React.Fragment>
-        <Divider>Editor</Divider>
+        <Divider>Slate</Divider>
         <Editor
+          onDeploy={this.onDeploy}
           refId={new RefId("map")}
           value={value}
           onChange={onChange}
         />
+        <Button onClick={this.callback}>Deploy</Button>
       </React.Fragment>
     );
   }

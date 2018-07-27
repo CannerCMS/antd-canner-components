@@ -41,7 +41,7 @@ export default class DateTimePicker extends PureComponent<Props> {
 
     return (
       <DatePicker
-        defaultValue={moment}
+        defaultValue={value && value.length > 0 && moment}
         disabled={disabled}
         format={uiParams && uiParams.format}
         placeholder={
