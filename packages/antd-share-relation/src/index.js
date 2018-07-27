@@ -41,12 +41,15 @@ export default class Picker extends React.PureComponent<Props, State> {
     this.state = {
       totalValue: new List(),
       value: new List(),
-      selectedRowKeys: props.pickedIds ? props.pickedIds : []
+      selectedRowKeys: props.pickedIds || []
     };
   }
   
   componentWillReceiveProps(nextProps: Props) {
-    const {relationValue} = nextProps;
+    const {relationValue, pickedIds} = nextProps;
+    this.setState({
+      selectedRowKeys: pickedIds || []
+    })
     this.updateData(relationValue);
   }
 
