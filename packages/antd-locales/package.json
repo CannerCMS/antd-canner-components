@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-locales",
-  "version": "0.2.10",
+  "version": "0.3.0-beta.8",
   "description": "plugins locals",
   "main": "lib/index.js",
   "scripts": {},
@@ -11,6 +11,9 @@
   ],
   "author": "canner",
   "license": "ISC",
+  "dependencies": {
+    "dayjs": "^1.7.4"
+  },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
   },

@@ -50,7 +50,7 @@ export default class ArrayBreadcrumb extends Component<Props> {
 
   add = () => {
     const {goTo, refId} = this.props;
-    goTo(`${refId.toString()}?op=create`);
+    goTo(`${refId.toString()}`, {op: 'create'});
   }
 
   edit = (recordId: string) => {
@@ -105,7 +105,7 @@ export default class ArrayBreadcrumb extends Component<Props> {
         return (
           <ButtonGroup>
             <Button icon="edit"
-              onClick={() => this.edit(record.__index)}
+              onClick={() => this.edit(record.id)}
             />
             <Button icon="delete"
               onClick={() => this.remove(record.__index)}

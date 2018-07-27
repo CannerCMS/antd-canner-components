@@ -1,75 +1,87 @@
 /* eslint-disable require-jsdoc */
-import { isBoolean, isArray, template } from "lodash";
+import {template, get} from "lodash";
+import {Icon, Tag} from 'antd';
 import React from 'react';
+import dayjs from 'dayjs';
 export default function(cols, schema) {
   return cols.map(col => {
-    const itemSchema = schema[col.dataIndex];
-    const func = (text, record) => {
-      if (text === undefined) {
-        return "NULL";
-      }
+    const itemSchema = getSchema(schema, col.dataIndex.split('.'));
+    if (col.render) {
+      return col;
+    }
 
-      if (itemSchema && itemSchema.ui === 'image') {
-        return <div>
-          <img alt="Picture" src={text} width="50" height="50"></img>
-        </div>;
-      }
-
-      if (itemSchema && itemSchema.ui === 'gallery') {
-        const length = text.length;
-        const {imageKey = 'src'} = itemSchema.uiParams;
-        return <div
-            style={{
-              display: 'flex'
-            }}
-          >
-          <img src={text[0] ? text[0][imageKey] : ''} alt="Picture" width="50" height="50"></img>
-          {
-            length > 1 ?
-            <img src={text[1] ? text[1][imageKey] : ''} alt="Picture" width="50" height="50"></img>
-            : null
-          }
-          {
-            length >= 3 ?
-              <div style={{
-                width: 50,
-                height: 50,
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: "#ddd"
-              }}>
-                {length} pictures
-              </div>
-              : null
-          }
-          </div>;
-      }
-
-      if (col.renderTemplate) {
+    if (col.renderTemplate) {
+      col.render = (text, record) => {
         const compiled = template(col.renderTemplate || '');
         return <div dangerouslySetInnerHTML={{__html: compiled(record)}} />;
       }
+    }
 
-      if (isBoolean(text)) {
-        if (text) {
-          return "True";
-        }
-        return "False";
-      }
-
-      if (isArray(text)) {
-        if (text.length > 0) {
-          return text.join(", ");
-        }
-
-        return "No";
-      }
-
-      return text && text.toString();
-    };
-
-    col.render = func;
+    col.render = text => renderField(itemSchema, text);
     return col;
   });
+}
+
+function renderField(schema, value) {
+  if (!schema) {
+    return value;
+  }
+
+  switch (schema.type) {
+    case 'boolean': {
+      if (value) {
+        return (<Icon type="check" />)
+      }
+      return <Icon type="close" />
+    }
+    case 'number': {
+      return value;
+    }
+    case 'string': {
+      return value;
+    }
+    case 'dateTime': {
+      return dayjs(value).format('YYYY/MM/DD HH:mm');
+    }
+    case 'image': {
+      return (
+        <div>
+          <img alt="Picture" src={value.url} width="50" height="50"></img>
+        </div>
+      );
+    }
+    case 'array': {
+      if (schema.items.type === 'object') {
+        return value.map(v => renderField(schema.items.items, v));
+      }
+      if (schema.items.type === 'string') {
+        return value.map(str => <Tag key={str}>{str}</Tag>);
+      }
+      if (schema.items.type === 'image') {
+        return value.map(image => renderField(schema.items, image));
+      }
+    }
+    return null;
+  }
+}
+
+function getSchema(schema, dataIndex) {
+  if (!dataIndex || dataIndex.length === 0) {
+    return schema;
+  }
+
+  if (!('type' in schema) || typeof schema.type !== 'string') {
+    const key = dataIndex[0];
+    return getSchema(schema[key], dataIndex.slice(1));
+  }
+
+  if (schema.type === 'object') {
+    return getSchema(schema.items, dataIndex);
+  }
+
+  if (schema.type === 'array') {
+    return getSchema(schema.items, dataIndex);
+  }
+
+  return undefined;
 }

@@ -2,3 +2,6 @@
 # yarn lockfile v1
 
 
+dayjs@^1.7.4:
+  version "1.7.4"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.7.4.tgz#6001277372aec83021943157fa279ecf2b5f5cf8"

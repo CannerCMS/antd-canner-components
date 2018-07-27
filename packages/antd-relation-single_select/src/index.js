@@ -68,7 +68,7 @@ export default class RelationOneId extends PureComponent<Props, State> {
 
   render() {
     const { modalVisible } = this.state;
-    const { disabled, value, uiParams, refId, relation, fetch, fetchRelation, subscribe, updateQuery } = this.props;
+    const { disabled, value, uiParams, refId, relation, fetch, fetchRelation, subscribe, updateQuery, relationValue, Toolbar } = this.props;
     return (
       <div>
         {
@@ -96,6 +96,8 @@ export default class RelationOneId extends PureComponent<Props, State> {
             onCancel={this.handleCancel}
             updateQuery={updateQuery}
             pickOne={true}
+            relationValue={relationValue}
+            Toolbar={Toolbar}
             // $FlowFixMe
             pickedIds={[value && value.get("id")]}
             columns={uiParams.columns}
