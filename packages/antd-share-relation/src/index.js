@@ -3,6 +3,7 @@ import * as React from 'react';
 import {List, fromJS} from 'immutable';
 import {Modal, Table} from 'antd';
 import type {FieldId} from 'types/DefaultProps';
+import {isEqual} from 'lodash';
 
 type Props = {
   title: string,
@@ -47,9 +48,11 @@ export default class Picker extends React.PureComponent<Props, State> {
   
   componentWillReceiveProps(nextProps: Props) {
     const {relationValue, pickedIds} = nextProps;
-    this.setState({
-      selectedRowKeys: pickedIds || []
-    })
+    if (!isEqual(pickedIds, this.props.pickedIds)) {
+      this.setState({
+        selectedRowKeys: pickedIds || []
+      });
+    }
     this.updateData(relationValue);
   }
 
