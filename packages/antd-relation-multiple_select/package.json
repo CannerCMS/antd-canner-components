@@ -12,6 +12,7 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
+    "@canner/antd-locales": "^0.3.0-beta.5",
     "@canner/antd-share-relation": "^0.3.0-beta.5",
     "lodash.difference": "*",
     "lodash.template": "^4.4.0",

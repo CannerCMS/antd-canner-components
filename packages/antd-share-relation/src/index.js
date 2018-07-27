@@ -1,10 +1,8 @@
 // @flow
-import React, {PureComponent} from 'react';
-import {Map, List, fromJS} from 'immutable';
-import {Modal, Table, Button, Icon} from 'antd';
-const ButtonGroup = Button.Group;
+import * as React from 'react';
+import {List, fromJS} from 'immutable';
+import {Modal, Table} from 'antd';
 import type {FieldId} from 'types/DefaultProps';
-import styled from 'styled-components';
 
 type Props = {
   title: string,
@@ -21,88 +19,46 @@ type Props = {
   },
   updateQuery: Function,
   fetch: Function,
-  fetchRelation?: Function,
+  relationValue: any,
   columns: Array<{
     title: string,
     key: string,
     datIndex: string
   }>,
   subscribe: Function,
+  Toolbar: React.ComponentType<*>
 };
 
 type State = {
   totalValue: List<*>,
   value: List<*>,
-  hasNextPage: boolean,
-  hasPreviousPage: boolean,
   selectedRowKeys: Array<string>
 };
 
-const ButtonWrapper = styled.div`
-  text-align: right;
-  margin-top: 16px;
-`;
-
-export default class Picker extends PureComponent<Props, State> {
+export default class Picker extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
       totalValue: new List(),
       value: new List(),
-      hasNextPage: false,
-      hasPreviousPage: false,
       selectedRowKeys: props.pickedIds ? props.pickedIds : []
     };
   }
   
   componentWillReceiveProps(nextProps: Props) {
-    this.setState({
-      selectedRowKeys: nextProps.pickedIds ? nextProps.pickedIds : []
-    });
+    const {relationValue} = nextProps;
+    this.updateData(relationValue);
   }
 
   componentDidMount() {
-    this.fetchData();
-  }
-
-  nextPage = () => {
-    const {updateQuery, relation} = this.props;
-    const {hasNextPage, value} = this.state;
-    if (hasNextPage) {
-      updateQuery([relation.to], {
-        after: (value.last() || new Map()).get('id'),
-        first: 10
-      });
-      this.fetchData();
-    }
-  }
-
-  prevPage = () => {
-    const {updateQuery, relation} = this.props;
-    const {hasPreviousPage, value} = this.state;
-    if (hasPreviousPage) {
-      updateQuery([relation.to], {
-        before: (value.first() || new Map()).get('id'),
-        last: 10
-      });
-      this.fetchData();
-    }
-  }
-
-  fetchData = () => {
-    const {relation, fetch} = this.props;
-
-    return fetch(relation.to)
-      .then(data => {
-        this.updateData(data);
-      });
+    const {relationValue} = this.props;
+    this.updateData(relationValue);
   }
 
   updateData = (data: any) => {
     let {totalValue} = this.state;
-    const {relation} = this.props;
 
-    const list = data.getIn([relation.to, 'edges']).map(edge => edge.get('node'));
+    const list = data.getIn(['edges']).map(edge => edge.get('node'));
     list.forEach(item => {
       const index = totalValue.findIndex(v => v.get('id') === item.get('id'));
       if (index === -1) {
@@ -114,8 +70,6 @@ export default class Picker extends PureComponent<Props, State> {
     this.setState({
       totalValue,
       value: list,
-      hasNextPage: data.getIn([relation.to, 'pageInfo', 'hasNextPage']),
-      hasPreviousPage: data.getIn([relation.to, 'pageInfo', 'hasPreviousPage'])
     });
   }
 
@@ -134,38 +88,29 @@ export default class Picker extends PureComponent<Props, State> {
   }
 
   render() {
-    const { visible, columns, pickOne = false } = this.props;
-    const { value, selectedRowKeys, hasNextPage, hasPreviousPage } = this.state;
-
+    const { visible, columns, pickOne = false, Toolbar } = this.props;
+    const { value, selectedRowKeys} = this.state;
     return <Modal
+      width={800}
       onOk={this.handleOk}
       onCancel={this.handleCancel}
       visible={visible}
     >
-      <Table
-        rowSelection={{
-          type: (pickOne) ? "radio" : "checkbox",
-          onChange: this.rowSelectOnChange,
-          selectedRowKeys: selectedRowKeys
-        }}
-        size="middle"
-        columns={columns}
-        // $FlowFixMe
-        dataSource={value.toJS().map(v => ({key: v.id, ...v}))}
-        pagination={false}
-      />
-      <ButtonWrapper>
-        <ButtonGroup>
-          <Button disabled={!hasPreviousPage} onClick={this.prevPage}>
-            <Icon type="left" />
-            Previous Page
-          </Button>
-          <Button disabled={!hasNextPage} onClick={this.nextPage}>
-            Next Page
-            <Icon type="right" />
-          </Button>
-        </ButtonGroup>
-      </ButtonWrapper>
+      <Toolbar>
+        <Table
+          style={{marginBottom: 16}}
+          rowSelection={{
+            type: (pickOne) ? "radio" : "checkbox",
+            onChange: this.rowSelectOnChange,
+            selectedRowKeys: selectedRowKeys
+          }}
+          size="middle"
+          columns={columns}
+          // $FlowFixMe
+          dataSource={value.toJS().map(v => ({key: v.id, ...v}))}
+          pagination={false}
+        />
+      </Toolbar>
     </Modal>
   }
 }

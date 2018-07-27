@@ -1,14 +1,14 @@
 // @flow
-import React, { PureComponent } from "react";
-import { Tag, Tooltip, Icon } from "antd";
-import template from 'lodash/template';
+import * as React from "react";
+import { Icon, Table } from "antd";
 import difference from "lodash/difference";
 import Picker from '@canner/antd-share-relation';
+import {renderValue} from '@canner/antd-locales';
 
 // type
-import type {List} from 'immutable';
 import type {RelationDefaultProps} from 'types/RelationDefaultProps';
 import type {GotoFn, FieldDisabled} from "../../../types/DefaultProps";
+import type {List} from 'immutable';
 
 type State = {
   modalVisible: boolean
@@ -25,15 +25,15 @@ type Props = RelationDefaultProps & {
   rootValue: any,
   disabled: FieldDisabled,
   updateQuery: Function,
-  subscribe: Function
+  subscribe: Function,
+  schema: Object,
+  Toolbar: React.ComponentType<*>,
+  relationValue: List<any>,
 };
 
-export default class RelationIdList extends PureComponent<Props, State> {
-  isOnComposition: boolean;
-
+export default class RelationTable extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.isOnComposition = false;
     this.state = {
       modalVisible: false
     };
@@ -49,15 +49,15 @@ export default class RelationIdList extends PureComponent<Props, State> {
     });
   }
 
-  handleOk = (queue: List<any>, originData: any) => {
+  handleOk = (queue: List<any>, originData: List<any>) => {
     let {onChange, refId, value} = this.props;
     value = value && value.toJS ? value.toJS() : [];
-    queue = (queue.toJS(): any);
+    const q = queue.toJS();
     // $FlowFixMe
     const currentIds = value.map(v => v.id);
 
-    const idsShouldCreate = difference(queue, currentIds);
-    const idsShouldRemove = difference(currentIds, queue);
+    const idsShouldCreate = difference(q, currentIds);
+    const idsShouldRemove = difference(currentIds, q);
     const createActions = idsShouldCreate.map(id => ({refId, type: "connect", value: originData.find(data => data.get('id') === id)}));
     const delActions = idsShouldRemove.map(id => ({refId, type: "disconnect", value: originData.find(data => data.get('id') === id)}));
     onChange([...createActions, ...delActions]);
@@ -70,36 +70,33 @@ export default class RelationIdList extends PureComponent<Props, State> {
     });
   }
 
-  handleClose = (index:  number) => {
+  handleClose = (index: number) => {
     const {onChange, refId, value} = this.props;
     onChange(refId, 'disconnect', value.get(index));
   }
 
   render() {
     const { modalVisible } = this.state;
-    let { disabled, value, uiParams, refId, relation, fetch, fetchRelation, updateQuery, subscribe } = this.props;
+    let { disabled, value, uiParams = {}, refId, relation,
+      fetch, fetchRelation, updateQuery, subscribe,
+      schema, Toolbar, relationValue
+    } = this.props;
     value = value && value.toJS ? value.toJS() : [];
+    const newColumnsRender = renderValue(uiParams.columns, schema[relation.to].items.items);
+    
     return (
       <div>
-        {value.map((v, index) => {
-          // $FlowFixMe
-          const tag = getTag(v, uiParams);
-          const isLongTag = tag.length > 20;
-          const tagElem = (
-            // $FlowFixMe
-            <Tag key={v.id} closable={true} afterClose={() => this.handleClose(index)} style={{fontSize: 16}}>
-              {isLongTag ? `${tag.slice(0, 20)}...` : tag}
-            </Tag>
-          );
-            // $FlowFixMe
-          return isLongTag ? <Tooltip title={tag} key={v.id}>{tagElem}</Tooltip> : tagElem;
-        })}
-        <Tag
-          onClick={this.showModal}
-          style={{ background: '#fff', borderStyle: 'dashed' }}
-        >
-          <Icon type="plus" /> New Tag
-        </Tag>
+        <Table
+          dataSource={value}
+          columns={newColumnsRender}
+        />
+        {
+          !disabled && <div>
+            <a href="javascript:;" onClick={this.showModal}>
+              <Icon type="link" style={{margin: '16px 8px'}}/>connect existed {relation.to}
+            </a>
+          </div>
+        }
         {
           !disabled && <Picker
             title="選擇你要的物件"
@@ -111,10 +108,12 @@ export default class RelationIdList extends PureComponent<Props, State> {
             columns={uiParams.columns}
             refId={refId}
             relation={relation}
+            relationValue={relationValue}
             fetch={fetch}
             subscribe={subscribe}
             updateQuery={updateQuery}
             fetchRelation={fetchRelation}
+            Toolbar={Toolbar}
           />
         }
       </div>
@@ -122,28 +121,7 @@ export default class RelationIdList extends PureComponent<Props, State> {
   }
 }
 
-function getTag(v: {[string]: any}, uiParams: {
-  textCol: string,
-  subtextCol: string,
-  renderText?: string  
-}): string {
-  // use value and uiParams to generateTagName
-  const {textCol, subtextCol, renderText} = uiParams;
-  let tag = '';
-  
-  if (renderText) {
-    // if there is renderText, textCol and subtextCol will be ignored;
-    const compiler = template(renderText);
-    try {
-      tag = compiler(v);
-    } catch (e) {
-      throw e;
-    }
-  } else {
-    const text = v[textCol];
-    const subtext = v[subtextCol];
-    tag = text + (subtext ? `(${subtext})` : '');
-  }
-
-  return tag;
+function getRecordValue(rootValue, refId) {
+  const targetRefId = refId.remove();
+  return rootValue.getIn(targetRefId.getPathArr());
 }

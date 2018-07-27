@@ -62,10 +62,8 @@ export type DeployFn = (fieldId: FieldId, callback?: Function) => Promise<*>
 
 // only relation component get this
 export type FieldRelation = {
-  relationship: string,
-  relationTo: string,
-  pickOne?: string,
-  foreignKey?: string
+  to: string,
+  type: string
 };
 
 // the route controller
