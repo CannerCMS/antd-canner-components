@@ -2,7 +2,6 @@
 import * as React from 'react';
 import Variants from 'packages/antd-object-variants';
 import cmsLocale from 'packages/antd-locales';
-import {fromJS} from 'immutable';
 import {Divider} from 'antd';
 import {IntlProvider} from 'react-intl';
 
@@ -10,7 +9,7 @@ import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../types';
 import RefId from 'canner-ref-id';
 
-@ExamplePrimitiveValueWrapper(fromJS({
+@ExamplePrimitiveValueWrapper({
 	options: [{
 		name: 'size',
 		values: ['M', 'S']
@@ -27,7 +26,7 @@ import RefId from 'canner-ref-id';
     title: "This is S-red",
     desc: "This is S-red content"
 	}]
-}))
+})
 class VariantsDemo1 extends React.Component<PrimitiveTypes<boolean>> {
   render() {
     const {value, onChange} = this.props;

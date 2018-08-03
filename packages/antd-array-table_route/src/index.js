@@ -3,11 +3,9 @@
 import React, { Component } from "react";
 import { Table, Button, Modal } from "antd";
 import PropTypes from 'prop-types';
-import { List } from "immutable";
 import { FormattedMessage } from "react-intl";
-import defaultMessage from "@canner/antd-locales";
+import defaultMessage, {renderValue} from "@canner/antd-locales";
 import type {FieldId, FieldItems, GotoFn} from 'types/DefaultProps';
-import {renderValue} from '@canner/antd-locales';
 import {injectIntl, intlShape} from 'react-intl';
 
 const ButtonGroup = Button.Group;
@@ -17,7 +15,7 @@ type Props = {
   refId: FieldId,
   items: FieldItems,
   goTo: GotoFn,
-  value: List<any>,
+  value: Array<any>,
   uiParams: {
     createKeys: Array<string>,
     updateKeys: Array<string>,
@@ -39,7 +37,7 @@ export default class ArrayBreadcrumb extends Component<Props> {
   editModal: ?HTMLDivElement;
   addModal: ?HTMLDivElement;
   static defaultProps = {
-    value: new List(),
+    value: [],
     showPagination: true,
     schema: {}
   };
@@ -65,7 +63,7 @@ export default class ArrayBreadcrumb extends Component<Props> {
       okType: 'danger',
       onOk() {
         onChange(refId.child(index), 'delete').then(() => {
-          deploy(refId.getPathArr()[0], value.getIn([index, '_id']));
+          deploy(refId.getPathArr()[0], value[index].id);
         });
       }
     });
@@ -119,7 +117,7 @@ export default class ArrayBreadcrumb extends Component<Props> {
       <div>
         <Table
           pagination={showPagination}
-          dataSource={(value.toJS(): any).map((datum, i) => {
+          dataSource={value.map((datum, i) => {
             datum.__index = i;
             datum.key = datum.key || i;
             return datum;

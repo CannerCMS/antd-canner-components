@@ -2,7 +2,6 @@
 import React, {Component} from 'react';
 import TabLeft from 'packages/antd-array-tab_left';
 import cmsLocale from 'packages/antd-locales';
-import immutable from 'immutable';
 import {IntlProvider} from 'react-intl';
 import RefId from 'canner-ref-id';
 import ExampleArrayValueWrapper from '../ExamplePrimitiveValueHoc';
@@ -16,7 +15,7 @@ const initData = [{
   "content": "content 2"
 }]
 
-@ExampleArrayValueWrapper(immutable.List(initData))
+@ExampleArrayValueWrapper(initData)
 export default class TabLeftDemo extends Component<ArrayTypes<any>> {
   render() {
     const {value, onChange} = this.props;

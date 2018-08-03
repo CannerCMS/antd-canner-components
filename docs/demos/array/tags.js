@@ -2,14 +2,13 @@
 import * as React from 'react';
 import Tag from 'packages/antd-array-tag';
 import cmsLocale from 'packages/antd-locales';
-import immutable from 'immutable';
 import {IntlProvider} from 'react-intl';
 import {Divider} from 'antd';
 import RefId from 'canner-ref-id';
 import ExampleArrayValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {ArrayTypes} from '../types';
 
-@ExampleArrayValueWrapper(immutable.List(["tag 1", "tag 2"]))
+@ExampleArrayValueWrapper(["tag 1", "tag 2"])
 class TagDemo1 extends React.Component<ArrayTypes<string>> {
   render() {
     const {value, onChange} = this.props;

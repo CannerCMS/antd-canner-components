@@ -32,7 +32,7 @@ export default class Image extends PureComponent<Props, State> {
 
   componentWillReceiveProps(nextProps: Props) {
     // if value exist, hide edit popup
-    if (nextProps.value.get('url')) {
+    if (nextProps.value.url) {
       this.setState({
         editPopup: false
       });
@@ -57,18 +57,19 @@ export default class Image extends PureComponent<Props, State> {
     if (isArray(newValue)) {
       url = newValue[0];
     }
-    this.props.onChange(this.props.refId, "update", value.set('url', url));
+
+    this.props.onChange(this.props.refId, "update", {...value, url});
   };
 
   render() {
     const { value, disabled, imageServiceConfig } = this.props;
     const { editPopup } = this.state;
     // if the image exist show it, otherwise let user upload.
-    if (value && value.get('url')) {
+    if (value && value.url) {
       return (
         <ShowImage
           onChange={this.onChange}
-          value={(value: any).get('url')}
+          value={value.url}
           disabled={disabled}/>
       );
     }

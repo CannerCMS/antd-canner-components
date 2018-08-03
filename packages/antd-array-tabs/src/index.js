@@ -5,7 +5,6 @@ import TabContent from "@canner/rc-tabs/lib/TabContent";
 import ScrollableInkTabBar from "@canner/rc-tabs/lib/ScrollableInkTabBar";
 import { Button, Icon, Modal } from "antd";
 import Sortable from "react-sortablejs";
-import { List } from "immutable";
 import {injectIntl} from 'react-intl';
 import {Item, ConfirmButton, ResetButton} from 'canner-helpers';
 
@@ -55,7 +54,7 @@ export default class TabUi extends Component<Props, State> {
 
   static defaultProps = {
     uiParams: {},
-    value: new List()
+    value: []
   };
 
   handleTabChange = (key: string) => {
@@ -129,7 +128,7 @@ export default class TabUi extends Component<Props, State> {
       })} ${i + 1}`;
 
       if (uiParams.titleKey) {
-        title = item.get(uiParams.titleKey) || defaultTitle;
+        title = item[uiParams.titleKey] || defaultTitle;
       } else if (uiParams.titlePrefix) {
         title = `${uiParams.titlePrefix}${i + 1}` || defaultTitle;
       } else {

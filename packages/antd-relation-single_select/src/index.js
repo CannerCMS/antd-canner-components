@@ -1,7 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
 import { Tag, Icon } from "antd";
-import type { List } from 'immutable';
 import template from 'lodash/template';
 import Picker from '@canner/antd-share-relation';
 
@@ -48,10 +47,10 @@ export default class RelationOneId extends PureComponent<Props, State> {
     });
   }
 
-  handleOk = (queue: List<any>, originData: List<any>) => {
+  handleOk = (queue: Array<any>, originData: Array<any>) => {
     const {onChange, refId} = this.props;
     // get the first one from picker
-    onChange(refId, 'connect', originData.find(item => item.get('id') === queue.get(0)));
+    onChange(refId, 'connect', originData.find(item => item.id === queue[0]));
     this.handleCancel();
   }
 
@@ -72,10 +71,10 @@ export default class RelationOneId extends PureComponent<Props, State> {
     return (
       <div>
         {
-          value && value.size ?
-            <Tag key={(value: any).get('id')} closable={true} afterClose={this.handleClose} style={{fontSize: 16}}>
+          value && value.length ?
+            <Tag key={value[0].id} closable={true} afterClose={this.handleClose} style={{fontSize: 16}}>
               {/* $FlowFixMe */}
-              {getTag(value.toJS(), uiParams)}
+              {getTag(value, uiParams)}
             </Tag> :
             null
         }
@@ -99,7 +98,7 @@ export default class RelationOneId extends PureComponent<Props, State> {
             relationValue={relationValue}
             Toolbar={Toolbar}
             // $FlowFixMe
-            pickedIds={[value && value.get("id")]}
+            pickedIds={[value && value.id]}
             columns={uiParams.columns}
             refId={refId}
             relation={relation}

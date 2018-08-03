@@ -1,13 +1,12 @@
 // @flow
 import * as React from 'react';
-import {fromJS} from 'immutable';
 import RefId from 'canner-ref-id';
 import Picker from 'packages/antd-share-relation';
 import {Divider, Button} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../types';
 
-let list = fromJS([{
+let list = [{
   _id: 'item1',
   title: 'item1'
 }, {
@@ -22,7 +21,7 @@ let list = fromJS([{
 }, {
   _id: 'item5',
   title: 'item5'
-}]);
+}];
 
 const rtnCtx = {
   response: {
@@ -37,13 +36,13 @@ const rtnCtx = {
   }
 }
 
-@ExamplePrimitiveValueWrapper(fromJS([{
+@ExamplePrimitiveValueWrapper([{
   _id: 'item1',
   title: 'item1'
 }, {
   _id: 'item2',
   title: 'item2'
-}]))
+}])
 export class RelationPickerDemo1 extends React.Component<PrimitiveTypes<string>, {visible: boolean}> {
   state = {
     visible: false
@@ -87,10 +86,10 @@ export class RelationPickerDemo1 extends React.Component<PrimitiveTypes<string>,
 }
 
 
-@ExamplePrimitiveValueWrapper(fromJS([{
+@ExamplePrimitiveValueWrapper([{
   _id: 'item1',
   title: 'item1'
-}]))
+}])
 export class RelationPickerDemo2 extends React.Component<PrimitiveTypes<string>, {visible: boolean}> {
   state = {
     visible: false
@@ -118,7 +117,7 @@ export class RelationPickerDemo2 extends React.Component<PrimitiveTypes<string>,
           onCancel={this.trigger}
           pickOne={true}
           // $FlowFixMe
-          pickedIds={[value && value.getIn([0, "_id"])]}
+          pickedIds={[value && value[0].id]}
           columns={[{
             title: 'Title',
             dataIndex: 'title'

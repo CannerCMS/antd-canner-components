@@ -12,7 +12,6 @@
   "author": "canner",
   "license": "ISC",
   "peerDependencies": {
-    "immutable": "^4.0.0-rc9",
     "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
   },
   "publishConfig": {

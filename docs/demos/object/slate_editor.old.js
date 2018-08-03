@@ -1,13 +1,12 @@
 // @flow
 import * as React from 'react';
 import Editor from 'packages/antd-object-editor';
-import {fromJS} from 'immutable';
 import {Divider, Button} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../types';
 import RefId from 'canner-ref-id';
 
-@ExamplePrimitiveValueWrapper(fromJS({state: JSON.stringify({
+@ExamplePrimitiveValueWrapper({state: JSON.stringify({
   document: {
     nodes: [
       {
@@ -26,7 +25,7 @@ import RefId from 'canner-ref-id';
       },
     ],
   },
-})}))
+})})
 class EditorComponentDemo1 extends React.Component<PrimitiveTypes<boolean>> {
   onDeploy = (callback) => {
     this.cb = callback;

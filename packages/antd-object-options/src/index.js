@@ -2,7 +2,6 @@
 
 import React, { Component } from "react";
 import { Radio } from "antd";
-import { Map, fromJS } from "immutable";
 import {Item, createEmptyData} from 'canner-helpers';
 
 import type {ObjectDefaultProps} from 'types/ObjectDefaultProps';
@@ -27,12 +26,12 @@ export default class OptionPlugin extends Component<Props, State> {
     const {optionKey, options} = uiParams;
     
     this.state = {
-      selectedKey: value.get(optionKey) || options[0].key
+      selectedKey: value[optionKey] || options[0].key
     };
   }
 
   static defaultProps = {
-    value: Map(), // eslint-disable-line
+    value: {}, // eslint-disable-line
     uiParams: {
       optionKey: 'selectedKey'
     }
@@ -47,10 +46,10 @@ export default class OptionPlugin extends Component<Props, State> {
       return;
 
     const emptyValue = createEmptyData(items[selectedOption.key]);
-    onChange(refId, 'update', fromJS({
+    onChange(refId, 'update', {
       [optionKey]: selectedKey,
       [selectedOption.key]: emptyValue
-    }));
+    });
     this.setState({
       selectedKey
     });

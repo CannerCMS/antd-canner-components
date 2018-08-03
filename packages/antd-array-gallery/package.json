@@ -14,7 +14,6 @@
   "author": "canner",
   "license": "ISC",
   "peerDependencies": {
-    "immutable": "^3.8.2",
     "react": "^0.14.0 || ^15.0.0 || ^16.0.0",
     "styled-components": ">=3.2.3"
   },

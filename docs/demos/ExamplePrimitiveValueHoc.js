@@ -2,6 +2,7 @@
 import * as React from 'react';
 import Inspector from 'react-inspector';
 import type RefId from 'canner-ref-id';
+import {set, update} from 'lodash';
 
 type PrimitiveValue = string | boolean | number | Object | Array<any>;
 
@@ -28,7 +29,8 @@ export default (defaultValue: PrimitiveValue, rootValue: PrimitiveValue) => (Con
         if (refId.getPathArr()[0] === 'variants') {
           log.unshift({refId, type});
           // $FlowFixMe
-          const createVal = value.setIn(refId.getPathArr().slice(1), delta)
+          
+          const createVal = set(value, refId.getPathArr().slice(1), delta);
           this.setState({log, value: createVal})
           // $FlowFixMe
         } else {
@@ -38,22 +40,22 @@ export default (defaultValue: PrimitiveValue, rootValue: PrimitiveValue) => (Con
       } else if (type === 'delete' && !refId.firstRefId) {
         log.unshift({refId, type});
         const pathArr = refId.getPathArr();
-        const delValue = value.remove(pathArr[pathArr.length - 1])
+        const delValue = value.splice(pathArr[pathArr.length - 1], 1)
         this.setState({log, value: delValue})
       } else if (type === 'create') {
         // $FlowFixMe
         if (refId.getPathArr()[0] === 'variants') {
           log.unshift({refId, type});
           // $FlowFixMe
-          const createVal = value.update(refId.getPathArr()[1], list => list.push(delta))
+          const createVal = update(value, refId.getPathArr()[1], arr => arr.concat(delta))
           this.setState({log, value: createVal})
           // $FlowFixMe
         } else if (refId.getPathArr()[0] === 'relation'){
           log.unshift({refId, type, delta});
-          this.setState({log, value: value.push(delta)});
+          this.setState({log, value: value.concat(delta)});
         } else {
           log.unshift({refId, type});
-          const createVal = value.push(delta);
+          const createVal = value.concat(delta);
           this.setState({log, value: createVal})
         }
       } else if (type === 'swap' && refId.firstRefId) {
@@ -65,15 +67,16 @@ export default (defaultValue: PrimitiveValue, rootValue: PrimitiveValue) => (Con
         const secondRefIdArr = secondRefId.getPathArr();
         const firstIndex = firstRefIdArr[firstRefIdArr.length - 1];
         const secondIndex = secondRefIdArr[secondRefIdArr.length - 1];
-        let newValue = value.set(firstIndex, value.get(secondIndex));
-        newValue = newValue.set(secondIndex, value.get(firstIndex));
+        let newValue = value.slice()
+        newValue[firstIndex] = value[secondIndex];
+        newValue[secondIndex] = value[firstIndex];
         this.setState({log, value: newValue});
       } else if (type === 'connect') {
         log.unshift({refId, type, delta});
         this.setState({refId, log, value: value.push(delta)});
       } else if (type === 'disconnect') {
         log.unshift({refId, type, delta});
-        const delValue = value.filter(v => v.get('id') !== (delta: any).get('id'));
+        const delValue = value.filter(v => v.id !== delta.id);
         this.setState({log, value: delValue})
       }
 
