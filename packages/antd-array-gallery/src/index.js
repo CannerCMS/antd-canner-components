@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from "react";
-import { List } from "immutable";
 import Gallery from 'canner-image-gallery';
 import {Modal} from 'antd';
 import { Item, transformData } from 'canner-helpers';
@@ -43,7 +42,7 @@ export default class ArrayGallery extends Component<Props> {
   }
 
   static defaultProps = {
-    value: new List(),
+    value: [],
     uiParams: {}
   };
 
@@ -93,7 +92,7 @@ export default class ArrayGallery extends Component<Props> {
 
   render() {
     const { value, refId, imageServiceConfig, uiParams } = this.props;
-    const galleryValue = value.map(photo => photo.getIn([this.imageKey, 'url'])).toJS()
+    const galleryValue = value.map(photo => photo[this.imageKey].url);
 
     return (
       <div style={{maxWidth: '800px'}}>

@@ -2,7 +2,6 @@
 
 import React, { Component } from "react";
 import { Table, Button } from "antd";
-import { List } from "immutable";
 import showDeleteConfirm from "./showDeleteConfirm";
 import EditModal from "./editModal";
 import AddModal from "./addModal";
@@ -48,7 +47,7 @@ export default class TableArrayPlugin extends Component<Props, State> {
   editModal: ?EditModal;
   addModal: ?AddModal;
   static defaultProps = {
-    value: new List(),
+    value: [],
     showPagination: true
   };
 
@@ -126,7 +125,7 @@ export default class TableArrayPlugin extends Component<Props, State> {
       });
     }
 
-    const originalData = value.toJS().map((datum, i) => {
+    const originalData = value.map((datum, i) => {
       (datum: any).__index = i;
       (datum: any).key = (datum: any).key || i;
       return datum;

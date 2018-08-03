@@ -8,7 +8,6 @@ import {renderValue} from '@canner/antd-locales';
 // type
 import type {RelationDefaultProps} from 'types/RelationDefaultProps';
 import type {GotoFn, FieldDisabled} from "../../../types/DefaultProps";
-import type {List} from 'immutable';
 
 type State = {
   modalVisible: boolean
@@ -28,7 +27,7 @@ type Props = RelationDefaultProps & {
   subscribe: Function,
   schema: Object,
   Toolbar: React.ComponentType<*>,
-  relationValue: List<any>,
+  relationValue: Array<any>,
 };
 
 export default class RelationTable extends React.PureComponent<Props, State> {
@@ -49,17 +48,17 @@ export default class RelationTable extends React.PureComponent<Props, State> {
     });
   }
 
-  handleOk = (queue: List<any>, originData: List<any>) => {
+  handleOk = (queue: Array<any>, originData: Array<any>) => {
     let {onChange, refId, value} = this.props;
-    value = value && value.toJS ? value.toJS() : [];
-    const q = queue.toJS();
+    value = value || [];
+    const q = queue.slice();
     // $FlowFixMe
     const currentIds = value.map(v => v.id);
 
     const idsShouldCreate = difference(q, currentIds);
     const idsShouldRemove = difference(currentIds, q);
-    const createActions = idsShouldCreate.map(id => ({refId, type: "connect", value: originData.find(data => data.get('id') === id)}));
-    const delActions = idsShouldRemove.map(id => ({refId, type: "disconnect", value: originData.find(data => data.get('id') === id)}));
+    const createActions = idsShouldCreate.map(id => ({refId, type: "connect", value: originData.find(data => data.id === id)}));
+    const delActions = idsShouldRemove.map(id => ({refId, type: "disconnect", value: originData.find(data => data.id === id)}));
     onChange([...createActions, ...delActions]);
     this.handleCancel();
   }
@@ -72,7 +71,7 @@ export default class RelationTable extends React.PureComponent<Props, State> {
 
   handleClose = (index: number) => {
     const {onChange, refId, value} = this.props;
-    onChange(refId, 'disconnect', value.get(index));
+    onChange(refId, 'disconnect', value[index]);
   }
 
   render() {
@@ -81,7 +80,7 @@ export default class RelationTable extends React.PureComponent<Props, State> {
       fetch, fetchRelation, updateQuery, subscribe,
       schema, Toolbar, relationValue
     } = this.props;
-    value = value && value.toJS ? value.toJS() : [];
+    value = value || [];
     const newColumnsRender = renderValue(uiParams.columns, schema[relation.to].items.items);
     
     return (
@@ -119,9 +118,4 @@ export default class RelationTable extends React.PureComponent<Props, State> {
       </div>
     );
   }
-}
-
-function getRecordValue(rootValue, refId) {
-  const targetRefId = refId.remove();
-  return rootValue.getIn(targetRefId.getPathArr());
 }

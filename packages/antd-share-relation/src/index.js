@@ -1,6 +1,5 @@
 // @flow
 import * as React from 'react';
-import {List, fromJS} from 'immutable';
 import {Modal, Table} from 'antd';
 import type {FieldId} from 'types/DefaultProps';
 import {isEqual} from 'lodash';
@@ -31,8 +30,8 @@ type Props = {
 };
 
 type State = {
-  totalValue: List<*>,
-  value: List<*>,
+  totalValue: Array<*>,
+  value: Array<*>,
   selectedRowKeys: Array<string>
 };
 
@@ -40,8 +39,8 @@ export default class Picker extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      totalValue: new List(),
-      value: new List(),
+      totalValue: [],
+      value: [],
       selectedRowKeys: props.pickedIds || []
     };
   }
@@ -64,13 +63,13 @@ export default class Picker extends React.PureComponent<Props, State> {
   updateData = (data: any) => {
     let {totalValue} = this.state;
 
-    const list = data.getIn(['edges']).map(edge => edge.get('node'));
+    const list = data.edges.map(edge => edge.node);
     list.forEach(item => {
-      const index = totalValue.findIndex(v => v.get('id') === item.get('id'));
+      const index = totalValue.findIndex(v => v.id === item.id);
       if (index === -1) {
-        totalValue = totalValue.push(item);
+        totalValue.push(item);
       } else {
-        totalValue.set(index, item);
+        totalValue[index] = item;
       }
     });
     this.setState({
@@ -84,7 +83,7 @@ export default class Picker extends React.PureComponent<Props, State> {
   }
 
   handleOk = () => {
-    this.props.onOk(fromJS(this.state.selectedRowKeys), this.state.totalValue);
+    this.props.onOk(this.state.selectedRowKeys, this.state.totalValue);
   }
 
   rowSelectOnChange = (selectedRowKeys: Array<string>) => {
@@ -113,7 +112,7 @@ export default class Picker extends React.PureComponent<Props, State> {
           size="middle"
           columns={columns}
           // $FlowFixMe
-          dataSource={value.toJS().map(v => ({key: v.id, ...v}))}
+          dataSource={value.map(v => ({key: v.id, ...v}))}
           pagination={false}
         />
       </Toolbar>

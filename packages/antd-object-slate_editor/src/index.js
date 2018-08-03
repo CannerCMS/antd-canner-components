@@ -49,7 +49,7 @@ export default class Editor extends PureComponent<Props, State> {
     super(props);
     this.stateKey = 'state';
     this.htmlKey = 'html';
-    const state = props.value.get(this.stateKey);
+    const state = props.value[this.stateKey];
     this.state = {
       value: Value.fromJSON(state ? JSON.parse(state) : defaultState),
     };

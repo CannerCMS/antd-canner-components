@@ -1,8 +1,8 @@
 [ignore]
 .*/node_modules/protobufjs/.*
 .*/node_modules/fbjs/node_modules/.* 
-.*/node_modules/@canner/react-cms-core/.*
-.*/node_modules/@canner/react-cms-helpers/.*
+.*/node_modules/@canner/.*
+.*/node_modules/canner-helpers/.*
 
 [include]
 

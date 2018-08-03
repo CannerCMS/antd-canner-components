@@ -17,7 +17,6 @@
   "license": "ISC",
   "dependencies": {
     "@canner/rc-tabs": "^9.2.7",
-    "immutable": "4.0.0-rc.9",
     "react-sortablejs": "^1.3.6",
     "sortablejs": "^1.7.0"
   },

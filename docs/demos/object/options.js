@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react';
 import Options from 'packages/antd-object-options';
-import {fromJS} from 'immutable';
 import {Divider} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../types';
@@ -9,7 +8,7 @@ import RefId from 'canner-ref-id';
 import {Context} from 'canner-helpers';
 import contextValue from '../../context';
 
-@ExamplePrimitiveValueWrapper(fromJS({
+@ExamplePrimitiveValueWrapper({
   selectedKey: "option1",
   option1: {
     title: "this is title 1"
@@ -17,7 +16,7 @@ import contextValue from '../../context';
   option2: {
     content: "this is content 2"
   }
-}))
+})
 class OptionsDemo1 extends React.Component<PrimitiveTypes<boolean>> {
   render() {
     const {value, onChange} = this.props;

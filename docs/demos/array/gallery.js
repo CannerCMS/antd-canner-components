@@ -2,7 +2,6 @@
 import * as React from 'react';
 import Gallery from 'packages/antd-array-gallery';
 import cmsLocale from 'packages/antd-locales';
-import immutable from 'immutable';
 import {ImgurService} from "@canner/image-service-config";
 import RefId from 'canner-ref-id';
 import {IntlProvider} from 'react-intl';
@@ -28,7 +27,7 @@ const initData = [{
   }
 }]
 
-@ExampleArrayValueWrapper(immutable.fromJS(initData))
+@ExampleArrayValueWrapper(initData)
 export default class GalleryDemo extends React.Component<ArrayTypes<any>> {
   render() {
     const {value, onChange} = this.props;

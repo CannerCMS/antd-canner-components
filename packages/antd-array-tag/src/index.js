@@ -1,7 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
 import { Select } from "antd";
-import {List} from 'immutable';
 import defaultMessage from "@canner/antd-locales";
 import {injectIntl, FormattedMessage} from 'react-intl';
 const Option = Select.Option;
@@ -32,7 +31,7 @@ export default class TagUi extends PureComponent<Props> {
           />
       ]
     },
-    value: new List()
+    value: []
   }
 
   onChange = (value: Array<string>) => {
@@ -49,7 +48,7 @@ export default class TagUi extends PureComponent<Props> {
         mode="tags"
         disabled={disabled}
         style={{ width: "100%" }}
-        value={List.isList(value) ? value.toJS() : value}
+        value={value}
         searchPlaceholder={
           intl.formatMessage({
             id: "array.tag.placeholder",

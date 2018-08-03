@@ -1,7 +1,6 @@
 // @flow
 import React, { Component } from "react";
 import { Slider } from "antd";
-import {List} from 'immutable';
 import {transformData} from 'canner-helpers';
 // types
 import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
@@ -17,7 +16,7 @@ type Props = ArrayDefaultProps<number> & {
 
 export default class RangeSlider extends Component<Props> {
   static defaultProps = {
-    value: List([0, 100])
+    value: [0, 100]
   }
 
   onChange = (val: Array<number>) => {
@@ -39,7 +38,7 @@ export default class RangeSlider extends Component<Props> {
         tipFormatter={tipFormatter}
         {...this.props}
         onChange={this.onChange}
-        value={value.toJS()}
+        value={value}
       />
     );
   }

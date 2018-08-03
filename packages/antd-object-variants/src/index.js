@@ -6,20 +6,23 @@ import { flatten, map, reduce, isEqual } from "lodash";
 import { Option, VariantsContainer, Remove} from './components';
 
 import {injectIntl} from 'react-intl';
-import {Item, createEmptyData, transformData} from 'canner-helpers';
-import type {List} from 'immutable';
+import {Item, createEmptyData} from 'canner-helpers';
 import type {ObjectDefaultProps} from 'types/ObjectDefaultProps';
 
 type Props = ObjectDefaultProps & {
   intl: any,
-  items: any
+  items: any,
+  value: {
+    options: Array<any>,
+    variants: Array<any>
+  }
 };
 
 const FormItem = Form.Item;
-const defaultData = transformData({
+const defaultData = {
   variants: [],
   options: []
-});
+};
 
 @injectIntl
 export default class Variants extends Component<Props> {
@@ -28,66 +31,65 @@ export default class Variants extends Component<Props> {
     value: defaultData
   };
 
-  updateTag = (val: List<string>, order: number) => {
+  updateTag = (val: Array<string>, order: number) => {
     const { value, items, onChange, refId } = this.props;
-    const variants = value.get("variants");
-    const options = value
-      .get("options", transformData([]))
-      .setIn([order, "values"], transformData(val));
-    const types = this.cartesianProduct(options.toJS());
+    const variants = value.variants;
+    const options = value.options || [];
+    options[order].values = val;
+    const types = this.cartesianProduct(options);
     const variantsObj = types.map(type => {
       const newVariants = type.join("-");
       const originVariants = (variants, []).find(variant =>
-        isEqual(variant.get("options"), newVariants)
+        isEqual(variant.options, newVariants)
       );
       if (originVariants) {
         return originVariants;
       }
       return {
-        ...createEmptyData(items.variants.items.items).toJS(),
+        ...createEmptyData(items.variants.items.items),
         options: newVariants
       };
     });
     onChange(
       refId.child(order),
       "update",
-      transformData({
+      {
         options,
         variants: variantsObj
-      })
+      }
     );
   }
 
   updateVariantsAfterRemoveOption = (i: number) => {
     const { value, items, refId, onChange } = this.props;
-    const options = value.get("options", transformData([])).remove(i);
-    const variants = value.get("variants");
-    const types = this.cartesianProduct(options.toJS());
+    const options = value.options || [];
+    options.splice(i, 1);
+    const variants = value.variants;
+    const types = this.cartesianProduct(options);
     const variantsObj = types.filter(type => type.length).map(type => {
       const newVariants = type.join("-");
       const originVariants = variants && variants.find(variant =>
-        isEqual(variant.get("options"), newVariants)
+        isEqual(variant.options, newVariants)
       );
       if (originVariants) {
         return originVariants;
       }
       return {
-        ...createEmptyData(items.variants.items.items).toJS(),
+        ...createEmptyData(items.variants.items.items),
         options: newVariants
       };
     });
     onChange(
       refId,
       "update",
-      transformData({
+      {
         options,
         variants: variantsObj
-      })
+      }
     );
   }
 
   cartesianProduct = (products: Array<{[string]: any}>) => {
-    // IMPROVEMENT: need to refactor to pure immutable
     const values = products.map(prod => prod.values);
     const cartesian = reduce(
       values,
@@ -143,7 +145,7 @@ export default class Variants extends Component<Props> {
     action.splice(action.indexOf("options"), 1);
     return (
       <div>
-        {value.get("options", []).map((opt, i) => {
+        {(value.options || []).map((opt, i) => {
           return (
             <Option key={i}>
               <Remove>
@@ -158,7 +160,7 @@ export default class Variants extends Component<Props> {
                 })}
               >
                 <Input
-                  value={opt.get("name")}
+                  value={opt.name}
                   onChange={e => this.changeOptionName(i, e)}
                 />
               </FormItem>
@@ -170,7 +172,7 @@ export default class Variants extends Component<Props> {
                   size="large"
                   style={{ width: "100%" }}
                   tokenSeparators={[","]}
-                  defaultValue={opt.get("values") && opt.get("values").toJS()}
+                  defaultValue={opt.values}
                   placeholder={intl.formatMessage({
                     id: "object.variants.select.placeholder"
                   })}

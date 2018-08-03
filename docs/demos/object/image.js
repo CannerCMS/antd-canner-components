@@ -7,15 +7,14 @@ import {Divider} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../types';
 import RefId from 'canner-ref-id';
-import {fromJS} from 'immutable';
 import {ImgurService} from "@canner/image-service-config";
 
-const defaultValue = fromJS({
+const defaultValue = {
   contentType: "image/png",
   name: "logo-word.jpg",
   size: 1233,
   url: "https://cdn.canner.io/images/logo/logo-word.png"
-});
+};
 
 @ExamplePrimitiveValueWrapper(defaultValue)
 class ImageDemo1 extends Component<PrimitiveTypes<string>> {

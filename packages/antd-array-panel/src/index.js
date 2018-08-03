@@ -2,7 +2,6 @@
 import React, { PureComponent } from "react";
 import { Button, Collapse, Modal } from "antd";
 import {injectIntl, intlShape} from 'react-intl';
-import {List} from 'immutable';
 import {Item, ConfirmButton, ResetButton} from 'canner-helpers';
 import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
 import type {
@@ -35,7 +34,7 @@ export default class PanelUi extends PureComponent<Props, State> {
 
   static defaultProps = {
     uiParams: {},
-    value: new List()
+    value: []
   };
 
   onChange = (key: string) => {
@@ -96,7 +95,7 @@ export default class PanelUi extends PureComponent<Props, State> {
               })} ${i + 1}`;
 
               if (uiParams.titleKey) {
-                title = item.get(uiParams.titleKey) || defaultTitle;
+                title = item[uiParams.titleKey] || defaultTitle;
               } else {
                 title = defaultTitle;
               }

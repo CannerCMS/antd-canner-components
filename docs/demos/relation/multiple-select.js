@@ -2,14 +2,13 @@
 import * as React from 'react';
 import MultiSelect from 'packages/antd-relation-multiple_select';
 import cmsLocale from 'packages/antd-locales';
-import immutable from 'immutable';
 import {IntlProvider} from 'react-intl';
 import {Divider} from 'antd';
 import RefId from 'canner-ref-id';
 import ExampleArrayValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {ArrayTypes} from '../types';
 
-const connection = immutable.fromJS({
+const connection = {
   edges: [{
     cursor: 'item1',
     node: {
@@ -44,10 +43,10 @@ const connection = immutable.fromJS({
   pageInfo: {
     hasNextInfo: false
   }
-});
+};
 
 // $FlowFixMe
-const value = connection.get('edges').map(edge => edge.get('node'));
+const value = connection.edges.map(edge => edge.node);
 
 @ExampleArrayValueWrapper(value)
 class MultiSelectDemo extends React.Component<ArrayTypes<string>> {
