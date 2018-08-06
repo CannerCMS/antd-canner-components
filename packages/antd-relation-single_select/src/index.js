@@ -71,12 +71,11 @@ export default class RelationOneId extends PureComponent<Props, State> {
     return (
       <div>
         {
-          value && value.length ?
-            <Tag key={value[0].id} closable={true} afterClose={this.handleClose} style={{fontSize: 16}}>
+          value &&
+            <Tag key={value.id} closable={true} afterClose={this.handleClose} style={{fontSize: 16}}>
               {/* $FlowFixMe */}
               {getTag(value, uiParams)}
-            </Tag> :
-            null
+            </Tag>
         }
         <Tag
           onClick={this.showModal}

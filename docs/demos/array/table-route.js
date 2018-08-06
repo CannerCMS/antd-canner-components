@@ -8,9 +8,11 @@ import ExampleArrayValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {ArrayTypes} from '../types';
 
 const initData = [{
+  id: 'id1',
   "title": "title 1",
   "content": "content 1"
 }, {
+  id: 'id2',
   "title": "title 2",
   "content": "content 2"
 }]
@@ -26,7 +28,7 @@ export default class TableRouteDemo extends Component<ArrayTypes<any>> {
         <Table
           value={value}
           refId={new RefId("table-route")}
-          goTo={(route) => console.log('goto: ', route)}
+          goTo={(route, params) => console.log('goto: ', route, params)}
           uiParams={{
             columns: [{
               title: "title",

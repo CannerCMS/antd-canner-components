@@ -57,7 +57,7 @@ class MultiSelectDemo extends React.Component<ArrayTypes<string>> {
         locale="en"
         messages={cmsLocale["en"]}>
         <React.Fragment>
-          <Divider>General single select - value using immutable list</Divider>
+          <Divider>General single select - value using array</Divider>
           <MultiSelect
             value={value}
             relation={{
@@ -71,7 +71,19 @@ class MultiSelectDemo extends React.Component<ArrayTypes<string>> {
                 dataIndex: 'title'
               }]
             }}
-            fetch={() => Promise.resolve(connection)}
+            schema={{posts: {
+              type: 'array',
+              items: {
+                type: 'object',
+                items: {
+                  title: {
+                    type: 'string'
+                  }
+                }
+              }
+            }}}
+            Toolbar={({children}) => React.cloneElement(children)}
+            relationValue={connection}
             subscribe={() => ({unsubscribe: () => {}})}
             updateQuery={console.log}
             refId={new RefId("relation")}

@@ -3,7 +3,7 @@
 import React, { Component } from "react";
 import Gallery from 'canner-image-gallery';
 import {Modal} from 'antd';
-import { Item, transformData } from 'canner-helpers';
+import { Item } from 'canner-helpers';
 import {injectIntl} from 'react-intl';
 const {confirm} = Modal;
 
@@ -62,21 +62,21 @@ export default class ArrayGallery extends Component<Props> {
         return {
           refId,
           type: "create",
-          value: transformData({
+          value: {
             [that.imageKey]: {
               url: val.image
             }
-          })
+          }
         };
       });
       // $FlowFixMe
       onChange(createValues);
     } else {
-      onChange(refId, "create", transformData({
+      onChange(refId, "create", {
         [that.imageKey]: {
           url: values.image
         }
-      }));
+      });
     }
   };
 

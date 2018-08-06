@@ -45,6 +45,7 @@ export default class TableDemo extends Component<ArrayTypes<any>> {
             }
           }}
           onChange={onChange}
+          reset={() => {}}
           />
       </IntlProvider>
     );

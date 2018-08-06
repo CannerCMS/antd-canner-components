@@ -6,34 +6,38 @@ import {Divider, Button} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../types';
 
-let list = [{
-  _id: 'item1',
-  title: 'item1'
-}, {
-  _id: 'item2',
-  title: 'item2'
-}, {
-  _id: 'item3',
-  title: 'item3'
-}, {
-  _id: 'item4',
-  title: 'item4'
-}, {
-  _id: 'item5',
-  title: 'item5'
-}];
-
-const rtnCtx = {
-  response: {
-    pagination: {
-      goTo: () => {
-        return {}
-      },
-      totalPage: 10,
-      page: 1,
-    },
-    body: list
-  }
+const relationValue = {
+  edges: [{
+    cursor: 'item1',
+    node: {
+      id: 'item1',
+      title: 'item1'
+    }
+  }, {
+    cursor: 'item2',
+    node: {
+      _id: 'item2',
+      title: 'item2'
+    }
+  }, {
+    cursor: 'item3',
+    node: {
+      _id: 'item3',
+      title: 'item3'
+    }
+  }, {
+    cursor: 'item4',
+    node: {
+      _id: 'item4',
+      title: 'item4'
+    }
+  }, {
+    cursor: 'item5',
+    node: {
+      _id: 'item5',
+      title: 'item5'
+    }
+  }]
 }
 
 @ExamplePrimitiveValueWrapper([{
@@ -62,15 +66,13 @@ export class RelationPickerDemo1 extends React.Component<PrimitiveTypes<string>,
         <Divider>share relatio picker - multi select</Divider>
         <Button onClick={this.trigger}>Trigger</Button>
         <Picker
-          fetch={() => Promise.resolve(rtnCtx)}
-          fetchRelation={() => {}}
           title="選擇你要的物件"
           visible={visible}
           onOk={this.trigger}
           onCancel={this.trigger}
           pickOne={false}
           // $FlowFixMe
-          pickedIds={[value && value.getIn([0, "_id"])]}
+          pickedIds={[value && value[0].id]}
           columns={[{
             title: 'Title',
             dataIndex: 'title'
@@ -79,6 +81,8 @@ export class RelationPickerDemo1 extends React.Component<PrimitiveTypes<string>,
           relation={{
             relationTo: 'posts'
           }}
+          relationValue={relationValue}
+          Toolbar={({children}) => React.cloneElement(children)}
         />
       </React.Fragment>
     );
@@ -109,8 +113,6 @@ export class RelationPickerDemo2 extends React.Component<PrimitiveTypes<string>,
         <Divider>share relatio picker - single select</Divider>
         <Button onClick={this.trigger}>Trigger</Button>
         <Picker
-          fetch={() => Promise.resolve(rtnCtx)}
-          fetchRelation={() => {}}
           title="選擇你要的物件"
           visible={visible}
           onOk={this.trigger}
@@ -126,6 +128,8 @@ export class RelationPickerDemo2 extends React.Component<PrimitiveTypes<string>,
           relation={{
             relationTo: 'posts'
           }}
+          relationValue={relationValue}
+          Toolbar={({children}) => React.cloneElement(children)}
         />
       </React.Fragment>
     );

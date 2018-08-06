@@ -1,6 +1,4 @@
 // @flow
-import type {List} from 'immutable';
-
 export type PrimitiveTypes<T> = {
   value?: T,
   // eslint-disable-next-line
@@ -8,8 +6,8 @@ export type PrimitiveTypes<T> = {
 }
 
 export type ArrayTypes<T> = {
-  value?: List<T> | Array<T>,
-  onChange?: (id: string, type: string, value: List<T> | Array<T>) => Promise<void>
+  value?: Array<T>,
+  onChange?: (id: string, type: string, value: Array<T>) => Promise<void>
 }
 
 export type ObjectTypes = {

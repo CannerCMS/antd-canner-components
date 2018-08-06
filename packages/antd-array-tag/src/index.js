@@ -4,7 +4,6 @@ import { Select } from "antd";
 import defaultMessage from "@canner/antd-locales";
 import {injectIntl, FormattedMessage} from 'react-intl';
 const Option = Select.Option;
-import {transformData} from 'canner-helpers';
 
 // types
 import type {FieldDisabled} from 'types/DefaultProps';
@@ -36,7 +35,7 @@ export default class TagUi extends PureComponent<Props> {
 
   onChange = (value: Array<string>) => {
     const { onChange, refId } = this.props;
-    onChange(refId, "update", transformData(value));
+    onChange(refId, "update", value);
   }
 
   render() {

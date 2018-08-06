@@ -1,7 +1,6 @@
 // @flow
 import React, { Component } from "react";
 import { Slider } from "antd";
-import {transformData} from 'canner-helpers';
 // types
 import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
 
@@ -21,7 +20,7 @@ export default class RangeSlider extends Component<Props> {
 
   onChange = (val: Array<number>) => {
     const { refId } = this.props;
-    this.props.onChange(refId, "update", transformData(val));
+    this.props.onChange(refId, "update", val);
   }
 
   render() {
