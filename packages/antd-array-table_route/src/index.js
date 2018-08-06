@@ -118,9 +118,7 @@ export default class ArrayBreadcrumb extends Component<Props> {
         <Table
           pagination={showPagination}
           dataSource={value.map((datum, i) => {
-            datum.__index = i;
-            datum.key = datum.key || i;
-            return datum;
+            return {...datum, __index: i, key: datum.key || i};
           })}
           columns={newColumnsRender}
         />

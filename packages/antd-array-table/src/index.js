@@ -126,9 +126,7 @@ export default class TableArrayPlugin extends Component<Props, State> {
     }
 
     const originalData = value.map((datum, i) => {
-      (datum: any).__index = i;
-      (datum: any).key = (datum: any).key || i;
-      return datum;
+      return {...datum, __index: i, key: datum.key || i};
     });
 
     const data = showAddModal ? originalData.slice(0, -1) : originalData;
