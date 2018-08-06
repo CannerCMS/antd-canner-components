@@ -43,9 +43,9 @@ export default class PanelUi extends PureComponent<Props, State> {
 
   onCreate = () => {
     const { value, refId, onChange } = this.props;
-    const size = value.size;
+    const length = value.length;
     onChange(refId, "create");
-    this.setState({ activeKey: `${size}` });
+    this.setState({ activeKey: `${length}` });
   }
 
   onDelete = (index: number) => {
@@ -81,7 +81,7 @@ export default class PanelUi extends PureComponent<Props, State> {
     const { activeKey } = this.state;
     return (
       <div>
-        {value.size ? (
+        {value.length ? (
           <Collapse
             accordion
             activeKey={activeKey}

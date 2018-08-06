@@ -38,7 +38,7 @@ class ImageDemo1 extends Component<PrimitiveTypes<string>> {
   }
 }
 
-@ExamplePrimitiveValueWrapper(defaultValue.set('url', ''))
+@ExamplePrimitiveValueWrapper({...defaultValue, 'url': ''})
 class ImageDemo2 extends Component<PrimitiveTypes<string>> {
   render() {
     const {value, onChange} = this.props;
@@ -83,7 +83,7 @@ class ImageDemo3 extends Component<PrimitiveTypes<string>> {
   }
 }
 
-@ExamplePrimitiveValueWrapper(defaultValue.set('url', ''))
+@ExamplePrimitiveValueWrapper({...defaultValue, 'url': ''})
 class ImageDemo4 extends Component<PrimitiveTypes<string>> {
   render() {
     const {value, onChange} = this.props;

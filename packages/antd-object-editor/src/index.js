@@ -2,7 +2,6 @@
 
 import React, { PureComponent } from "react";
 import ReactQuill from 'react-quill';
-import { transformData } from 'canner-helpers';
 
 // type
 import type {ObjectDefaultProps} from 'types/ObjectDefaultProps';
@@ -41,7 +40,7 @@ export default class Editor extends PureComponent<Props, State> {
   handleChange = (value: string) => {
     const {refId, onChange} = this.props;
 
-    onChange(refId, 'update', transformData({[this.htmlKey]: value}));
+    onChange(refId, 'update', {[this.htmlKey]: value});
   }
 
   render() {

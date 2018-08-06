@@ -19,7 +19,7 @@ export default (defaultValue: PrimitiveValue, rootValue: PrimitiveValue) => (Con
     }
 
     onChange = (refId: RefId | {firstRefId: RefId, secondRefId: RefId}, type: string, delta: PrimitiveValue): Promise<void> => {
-      if (refId.length) {
+      if (Array.isArray(refId)) {
         // $FlowFixMe
         return refId.map(v => this.onChange(v.refId, v.type, v.value));
       }
@@ -55,7 +55,7 @@ export default (defaultValue: PrimitiveValue, rootValue: PrimitiveValue) => (Con
           this.setState({log, value: value.concat(delta)});
         } else {
           log.unshift({refId, type});
-          const createVal = value.concat(delta);
+          const createVal = value.concat(delta || {});
           this.setState({log, value: createVal})
         }
       } else if (type === 'swap' && refId.firstRefId) {
@@ -73,11 +73,12 @@ export default (defaultValue: PrimitiveValue, rootValue: PrimitiveValue) => (Con
         this.setState({log, value: newValue});
       } else if (type === 'connect') {
         log.unshift({refId, type, delta});
-        this.setState({refId, log, value: value.push(delta)});
+        const genAddValue = value => (value && value.concat) ? value.concat(delta) : delta;
+        this.setState(preState => ({log, value: genAddValue(preState.value)}))
       } else if (type === 'disconnect') {
         log.unshift({refId, type, delta});
-        const delValue = value.filter(v => v.id !== delta.id);
-        this.setState({log, value: delValue})
+        const genDelValue = value => (value && value.filter) ? value.filter(v => v.id !== delta.id) : null;
+        this.setState(preState => ({log, value: genDelValue(preState.value)}))
       }
 
       return Promise.resolve();

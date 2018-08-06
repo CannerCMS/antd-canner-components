@@ -6,7 +6,6 @@ import {Value} from 'slate';
 import {State} from "markup-it";
 import html from 'markup-it/lib/html';
 const htmlSerializer = State.create(html);
-import {transformData} from "canner-helpers";
 
 // type
 import type {ObjectDefaultProps} from 'types/ObjectDefaultProps';
@@ -51,7 +50,7 @@ export default class Editor extends PureComponent<Props, State> {
     this.htmlKey = 'html';
     const state = props.value[this.stateKey];
     this.state = {
-      value: Value.fromJSON(state ? JSON.parse(state) : defaultState),
+      value: state ? JSON.parse(state) : defaultState,
     };
     props.onDeploy(() => {
       const state = this.state.value;
@@ -66,7 +65,7 @@ export default class Editor extends PureComponent<Props, State> {
   onChange = ({value}: {value: Value}) => {
     const {refId, onChange} = this.props;
     if (this.firstOnChange) {
-      onChange(refId, 'update', transformData({}));
+      onChange(refId, 'update', {});
     } else {
       this.firstOnChange = true;
     }

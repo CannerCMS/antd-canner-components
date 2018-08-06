@@ -17,7 +17,7 @@ class TagDemo1 extends React.Component<ArrayTypes<string>> {
         locale="en"
         messages={cmsLocale["en"]}>
         <React.Fragment>
-          <Divider>General tag - value using immutable list</Divider>
+          <Divider>General tag - value using array</Divider>
           <Tag
             value={value}
             refId={new RefId("tag")}

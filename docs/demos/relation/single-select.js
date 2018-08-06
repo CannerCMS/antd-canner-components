@@ -57,7 +57,7 @@ class SingleSelectDemo extends React.Component<ArrayTypes<string>> {
         locale="en"
         messages={cmsLocale["en"]}>
         <React.Fragment>
-          <Divider>General single select - value using immutable list</Divider>
+          <Divider>General single select - value using array</Divider>
           <SingleSelect
             value={value}
             relation={{
@@ -71,7 +71,8 @@ class SingleSelectDemo extends React.Component<ArrayTypes<string>> {
                 dataIndex: 'title'
               }]
             }}
-            fetch={() => Promise.resolve(connection)}
+            Toolbar={({children}) => React.cloneElement(children)}
+            relationValue={connection}
             subscribe={() => ({unsubscribe: () => {}})}
             updateQuery={console.log}
             refId={new RefId("relation")}
