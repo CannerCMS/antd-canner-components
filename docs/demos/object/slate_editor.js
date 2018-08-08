@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import Editor from 'packages/antd-object-editor';
+import Editor from 'packages/antd-object-slate_editor';
 import {Divider, Button} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../types';
