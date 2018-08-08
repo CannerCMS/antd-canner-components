@@ -133,15 +133,14 @@ export default class TableArrayPlugin extends Component<Props, State> {
 
     return (
       <div>
-        <Table
-          pagination={showPagination}
-          dataSource={data}
-          columns={newColumnsRender}
-        />
         {(!createKeys || createKeys.length > 0) && (
           <Button
             type="primary"
-            style={{marginTop: "10px"}}
+            style={{
+              marginBottom: '10px',
+              marginLeft: 'auto',
+              display: 'block'
+            }}
             onClick={() => {
               if (this.addModal) {
                 this.addModal.showModal(value, value.size);
@@ -151,6 +150,11 @@ export default class TableArrayPlugin extends Component<Props, State> {
             {addText}
           </Button>
         )}
+        <Table
+          pagination={showPagination}
+          dataSource={data}
+          columns={newColumnsRender}
+        />
         <EditModal
           ref={modal => (this.editModal = modal)}
           refId={refId}

@@ -115,6 +115,19 @@ export default class ArrayBreadcrumb extends Component<Props> {
 
     return (
       <div>
+        {(!createKeys || createKeys.length > 0) && (
+          <Button
+            type="primary"
+            style={{
+              marginBottom: '10px',
+              marginLeft: 'auto',
+              display: 'block'
+            }}
+            onClick={this.add}
+          >
+            {addText}
+          </Button>
+        )}
         <Table
           pagination={showPagination}
           dataSource={value.map((datum, i) => {
@@ -122,15 +135,6 @@ export default class ArrayBreadcrumb extends Component<Props> {
           })}
           columns={newColumnsRender}
         />
-        {(!createKeys || createKeys.length > 0) && (
-          <Button
-            type="primary"
-            style={{marginTop: '10px'}}
-            onClick={this.add}
-          >
-            {addText}
-          </Button>
-        )}
       </div>
     );
   }
