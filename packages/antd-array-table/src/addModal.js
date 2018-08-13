@@ -52,11 +52,11 @@ export default class AddModal extends Component<Props, State> {
 
   closeModalAndReset = () => {
     const {updateShowModal, reset, refId} = this.props;
+    reset(refId);
     this.setState({
       visible: false
     }, () => {
       updateShowModal(false);
-      reset(refId);
     });
   }
 
@@ -90,6 +90,8 @@ export default class AddModal extends Component<Props, State> {
         visible={visible}
         onCancel={this.handleCancel}
         afterClose={this.handleCancel}
+        closable={false}
+        maskClosable={false}
         footer={footer}
       >
         {visible && (
