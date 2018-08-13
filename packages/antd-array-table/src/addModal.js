@@ -61,7 +61,6 @@ export default class AddModal extends Component<Props, State> {
   }
 
   handleCancel = () => {
-    this.props.reset();
     this.closeModalAndReset();
   }
 
