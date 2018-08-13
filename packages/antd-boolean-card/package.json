@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-boolean-card",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "boolean card",
   "main": "lib/index.js",
   "scripts": {},
@@ -12,7 +12,7 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/antd-share-card": "^0.3.0"
+    "@canner/antd-share-card": "^0.3.1"
   },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
