@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-string-mde",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "string markdown editor",
   "main": "lib/index.js",
   "scripts": {
