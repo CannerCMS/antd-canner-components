@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import { Table, Button, Modal } from "antd";
 import PropTypes from 'prop-types';
 import { FormattedMessage } from "react-intl";
-import defaultMessage, {renderValue} from "@canner/antd-locales";
+import defaultMessage, {renderValue, getIntlMessage} from "@canner/antd-locales";
 import type {FieldId, FieldItems, GotoFn} from 'types/DefaultProps';
 import {injectIntl, intlShape} from 'react-intl';
 
@@ -92,7 +92,9 @@ export default class ArrayBreadcrumb extends Component<Props> {
     } = uiParams;
 
     // push update button and delete button
-    const newColumns = columns.slice();
+    const newColumns = columns.map(column => {
+      return {...column, title: getIntlMessage(intl, column.title)};
+    });
     const newColumnsRender = renderValue(newColumns, items.items);
 
     newColumnsRender.push({

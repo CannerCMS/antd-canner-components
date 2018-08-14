@@ -6,7 +6,7 @@ import showDeleteConfirm from "./showDeleteConfirm";
 import EditModal from "./editModal";
 import AddModal from "./addModal";
 import { FormattedMessage } from "react-intl";
-import defaultMessage, {renderValue} from "@canner/antd-locales";
+import defaultMessage, {renderValue, getIntlMessage} from "@canner/antd-locales";
 import {injectIntl} from 'react-intl';
 
 import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
@@ -84,8 +84,9 @@ export default class TableArrayPlugin extends Component<Props, State> {
       columns = []
     } = uiParams;
 
-    // add update button and delete button
-    const newColumns = columns.slice(); // create a new copy of columns
+    const newColumns = columns.map(column => {
+      return {...column, title: getIntlMessage(intl, column.title)};
+    });
     const newColumnsRender = renderValue(newColumns, items.items);
 
     if ((!updateKeys || updateKeys.length > 0) || !disableDelete) {

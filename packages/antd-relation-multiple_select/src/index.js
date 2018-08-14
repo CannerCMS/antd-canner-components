@@ -3,8 +3,8 @@ import * as React from "react";
 import { Icon, Table } from "antd";
 import difference from "lodash/difference";
 import Picker from '@canner/antd-share-relation';
-import {renderValue} from '@canner/antd-locales';
-
+import {renderValue, getIntlMessage} from '@canner/antd-locales';
+import {FormattedMessage} from "react-intl";
 // type
 import type {RelationDefaultProps} from 'types/RelationDefaultProps';
 import type {GotoFn, FieldDisabled} from "../../../types/DefaultProps";
@@ -77,11 +77,14 @@ export default class RelationTable extends React.PureComponent<Props, State> {
   render() {
     const { modalVisible } = this.state;
     let { disabled, value, uiParams = {}, refId, relation,
-      fetch, fetchRelation, updateQuery, subscribe,
+      fetch, fetchRelation, updateQuery, subscribe, intl,
       schema, Toolbar, relationValue
     } = this.props;
     value = value || [];
-    const newColumnsRender = renderValue(uiParams.columns, schema[relation.to].items.items);
+    const newColumns = uiParams.columns.map(column => {
+      return {...column, title: getIntlMessage(intl, column.title)};
+    });
+    const newColumnsRender = renderValue(newColumns, schema[relation.to].items.items);
     
     return (
       <div>
@@ -92,19 +95,23 @@ export default class RelationTable extends React.PureComponent<Props, State> {
         {
           !disabled && <div>
             <a href="javascript:;" onClick={this.showModal}>
-              <Icon type="link" style={{margin: '16px 8px'}}/>connect existed {relation.to}
+              <Icon type="link" style={{margin: '16px 8px'}}/>
+              <FormattedMessage
+                id="relation.multipleSelect.connect"
+                defaultMessage="connect existed "
+              />
+              {schema[relation.to].title}
             </a>
           </div>
         }
         {
           !disabled && <Picker
-            title="選擇你要的物件"
             visible={modalVisible}
             onOk={this.handleOk}
             onCancel={this.handleCancel}
             // $FlowFixMe
             pickedIds={value.map(v => v.id)}
-            columns={uiParams.columns}
+            columns={newColumnsRender}
             refId={refId}
             relation={relation}
             relationValue={relationValue}

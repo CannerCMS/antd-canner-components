@@ -32,7 +32,9 @@ export default {
     "string.datetimepicker.placeholder": "Select date",
     "string.timepicker.placeholder": "Select time",
     "string.select.placeholder": "Select a item",
-    "string.image.add": "add Image"
+    "string.image.add": "add Image",
+    "relation.singleSelect.change": "Change",
+    "relation.multipleSelect.connect": "connect existed "
   },
   zh: {
     "array.panel.delete.confirm": "您確定要刪除這個類別嗎？",
@@ -62,6 +64,17 @@ export default {
     "string.datetimepicker.placeholder": "請選擇日期",
     "string.timepicker.placeholder": "請選擇時間",
     "string.select.placeholder": "請選擇項目",
-    "string.image.add": "新增圖片"
+    "string.image.add": "新增圖片",
+    "relation.singleSelect.change": "更改",
+    "relation.multipleSelect.connect": "連結到已存在的"
   }
+}
+
+exports.getIntlMessage = function(intl, text) {
+  const matched = text.match(/^\$\{(.*)\}$/);
+  const message = matched ? intl.formatMessage({
+    id: matched[1],
+    defaultMessage: text
+  }) : text;
+  return message;
 }

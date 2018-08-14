@@ -3,6 +3,7 @@ import React, { PureComponent } from "react";
 import { Tag, Icon } from "antd";
 import template from 'lodash/template';
 import Picker from '@canner/antd-share-relation';
+import {FormattedMessage} from 'react-intl';
 
 // type 
 import type {RelationDefaultProps} from 'types/RelationDefaultProps';
@@ -81,14 +82,17 @@ export default class RelationOneId extends PureComponent<Props, State> {
           onClick={this.showModal}
           style={{ background: '#fff', borderStyle: 'dashed' }}
         >
-          <Icon type="edit" /> Change
+          <Icon type="edit" />
+          <FormattedMessage
+            id="relation.singleSelect.change"
+            defaultMessage="Change"
+          />
         </Tag>
         {
           !disabled && <Picker
             fetch={fetch}
             subscribe={subscribe}
             fetchRelation={fetchRelation}
-            title="選擇你要的物件"
             visible={modalVisible}
             onOk={this.handleOk}
             onCancel={this.handleCancel}

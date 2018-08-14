@@ -72,6 +72,7 @@ class MultiSelectDemo extends React.Component<ArrayTypes<string>> {
               }]
             }}
             schema={{posts: {
+              title: 'posts',
               type: 'array',
               items: {
                 type: 'object',
