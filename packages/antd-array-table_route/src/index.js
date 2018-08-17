@@ -53,7 +53,7 @@ export default class ArrayBreadcrumb extends Component<Props> {
 
   edit = (recordId: string) => {
     const {goTo, refId} = this.props;
-    goTo({pathname:`${refId.toString()}/${recordId}`, operator: 'create'});
+    goTo({pathname:`${refId.toString()}/${recordId}`});
   }
 
   remove = (index: number) => {
