@@ -144,7 +144,7 @@ export default class TableArrayPlugin extends Component<Props, State> {
             }}
             onClick={() => {
               if (this.addModal) {
-                this.addModal.showModal(value, value.size);
+                this.addModal.showModal(value, value.length);
               }
             }}
           >
