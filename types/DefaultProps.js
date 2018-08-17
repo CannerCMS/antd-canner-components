@@ -69,7 +69,7 @@ export type FieldRelation = {
 // the route controller
 // goTo('/my/url')
 // https://github.com/Canner/qa-generator/blob/master/src/index.js
-export type GotoFn = string => void;
+export type GotoFn = Object => void;
 
 // not supported
 export type Loading = boolean; // The endpoint HOC will pass this value to the first layer plugins to let them know whether data is fetched, so only object and array plugins have to deal with loading status.
