@@ -6,7 +6,7 @@ import { flatten, map, reduce, isEqual } from "lodash";
 import { Option, VariantsContainer, Remove} from './components';
 
 import {injectIntl} from 'react-intl';
-import {Item, createEmptyData} from 'canner-helpers';
+import {LiteCMS, createEmptyData} from 'canner-helpers';
 import type {ObjectDefaultProps} from 'types/ObjectDefaultProps';
 
 type Props = ObjectDefaultProps & {
@@ -34,7 +34,7 @@ export default class Variants extends Component<Props> {
   updateTag = (val: Array<string>, order: number) => {
     const { value, items, onChange, refId } = this.props;
     const variants = value.variants;
-    const options = value.options || [];
+    const options = JSON.parse(JSON.stringify(value.options)) || [];
     options[order].values = val;
     const types = this.cartesianProduct(options);
     const variantsObj = types.map(type => {
@@ -51,7 +51,7 @@ export default class Variants extends Component<Props> {
       };
     });
     onChange(
-      refId.child(order),
+      refId,
       "update",
       {
         options,
@@ -62,7 +62,7 @@ export default class Variants extends Component<Props> {
 
   updateVariantsAfterRemoveOption = (i: number) => {
     const { value, items, refId, onChange } = this.props;
-    const options = value.options || [];
+    const options = JSON.parse(JSON.stringify(value.options)) || [];
     options.splice(i, 1);
     const variants = value.variants;
     const types = this.cartesianProduct(options);
@@ -110,11 +110,14 @@ export default class Variants extends Component<Props> {
   }
 
   addOptions = () => {
-    const { refId, items, onChange } = this.props;
+    const { refId, items, onChange, value } = this.props;
     onChange(
-      refId.child('options'),
-      "create",
-      createEmptyData(items.options.items)
+      refId,
+      "update",
+      {
+        options: (value.options || []).concat(createEmptyData(items.options.items)),
+        variants: value.variants || []
+      }
     );
   }
 
@@ -191,8 +194,8 @@ export default class Variants extends Component<Props> {
           {intl.formatMessage({ id: "object.variants.addVariants" })}
         </Button>
         <VariantsContainer>
-          <Item
-            refId={refId.child('options')}
+          <LiteCMS
+            refId={refId.child('variants')}
           />
         </VariantsContainer>
       </div>

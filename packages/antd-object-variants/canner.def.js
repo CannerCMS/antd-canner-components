@@ -9,8 +9,17 @@ export default ({attributes, children}) => (
       <string keyName="name" />
       <array keyName="values" ui="tag" />
     </array>
-    <array keyName="variants">
-      <string keyName="options" />
+    <array keyName="variants"
+      uiParams={{
+        createKeys: [],
+        disableDelete: true,
+        columns: [{
+          title: 'Options',
+          dataIndex: 'options'
+        }]
+      }}
+    >
+      <string keyName="options" title="Variant Name" disabled />
       {children}
     </array>
   </object>
