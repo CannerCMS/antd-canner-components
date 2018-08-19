@@ -16,7 +16,7 @@ export default ({attributes, children}) => (
         columns: [{
           title: 'Options',
           dataIndex: 'options'
-        }]
+        }, ...((attributes.uiParams || {}).columns || [])]
       }}
     >
       <string keyName="options" title="Variant Name" disabled />
