@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-object-options",
-  "version": "0.4.0-beta.12",
+  "version": "0.4.0-beta.13",
   "description": "object options",
   "main": "lib/index.js",
   "scripts": {},
