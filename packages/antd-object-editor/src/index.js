@@ -14,7 +14,7 @@ export default class EditorContainer extends PureComponent<Props, State> {
   }
 
   componentDidMount() {
-    Editor = require('./editor');
+    Editor = require('./editor').default;
     this.setState({showEditor: true});
   }
 
