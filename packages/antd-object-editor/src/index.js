@@ -2,6 +2,7 @@
 
 import React, { PureComponent } from "react";
 import ReactQuill from 'react-quill';
+import NoSSR from 'react-no-ssr';
 
 // type
 import type {ObjectDefaultProps} from 'types/ObjectDefaultProps';
@@ -46,11 +47,13 @@ export default class Editor extends PureComponent<Props, State> {
   render() {
     const {value} = this.props;
     return (
-      <ReactQuill
-        modules={modules}
-        formats={formats}
-        defaultValue={value && value[this.htmlKey]}
-        onChange={this.handleChange} />
+      <NoSSR>
+        <ReactQuill
+          modules={modules}
+          formats={formats}
+          defaultValue={value && value[this.htmlKey]}
+          onChange={this.handleChange} />
+      </NoSSR>
     )
   }
 }
