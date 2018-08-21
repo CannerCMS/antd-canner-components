@@ -1,20 +1,28 @@
 // @flow
 import React, { PureComponent } from "react";
-import NoSSR from 'react-no-ssr';
-import Editor from './editor';
 
 // type
 import type {ObjectDefaultProps} from 'types/ObjectDefaultProps';
 
 type Props = ObjectDefaultProps
+type State = {showEditor: boolean};
+let Editor: any;
 
+export default class EditorContainer extends PureComponent<Props, State> {
+  state = {
+    showEditor: false
+  }
 
-export default class EditorContainer extends PureComponent<Props, {}> {
+  componentDidMount() {
+    Editor = require('./editor');
+    this.setState({showEditor: true});
+  }
+
   render() {
     return (
-      <NoSSR>
-        <Editor {...this.props}/>
-      </NoSSR>
+      <div>
+        {this.state.showEditor && <Editor {...this.props}/>}
+      </div>
     )
   }
 }
