@@ -100,13 +100,7 @@ export default class ArrayTree extends React.Component {
         defaultMessage={defaultMessage.en["array.table.addText"]}
       />
     );
-    if (treeData.length === 0) {
-      return <Alert
-        message="No Data"
-        description={`Press the "Add" button to add a new ${title}`}
-        type="info"
-      />
-    }
+
     return (
       <React.Fragment>
         <Button
@@ -124,14 +118,24 @@ export default class ArrayTree extends React.Component {
         >
           {addText}
         </Button>
-        <Tree
-          showLine
-          onDragEnter={this.onDragEnter}
-          onDrop={this.onDrop}
-          selectable={false}
-        >
-          {loop(treeData)}
-        </Tree>
+        {
+          treeData.length ? (
+            <Tree
+              showLine
+              onDragEnter={this.onDragEnter}
+              onDrop={this.onDrop}
+              selectable={false}
+            >
+              {loop(treeData)}
+            </Tree>
+          ): (
+            <Alert
+              message="No Data"
+              description={`Press the "Add" button to add a new ${title}`}
+              type="info"
+            />
+          )
+        }
         <AddModal
           ref={modal => (this.addModal = modal)}
           refId={refId}
@@ -191,7 +195,7 @@ function genRelationTree({
       leftData.push(datum);
     }
   });
-  if (data.length === leftData.length) {
+  if (leftData.length && data.length === leftData.length) {
     leftData[0][relationField].id = null;
   }
   if (leftData.length) {
