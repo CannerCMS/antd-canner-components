@@ -118,7 +118,7 @@ export default class ArrayTree extends React.Component {
           }}
           onClick={() => {
             if (this.addModal) {
-              this.addModal.showModal(value, value.length);
+              this.addModal.showModal(value.length);
             }
           }}
         >
