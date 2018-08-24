@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-string-card",
-  "version": "0.4.0-beta.15",
+  "version": "0.4.0-beta.16",
   "description": "string card",
   "main": "lib/index.js",
   "scripts": {},
@@ -12,7 +12,7 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/antd-share-card": "^0.4.0-beta.15"
+    "@canner/antd-share-card": "^0.4.0-beta.16"
   },
   "publishConfig": {
     "access": "public"
