@@ -73,7 +73,7 @@ export default class AddModal extends Component<Props, State> {
           id="array.table.modal.okText"
           defaultMessage={defaultMessage.en["array.table.modal.okText"]}
         />}
-        callback={this.close}
+        callback={this.handleCancel}
       />
       <ResetButton
         text={<FormattedMessage
