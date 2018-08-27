@@ -16,8 +16,8 @@ class IndicatorAmountDemo1 extends React.Component<PrimitiveTypes<boolean>> {
         <IndicatorAmount
           refId={new RefId("indicator-amount")}
           value={value}
+          title='Monthly Revenue'
           uiParams={{
-            title: 'Monthly Revenue',
             formatter: v => `$${v}`
           }}
         />

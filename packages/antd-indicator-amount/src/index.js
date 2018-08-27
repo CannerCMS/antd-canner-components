@@ -6,8 +6,8 @@ import styled from 'styled-components';
 import type {IndicatorDefaultProps} from 'types/IndicatorDefaultProps';
 
 type Props = IndicatorDefaultProps & {
+  title: string,
   uiParams: {
-    title: string,
     formatter: (value: any) => string
   }
 };
@@ -25,7 +25,7 @@ const Amount = styled.div`
   font-size: 26px;
 `;
 
-const IndicatorAmount = ({ value, uiParams: { title, formatter } }: Props) => {
+const IndicatorAmount = ({ value, title, uiParams: { formatter } }: Props) => {
   return (
     <Wrapper>
       <Title>{ title }</Title>
