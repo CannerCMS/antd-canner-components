@@ -1,0 +1,20 @@
+{
+  "name": "@canner/antd-indicator-amount",
+  "version": "0.0.1",
+  "description": "indicator amount",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "cms",
+    "indicator",
+    "canner"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -52,6 +52,10 @@ import SlateDemo from './demos/object/slate_editor';
 import SingleSelectDemo from './demos/relation/single-select';
 import MultipleSelectDemo from './demos/relation/multiple-select';
 
+// indicator
+import IndicatorAmountDemo from './demos/indicator/amount';
+import IndicatorListDemo from './demos/indicator/list';
+
 const {SubMenu} = Menu;
 const {Content, Sider} = Layout;
 
@@ -135,6 +139,10 @@ class Demo extends Component {
               <Menu.Item key="single-select">single-select</Menu.Item>
               <Menu.Item key="multiple-select">multiple-select</Menu.Item>
             </SubMenu>
+            <SubMenu key="indicator" title="Indicator">
+              <Menu.Item key="amount">amount</Menu.Item>
+              <Menu.Item key="list">list</Menu.Item>
+            </SubMenu>
           </Menu>
         </Sider>
         <Layout style={{ padding: '0 24px 24px' }}>
@@ -188,6 +196,10 @@ class Demo extends Component {
             {/* relation */}
             {selectTab === 'relation' && selectKey === 'single-select' ? <SingleSelectDemo/> : null}
             {selectTab === 'relation' && selectKey === 'multiple-select' ? <MultipleSelectDemo/> : null}
+
+            {/* indicator */}
+            {selectTab === 'indicator' && selectKey === 'amount' ? <IndicatorAmountDemo/> : null}
+            {selectTab === 'indicator' && selectKey === 'list' ? <IndicatorListDemo/> : null}
             
             </Context.Provider>
           </Content>

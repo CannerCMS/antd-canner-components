@@ -47,7 +47,9 @@
     "@canner/antd-string-radio": "^0.4.0-beta.18",
     "@canner/antd-string-select": "^0.4.0-beta.18",
     "@canner/antd-string-textarea": "^0.4.0-beta.18",
-    "@canner/antd-string-time_picker": "^0.4.0-beta.18"
+    "@canner/antd-string-time_picker": "^0.4.0-beta.18",
+    "@canner/antd-indicator-amount": "^0.0.1",
+    "@canner/antd-indicator-list": "^0.0.1"
   },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
