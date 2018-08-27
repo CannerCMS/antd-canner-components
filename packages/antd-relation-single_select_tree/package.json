@@ -1,22 +1,23 @@
 {
-  "name": "@canner/antd-share-card",
+  "name": "@canner/antd-relation-single_select_tree",
   "version": "0.4.0-beta.18",
-  "description": "string card",
+  "description": "relation single selection with tree",
   "main": "lib/index.js",
   "scripts": {},
   "keywords": [
     "cms",
-    "card",
+    "relation",
+    "tree",
     "canner"
   ],
   "author": "canner",
   "license": "ISC",
-  "peerDependencies": {
-    "antd": ">=3.2.0",
-    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
-  },
   "dependencies": {
-    "styled-components": "3.2.1"
+    "lodash.template": "^4.4.0",
+    "styled-components": "^3.2.6"
+  },
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
   },
   "publishConfig": {
     "access": "public"

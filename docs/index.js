@@ -38,6 +38,7 @@ import SliderDemo from './demos/array/slider';
 import PanelDemo from './demos/array/panel';
 import TableDemo from './demos/array/table';
 import TableRouteDemo from './demos/array/table-route';
+import TreeDemo from './demos/array/tree';
 
 // object
 import OptionsDemo from './demos/object/options';
@@ -115,6 +116,7 @@ class Demo extends Component {
               <Menu.Item key="panel">panel</Menu.Item>
               <Menu.Item key="table">table</Menu.Item>
               <Menu.Item key="table-route">table-route</Menu.Item>
+              <Menu.Item key="tree">tree</Menu.Item>
             </SubMenu>
             <SubMenu key="number" title="Number">
               <Menu.Item key="input">input</Menu.Item>
@@ -181,6 +183,7 @@ class Demo extends Component {
             {selectTab === 'array' && selectKey === 'panel' ? <PanelDemo/> : null}
             {selectTab === 'array' && selectKey === 'table' ? <TableDemo/> : null}
             {selectTab === 'array' && selectKey === 'table-route' ? <TableRouteDemo/> : null}
+            {selectTab === 'array' && selectKey === 'tree' ? <TreeDemo/> : null}
 
             {/* object */}
             {selectTab === 'object' && selectKey === 'options' ? <OptionsDemo/> : null}
