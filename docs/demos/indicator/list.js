@@ -29,9 +29,9 @@ class IndicatorListDemo1 extends React.Component<PrimitiveTypes<boolean>> {
         <IndicatorList
           refId={new RefId("indicator-list")}
           value={value}
+          title={(value:any) => (<a href="https://ant.design">{value.name}</a>)}
           uiParams={{
             avatar: (value:any) => (<Avatar src={value.avatar} />),
-            title: (value:any) => (<a href="https://ant.design">{value.name}</a>),
             description: () => ('Canner Indicator List Demo'),
             content: () => (<div>Content</div>)
           }}
