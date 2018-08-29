@@ -52,14 +52,14 @@ buffer@^5.0.3:
     base64-js "^1.0.2"
     ieee754 "^1.1.4"
 
-canner-image-gallery@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/canner-image-gallery/-/canner-image-gallery-0.2.0.tgz#732fb1f312663fb03f0d574b5b52906e895fd7fc"
+canner-image-gallery@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/canner-image-gallery/-/canner-image-gallery-0.3.0.tgz#b67113c0443c2a0891dd63a2e570d0c4116aae84"
   dependencies:
     "@canner/image-service-config" "^0.3.0"
     "@canner/image-upload" "^0.12.0"
-    grid-breakpoint "^1.6.2"
-    grid-draggable "3.2.2"
+    grid-breakpoint "^1.7.0"
+    grid-draggable "3.3.0"
     react-loading-image "^0.4.1"
     styled-components "^3.2.3"
 
@@ -282,9 +282,9 @@ function.prototype.name@^1.0.3:
     function-bind "^1.1.1"
     is-callable "^1.1.3"
 
-grid-breakpoint@^1.6.2:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/grid-breakpoint/-/grid-breakpoint-1.6.2.tgz#a093b402ac7b003c096d25d14a241a4c3c2212a7"
+grid-breakpoint@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/grid-breakpoint/-/grid-breakpoint-1.7.0.tgz#2d703d810baf063cfd5b9b0cc0a180d49aedc3e9"
   dependencies:
     classnames "^2.2.5"
     lodash.chunk "^4.2.0"
@@ -292,11 +292,11 @@ grid-breakpoint@^1.6.2:
     react-flexbox-grid "^2.0.0"
     react-window-detect-dimensions "^0.2.0"
 
-grid-draggable@3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/grid-draggable/-/grid-draggable-3.2.2.tgz#7d5ae390928ce7ed244f36ea9a9ddc7337e4ee6c"
+grid-draggable@3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/grid-draggable/-/grid-draggable-3.3.0.tgz#a6f2fb65728bfd72b556aa930fdc3776f1a72673"
   dependencies:
-    grid-breakpoint "^1.6.2"
+    grid-breakpoint "^1.7.0"
     lodash.pickby "^4.6.0"
     react-draggable "^3.0.5"
 
