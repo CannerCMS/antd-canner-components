@@ -3,6 +3,8 @@ import React, { PureComponent } from "react";
 import { Tree } from "antd";
 import update from 'lodash/update';
 import get from 'lodash/get';
+import {List} from 'react-content-loader'
+
 const TreeNode = Tree.TreeNode;
 
 export default class RelationTree extends PureComponent {
@@ -17,7 +19,8 @@ export default class RelationTree extends PureComponent {
         [props.relation.to]: {
           edges: []
         }
-      }
+      },
+      fetching: false
     }
   }
 
@@ -45,10 +48,21 @@ export default class RelationTree extends PureComponent {
 
   fetchData = () => {
     const {fetch, relation} = this.props;
+    this.setState({
+      fetching: true
+    });
     fetch(relation.to)
       .then(data => {
         this.updateData(data);
         this.subscribe();
+        this.setState({
+          fetching: false
+        });
+      })
+      .catch(() => {
+        this.setState({
+          fetching: false
+        });
       })
   }
 
@@ -75,12 +89,9 @@ export default class RelationTree extends PureComponent {
     const nodes = info.checkedNodes;
     const {onChange, refId, value, relation} = this.props;
     const {data} = this.state;
-    if (checkedKeys.length > 1 && !nodes[1].props.disableCheckbox) {
-      const checked = get(data, [relation.to, 'edges'])
-        .find(edge => edge.cursor === checkedKeys[1])
-        .node;
-      onChange(refId, 'connect', checked);
-    } else if (checkedKeys[0] && !nodes[0].props.disableCheckbox) {
+    const originCheckIndex = checkedKeys.indexOf(value && value.id);
+    checkedKeys.splice(originCheckIndex, 1);    
+    if (checkedKeys[0] && !nodes[0].props.disableCheckbox) {
       const checked = get(data, [relation.to, 'edges'])
         .find(edge => edge.cursor === checkedKeys[0])
         .node;
@@ -90,23 +101,26 @@ export default class RelationTree extends PureComponent {
     }
   }
 
-  renderTreeNodes = (data, checkedId, selfId, disableCheckbox) => {
-    return data.map((item) => {
+  renderTreeNodes = (data, checkedId, selfId, disableCheckbox, id) => {
+    const {uiParams: {disabled}} = this.props;
+    return data.map((item, index) => {
       const isChecked = item.key === checkedId;
       const isSelf = item.key === selfId;
+      const newId = id ? `${id}-${index}` : `${index}`;
+      const isDisabledByUser = disabled ? disabled(item, newId) : false;
       if (item.children) {
         return (
-          <TreeNode title={item.title} key={item.key} dataRef={item} disableCheckbox={isSelf || disableCheckbox}>
-            {this.renderTreeNodes(item.children, checkedId, selfId, isSelf || isChecked || disableCheckbox)}
+          <TreeNode title={item.title} key={item.key} dataRef={item} disableCheckbox={isSelf || disableCheckbox || isDisabledByUser}>
+            {this.renderTreeNodes(item.children, checkedId, selfId, isSelf || isChecked || disableCheckbox, newId)}
           </TreeNode>
         );
       }
-      return <TreeNode {...item} key={item.key} disableCheckbox={isSelf || disableCheckbox}/>;
+      return <TreeNode {...item} key={item.key} disableCheckbox={isSelf || disableCheckbox || isDisabledByUser}/>;
     });
   }
 
   render() {
-    const { treeData, data } = this.state;
+    const { treeData, data, fetching } = this.state;
     const { value, refId, relation } = this.props;
     const [key, index] = refId.getPathArr();
     const checkedId = value && value.id;
@@ -114,6 +128,9 @@ export default class RelationTree extends PureComponent {
     if (key === relation.to) {
       // self relation
       selfId = get(data, [key, 'edges', index, 'cursor']);
+    }
+    if (fetching) {
+      return <List style={{maxWidth: 400}}/>;
     }
     return (
       <Tree
