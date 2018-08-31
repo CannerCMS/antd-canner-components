@@ -40,7 +40,6 @@ export default class Picker extends React.PureComponent<Props, State> {
     super(props);
     this.state = {
       totalValue: [],
-      value: [],
       selectedRowKeys: props.pickedIds || []
     };
   }
@@ -73,8 +72,7 @@ export default class Picker extends React.PureComponent<Props, State> {
       }
     });
     this.setState({
-      totalValue,
-      value: list,
+      totalValue
     });
   }
 
@@ -94,7 +92,7 @@ export default class Picker extends React.PureComponent<Props, State> {
 
   render() {
     const { visible, columns, pickOne = false, Toolbar } = this.props;
-    const { value, selectedRowKeys} = this.state;
+    const { selectedRowKeys} = this.state;
     return <Modal
       width={800}
       onOk={this.handleOk}
@@ -102,19 +100,23 @@ export default class Picker extends React.PureComponent<Props, State> {
       visible={visible}
     >
       <Toolbar>
-        <Table
-          style={{marginBottom: 16}}
-          rowSelection={{
-            type: (pickOne) ? "radio" : "checkbox",
-            onChange: this.rowSelectOnChange,
-            selectedRowKeys: selectedRowKeys
-          }}
-          size="middle"
-          columns={columns}
-          // $FlowFixMe
-          dataSource={value.map(v => ({key: v.id, ...v}))}
-          pagination={false}
-        />
+        {
+          value => (
+            <Table
+              style={{marginBottom: 16}}
+              rowSelection={{
+                type: (pickOne) ? "radio" : "checkbox",
+                onChange: this.rowSelectOnChange,
+                selectedRowKeys: selectedRowKeys
+              }}
+              size="middle"
+              columns={columns}
+              // $FlowFixMe
+              dataSource={value.map(v => ({...v, key: v.id}))}
+              pagination={false}
+            />
+          )
+        }
       </Toolbar>
     </Modal>
   }
