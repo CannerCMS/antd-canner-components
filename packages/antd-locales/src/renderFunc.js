@@ -57,7 +57,7 @@ function renderField(schema, value) {
     case 'array': {
       if (schema.ui === 'gallery') {
         const imageKey = (schema.uiParams && schema.uiParams.imageKey) || 'image';
-        return value.map(galleryData => renderField(schema.items[imageKey], galleryData[imageKey]));
+        return value.slice(0, 3).map(galleryData => renderField(schema.items[imageKey], galleryData[imageKey]));
       }
       if (schema.items.type === 'object') {
         return value.map(v => renderField(schema.items.items, v));
@@ -66,7 +66,7 @@ function renderField(schema, value) {
         return value.map(str => <Tag key={str}>{str}</Tag>);
       }
       if (schema.items.type === 'image') {
-        return value.map(image => renderField(schema.items, image));
+        return value.slice(0, 3).map(image => renderField(schema.items, image));
       }
     }
     return null;
