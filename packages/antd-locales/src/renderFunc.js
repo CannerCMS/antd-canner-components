@@ -1,5 +1,5 @@
 /* eslint-disable require-jsdoc */
-import {template, get} from "lodash";
+import {template, isBoolean} from "lodash";
 import {Icon, Tag} from 'antd';
 import React from 'react';
 import dayjs from 'dayjs';
@@ -27,6 +27,9 @@ function renderField(schema, value) {
     return value;
   }
 
+  // show '-' is no value.
+  if (!value && !isBoolean(value)) return '-';
+
   switch (schema.type) {
     case 'boolean': {
       if (value) {
@@ -44,6 +47,7 @@ function renderField(schema, value) {
       return dayjs(value).format('YYYY/MM/DD HH:mm');
     }
     case 'image': {
+      if (!value.url) return '-';
       return (
         <div>
           <img alt="Picture" src={value.url} width="50" height="50"></img>
@@ -51,6 +55,10 @@ function renderField(schema, value) {
       );
     }
     case 'array': {
+      if (schema.ui === 'gallery') {
+        const imageKey = (schema.uiParams && schema.uiParams.imageKey) || 'image';
+        return value.map(galleryData => renderField(schema.items[imageKey], galleryData[imageKey]));
+      }
       if (schema.items.type === 'object') {
         return value.map(v => renderField(schema.items.items, v));
       }
