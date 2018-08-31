@@ -31,6 +31,10 @@ export default class TableDemo extends Component<ArrayTypes<any>> {
               title: "title",
               key: "title",
               dataIndex: "title"
+            }, {
+              title: "photos",
+              key: "photos",
+              dataIndex: "photos"
             }]
           }}
           items={{
@@ -41,6 +45,18 @@ export default class TableDemo extends Component<ArrayTypes<any>> {
               },
               content: {
                 type: "string"
+              },
+              photos: {
+                type: "array",
+                ui: "gallery",
+                items: {
+                  image: {
+                    type: "object",
+                    items: {
+                      url: "string"
+                    }
+                  }
+                }
               }
             }
           }}
