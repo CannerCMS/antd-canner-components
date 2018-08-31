@@ -6,9 +6,9 @@ import { List } from 'antd';
 import type {IndicatorDefaultProps} from 'types/IndicatorDefaultProps';
 
 type Props = IndicatorDefaultProps & {
-  title: (value: any) => React.Node,
   uiParams: {
     avatar: (value: any) => React.Node,
+    title: (value: any) => React.Node,
     description: (value:any) => React.Node,
     content: (value: any) => React.Node
   }
@@ -16,8 +16,9 @@ type Props = IndicatorDefaultProps & {
 
 const getRandomKey = () => (Math.random().toString(36).substr(2, 10));
 
-const IndicatorList = ({ value, title, uiParams: {
+const IndicatorList = ({ value, uiParams: {
   avatar,
+  title,
   description,
   content
 } }: Props) => {
