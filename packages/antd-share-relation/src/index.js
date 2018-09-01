@@ -31,7 +31,6 @@ type Props = {
 
 type State = {
   totalValue: Array<*>,
-  value: Array<*>,
   selectedRowKeys: Array<string>
 };
 

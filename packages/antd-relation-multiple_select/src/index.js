@@ -20,6 +20,7 @@ type Props = RelationDefaultProps & {
     renderText?: string,
     columns: Array<*>
   },
+  intl: Object,
   goTo: GotoFn,
   rootValue: any,
   disabled: FieldDisabled,

@@ -70,7 +70,7 @@ export default {
   }
 }
 
-exports.getIntlMessage = function(intl, text) {
+export function getIntlMessage(intl: Object, text: string) {
   const matched = text.match(/^\$\{(.*)\}$/);
   const message = matched ? intl.formatMessage({
     id: matched[1],
