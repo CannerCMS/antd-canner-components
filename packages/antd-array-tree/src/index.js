@@ -8,6 +8,8 @@ import update from 'lodash/update';
 import { FormattedMessage, injectIntl } from "react-intl";
 import defaultMessage from "@canner/antd-locales";
 import styled from 'styled-components';
+import type {FieldId, FieldItems, GotoFn} from 'types/DefaultProps';
+import type {IntlShape} from 'react-intl';
 
 const TreeNode = Tree.TreeNode;
 const confirm = Modal.confirm;
@@ -31,28 +33,58 @@ const Title = styled.span`
     }
   }
 `
+type Props = {
+  refId: FieldId,
+  items: FieldItems,
+  goTo: GotoFn,
+  value: Array<any>,
+  uiParams: {
+    textCol: string,
+    relationField: string
+  },
+  onChange: Function,
+  deploy: Function,
+  showPagination: boolean,
+  keyName: string,
+  intl: IntlShape,
+  title: string,
+  reset: Function,
+};
+
+type State = {
+  treeData: Array<Object>,
+  showEditModal: boolean,
+  showAddModal: boolean
+}
 
 @injectIntl
-export default class ArrayTree extends React.Component {
-  constructor(props) {
+export default class ArrayTree extends React.Component<Props, State> {
+  addModal: ?AddModal;
+  editModal: ?EditModal;
+
+  constructor(props: Props) {
     super(props);
     this.state = {
-      treeData: [],
+      treeData: genRelationTree({
+        treeData: [],
+        treeMap: {},
+        data: props.value.map((v, i) => ({...v, __index: i})),
+        textCol: props.uiParams.textCol || props.items.items[props.uiParams.relationField].uiParams.textCol,
+        relationField: props.uiParams.relationField
+      }),
       showEditModal: false,
       showAddModal: false
     }
   }
 
-  componentDidMount() {
-    this.queryAllData();
-  }
-
-  static getDerivedStateFromProps(nextProps, nextState) {
+  static getDerivedStateFromProps(nextProps: Props, nextState: State) {
     const modalOpen = nextState.showAddModal || nextState.showEditModal;
     return {
       treeData: modalOpen ?
         nextState.treeData :
         genRelationTree({
+          treeData: [],
+          treeMap: {},
           data: nextProps.value.map((v, i) => ({...v, __index: i})),
           textCol: nextProps.uiParams.textCol || nextProps.items.items[nextProps.uiParams.relationField].uiParams.textCol,
           relationField: nextProps.uiParams.relationField
@@ -60,12 +92,7 @@ export default class ArrayTree extends React.Component {
     };
   }
 
-  queryAllData() {
-    const {updateQuery, keyName} = this.props;
-    updateQuery([keyName], {first: 100, where: {}});
-  }
-
-  confirmDelete = index => {
+  confirmDelete = (index: number) => {
     const {onChange, refId, keyName, deploy, intl} = this.props;
     confirm({
       title: intl.formatMessage({ id: "array.table.delete.confirm" }),
@@ -83,9 +110,10 @@ export default class ArrayTree extends React.Component {
   render() {
     const {uiParams: {relationField}, items, value, title, refId, reset, onChange} = this.props;
     const {treeData} = this.state;
+    console.log({treeData});
     const renderTitle = item => <Title>
       <span style={{fontSize: 16}}>{item.title}</span>
-      <HoverableIcon style={{marginLeft: 24}} type="edit" onClick={() => this.editModal.showModal(item.__index)}/>
+      <HoverableIcon style={{marginLeft: 24}} type="edit" onClick={() => this.editModal && this.editModal.showModal(item.__index)}/>
       <HoverableIcon style={{marginLeft: 8}} type="cross" onClick={() => this.confirmDelete(item.__index)}/>
     </Title>;
     const loop = data => data.map((item) => {
@@ -122,8 +150,6 @@ export default class ArrayTree extends React.Component {
           treeData.length ? (
             <Tree
               showLine
-              onDragEnter={this.onDragEnter}
-              onDrop={this.onDrop}
               selectable={false}
             >
               {loop(treeData)}
