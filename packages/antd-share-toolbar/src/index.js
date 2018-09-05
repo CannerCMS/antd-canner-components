@@ -70,18 +70,21 @@ export default class Toolbar extends React.PureComponent<Props, State> {
         sorter: {
           sortField,
           sortType
-        }
+        },
+        current: 1
       });
     } else {
       this.setState({
-        sorter: {}
+        sorter: {},
+        current: 1
       });
     }
   }
 
   changeFilter = (where: Object) => {
     this.setState({
-      where: {...where}
+      where: {...where},
+      current: 1
     });
   }
 
