@@ -48,7 +48,7 @@ export default class Sort extends Component<Props, State> {
     super(props);
     this.state = {
       order: order(props.sortType || 'ASC'),
-      key: props.sortField || '',
+      key: props.defaultField || '',
     };
   }
 
