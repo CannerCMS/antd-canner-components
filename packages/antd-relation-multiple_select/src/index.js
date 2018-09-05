@@ -79,7 +79,7 @@ export default class RelationTable extends React.PureComponent<Props, State> {
     const { modalVisible } = this.state;
     let { disabled, value, uiParams = {}, refId, relation,
       fetch, fetchRelation, updateQuery, subscribe, intl,
-      schema, Toolbar, relationValue
+      schema, Toolbar, relationValue, toolbar
     } = this.props;
     value = value || [];
     const newColumns = uiParams.columns.map(column => {
@@ -110,6 +110,7 @@ export default class RelationTable extends React.PureComponent<Props, State> {
             visible={modalVisible}
             onOk={this.handleOk}
             onCancel={this.handleCancel}
+            toolbar={toolbar}
             // $FlowFixMe
             pickedIds={value.map(v => v.id)}
             columns={newColumnsRender}

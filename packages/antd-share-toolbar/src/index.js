@@ -54,7 +54,7 @@ export default class Toolbar extends React.PureComponent<Props, State> {
 
   constructor(props: Props) {
     super(props);
-    this.async = props.toolbar.async;
+    this.async = props.toolbar && props.toolbar.async;
     this.state = {
       sorter: {},
       where: {},
@@ -120,7 +120,7 @@ export default class Toolbar extends React.PureComponent<Props, State> {
     const ActionsComponent = actions && actions.component ? actions.component : Actions;
     const PaginationComponent = pagination && pagination.component ? pagination.component : Pagination;
     let value = dataSource.map((data, i) => ({...data, __index: i}));
-    if (toolbar && toolbar.async) {
+    if (!toolbar || toolbar.async) {
       return children({value, showPagination: false});
     }
     if (filter) {

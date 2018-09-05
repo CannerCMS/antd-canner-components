@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@canner/antd-locales": "^0.4.0-beta.26",
+    "@canner/antd-share-toolbar": "^0.4.0-beta.26",
     "prop-types": "^15.6.0"
   },
   "canner": {

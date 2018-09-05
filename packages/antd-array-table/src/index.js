@@ -12,6 +12,7 @@ import {injectIntl} from 'react-intl';
 import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
 import type {FieldItems} from 'types/DefaultProps';
 import {intlShape} from 'react-intl';
+import Toolbar from '@canner/antd-share-toolbar';
 
 const ButtonGroup = Button.Group;
 
@@ -50,25 +51,37 @@ export default class TableArrayPlugin extends Component<Props, State> {
     value: [],
     showPagination: true
   };
+  constructor(props) {
+    super(props);
+    this.state = {
+      showAddModal: false,
+      showEditModal: false,
+      value: props.value
+    }
+  }
 
-  state = {
-    showAddModal: false
+  static getDerivedStateFromProps(nextProps, nextState) {
+    if (!nextState.showAddModal && !nextState.showEditModal) {
+      return {
+        value: nextProps.value
+      };
+    }
   }
 
   render() {
     const {
       refId,
       uiParams,
-      value,
       onChange,
-      showPagination,
       items,
       deploy,
       intl,
-      reset
+      reset,
+      toolbar
     } = this.props;
-
-    const {showAddModal} = this.state;
+    const {
+      value
+    } = this.state;
 
     const addText = (
       <FormattedMessage
@@ -126,40 +139,48 @@ export default class TableArrayPlugin extends Component<Props, State> {
       });
     }
 
-    const originalData = value.map((datum, i) => {
-      return {...datum, __index: i, key: datum.key || i};
-    });
-
-    const data = showAddModal ? originalData.slice(0, -1) : originalData;
-
     return (
-      <div>
-        {(!createKeys || createKeys.length > 0) && (
-          <Button
-            type="primary"
-            style={{
-              marginBottom: '10px',
-              marginLeft: 'auto',
-              display: 'block'
-            }}
-            onClick={() => {
-              if (this.addModal) {
-                this.addModal.showModal(value, value.length);
-              }
-            }}
-          >
-            {addText}
-          </Button>
-        )}
-        <Table
-          pagination={showPagination}
-          dataSource={data}
-          columns={newColumnsRender}
-        />
+      <React.Fragment>
+        <Toolbar
+          toolbar={toolbar}
+          dataSource={value}
+        >
+        {
+          ({value, showPagination}) => {
+            return (
+              <React.Fragment>
+                {(!createKeys || createKeys.length > 0) && (
+                  <Button
+                    type="primary"
+                    style={{
+                      marginBottom: '10px',
+                      marginLeft: 'auto',
+                      display: 'block'
+                    }}
+                    onClick={() => {
+                      if (this.addModal) {
+                        this.addModal.showModal(value, value.length);
+                      }
+                    }}
+                  >
+                    {addText}
+                  </Button>
+                )}
+                <Table
+                  pagination={showPagination}
+                  dataSource={value}
+                  columns={newColumnsRender}
+                />
+              </React.Fragment>
+            )
+          }
+        }
+        </Toolbar>
         <EditModal
           ref={modal => (this.editModal = modal)}
           refId={refId}
           updateKeys={updateKeys}
+          updateShowModal={(state) => this.setState({showEditModal: state})}
           onChange={onChange}
           reset={reset}
         />
@@ -172,7 +193,7 @@ export default class TableArrayPlugin extends Component<Props, State> {
           onChange={onChange}
           items={items.items}
         />
-      </div>
+      </React.Fragment>
     );
   }
 }

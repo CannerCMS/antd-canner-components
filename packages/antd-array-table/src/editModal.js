@@ -9,6 +9,7 @@ import {Item, ConfirmButton, ResetButton} from 'canner-helpers';
 import type {FieldId} from 'types/DefaultProps';
 
 type Props = {
+  updateShowModal: (showModal: boolean) => void,
   onChange: (refId: FieldId | {[string]: FieldId}, type: string, value?: any) => Promise<void>
   | (Array<{
     refId: FieldId | {[string]: FieldId},
@@ -35,17 +36,23 @@ export default class EditModal extends Component<Props, State> {
   }
 
   showModal = (value: any, i: number) => {
+    const {updateShowModal} = this.props;
     this.setState({
       visible: true,
       order: i
     });
+    updateShowModal(true);
   }
 
   closeModalAndReset = () => {
+    const {updateShowModal} = this.props;
     const {reset, refId} = this.props;
     this.setState({
       visible: false
-    }, () => reset(refId));
+    }, () => {
+      reset(refId);
+      updateShowModal(false);
+    });
   }
 
   handleCancel = () => {
