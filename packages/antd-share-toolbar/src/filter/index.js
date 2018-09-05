@@ -98,7 +98,7 @@ export default class FilterGroup extends React.Component<Props, State> {
       }, {});
       this.onChange(allField);
     } else {
-      this.onChange({[filter.field]: undefined});
+      this.onChange({[filter.field.split('.')[0]]: undefined});
     }
     deleteFilter(index);
   }

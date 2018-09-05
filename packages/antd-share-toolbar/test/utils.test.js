@@ -25,6 +25,12 @@ describe('filterWith', () => {
     const result = filterWith(value, {answer: {eq: true}});
     expect(result).toEqual(value.filter(v => v.answer));
   });
+
+  it('should get user.name contains 3', () => {
+    const value = createArray(30, i => ({id: i, user: {name: String(i)}}));
+    const result = filterWith(value, {user: {name: {contains: '3'}}});
+    expect(result).toEqual(value.filter(v => v.user.name.indexOf('3') !== -1));
+  });
 })
 
 describe('sortWith', () => {
