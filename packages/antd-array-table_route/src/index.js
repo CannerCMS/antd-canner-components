@@ -7,6 +7,7 @@ import { FormattedMessage } from "react-intl";
 import defaultMessage, {renderValue, getIntlMessage} from "@canner/antd-locales";
 import type {FieldId, FieldItems, GotoFn} from 'types/DefaultProps';
 import {injectIntl, intlShape} from 'react-intl';
+import Toolbar from '@canner/antd-share-toolbar';
 
 const ButtonGroup = Button.Group;
 const confirm = Modal.confirm;
@@ -74,8 +75,8 @@ export default class ArrayBreadcrumb extends Component<Props> {
     const {
       uiParams,
       value,
-      showPagination,
       items,
+      toolbar,
       intl
     } = this.props;
 
@@ -114,30 +115,38 @@ export default class ArrayBreadcrumb extends Component<Props> {
         );
       }
     });
-
     return (
-      <div>
-        {(!createKeys || createKeys.length > 0) && (
-          <Button
-            type="primary"
-            style={{
-              marginBottom: '10px',
-              marginLeft: 'auto',
-              display: 'block'
-            }}
-            onClick={this.add}
-          >
-            {addText}
-          </Button>
-        )}
-        <Table
-          pagination={showPagination}
-          dataSource={value.map((datum, i) => {
-            return {...datum, __index: i, key: datum.key || i};
-          })}
-          columns={newColumnsRender}
-        />
-      </div>
+      <Toolbar
+        toolbar={toolbar}
+        dataSource={value}
+      >
+        {
+          ({value, showPagination}) => {
+            return (
+              <React.Fragment>
+                {(!createKeys || createKeys.length > 0) && (
+                  <Button
+                    type="primary"
+                    style={{
+                      marginBottom: '10px',
+                      marginLeft: 'auto',
+                      display: 'block'
+                    }}
+                    onClick={this.add}
+                  >
+                    {addText}
+                  </Button>
+                )}
+                <Table
+                  pagination={showPagination}
+                  dataSource={value}
+                  columns={newColumnsRender}
+                />
+              </React.Fragment>
+            )
+          }
+        }
+      </Toolbar>
     );
   }
 }
