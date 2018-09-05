@@ -4,7 +4,8 @@
   "description": "string input",
   "main": "lib/index.js",
   "scripts": {
-    "test": "../../node_modules/.bin/jest"
+    "test": "../../node_modules/.bin/jest",
+    "test:watch": "../../node_modules/.bin/jest --watch"
   },
   "keywords": [
     "cms",

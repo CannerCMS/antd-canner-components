@@ -7,6 +7,7 @@ import Sort from './sort';
 import Filter from './filter';
 import Actions from './actions';
 import isObject from 'lodash/isObject';
+import toLower from 'lodash/toLower';
 import {paginate, filterWith, sortWith} from './utils';
 
 type Props = {
@@ -126,7 +127,7 @@ export default class Toolbar extends React.PureComponent<Props, State> {
       value = filterWith(value, this.state.where);
     }
     if (sorter) {
-      value = sortWith(value, this.state.sort.sortField, this.state.sort.sortType);
+      value = sortWith(value, this.state.sorter.sortField, toLower(this.state.sorter.sortType));
     }
     const total = value.length;
     if (pagination) {
@@ -144,8 +145,8 @@ export default class Toolbar extends React.PureComponent<Props, State> {
         defaultField={sorter.defaultField}
         sort={sorter.sort || []}
         changeOrder={this.changeOrder}
-        sortField={this.state.sort.sortField}
-        sortType={this.state.sort.sortType}
+        sortField={this.state.sorter.sortField}
+        sortType={this.state.sorter.sortType}
       /> : null}
       Pagination={pagination ? <PaginationComponent
         {...pagination}

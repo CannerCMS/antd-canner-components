@@ -47,8 +47,8 @@ export default class Sort extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      order: order(props.sortField || 'ASC'),
-      key: props.orderField || '',
+      order: order(props.sortType || 'ASC'),
+      key: props.sortField || '',
     };
   }
 
@@ -68,8 +68,8 @@ export default class Sort extends Component<Props, State> {
     const {changeOrder} = this.props;
     const {key, order} = this.state;
     changeOrder({
-      orderField: key,
-      sortField: order ? 'ASC' : 'DESC'
+      sortField: key,
+      sortType: order ? 'ASC' : 'DESC'
     });
   }
 

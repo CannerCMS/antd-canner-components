@@ -25,7 +25,7 @@ export function passCondition(data: any, condition: Object) {
     const conditionValue = condition[conditionKey];
     switch(conditionKey) {
       case 'contains':
-        isPass = data.indexOf(conditionValue) !== -1;
+        isPass = data && data.indexOf(conditionValue) !== -1;
         break;
       case 'eq':
         isPass = data === conditionValue;
@@ -41,6 +41,9 @@ export function passCondition(data: any, condition: Object) {
         break;
       case 'lte':
         isPass = data <= conditionValue;
+        break;
+      default:
+        isPass = passCondition(data[conditionKey], conditionValue);
         break;
     }
     return result && isPass;
