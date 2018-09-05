@@ -110,7 +110,6 @@ export default class ArrayTree extends React.Component<Props, State> {
   render() {
     const {uiParams: {relationField}, items, value, title, refId, reset, onChange} = this.props;
     const {treeData} = this.state;
-    console.log({treeData});
     const renderTitle = item => <Title>
       <span style={{fontSize: 16}}>{item.title}</span>
       <HoverableIcon style={{marginLeft: 24}} type="edit" onClick={() => this.editModal && this.editModal.showModal(item.__index)}/>
@@ -192,8 +191,7 @@ function genRelationTree({
   relationField
 }) {
   const leftData = [];
-  data.forEach(datum => {
-    datum = JSON.parse(JSON.stringify(datum));
+  JSON.parse(JSON.stringify(data)).forEach(datum => {
     if (!datum[relationField]) {
       return ;
     }
@@ -218,7 +216,7 @@ function genRelationTree({
         return item;
       });
     } else {
-      leftData.push(datum);
+      leftData.push({...datum});
     }
   });
   if (leftData.length && data.length === leftData.length) {
