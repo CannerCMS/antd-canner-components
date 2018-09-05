@@ -6,7 +6,6 @@ import Pagination from './pagination';
 import Sort from './sort';
 import Filter from './filter';
 import Actions from './actions';
-import isObject from 'lodash/isObject';
 import toLower from 'lodash/toLower';
 import {paginate, filterWith, sortWith} from './utils';
 
@@ -170,89 +169,5 @@ export default class Toolbar extends React.PureComponent<Props, State> {
     >
       {children({value, showPagination: false})}
     </ToolbarLayout>
-  }
-}
-
-export function parseOrder(orderBy: ?string): {sortField: string | null, orderType: 'ASC' | 'DESC'} {
-  if (typeof orderBy === 'string') {
-    const [sortField, orderType] = orderBy.split('_');
-    if (orderType !== 'ASC' && orderType !== 'DESC') {
-      return {sortField, orderType: 'ASC'};
-    }
-    return {sortField, orderType};
-  }
-  return {
-    sortField: null,
-    orderType: 'ASC'
-  };
-}
-
-export function parsePagination(args: Object = {}) {
-  return {
-    first: args.first,
-    after: args.after,
-    last: args.last,
-    before: args.before
-  }
-}
-
-export function parseWhere(where: Object) {
-  return Object.keys(where).reduce((result: Object, key: string) => {
-    const v = where[key];
-    const type = typeof v;
-    const [field, op] = key.split('_');
-    if (type === 'string') {
-      result[field] = {[op || 'eq']: v};
-    }
-
-    if (type === 'boolean') {
-      result[field] = {[op || 'eq']: v};
-    }
-
-    if (type === 'number') {
-      result[field] = {[op || 'eq']: v};
-    }
-
-    if (type === 'object') {
-      result[field] = parseWhere(v);
-    }
-    return result;
-  }, {});
-}
-
-export function processWhere(where: Object)  {
-  return Object.keys(where).reduce((result: Object, key: string) => {
-    const v = where[key];
-    if (isEnd(v)) {
-      const {op, value} = parseOpAndValue(v);
-      result[`${key}_${op}`] = value;
-    } else {
-      result[key] = processWhere(v);
-    }
-
-    return result;
-  }, {});
-}
-
-function isEnd(v: Object) {
-  if (!isObject(v)) {
-    return false;
-  }
-
-  const keys = Object.keys(v);
-  const value = v[keys[0]];
-  return keys.length === 1 &&
-    ['lt', 'lte', 'gt', 'gte', 'eq', 'contains'].indexOf(keys[0]) !== -1 &&
-    (typeof value === 'string' ||
-    typeof value === 'boolean' ||
-    typeof value === 'number');
-}
-
-function parseOpAndValue(v: Object) {
-  const op = Object.keys(v)[0];
-  const value = v[op];
-  return {
-    op,
-    value
   }
 }
