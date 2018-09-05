@@ -34,7 +34,14 @@ export default {
     "string.select.placeholder": "Select a item",
     "string.image.add": "add Image",
     "relation.singleSelect.change": "Change",
-    "relation.multipleSelect.connect": "connect existed "
+    "relation.multipleSelect.connect": "connect existing ",
+    "query.numberRange.placeholder": "Enter number",
+    "query.sort.placeholder": "Sort By",
+    "query.filter.text.placeholder": "Filter by",
+    "query.filter.select.placeholder": "Filter by",
+    "query.actions.export": "Export",
+    "query.actions.import": "Import",
+    "query.actions.filter": "Add Filter"
   },
   zh: {
     "array.panel.delete.confirm": "您確定要刪除這個類別嗎？",
@@ -66,7 +73,14 @@ export default {
     "string.select.placeholder": "請選擇項目",
     "string.image.add": "新增圖片",
     "relation.singleSelect.change": "更改",
-    "relation.multipleSelect.connect": "連結到已存在的"
+    "relation.multipleSelect.connect": "連結到已存在的",
+    "query.numberRange.placeholder": "輸入數字",
+    "query.sort.placeholder": "排序依照",
+    "query.filter.text.placeholder": "輸入過濾條件",
+    "query.filter.select.placeholder": "輸入過濾條件",
+    "query.actions.export": "匯出",
+    "query.actions.import": "匯入",
+    "query.actions.filter": "搜尋"
   }
 }
 
