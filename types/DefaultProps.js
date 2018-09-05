@@ -7,7 +7,7 @@ import type { Node } from "react";
 |--------------------------------------------------
 */
 
-type RefId = any;
+export type RefId = any;
 
 export type FieldId = RefId;
 // pass the rest routes to let hoc know whether components should be rendered

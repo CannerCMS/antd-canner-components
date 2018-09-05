@@ -73,36 +73,51 @@ export default class RelationTree extends PureComponent<Props, State> {
 
   render() {
     const {fetching} = this.state;
-    const { value, refId, relation, relationValue, uiParams: {textCol}, keyName } = this.props;
+    const { Toolbar, value, refId, relation, uiParams: {textCol}, keyName } = this.props;
     const [key, index] = refId.getPathArr();
     // $FlowFixMe
     const checkedId = value && value.id;
     let selfId = null;
-    if (key === relation.to) {
-      // self relation
-      selfId = get(relationValue, ['edges', index, 'cursor']);
-    }
+    
     if (fetching) {
       return <List style={{maxWidth: 400}}/>;
     }
-    const treeData = genRelationTree({
-      data: JSON.parse(JSON.stringify(get(relationValue, ['edges']).map(edge => edge.node))),
-      textCol,
-      relationField: keyName,
-      treeData: [],
-      treeMap: {}
-    });
+    // const treeData = genRelationTree({
+    //   data: JSON.parse(JSON.stringify(get(relationValue, ['edges']).map(edge => edge.node))),
+    //   textCol,
+    //   relationField: keyName,
+    //   treeData: [],
+    //   treeMap: {}
+    // });
     return (
-      <Tree
-        defaultExpandAll
-        checkStrictly
-        checkable
-        onCheck={this.onCheck}
-        // $FlowFixMe
-        checkedKeys={value ? [value.id] : []}
-      >
-        {this.renderTreeNodes(treeData, checkedId, selfId)}
-      </Tree>
+      <Toolbar>
+        {relationValue => {
+          const treeData = genRelationTree({
+            data: relationValue,
+            textCol,
+            relationField: keyName,
+            treeData: [],
+            treeMap: {}
+          });
+          if (key === relation.to) {
+            // self relation
+            selfId = get(relationValue, [index, 'id']);
+          }
+          return (
+            <Tree
+              defaultExpandAll
+              checkStrictly
+              checkable
+              onCheck={this.onCheck}
+              // $FlowFixMe
+              checkedKeys={value ? [value.id] : []}
+            >
+              {this.renderTreeNodes(treeData, checkedId, selfId)}
+            </Tree>
+          )
+        }}
+      </Toolbar>
+      
     );
   }
 }
@@ -115,7 +130,7 @@ function genRelationTree({
   relationField
 }) {
   const leftData = [];
-  data.forEach(datum => {
+  JSON.parse(JSON.stringify(data)).forEach(datum => {
     if (!datum[relationField]) {
       return ;
     }
@@ -141,7 +156,7 @@ function genRelationTree({
       leftData.push(datum);
     }
   });
-  if (data.length === leftData.length) {
+  if (leftData.length && data.length === leftData.length) {
     leftData[0][relationField].id = null;
   }
   if (leftData.length) {

@@ -25,6 +25,7 @@ type Props = {
     key: string,
     datIndex: string
   }>,
+  showPagination: boolean,
   subscribe: Function,
   Toolbar: React.ComponentType<*>
 };
@@ -90,7 +91,7 @@ export default class Picker extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { visible, columns, pickOne = false, Toolbar } = this.props;
+    const { visible, columns, pickOne = false, Toolbar, showPagination } = this.props;
     const { selectedRowKeys} = this.state;
     return <Modal
       width={800}
@@ -112,7 +113,7 @@ export default class Picker extends React.PureComponent<Props, State> {
               columns={columns}
               // $FlowFixMe
               dataSource={value.map(v => ({...v, key: v.id}))}
-              pagination={false}
+              pagination={showPagination}
             />
           )
         }
