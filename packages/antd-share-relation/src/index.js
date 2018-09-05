@@ -3,6 +3,7 @@ import * as React from 'react';
 import {Modal, Table} from 'antd';
 import type {FieldId} from 'types/DefaultProps';
 import {isEqual} from 'lodash';
+import SyncToolbar from '@canner/antd-share-toolbar';
 
 type Props = {
   title: string,
@@ -91,7 +92,7 @@ export default class Picker extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { visible, columns, pickOne = false, Toolbar, showPagination } = this.props;
+    const { visible, columns, pickOne = false, Toolbar, toolbar } = this.props;
     const { selectedRowKeys} = this.state;
     return <Modal
       width={800}
@@ -101,20 +102,26 @@ export default class Picker extends React.PureComponent<Props, State> {
     >
       <Toolbar>
         {
-          value => (
-            <Table
-              style={{marginBottom: 16}}
-              rowSelection={{
-                type: (pickOne) ? "radio" : "checkbox",
-                onChange: this.rowSelectOnChange,
-                selectedRowKeys: selectedRowKeys
-              }}
-              size="middle"
-              columns={columns}
-              // $FlowFixMe
-              dataSource={value.map(v => ({...v, key: v.id}))}
-              pagination={showPagination}
-            />
+          dataSource => (
+            <SyncToolbar dataSource={dataSource} toolbar={toolbar}>
+              {
+                ({value, showPagination}) => (
+                  <Table
+                    style={{marginBottom: 16}}
+                    rowSelection={{
+                      type: (pickOne) ? "radio" : "checkbox",
+                      onChange: this.rowSelectOnChange,
+                      selectedRowKeys: selectedRowKeys
+                    }}
+                    size="middle"
+                    columns={columns}
+                    // $FlowFixMe
+                    dataSource={value.map(v => ({...v, key: v.id}))}
+                    pagination={showPagination}
+                  />
+                )
+              }
+            </SyncToolbar>
           )
         }
       </Toolbar>
