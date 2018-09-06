@@ -38,6 +38,7 @@
     "@canner/antd-object-options": "^0.4.0-beta.27",
     "@canner/antd-object-variants": "^0.4.0-beta.27",
     "@canner/antd-relation-multiple_select": "^0.4.0-beta.27",
+    "@canner/antd-relation-multiple_select_tree": "^0.4.0-beta.27",
     "@canner/antd-relation-single_select": "^0.4.0-beta.27",
     "@canner/antd-relation-single_select_tree": "^0.4.0-beta.27",
     "@canner/antd-share-card": "^0.4.0-beta.27",
