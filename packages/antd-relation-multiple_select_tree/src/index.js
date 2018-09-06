@@ -1,10 +1,11 @@
-// @flow
-import React, { PureComponent } from "react";
-import { Tree } from "antd";
+// @FlowFlow
+
+import React, { PureComponent } from 'react';
+import { Tree } from 'antd';
 import update from 'lodash/update';
 import get from 'lodash/get';
-import {List} from 'react-content-loader'
-import type {RelationDefaultProps} from 'types/RelationDefaultProps';
+import difference from 'lodash/difference';
+import {List} from 'react-content-loader';
 
 const TreeNode = Tree.TreeNode;
 
@@ -12,18 +13,19 @@ type State = {
   fetching: boolean
 };
 
-type Props = RelationDefaultProps & {
+type Props = {
   uiParams: {
     textCol: string,
     relationField: string,
-    disabled: (data: Object, key: string) => boolean
+    disabled: (data: Object, key: string) => boolean,
+    checkStrictly: boolean
   },
   value: any,
   relationValue: any,
   keyName: string
 };
 
-export default class RelationTree extends PureComponent<Props, State> {
+export default class MultipleRelationTree extends PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -34,24 +36,20 @@ export default class RelationTree extends PureComponent<Props, State> {
     }
   }
 
-  onCheck = (v: Object, info: Object) => {
-    const checkedKeys = v.checked;
-    const nodes = info.checkedNodes;
+  onCheck = (checkedKeys: Object) => {
     const {onChange, refId, value, relationValue} = this.props;
+    const allNodes = relationValue.edges.map(edge => edge.node);
     // $FlowFixMe
-    const originCheckIndex = checkedKeys.indexOf(value && value.id);
-    if (originCheckIndex !== -1) {
-      checkedKeys.splice(originCheckIndex, 1);    
-    }
+    const originIds = value.map(v => v.id);
+    const connectKeys = difference(checkedKeys, originIds);
+    const disconnectKeys = difference(originIds, checkedKeys);
 
-    if (checkedKeys[0] && !nodes[0].props.disableCheckbox) {
-      const checked = get(relationValue, ['edges'])
-        .find(edge => edge.cursor === checkedKeys[0])
-        .node;
-      onChange(refId, 'connect', checked);
-    } else {
-      onChange(refId, 'disconnect', value);
-    }
+    connectKeys.forEach((key) => {
+      onChange(refId, 'connect', allNodes.find(v => v.id === key));
+    });
+    disconnectKeys.forEach((key) => {
+      onChange(refId, 'disconnect', allNodes.find(v => v.id === key));
+    });
   }
 
   renderTreeNodes = (data: Array<Object>, checkedId: Array<string>, selfId: ?string, disableCheckbox: ?boolean, id: ?string) => {
@@ -74,7 +72,7 @@ export default class RelationTree extends PureComponent<Props, State> {
 
   render() {
     const {fetching} = this.state;
-    const { Toolbar, value, refId, relation, uiParams: {textCol, relationField} } = this.props;
+    const { Toolbar, value, refId, relation, uiParams: {textCol, relationField, checkStrictly} } = this.props;
     const [key, index] = refId.getPathArr();
     // $FlowFixMe
     const checkedId = value && value.id;
@@ -107,15 +105,16 @@ export default class RelationTree extends PureComponent<Props, State> {
           return (
             <Tree
               defaultExpandAll
-              checkStrictly
               checkable
+              multiple
+              checkStrictly={checkStrictly}
               onCheck={this.onCheck}
               // $FlowFixMe
-              checkedKeys={value ? [value.id] : []}
+              checkedKeys={(value || []).map(v => v.id)}
             >
               {this.renderTreeNodes(treeData, checkedId, selfId)}
             </Tree>
-          )
+          );
         }}
       </Toolbar>
       
