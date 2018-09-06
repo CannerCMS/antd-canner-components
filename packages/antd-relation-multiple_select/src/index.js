@@ -18,7 +18,8 @@ type Props = RelationDefaultProps & {
     textCol: string,
     subtextCol: string,
     renderText?: string,
-    columns: Array<*>
+    columns: Array<*>,
+    connectName: string
   },
   intl: Object,
   goTo: GotoFn,
@@ -99,9 +100,9 @@ export default class RelationTable extends React.PureComponent<Props, State> {
               <Icon type="link" style={{margin: '16px 8px'}}/>
               <FormattedMessage
                 id="relation.multipleSelect.connect"
-                defaultMessage="connect existed "
+                defaultMessage="connect existing "
               />
-              {schema[relation.to].title}
+              {uiParams.connectName || schema[relation.to].title}
             </a>
           </div>
         }
