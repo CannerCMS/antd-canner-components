@@ -82,9 +82,9 @@ export default class NumberRangeFilter extends Component {
   }
 
   render() {
-    const {intl} = this.props;
+    const {intl, placeholder} = this.props;
     const {operator, input} = this.state;
-    const placeholder = intl.formatMessage({
+    const ph = placeholder || intl.formatMessage({
       id: 'query.numberRange.placeholder',
     });
     return (
@@ -102,7 +102,7 @@ export default class NumberRangeFilter extends Component {
         </Select>
         <Input
           style={{width: 120}}
-          placeholder={placeholder}
+          placeholder={ph}
           value={input}
           onChange={this.onInput}
         />

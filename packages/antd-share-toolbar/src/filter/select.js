@@ -29,12 +29,12 @@ export default class SelectFilter extends Component {
   }
 
   render() {
-    const {options, intl} = this.props;
-    const placeholder = intl.formatMessage({id: 'query.filter.select.placeholder'});
+    const {options, intl, placeholder} = this.props;
+    const defaultPlaceholder = intl.formatMessage({id: 'query.filter.select.placeholder'});
     return (
       <Select
         style={{width: 120}}
-        placeholder={placeholder}
+        placeholder={placeholder || defaultPlaceholder}
         onChange={(val) => this.onSelect(val)}
         allowClear
       >

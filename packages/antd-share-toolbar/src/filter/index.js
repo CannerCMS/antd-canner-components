@@ -19,6 +19,7 @@ type Props = {
   filters: Array<{
     field?: string,
     type: string,
+    placeholder: string,
     options?: Array<{
       text: string,
       condition: Object,
@@ -112,15 +113,15 @@ export default class FilterGroup extends React.Component<Props, State> {
     const renderFilter = (filter) => {
       switch (filter.type) {
         case 'select':
-          return <SelectFilter onChange={debounceChange} options={filter.options} where={where}/>;
+          return <SelectFilter onChange={debounceChange} options={filter.options} where={where} placeholder={filter.placeholder}/>;
         case 'number':
-          return <NumberFilter onChange={debounceChange} name={filter.field} where={where}/>;
+          return <NumberFilter onChange={debounceChange} name={filter.field} where={where} placeholder={filter.placeholder}/>;
         /*
         case 'dateRange':
           return <DateRangeFilter onChange={debounceChange} schema={{[filter.field]: filter}}/>
         */
         case 'text':
-          return <TextFilter onChange={debounceChange} name={filter.field} where={where}/>;
+          return <TextFilter onChange={debounceChange} name={filter.field} where={where} placeholder={filter.placeholder}/>;
         default:
           return null;
       }
