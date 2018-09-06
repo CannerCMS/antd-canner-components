@@ -13,10 +13,7 @@ export default ({attributes, children}) => (
       uiParams={{
         createKeys: [],
         disableDelete: true,
-        columns: [{
-          title: 'Options',
-          dataIndex: 'options'
-        }, ...((attributes.uiParams || {}).columns || [])]
+        columns: (attributes.uiParams || {}).columns || []
       }}
     >
       <string keyName="options" title="Variant Name" disabled />
