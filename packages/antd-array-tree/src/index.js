@@ -107,12 +107,32 @@ export default class ArrayTree extends React.Component<Props, State> {
     });
   }
 
+  add = () => {
+    const {value, uiParams = {}, refId, goTo} = this.props;
+    const popup = 'popup' in uiParams ? uiParams.popup : true;
+    if (popup) {
+      this.addModal && this.addModal.showModal(value.length);
+    } else {
+      goTo({pathname: refId.toString(), operator: 'create'});
+    }
+  }
+
+  edit = item => {
+    const {uiParams = {}, refId, goTo} = this.props;
+    const popup = 'popup' in uiParams ? uiParams.popup : true;
+    if (popup) {
+      this.editModal && this.editModal.showModal(item.__index)
+    } else {
+      goTo({pathname:`${refId.toString()}/${item.id}`});
+    }
+  }
+
   render() {
     const {uiParams: {relationField}, items, value, title, refId, reset, onChange} = this.props;
     const {treeData} = this.state;
     const renderTitle = item => <Title>
       <span style={{fontSize: 16}}>{item.title}</span>
-      <HoverableIcon style={{marginLeft: 24}} type="edit" onClick={() => this.editModal && this.editModal.showModal(item.__index)}/>
+      <HoverableIcon style={{marginLeft: 24}} type="edit" onClick={() => this.edit(item)}/>
       <HoverableIcon style={{marginLeft: 8}} type="cross" onClick={() => this.confirmDelete(item.__index)}/>
     </Title>;
     const loop = data => data.map((item) => {
@@ -137,11 +157,7 @@ export default class ArrayTree extends React.Component<Props, State> {
             marginLeft: 'auto',
             display: 'block'
           }}
-          onClick={() => {
-            if (this.addModal) {
-              this.addModal.showModal(value.length);
-            }
-          }}
+          onClick={this.add}
         >
           {addText}
         </Button>
