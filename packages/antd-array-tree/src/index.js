@@ -128,7 +128,7 @@ export default class ArrayTree extends React.Component<Props, State> {
   }
 
   render() {
-    const {uiParams: {relationField}, items, value, title, refId, reset, onChange} = this.props;
+    const {uiParams: {relationField}, items, title, refId, reset, onChange} = this.props;
     const {treeData} = this.state;
     const renderTitle = item => <Title>
       <span style={{fontSize: 16}}>{item.title}</span>
@@ -208,31 +208,32 @@ function genRelationTree({
 }) {
   const leftData = [];
   JSON.parse(JSON.stringify(data)).forEach(datum => {
-    if (!datum[relationField]) {
-      return ;
+    if (!datum) {
+      return;
     }
-    const parentId = datum[relationField].id;
-    if (datum.id === parentId || !parentId) {
+    const parent = datum[relationField];
+    if (!parent || !parent.id || datum.id === parent.id) {
       treeMap[datum.id] = `[${treeData.length}]`;
       treeData.push({
         ...datum,
         title: datum[textCol],
         key: datum.id,
-        children: []
+        children: [],
+        __index: datum.__index
       });
-    } else if (treeMap[parentId]) {
-      treeData = update(treeData, treeMap[parentId], item => {
-        treeMap[datum.id] = `${treeMap[parentId]}.children[${item.children.length}]`;
+    } else if (treeMap[parent.id]) {
+      treeData = update(treeData, treeMap[parent.id], item => {
+        treeMap[datum.id] = `${treeMap[parent.id]}.children[${item.children.length}]`;
         item.children.push({
           ...datum,
           title: datum[textCol],
           key: datum.id,
-          children: [],
+          children: []
         });
         return item;
       });
     } else {
-      leftData.push({...datum});
+      leftData.push(datum);
     }
   });
   if (leftData.length && data.length === leftData.length) {

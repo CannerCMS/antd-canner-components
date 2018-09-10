@@ -44,10 +44,12 @@ export default class RelationTree extends PureComponent<Props, State> {
       checkedKeys.splice(originCheckIndex, 1);    
     }
 
+
     if (checkedKeys[0] && !nodes[0].props.disableCheckbox) {
       const checked = get(relationValue, ['edges'])
         .find(edge => edge.cursor === checkedKeys[0])
         .node;
+
       onChange(refId, 'connect', checked);
     } else {
       onChange(refId, 'disconnect', value);
@@ -74,36 +76,25 @@ export default class RelationTree extends PureComponent<Props, State> {
 
   render() {
     const {fetching} = this.state;
-    const { Toolbar, value, refId, relation, uiParams: {textCol, relationField} } = this.props;
+    const { Toolbar, value, refId, relation, uiParams: {textCol, relationField}, rootValue } = this.props;
     const [key, index] = refId.getPathArr();
     // $FlowFixMe
     const checkedId = value && value.id;
-    let selfId = null;
-    
+    const selfItem = rootValue[key][index];
     if (fetching) {
       return <List style={{maxWidth: 400}}/>;
     }
-    // const treeData = genRelationTree({
-    //   data: JSON.parse(JSON.stringify(get(relationValue, ['edges']).map(edge => edge.node))),
-    //   textCol,
-    //   relationField: keyName,
-    //   treeData: [],
-    //   treeMap: {}
-    // });
+
     return (
       <Toolbar>
         {relationValue => {
           const treeData = genRelationTree({
-            data: relationValue,
+            data: relation.to === key ? relationValue.concat(selfItem) : relationValue,
             textCol,
             relationField,
             treeData: [],
             treeMap: {}
           });
-          if (key === relation.to) {
-            // self relation
-            selfId = get(relationValue, [index, 'id']);
-          }
           return (
             <Tree
               defaultExpandAll
@@ -113,7 +104,7 @@ export default class RelationTree extends PureComponent<Props, State> {
               // $FlowFixMe
               checkedKeys={value ? [value.id] : []}
             >
-              {this.renderTreeNodes(treeData, checkedId, selfId)}
+              {this.renderTreeNodes(treeData, checkedId, selfItem && selfItem.id)}
             </Tree>
           )
         }}
@@ -122,6 +113,7 @@ export default class RelationTree extends PureComponent<Props, State> {
     );
   }
 }
+
 
 function genRelationTree({
   data,
@@ -132,20 +124,20 @@ function genRelationTree({
 }) {
   const leftData = [];
   JSON.parse(JSON.stringify(data)).forEach(datum => {
-    if (!datum[relationField]) {
-      return ;
+    if (!datum) {
+      return;
     }
-    const parentId = datum[relationField].id;
-    if (datum.id === parentId || !parentId) {
+    const parent = datum[relationField];
+    if (!parent || !parent.id || datum.id === parent.id) {
       treeMap[datum.id] = `[${treeData.length}]`;
       treeData.push({
         title: datum[textCol],
         key: datum.id,
         children: []
       });
-    } else if (treeMap[parentId]) {
-      treeData = update(treeData, treeMap[parentId], item => {
-        treeMap[datum.id] = `${treeMap[parentId]}.children[${item.children.length}]`;
+    } else if (treeMap[parent.id]) {
+      treeData = update(treeData, treeMap[parent.id], item => {
+        treeMap[datum.id] = `${treeMap[parent.id]}.children[${item.children.length}]`;
         item.children.push({
           title: datum[textCol],
           key: datum.id,
@@ -170,5 +162,4 @@ function genRelationTree({
     })
   }
   return treeData;
-
 }
