@@ -34,7 +34,7 @@ export default class Variants extends Component<Props> {
   updateTag = (val: Array<string>, order: number) => {
     const { value, items, onChange, refId } = this.props;
     const variants = value.variants;
-    const options = JSON.parse(JSON.stringify(value.options)) || [];
+    const options = JSON.parse(JSON.stringify(value && value.options)) || [];
     options[order].values = val;
     const types = this.cartesianProduct(options);
     const variantsObj = types.map(type => {
@@ -62,9 +62,9 @@ export default class Variants extends Component<Props> {
 
   updateVariantsAfterRemoveOption = (i: number) => {
     const { value, items, refId, onChange } = this.props;
-    const options = JSON.parse(JSON.stringify(value.options)) || [];
+    const options = value && value.options ? JSON.parse(JSON.stringify(value.options)) : [];
     options.splice(i, 1);
-    const variants = value.variants;
+    const variants = value && value.variants || [];
     const types = this.cartesianProduct(options);
     const variantsObj = types.filter(type => type.length).map(type => {
       const newVariants = type.join("-");
@@ -115,8 +115,8 @@ export default class Variants extends Component<Props> {
       refId,
       "update",
       {
-        options: (value.options || []).concat(createEmptyData(items.options.items)),
-        variants: value.variants || []
+        options: (value && value.options || []).concat(createEmptyData(items.options.items)),
+        variants: value && value.variants || []
       }
     );
   }
@@ -148,7 +148,7 @@ export default class Variants extends Component<Props> {
     action.splice(action.indexOf("options"), 1);
     return (
       <div>
-        {(value.options || []).map((opt, i) => {
+        {(value && value.options || []).map((opt, i) => {
           return (
             <Option key={i}>
               <Remove>
