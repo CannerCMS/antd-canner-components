@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-share-toolbar",
-  "version": "0.4.1",
+  "version": "0.4.2-alpha.0",
   "description": "string input",
   "main": "lib/index.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
-    "@canner/antd-locales": "^0.4.1"
+    "@canner/antd-locales": "^0.4.2-alpha.0"
   },
   "publishConfig": {
     "access": "public"
