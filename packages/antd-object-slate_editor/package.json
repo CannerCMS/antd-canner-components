@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-object-slate_editor",
-  "version": "0.4.0-alpha.1",
+  "version": "0.4.0-alpha.2",
   "description": "object editor",
   "main": "lib/index.js",
   "scripts": {},
@@ -16,8 +16,8 @@
     "immutable": "^3.8.2",
     "markup-it": "^8.0.2",
     "slate": "^0.33.0",
-    "slate-react": "^0.12.0",
-    "slate-html-serializer": "^0.5.8"
+    "slate-html-serializer": "^0.5.8",
+    "slate-react": "^0.12.0"
   },
   "peerDependencies": {
     "antd": ">=^3.6.2",
