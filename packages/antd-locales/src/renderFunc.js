@@ -58,7 +58,7 @@ function renderField(schema, value) {
         if (value && value.length > 0) {
           return (
             <Badge count={value.length}>
-              <Avatar src={value[0][imageKey]} shape="square"/>
+              <Avatar src={value[0][imageKey].url} shape="square"/>
             </Badge>
           );
         }
