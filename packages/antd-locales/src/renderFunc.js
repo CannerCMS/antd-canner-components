@@ -1,6 +1,6 @@
 /* eslint-disable require-jsdoc */
 import {isBoolean} from "lodash";
-import {Icon, Tag} from 'antd';
+import {Icon, Tag, Avatar, Badge} from 'antd';
 import React from 'react';
 import dayjs from 'dayjs';
 export default function(cols, schema, otherProps) {
@@ -47,7 +47,7 @@ function renderField(schema, value) {
     case 'image': {
       if (!value.url) return '-';
       return (
-        <div>
+        <div style={{display: 'inline-block'}}>
           <img alt="Picture" src={value.url} width="50" height="50"></img>
         </div>
       );
@@ -55,8 +55,13 @@ function renderField(schema, value) {
     case 'array': {
       if (schema.ui === 'gallery') {
         const imageKey = (schema.uiParams && schema.uiParams.imageKey) || 'image';
-        if (value && value.length > 0)
-          return value.slice(0, 3).map(galleryData => renderField(schema.items.items[imageKey], galleryData[imageKey]));
+        if (value && value.length > 0) {
+          return (
+            <Badge count={value.length}>
+              <Avatar src={value[0][imageKey]} shape="square"/>
+            </Badge>
+          );
+        }
         return '-'
       }
       if (schema.items.type === 'object') {
