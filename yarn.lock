@@ -10903,6 +10903,13 @@ slate-hotkeys@^0.1.2:
     is-hotkey "^0.1.1"
     slate-dev-environment "^0.1.4"
 
+slate-html-serializer@^0.5.8:
+  version "0.5.9"
+  resolved "https://registry.yarnpkg.com/slate-html-serializer/-/slate-html-serializer-0.5.9.tgz#3925cbc459b222ddc75ff11eb5bbb3bed65c3a8e"
+  dependencies:
+    slate-dev-logger "^0.1.39"
+    type-of "^2.0.1"
+
 slate-md-editor@^1.5.4:
   version "1.5.4"
   resolved "https://registry.yarnpkg.com/slate-md-editor/-/slate-md-editor-1.5.4.tgz#ce82153b97f5efad1d026d0f315ba85aa851bdb3"
@@ -10957,7 +10964,7 @@ slate-prop-types@^0.4.34:
   version "0.4.61"
   resolved "https://registry.yarnpkg.com/slate-prop-types/-/slate-prop-types-0.4.61.tgz#141c109bed81b130dd03ab86dd7541b28d6d962a"
 
-slate-react@^0.12.6:
+slate-react@^0.12.0:
   version "0.12.11"
   resolved "https://registry.yarnpkg.com/slate-react/-/slate-react-0.12.11.tgz#6d83e604634704757690a57dbd6aab282a964ad3"
   dependencies:
@@ -11009,7 +11016,7 @@ slate-trailing-block@^0.5.0:
   version "0.5.0"
   resolved "http://registry.npmjs.org/slate-trailing-block/-/slate-trailing-block-0.5.0.tgz#cedb4f2975f1167e0fb9d259ce1252b82f4d74ff"
 
-slate@^0.33.6:
+slate@^0.33.0:
   version "0.33.8"
   resolved "https://registry.yarnpkg.com/slate/-/slate-0.33.8.tgz#c2cd9906c446d010b15e9e28f6d1a01792c7a113"
   dependencies:

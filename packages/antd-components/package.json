@@ -33,6 +33,7 @@
     "@canner/antd-number-rate": "^0.4.0-alpha.1",
     "@canner/antd-number-slider": "^0.4.0-alpha.1",
     "@canner/antd-object-editor": "^0.4.0-alpha.1",
+    "@canner/antd-object-slate_editor": "^0.4.0-alpha.1",
     "@canner/antd-object-image": "^0.4.0-alpha.1",
     "@canner/antd-object-map": "^0.4.0-alpha.1",
     "@canner/antd-object-options": "^0.4.0-alpha.1",
