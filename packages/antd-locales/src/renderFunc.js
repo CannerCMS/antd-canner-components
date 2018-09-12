@@ -56,7 +56,7 @@ function renderField(schema, value) {
       if (schema.ui === 'gallery') {
         const imageKey = (schema.uiParams && schema.uiParams.imageKey) || 'image';
         if (value && value.length > 0)
-          return value.slice(0, 3).map(galleryData => renderField(schema.items[imageKey], galleryData[imageKey]));
+          return value.slice(0, 3).map(galleryData => renderField(schema.items.items[imageKey], galleryData[imageKey]));
         return '-'
       }
       if (schema.items.type === 'object') {
