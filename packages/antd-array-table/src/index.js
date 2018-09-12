@@ -51,6 +51,7 @@ export default class TableArrayPlugin extends Component<Props, State> {
     value: [],
     showPagination: true
   };
+  
   constructor(props) {
     super(props);
     this.state = {
