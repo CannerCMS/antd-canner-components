@@ -16,11 +16,19 @@ http://www.canner.io/component
 
 ## Develop
 
-```
-# install lerna in npm
-$ npm i -g lerna
 
-$ lerna bootstrap
+We are using yarn workspace to manage all repos, learn more about [Yarn workspace](https://yarnpkg.com/blog/2017/08/02/introducing-workspaces/)
+
+To install packages
+
+```
+yarn
+```
+
+commands
+
+```
+# build js
 $ npm run build
 # or watch for rebuilding
 $ npm run build:watch

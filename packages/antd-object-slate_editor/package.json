@@ -14,10 +14,13 @@
   "dependencies": {
     "markup-it": "^8.0.2",
     "slate": "^0.33.6",
-    "slate-react": "^0.12.6"
+    "slate-react": "^0.12.6",
+    "immutable": "^3.8.2",
+    "canner-slate-editor": "^1.5.4"
   },
   "peerDependencies": {
-    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0",
+    "antd": ">=^3.6.2"
   },
   "publishConfig": {
     "access": "public"

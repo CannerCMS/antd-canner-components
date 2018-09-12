@@ -1,6 +1,8 @@
 {
   "name": "antd-canner-components",
   "version": "10000.0.0",
+  "workspaces": ["packages/*"],
+  "private": true,
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
