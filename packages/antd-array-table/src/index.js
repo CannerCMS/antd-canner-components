@@ -51,6 +51,7 @@ export default class TableArrayPlugin extends Component<Props, State> {
     value: [],
     showPagination: true
   };
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -77,7 +78,8 @@ export default class TableArrayPlugin extends Component<Props, State> {
       deploy,
       intl,
       reset,
-      toolbar
+      toolbar,
+      goTo
     } = this.props;
     const {
       value
@@ -100,7 +102,14 @@ export default class TableArrayPlugin extends Component<Props, State> {
     const newColumns = columns.map(column => {
       return {...column, title: getIntlMessage(intl, column.title)};
     });
-    const newColumnsRender = renderValue(newColumns, items.items);
+    const newColumnsRender = renderValue(newColumns, items.items, {
+      refId,
+      onChange,
+      uiParams,
+      goTo,
+      reset,
+      deploy
+    });
 
     if ((!updateKeys || updateKeys.length > 0) || !disableDelete) {
       newColumnsRender.push({

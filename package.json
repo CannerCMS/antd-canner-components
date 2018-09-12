@@ -1,6 +1,10 @@
 {
   "name": "antd-canner-components",
   "version": "10000.0.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "private": true,
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
@@ -26,7 +30,7 @@
     "git-directory-deploy": "^1.5.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^22.4.0",
-    "lerna": "2.11.0",
+    "lerna": "^3.3.1",
     "less": "2.7.3",
     "less-loader": "^4.0.6",
     "ncp": "^2.0.0",
@@ -38,6 +42,7 @@
     "react-test-renderer": "^16.2.0",
     "resolve-url-loader": "^2.3.0",
     "sass-loader": "^6.0.7",
+    "slate-html-serializer": "^0.5.8",
     "style-loader": "^0.20.2",
     "styled-components": "^3.2.1",
     "webpack": "^4.0.1",
@@ -55,8 +60,9 @@
     "lint": "prettier --write ./packages/*/src/**/*.js && eslint ./packages/*/src/**/*.js",
     "build": "lerna exec --parallel -- babel src -d lib --copy-files",
     "build:watch": "lerna exec --parallel -- babel src -d lib --copy-files -w",
-    "release": "npm run build && lerna publish --force-publish=*",
-    "release:next": "npm run build && lerna publish --force-publish=* --npm-tag=next",
+    "preversion": "npm run build",
+    "release": "lerna publish",
+    "release:next": "lerna publish --npm-tag=next",
     "gh-pages:clean": "rimraf _gh-pages && ncp ./docs ./_gh-pages",
     "gh-pages:build": "./node_modules/.bin/webpack --config webpack.config.ghPage.js",
     "gh-pages:publish": "git-directory-deploy --directory _gh-pages",

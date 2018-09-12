@@ -77,7 +77,12 @@ export default class ArrayBreadcrumb extends Component<Props> {
       value,
       items,
       toolbar,
-      intl
+      intl,
+      deploy,
+      goTo,
+      reset,
+      refId,
+      onChange
     } = this.props;
 
     const addText = (
@@ -96,7 +101,14 @@ export default class ArrayBreadcrumb extends Component<Props> {
     const newColumns = columns.map(column => {
       return {...column, title: getIntlMessage(intl, column.title)};
     });
-    const newColumnsRender = renderValue(newColumns, items.items);
+    const newColumnsRender = renderValue(newColumns, items.items, {
+      refId,
+      deploy,
+      reset,
+      onChange,
+      goTo,
+      uiParams
+    });
 
     newColumnsRender.push({
       title: intl.formatMessage({ id: "array.table.actions" }),

@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-object-slate_editor",
-  "version": "0.4.0-beta.29",
+  "version": "0.4.1",
   "description": "object editor",
   "main": "lib/index.js",
   "scripts": {},
@@ -12,14 +12,19 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
+    "canner-slate-editor": "^1.5.4",
+    "immutable": "^3.8.2",
     "markup-it": "^8.0.2",
-    "slate": "^0.33.6",
-    "slate-react": "^0.12.6"
+    "slate": "^0.33.0",
+    "slate-html-serializer": "^0.5.8",
+    "slate-react": "^0.12.0"
   },
   "peerDependencies": {
+    "antd": ">=^3.6.2",
     "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "gitHead": "e3d67c9e4c24124db4d3bba9d2ba12345deb8b99"
 }

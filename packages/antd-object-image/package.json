@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-object-image",
-  "version": "0.4.0-beta.29",
+  "version": "0.4.2-alpha.2",
   "description": "object image",
   "main": "lib/index.js",
   "scripts": {},
@@ -12,7 +12,7 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/antd-locales": "^0.4.0-beta.29",
+    "@canner/antd-locales": "^0.4.2-alpha.2",
     "@canner/image-service-config": "^0.3.0",
     "@canner/image-upload": "^0.12.0",
     "react-loading-image": "^0.4.1"
@@ -25,5 +25,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "gitHead": "e3d67c9e4c24124db4d3bba9d2ba12345deb8b99"
 }

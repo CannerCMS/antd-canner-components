@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-object-editor",
-  "version": "0.4.0-beta.29",
+  "version": "0.4.1",
   "description": "object editor",
   "main": "lib/index.js",
   "scripts": {},
@@ -12,6 +12,8 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
+    "quill-image-drop-module": "^1.0.3",
+    "quill-image-resize-module": "^3.0.0",
     "react-no-ssr": "^1.1.0",
     "react-quill": "^1.3.1"
   },
@@ -20,5 +22,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "gitHead": "e3d67c9e4c24124db4d3bba9d2ba12345deb8b99"
 }

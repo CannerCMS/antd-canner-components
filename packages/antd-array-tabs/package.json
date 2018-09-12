@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-array-tabs",
-  "version": "0.4.0-beta.29",
+  "version": "0.4.1",
   "description": "array tabs",
   "main": "lib/index.js",
   "scripts": {},
@@ -22,5 +22,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "gitHead": "e3d67c9e4c24124db4d3bba9d2ba12345deb8b99"
 }

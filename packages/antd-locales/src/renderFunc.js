@@ -1,20 +1,18 @@
 /* eslint-disable require-jsdoc */
-import {template, isBoolean} from "lodash";
-import {Icon, Tag} from 'antd';
+import {isBoolean} from "lodash";
+import {Icon, Tag, Avatar, Badge} from 'antd';
 import React from 'react';
 import dayjs from 'dayjs';
-export default function(cols, schema) {
+export default function(cols, schema, otherProps) {
   return cols.map(col => {
     const itemSchema = getSchema(schema, col.dataIndex.split('.'));
     if (col.render) {
-      return col;
-    }
-
-    if (col.renderTemplate) {
-      col.render = (text, record) => {
-        const compiled = template(col.renderTemplate || '');
-        return <div dangerouslySetInnerHTML={{__html: compiled(record)}} />;
+      // pass canner props into each column in table.
+      if (otherProps) {
+        const oldRender = col.render;
+        col.render = (text, record) => oldRender(text, record, otherProps);
       }
+      return col;
     }
 
     col.render = text => renderField(itemSchema, text);
@@ -49,7 +47,7 @@ function renderField(schema, value) {
     case 'image': {
       if (!value.url) return '-';
       return (
-        <div>
+        <div style={{display: 'inline-block'}}>
           <img alt="Picture" src={value.url} width="50" height="50"></img>
         </div>
       );
@@ -57,7 +55,14 @@ function renderField(schema, value) {
     case 'array': {
       if (schema.ui === 'gallery') {
         const imageKey = (schema.uiParams && schema.uiParams.imageKey) || 'image';
-        return value.slice(0, 3).map(galleryData => renderField(schema.items[imageKey], galleryData[imageKey]));
+        if (value && value.length > 0) {
+          return (
+            <Badge count={value.length}>
+              <Avatar src={value[0][imageKey].url} shape="square"/>
+            </Badge>
+          );
+        }
+        return '-'
       }
       if (schema.items.type === 'object') {
         return value.map(v => renderField(schema.items.items, v));
