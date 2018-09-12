@@ -34,7 +34,10 @@ export default class TableDemo extends Component<ArrayTypes<any>> {
             }, {
               title: "photos",
               key: "photos",
-              dataIndex: "photos"
+              dataIndex: "photos",
+              render: (text, record, props) => {
+                console.log(text, record, props);
+              }
             }]
           }}
           items={{
