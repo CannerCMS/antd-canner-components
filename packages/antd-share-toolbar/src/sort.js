@@ -53,6 +53,13 @@ export default class Sort extends Component<Props, State> {
     };
   }
 
+  componentDidMount() {
+    const {defaultField} = this.props; 
+    if (defaultField) {
+      this.onChange(defaultField);
+    }
+  }
+
   onChange = (value: string) => {
     this.setState({
       key: value

@@ -41,7 +41,7 @@ export default class RelationTree extends PureComponent<Props, State> {
     // $FlowFixMe
     const originCheckIndex = checkedKeys.indexOf(value && value.id);
     if (originCheckIndex !== -1) {
-      checkedKeys.splice(originCheckIndex, 1);    
+      checkedKeys.splice(originCheckIndex, 1);
     }
 
 

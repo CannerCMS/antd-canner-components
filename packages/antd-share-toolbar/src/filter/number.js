@@ -73,7 +73,9 @@ export default class NumberRangeFilter extends Component {
         }
       });
     } else {
-      onChange(isEmpty(input) ? undefined : {
+      onChange(isEmpty(input) ? {
+        [name.split('.')[0]]: undefined
+      } : {
         [name]: {
           [operator]: Number(input)
         }
