@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-relation-multiple_select",
-  "version": "0.4.2-alpha.0",
+  "version": "0.4.2-alpha.1",
   "description": "Relationship for selecting multiple selections",
   "main": "lib/index.js",
   "scripts": {},
@@ -12,8 +12,8 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/antd-locales": "^0.4.2-alpha.0",
-    "@canner/antd-share-relation": "^0.4.2-alpha.0",
+    "@canner/antd-locales": "^0.4.2-alpha.1",
+    "@canner/antd-share-relation": "^0.4.2-alpha.1",
     "lodash.difference": "*"
   },
   "peerDependencies": {
