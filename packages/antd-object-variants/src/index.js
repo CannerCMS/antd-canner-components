@@ -33,8 +33,8 @@ export default class Variants extends Component<Props> {
 
   updateTag = (val: Array<string>, order: number) => {
     const { value, items, onChange, refId } = this.props;
-    const variants = value.variants;
-    const options = JSON.parse(JSON.stringify(value && value.options)) || [];
+    const variants = value && value.variants;
+    const options = (value && value.options) ? JSON.parse(JSON.stringify(value.options)) : [];
     options[order].values = val;
     const types = this.cartesianProduct(options);
     const variantsObj = types.map(type => {
@@ -62,9 +62,9 @@ export default class Variants extends Component<Props> {
 
   updateVariantsAfterRemoveOption = (i: number) => {
     const { value, items, refId, onChange } = this.props;
-    const options = value && value.options ? JSON.parse(JSON.stringify(value.options)) : [];
+    const options = (value && value.options) ? JSON.parse(JSON.stringify(value.options)) : [];
     options.splice(i, 1);
-    const variants = value && value.variants || [];
+    const variants = value && value.variants ? value.variants : [];
     const types = this.cartesianProduct(options);
     const variantsObj = types.filter(type => type.length).map(type => {
       const newVariants = type.join("-");
@@ -115,7 +115,7 @@ export default class Variants extends Component<Props> {
       refId,
       "update",
       {
-        options: (value && value.options || []).concat(createEmptyData(items.options.items)),
+        options: ((value && value.options) ? value.variants : []).concat(createEmptyData(items.options.items)),
         variants: value && value.variants || []
       }
     );
@@ -133,22 +133,12 @@ export default class Variants extends Component<Props> {
   render() {
     
     const { value, items, refId, intl } = this.props;
-    // for now, use panel instead of popup to quick fix
-    // let { columns } = uiParams;
-    // columns = columns || [];
-    // columns = [
-    //   {
-    //     title: intl.formatMessage({ id: "object.variants.table.title" }),
-    //     dataIndex: "options",
-    //     key: "options"
-    //   }
-    // ].concat(columns);
     const action = Object.keys(items.variants.items.items);
-    
+    const options = (value && value.options) ? value.options : [];
     action.splice(action.indexOf("options"), 1);
     return (
       <div>
-        {(value && value.options || []).map((opt, i) => {
+        {options.map((opt, i) => {
           return (
             <Option key={i}>
               <Remove>
