@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Tree, Alert, Button, Icon, Modal } from 'antd';
+import { Input, Tree, Alert, Button, Icon, Modal } from 'antd';
 import AddModal from './addModal';
 import EditModal from './editModal';
 import update from 'lodash/update';
@@ -13,6 +13,7 @@ import type {IntlShape} from 'react-intl';
 
 const TreeNode = Tree.TreeNode;
 const confirm = Modal.confirm;
+const Search = Input.Search;
 
 const HoverableIcon = styled(Icon)`
   transition: all 300ms;
@@ -54,24 +55,34 @@ type Props = {
 type State = {
   treeData: Array<Object>,
   showEditModal: boolean,
-  showAddModal: boolean
+  showAddModal: boolean,
+  dataList: Array<Object>,
 }
 
 @injectIntl
 export default class ArrayTree extends React.Component<Props, State> {
   addModal: ?AddModal;
   editModal: ?EditModal;
+  textCol: string;
+  relationField: string;
 
   constructor(props: Props) {
     super(props);
+    const dataList = genDataList(props.value);
+    this.textCol = props.uiParams.textCol || props.items.items[props.uiParams.relationField].uiParams.textCol;
+    this.relationField = props.uiParams.relationField;
     this.state = {
       treeData: genRelationTree({
         treeData: [],
         treeMap: {},
-        data: props.value.map((v, i) => ({...v, __index: i})),
-        textCol: props.uiParams.textCol || props.items.items[props.uiParams.relationField].uiParams.textCol,
-        relationField: props.uiParams.relationField
+        data: dataList,
+        textCol: this.textCol,
+        relationField: this.relationField
       }),
+      expandedKeys: [],
+      autoExpandParent: true,
+      searchValue: '',
+      dataList: dataList,
       showEditModal: false,
       showAddModal: false
     }
@@ -79,18 +90,44 @@ export default class ArrayTree extends React.Component<Props, State> {
 
   static getDerivedStateFromProps(nextProps: Props, nextState: State) {
     const modalOpen = nextState.showAddModal || nextState.showEditModal;
+    const dataList = genDataList(nextProps.value);
     return {
       treeData: modalOpen ?
         nextState.treeData :
         genRelationTree({
           treeData: [],
           treeMap: {},
-          data: nextProps.value.map((v, i) => ({...v, __index: i})),
+          data: dataList,
           textCol: nextProps.uiParams.textCol || nextProps.items.items[nextProps.uiParams.relationField].uiParams.textCol,
           relationField: nextProps.uiParams.relationField
-        })
+        }),
+      dataList
     };
   }
+
+  onChange = (e) => {
+    const {value} = e.target;
+    const {dataList, treeData} = this.state;
+    const expandedKeys = dataList.map((item) => {
+      if (item.title.indexOf(value) > -1) {
+        return getParentKey(item.key, treeData);
+      }
+      return null;
+    }).filter((item, i, self) => item && self.indexOf(item) === i);
+    this.setState({
+      expandedKeys,
+      searchValue: value,
+      autoExpandParent: true,
+    });
+  }
+
+  onExpand = (expandedKeys) => {
+    this.setState({
+      expandedKeys,
+      autoExpandParent: false,
+    });
+  }
+
 
   confirmDelete = (index: number) => {
     const {onChange, refId, keyName, deploy, intl} = this.props;
@@ -129,17 +166,30 @@ export default class ArrayTree extends React.Component<Props, State> {
 
   render() {
     const {uiParams: {relationField}, items, title, refId, reset, onChange} = this.props;
-    const {treeData} = this.state;
-    const renderTitle = item => <Title>
-      <span style={{fontSize: 16}}>{item.title}</span>
-      <HoverableIcon style={{marginLeft: 24}} type="edit" onClick={() => this.edit(item)}/>
-      <HoverableIcon style={{marginLeft: 8}} type="cross" onClick={() => this.confirmDelete(item.__index)}/>
-    </Title>;
+    const {treeData, autoExpandParent, expandedKeys, searchValue} = this.state;
     const loop = data => data.map((item) => {
+      const index = item.title.indexOf(searchValue);
+      const beforeStr = item.title.substr(0, index);
+      const afterStr = item.title.substr(index + searchValue.length);
+      const title = index > -1 ? (
+        <Title>
+          {beforeStr}
+          <span style={{ color: '#f50' }}>{searchValue}</span>
+          {afterStr}
+          <HoverableIcon style={{marginLeft: 24}} type="edit" onClick={() => this.edit(item)}/>
+          <HoverableIcon style={{marginLeft: 8}} type="cross" onClick={() => this.confirmDelete(item.__index)}/>
+        </Title>
+      ) : (
+        <Title>
+          {item.title}
+          <HoverableIcon style={{marginLeft: 24}} type="edit" onClick={() => this.edit(item)}/>
+          <HoverableIcon style={{marginLeft: 8}} type="cross" onClick={() => this.confirmDelete(item.__index)}/>
+        </Title>
+      );
       if (item.children && item.children.length) {
-        return <TreeNode key={item.key} title={renderTitle(item)}>{loop(item.children)}</TreeNode>;
+        return <TreeNode key={item.key} title={title}>{loop(item.children)}</TreeNode>;
       }
-      return <TreeNode key={item.key} title={renderTitle(item)} />;
+      return <TreeNode key={item.key} title={title} />;
     });
     const addText = (
       <FormattedMessage
@@ -150,22 +200,27 @@ export default class ArrayTree extends React.Component<Props, State> {
 
     return (
       <React.Fragment>
-        <Button
-          type="primary"
-          style={{
-            marginBottom: '10px',
-            marginLeft: 'auto',
-            display: 'block'
-          }}
-          onClick={this.add}
-        >
-          {addText}
-        </Button>
+        <div style={{display: 'flex'}}>
+          <Search style={{ marginBottom: 10, marginRight: 24 }} placeholder="Search" onChange={this.onChange} />
+          <Button
+            type="primary"
+            style={{
+              marginBottom: '10px',
+              marginLeft: 'auto',
+              display: 'block'
+            }}
+            onClick={this.add}
+          >
+            {addText}
+          </Button>
+        </div>
         {
           treeData.length ? (
             <Tree
-              showLine
               selectable={false}
+              onExpand={this.onExpand}
+              expandedKeys={expandedKeys}
+              autoExpandParent={autoExpandParent}
             >
               {loop(treeData)}
             </Tree>
@@ -217,7 +272,6 @@ function genRelationTree({
       treeData.push({
         ...datum,
         title: datum[textCol],
-        key: datum.id,
         children: [],
         __index: datum.__index
       });
@@ -227,7 +281,6 @@ function genRelationTree({
         item.children.push({
           ...datum,
           title: datum[textCol],
-          key: datum.id,
           children: []
         });
         return item;
@@ -249,5 +302,27 @@ function genRelationTree({
     })
   }
   return treeData;
+}
 
+function getParentKey(key, tree) {
+  let parentKey;
+  for (let i = 0; i < tree.length; i++) {
+    const node = tree[i];
+    if (node.children) {
+      if (node.children.some(item => item.key === key)) {
+        parentKey = node.key;
+      } else if (getParentKey(key, node.children)) {
+        parentKey = getParentKey(key, node.children);
+      }
+    }
+  }
+  return parentKey;
+};
+
+function genDataList(value: Array<Object>) {
+  return value.map((v, i) => ({
+    ...v,
+    key: v.id,
+    __index: i
+  }));
 }
