@@ -46,7 +46,7 @@ export default class RelationTree extends PureComponent<Props, State> {
   onChange = (e, dataList, treeData) => {
     const {value} = e.target;
     const expandedKeys = dataList.map((item) => {
-      if (item.title.indexOf(value) > -1) {
+      if ((item.title || '').indexOf(value) > -1) {
         return getParentKey(item.id, treeData);
       }
       return null;
@@ -85,9 +85,9 @@ export default class RelationTree extends PureComponent<Props, State> {
     const {searchValue} = this.state;
     const checkedId = value && value.id;
     return data.map((item, index) => {
-      const matchIndex = item.title.toLowerCase().indexOf(searchValue.toLowerCase());
-      const beforeStr = item.title.substr(0, matchIndex);
-      const afterStr = item.title.substr(matchIndex + searchValue.length);
+      const matchIndex = (item.title || '').toLowerCase().indexOf(searchValue.toLowerCase());
+      const beforeStr = (item.title || '').substr(0, matchIndex);
+      const afterStr = (item.title || '').substr(matchIndex + searchValue.length);
       const title = matchIndex > -1 ? (
         <span>
           {beforeStr}
@@ -96,7 +96,7 @@ export default class RelationTree extends PureComponent<Props, State> {
         </span>
       ) : (
         <span>
-          {item.title}
+          {(item.title || '')}
         </span>
       );
       const isChecked = item.key === checkedId;

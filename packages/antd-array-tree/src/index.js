@@ -112,7 +112,7 @@ export default class ArrayTree extends React.Component<Props, State> {
     const {value} = e.target;
     const {dataList, treeData} = this.state;
     const expandedKeys = dataList.map((item) => {
-      if (item.title.indexOf(value) > -1) {
+      if ((item.title || '').indexOf(value) > -1) {
         return getParentKey(item.key, treeData);
       }
       return null;
@@ -171,9 +171,9 @@ export default class ArrayTree extends React.Component<Props, State> {
     const {uiParams: {relationField}, items, title, refId, reset, onChange} = this.props;
     const {treeData, autoExpandParent, expandedKeys, searchValue} = this.state;
     const loop = data => data.map((item) => {
-      const index = item.title.toLowerCase().indexOf(searchValue.toLowerCase());
-      const beforeStr = item.title.substr(0, index);
-      const afterStr = item.title.substr(index + searchValue.length);
+      const index = (item.title || '').toLowerCase().indexOf(searchValue.toLowerCase());
+      const beforeStr = (item.title || '').substr(0, index);
+      const afterStr = (item.title || '').substr(index + searchValue.length);
       const title = index > -1 ? (
         <Title>
           {beforeStr}
