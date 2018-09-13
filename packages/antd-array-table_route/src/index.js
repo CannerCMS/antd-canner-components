@@ -8,9 +8,16 @@ import defaultMessage, {renderValue, getIntlMessage} from "@canner/antd-locales"
 import type {FieldId, FieldItems, GotoFn} from 'types/DefaultProps';
 import {injectIntl, intlShape} from 'react-intl';
 import Toolbar from '@canner/antd-share-toolbar';
+import styled from 'styled-components';
 
 const ButtonGroup = Button.Group;
 const confirm = Modal.confirm;
+
+const Wrapper = styled.div`
+  .antd td {
+    white-space: nowrap;
+  }
+`
 
 type Props = {
   refId: FieldId,
@@ -128,37 +135,40 @@ export default class ArrayBreadcrumb extends Component<Props> {
       }
     });
     return (
-      <Toolbar
-        toolbar={toolbar}
-        dataSource={value}
-      >
-        {
-          ({value, showPagination}) => {
-            return (
-              <React.Fragment>
-                {(!createKeys || createKeys.length > 0) && (
-                  <Button
-                    type="primary"
-                    style={{
-                      marginBottom: '10px',
-                      marginLeft: 'auto',
-                      display: 'block'
-                    }}
-                    onClick={this.add}
-                  >
-                    {addText}
-                  </Button>
-                )}
-                <Table
-                  pagination={showPagination}
-                  dataSource={value}
-                  columns={newColumnsRender}
-                />
-              </React.Fragment>
-            )
+      <Wrapper>
+        <Toolbar
+          toolbar={toolbar}
+          dataSource={value}
+        >
+          {
+            ({value, showPagination}) => {
+              return (
+                <React.Fragment>
+                  {(!createKeys || createKeys.length > 0) && (
+                    <Button
+                      type="primary"
+                      style={{
+                        marginBottom: '10px',
+                        marginLeft: 'auto',
+                        display: 'block'
+                      }}
+                      onClick={this.add}
+                    >
+                      {addText}
+                    </Button>
+                  )}
+                  <Table
+                    pagination={showPagination}
+                    dataSource={value}
+                    columns={newColumnsRender}
+                    scroll={{x: true}}
+                  />
+                </React.Fragment>
+              )
+            }
           }
-        }
-      </Toolbar>
+        </Toolbar>
+      </Wrapper>
     );
   }
 }

@@ -14,7 +14,8 @@
   "dependencies": {
     "@canner/antd-locales": "^0.4.2-alpha.2",
     "@canner/antd-share-toolbar": "^0.4.2-alpha.2",
-    "prop-types": "^15.6.0"
+    "prop-types": "^15.6.0",
+    "styled-components": "^3.4.6"
   },
   "canner": {
     "cacheActions": true,

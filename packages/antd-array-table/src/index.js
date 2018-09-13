@@ -8,6 +8,7 @@ import AddModal from "./addModal";
 import { FormattedMessage } from "react-intl";
 import defaultMessage, {renderValue, getIntlMessage} from "@canner/antd-locales";
 import {injectIntl} from 'react-intl';
+import styled from 'styled-components';
 
 import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
 import type {FieldItems} from 'types/DefaultProps';
@@ -42,6 +43,12 @@ type Props = ArrayDefaultProps<FieldItem> & {
 type State = {
   showAddModal: boolean
 }
+
+const Wrapper = styled.div`
+  .antd td {
+    white-space: nowrap;
+  }
+`
 
 @injectIntl
 export default class TableArrayPlugin extends Component<Props, State> {
@@ -149,7 +156,7 @@ export default class TableArrayPlugin extends Component<Props, State> {
     }
 
     return (
-      <React.Fragment>
+      <Wrapper>
         <Toolbar
           toolbar={toolbar}
           dataSource={value}
@@ -179,6 +186,7 @@ export default class TableArrayPlugin extends Component<Props, State> {
                   pagination={showPagination}
                   dataSource={value}
                   columns={newColumnsRender}
+                  scroll={{ x: true }}
                 />
               </React.Fragment>
             )
@@ -202,7 +210,7 @@ export default class TableArrayPlugin extends Component<Props, State> {
           onChange={onChange}
           items={items.items}
         />
-      </React.Fragment>
+      </Wrapper>
     );
   }
 }
