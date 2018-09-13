@@ -51,6 +51,8 @@ import SlateDemo from './demos/object/slate_editor';
 // relation
 import SingleSelectDemo from './demos/relation/single-select';
 import MultipleSelectDemo from './demos/relation/multiple-select';
+import SingleSelectTreeDemo from './demos/relation/single-select-tree';
+import MultipleSelectTreeDemo from './demos/relation/multiple-select-tree';
 
 // indicator
 import IndicatorAmountDemo from './demos/indicator/amount';
@@ -138,6 +140,8 @@ class Demo extends Component {
             <SubMenu key="relation" title="Relation">
               <Menu.Item key="single-select">single-select</Menu.Item>
               <Menu.Item key="multiple-select">multiple-select</Menu.Item>
+              <Menu.Item key="single-select-tree">single-select-tree</Menu.Item>
+              <Menu.Item key="multiple-select-tree">multiple-select-tree</Menu.Item>
             </SubMenu>
             <SubMenu key="indicator" title="Indicator">
               <Menu.Item key="amount">amount</Menu.Item>
@@ -196,6 +200,8 @@ class Demo extends Component {
             {/* relation */}
             {selectTab === 'relation' && selectKey === 'single-select' ? <SingleSelectDemo/> : null}
             {selectTab === 'relation' && selectKey === 'multiple-select' ? <MultipleSelectDemo/> : null}
+            {selectTab === 'relation' && selectKey === 'single-select-tree' ? <SingleSelectTreeDemo/> : null}
+            {selectTab === 'relation' && selectKey === 'multiple-select-tree' ? <MultipleSelectTreeDemo/> : null}
 
             {/* indicator */}
             {selectTab === 'indicator' && selectKey === 'amount' ? <IndicatorAmountDemo/> : null}
