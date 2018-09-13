@@ -1,12 +1,13 @@
 // @flow
 import React, { PureComponent } from "react";
-import { Tree } from "antd";
+import { Tree, Input } from "antd";
 import update from 'lodash/update';
 import get from 'lodash/get';
 import {List} from 'react-content-loader'
 import type {RelationDefaultProps} from 'types/RelationDefaultProps';
 
 const TreeNode = Tree.TreeNode;
+const Search = Input.Search;
 
 type State = {
   fetching: boolean
@@ -30,8 +31,31 @@ export default class RelationTree extends PureComponent<Props, State> {
       expandedKeys: [],
       autoExpandParent: true,
       checkedKeys: [],
-      fetching: false
+      fetching: false,
+      searchValue: '',
     }
+  }
+
+  onExpand = (expandedKeys) => {
+    this.setState({
+      expandedKeys,
+      autoExpandParent: false,
+    });
+  }
+
+  onChange = (e, dataList, treeData) => {
+    const {value} = e.target;
+    const expandedKeys = dataList.map((item) => {
+      if (item.title.indexOf(value) > -1) {
+        return getParentKey(item.id, treeData);
+      }
+      return null;
+    }).filter((item, i, self) => item && self.indexOf(item) === i);
+    this.setState({
+      expandedKeys,
+      searchValue: value,
+      autoExpandParent: true,
+    });
   }
 
   onCheck = (v: Object, info: Object) => {
@@ -56,30 +80,45 @@ export default class RelationTree extends PureComponent<Props, State> {
     }
   }
 
-  renderTreeNodes = (data: Array<Object>, checkedId: Array<string>, selfId: ?string, disableCheckbox: ?boolean, id: ?string) => {
-    const {uiParams: {disabled}} = this.props;
+  renderTreeNodes = (data: Array<Object>, selfId: ?string, disableCheckbox: ?boolean, id: ?string) => {
+    const {uiParams: {disabled}, value} = this.props;
+    const {searchValue} = this.state;
+    const checkedId = value && value.id;
     return data.map((item, index) => {
+      const matchIndex = item.title.toLowerCase().indexOf(searchValue.toLowerCase());
+      const beforeStr = item.title.substr(0, matchIndex);
+      const afterStr = item.title.substr(matchIndex + searchValue.length);
+      const title = matchIndex > -1 ? (
+        <span>
+          {beforeStr}
+          <span style={{ color: '#f50' }}>{searchValue}</span>
+          {afterStr}
+        </span>
+      ) : (
+        <span>
+          {item.title}
+        </span>
+      );
       const isChecked = item.key === checkedId;
       const isSelf = item.key === selfId;
       const newId = id ? `${id}-${index}` : `${index}`;
       const isDisabledByUser = disabled ? disabled(item, newId) : false;
       if (item.children) {
         return (
-          <TreeNode title={item.title} key={item.key} dataRef={item} disableCheckbox={isSelf || disableCheckbox || isDisabledByUser}>
-            {this.renderTreeNodes(item.children, checkedId, selfId, isSelf || isChecked || disableCheckbox, newId)}
+          <TreeNode title={title} key={item.key} dataRef={item} disableCheckbox={isSelf || disableCheckbox || isDisabledByUser}>
+            {this.renderTreeNodes(item.children, selfId, isSelf || isChecked || disableCheckbox, newId)}
           </TreeNode>
         );
       }
-      return <TreeNode {...item} key={item.key} disableCheckbox={isSelf || disableCheckbox || isDisabledByUser}/>;
+      return <TreeNode {...item} title={title} key={item.key} disableCheckbox={isSelf || disableCheckbox || isDisabledByUser}/>;
     });
   }
 
   render() {
-    const {fetching} = this.state;
+    const {fetching, expandedKeys, autoExpandParent} = this.state;
     const { Toolbar, value, refId, relation, uiParams: {textCol, relationField}, rootValue } = this.props;
     const [key, index] = refId.getPathArr();
     // $FlowFixMe
-    const checkedId = value && value.id;
     const selfItem = rootValue[key][index];
     if (fetching) {
       return <List style={{maxWidth: 400}}/>;
@@ -96,16 +135,21 @@ export default class RelationTree extends PureComponent<Props, State> {
             treeMap: {}
           });
           return (
-            <Tree
-              defaultExpandAll
-              checkStrictly
-              checkable
-              onCheck={this.onCheck}
-              // $FlowFixMe
-              checkedKeys={value ? [value.id] : []}
-            >
-              {this.renderTreeNodes(treeData, checkedId, selfItem && selfItem.id)}
-            </Tree>
+            <React.Fragment>
+              <Search style={{ marginBottom: 10, marginRight: 24 }} placeholder="Search" onChange={e => this.onChange(e, relationValue, treeData)} />
+              <Tree
+                onExpand={this.onExpand}
+                expandedKeys={expandedKeys}
+                autoExpandParent={autoExpandParent}
+                checkStrictly
+                checkable
+                onCheck={this.onCheck}
+                // $FlowFixMe
+                checkedKeys={value ? [value.id] : []}
+              >
+                {this.renderTreeNodes(treeData, selfItem && selfItem.id)}
+              </Tree>
+            </React.Fragment>
           )
         }}
       </Toolbar>
@@ -163,3 +207,18 @@ function genRelationTree({
   }
   return treeData;
 }
+
+function getParentKey(key, tree) {
+  let parentKey;
+  for (let i = 0; i < tree.length; i++) {
+    const node = tree[i];
+    if (node.children) {
+      if (node.children.some(item => item.key === key)) {
+        parentKey = node.key;
+      } else if (getParentKey(key, node.children)) {
+        parentKey = getParentKey(key, node.children);
+      }
+    }
+  }
+  return parentKey;
+};

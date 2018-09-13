@@ -57,6 +57,9 @@ type State = {
   showEditModal: boolean,
   showAddModal: boolean,
   dataList: Array<Object>,
+  expandedKeys: Array<string>,
+  autoExpandParent: boolean,
+  searchValue: string,
 }
 
 @injectIntl
@@ -168,7 +171,7 @@ export default class ArrayTree extends React.Component<Props, State> {
     const {uiParams: {relationField}, items, title, refId, reset, onChange} = this.props;
     const {treeData, autoExpandParent, expandedKeys, searchValue} = this.state;
     const loop = data => data.map((item) => {
-      const index = item.title.indexOf(searchValue);
+      const index = item.title.toLowerCase().indexOf(searchValue.toLowerCase());
       const beforeStr = item.title.substr(0, index);
       const afterStr = item.title.substr(index + searchValue.length);
       const title = index > -1 ? (
