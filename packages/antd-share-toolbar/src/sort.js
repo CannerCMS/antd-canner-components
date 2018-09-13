@@ -25,16 +25,14 @@ const DownIcon = styled(Icon)`
 `
 
 type Props = {
-  sortField: ?string,
-  items: Object,
-  sort: Array<{
+  options: Array<{
     field: string,
-    label: string
+    label: string,
+    defaultOrder: 'ASC' | 'DESC'
   }>,
-  sortField: 'ASC' | 'DESC',
   changeOrder: ({
     sortField: string,
-    sortField: string
+    sortOrder: string,
   }) => void,
   defaultField: string
 }
@@ -54,10 +52,17 @@ export default class Sort extends Component<Props, State> {
   }
 
   componentDidMount() {
-    const {defaultField} = this.props; 
+    const {defaultField, options} = this.props; 
+    const field = options.find(option => option.field === defaultField);
     if (defaultField) {
       this.onChange(defaultField);
     }
+    if (field) {
+      this.setState({
+        sortOrder: field.defaultOrder ? field.defaultOrder.toUpperCase() : 'ASC'
+      });
+    }
+    
   }
 
   onChange = (value: string) => {
@@ -66,7 +71,7 @@ export default class Sort extends Component<Props, State> {
     }, this.submit);
   }
 
-  changeOrder = () => {
+  changeOrder = (order) => {
     this.setState({
       order: !this.state.order,
     }, this.submit);

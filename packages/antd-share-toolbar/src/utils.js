@@ -24,9 +24,15 @@ export function passCondition(data: any, condition: Object) {
     let isPass = true;
     const conditionValue = condition[conditionKey];
     switch(conditionKey) {
-      case 'contains':
-        isPass = data && data.indexOf(conditionValue) !== -1;
+      case 'contains': {
+        if (typeof data === 'string') {
+          isPass = data && data.toLowerCase().indexOf(conditionValue.toLowerCase()) !== -1;
+        } else if (Array.isArray(data) && data.length) {
+          const lowerCaseData = data.map(d => d.toLowerCase());
+          isPass = lowerCaseData.indexOf(conditionValue.toLowerCase()) !== -1;
+        }
         break;
+      }
       case 'eq':
         isPass = data === conditionValue;
         break;
