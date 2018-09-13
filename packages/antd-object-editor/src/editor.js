@@ -52,7 +52,6 @@ export default class Editor extends PureComponent<Props, State> {
   }
 
   render() {
-    console.log('hihihi')
     const {value} = this.props;
     return (
       <ReactQuill
