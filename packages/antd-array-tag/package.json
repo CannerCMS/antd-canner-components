@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-array-tag",
-  "version": "0.4.2-alpha.7",
+  "version": "0.4.2-alpha.8",
   "description": "array tag",
   "main": "lib/index.js",
   "scripts": {},
@@ -12,7 +12,7 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/antd-locales": "^0.4.2-alpha.7"
+    "@canner/antd-locales": "^0.4.2-alpha.8"
   },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0 || ^16.0.0"

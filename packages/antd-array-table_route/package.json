@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-array-table_route",
-  "version": "0.4.2-alpha.7",
+  "version": "0.4.2-alpha.8",
   "description": "array table-route",
   "main": "lib/index.js",
   "scripts": {},
@@ -15,8 +15,8 @@
     "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
-    "@canner/antd-locales": "^0.4.2-alpha.7",
-    "@canner/antd-share-toolbar": "^0.4.2-alpha.7",
+    "@canner/antd-locales": "^0.4.2-alpha.8",
+    "@canner/antd-share-toolbar": "^0.4.2-alpha.8",
     "styled-components": "^3.4.6"
   },
   "canner": {

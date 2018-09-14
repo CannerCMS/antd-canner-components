@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-relation-multiple_select_tree",
-  "version": "0.4.2-alpha.7",
+  "version": "0.4.2-alpha.8",
   "description": "relation multiple selection with tree",
   "main": "lib/index.js",
   "scripts": {},
