@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-array-gallery",
-  "version": "0.4.2-alpha.6",
+  "version": "0.4.2-alpha.7",
   "description": "array gallery",
   "main": "lib/index.js",
   "keywords": [
