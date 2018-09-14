@@ -71,7 +71,7 @@ export default class Sort extends Component<Props, State> {
     }, this.submit);
   }
 
-  changeOrder = (order) => {
+  changeOrder = () => {
     this.setState({
       order: !this.state.order,
     }, this.submit);
@@ -87,12 +87,12 @@ export default class Sort extends Component<Props, State> {
   }
 
   render() {
-    const {sort, defaultField} = this.props;
+    const {options, defaultField} = this.props;
     const {key, order} = this.state;
     return (
       <div style={{display: 'flex'}}>
         <Selector onChange={this.onChange} value={key} defaultValue={defaultField} allowClear placeholder={<FormattedMessage id="query.sort.placeholder"/>}>
-          {(sort || []).map((cond, i) => <Option key={i} value={cond.field}>{cond.label}</Option>)}
+          {(options || []).map((option, i) => <Option key={i} value={option.field}>{option.label}</Option>)}
         </Selector>
         <OrderSwitch onClick={this.changeOrder}>
           <UpIcon order={order} type="caret-up" />

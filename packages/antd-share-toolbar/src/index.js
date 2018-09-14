@@ -145,7 +145,7 @@ export default class Toolbar extends React.PureComponent<Props, State> {
       Sort={sorter ? <SortComponent
         {...sorter}
         defaultField={sorter.defaultField}
-        sort={sorter.sort || []}
+        options={sorter.options || []}
         changeOrder={this.changeOrder}
         sortField={this.state.sorter.sortField}
         sortType={this.state.sorter.sortType}
