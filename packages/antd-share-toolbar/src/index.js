@@ -54,7 +54,7 @@ export default class Toolbar extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     this.async = props.toolbar && props.toolbar.async;
-    this.permanentFilter = (props.toolbar.filter && props.toolbar.filter.permanentFilter) || {};
+    this.permanentFilter = (props.toolbar && props.toolbar.filter && props.toolbar.filter.permanentFilter) || {};
     this.state = {
       sorter: {},
       where: {...this.permanentFilter},
