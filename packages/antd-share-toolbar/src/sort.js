@@ -59,7 +59,7 @@ export default class Sort extends Component<Props, State> {
     }
     if (field) {
       this.setState({
-        sortOrder: field.defaultOrder ? field.defaultOrder.toUpperCase() : 'ASC'
+        order: order(field.defaultOrder ? field.defaultOrder.toUpperCase() : 'ASC')
       });
     }
     

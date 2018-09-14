@@ -54,9 +54,10 @@ export default class Toolbar extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     this.async = props.toolbar && props.toolbar.async;
+    this.permanentFilter = (props.toolbar.filter && props.toolbar.filter.permanentFilter) || {};
     this.state = {
       sorter: {},
-      where: {},
+      where: {...this.permanentFilter},
       current: 1,
       pageSize: 10,
       displayedFilterIndexs: []
@@ -82,7 +83,7 @@ export default class Toolbar extends React.PureComponent<Props, State> {
 
   changeFilter = (where: Object) => {
     this.setState({
-      where: {...where},
+      where: {...where, ...this.permanentFilter},
       current: 1
     });
   }
