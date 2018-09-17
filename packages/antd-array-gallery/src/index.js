@@ -7,8 +7,6 @@ import { Item } from 'canner-helpers';
 import {injectIntl} from 'react-intl';
 const {confirm} = Modal;
 
-import type ImageServiceConfig from "@canner/image-service-config/lib/imageService";
-
 // types
 import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
 import {intlShape} from 'react-intl';
@@ -27,7 +25,7 @@ type Props = ArrayDefaultProps<FieldItem> & {
     imageKey: string,
     disableDrag: boolean
   },
-  imageServiceConfig: ImageServiceConfig,
+  imageStorage: any,
   intl: intlShape
 };
 
@@ -91,7 +89,7 @@ export default class ArrayGallery extends Component<Props> {
   };
 
   render() {
-    const { value, refId, imageServiceConfig, uiParams } = this.props;
+    const { value, refId, imageStorage, uiParams } = this.props;
     const galleryValue = value.map(photo => photo[this.imageKey].url);
 
     return (
@@ -109,7 +107,7 @@ export default class ArrayGallery extends Component<Props> {
           onCreate={this.createImages}
           onSwap={this.onSwap}
           // $FlowFixMe
-          serviceConfig={imageServiceConfig}
+          imageStorage={imageStorage}
           />
       </div>
     );

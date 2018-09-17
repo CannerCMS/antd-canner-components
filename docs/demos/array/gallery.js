@@ -2,7 +2,7 @@
 import * as React from 'react';
 import Gallery from 'packages/antd-array-gallery';
 import cmsLocale from 'packages/antd-locales';
-import {ImgurService} from "@canner/image-service-config";
+import {ImgurStorage} from "@canner/canner-storage";
 import RefId from 'canner-ref-id';
 import {IntlProvider} from 'react-intl';
 import {Divider} from 'antd';
@@ -42,7 +42,7 @@ export default class GalleryDemo extends React.Component<ArrayTypes<any>> {
           <Gallery
             value={value}
             refId={new RefId("gallery")}
-            imageServiceConfig={new ImgurService({
+            imageStorage={new ImgurStorage({
               mashapeKey: '<mashapeKey>',
               clientId: '<clientId>'
             })}

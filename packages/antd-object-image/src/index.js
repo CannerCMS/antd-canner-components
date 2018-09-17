@@ -6,7 +6,6 @@ import defaultMessage from '@canner/antd-locales';
 import {isArray} from 'lodash';
 import { Button } from "antd";
 import {FormattedMessage} from "react-intl";
-import type ImageServiceConfig from "@canner/image-service-config/lib/imageService";
 
 // type
 import type {ObjectDefaultProps} from 'types/ObjectDefaultProps';
@@ -18,7 +17,7 @@ type Props = ObjectDefaultProps & {
     filename: string
   },
   disabled: boolean,
-  imageServiceConfig: ImageServiceConfig,
+  imageStorage: any
 };
 
 type State = {
@@ -62,7 +61,7 @@ export default class Image extends PureComponent<Props, State> {
   };
 
   render() {
-    const { value, disabled, imageServiceConfig } = this.props;
+    const { value, disabled, imageStorage } = this.props;
     const { editPopup } = this.state;
     // if the image exist show it, otherwise let user upload.
     if (value && value.url) {
@@ -82,7 +81,7 @@ export default class Image extends PureComponent<Props, State> {
         <EditImage
           onChange={this.onChange}
           editPopup={editPopup}
-          serviceConfig={imageServiceConfig}
+          imageStorage={imageStorage}
           closeEditPopup={this.closeEditPopup}
           multiple={false}
         />
