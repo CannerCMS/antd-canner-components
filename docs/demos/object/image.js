@@ -7,7 +7,7 @@ import {Divider} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../types';
 import RefId from 'canner-ref-id';
-import {ImgurService} from "@canner/image-service-config";
+import {ImgurStorage} from "@canner/canner-storage";
 
 const defaultValue = {
   contentType: "image/png",
@@ -99,7 +99,7 @@ class ImageDemo4 extends Component<PrimitiveTypes<string>> {
             value={value}
             uiParams={{service: 'imgur'}}
             onChange={onChange}
-            imageServiceConfig={new ImgurService({
+            imageStorage={new ImgurStorage({
               mashapeKey: '<mashapeKey>',
               clientId: '<clientId>'
             })}
