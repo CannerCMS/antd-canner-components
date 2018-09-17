@@ -42,6 +42,32 @@ export default class TreeDemo extends Component<ArrayTypes<any>> {
             textCol: 'title',
             relationField: 'ref'
           }}
+          toolbar={{
+            actions: {
+              filterButton: true
+            },
+            filter: {
+              filters: [{
+                label: "status",
+                type: 'select',
+                options: [{
+                  text: 'contain title',
+                  condition: {
+                    title: {
+                      contains: 'title'
+                    }
+                  }
+                }, {
+                  text: 'contain name',
+                  condition: {
+                    title: {
+                      contains: 'name'
+                    }
+                  }
+                }]
+              }]
+            }
+          }}
           items={{
             type: "object",
             items: {
