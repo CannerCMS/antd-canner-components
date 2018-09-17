@@ -95,6 +95,18 @@ class MultiSelectDemo extends React.Component<ArrayTypes<string>> {
                 }
               }
             }}}
+            toolbar={{
+              actions: {
+                filterButton: true
+              },
+              filter: {
+                filters: [{
+                  type: 'text',
+                  label: 'text',
+                  field: 'title'
+                }]
+              }
+            }}
             rootValue={{relation: dataList}}
             Toolbar={({children}) => children(dataList)}
             relationValue={connection}

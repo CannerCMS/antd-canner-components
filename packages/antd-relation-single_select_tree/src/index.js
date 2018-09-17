@@ -4,6 +4,7 @@ import { Tree, Input } from "antd";
 import update from 'lodash/update';
 import get from 'lodash/get';
 import {List} from 'react-content-loader'
+import SyncToolbar from '@canner/antd-share-toolbar';
 import type {RelationDefaultProps} from 'types/RelationDefaultProps';
 
 const TreeNode = Tree.TreeNode;
@@ -116,7 +117,7 @@ export default class RelationTree extends PureComponent<Props, State> {
 
   render() {
     const {fetching, expandedKeys, autoExpandParent} = this.state;
-    const { Toolbar, value, refId, relation, uiParams: {textCol, relationField}, rootValue } = this.props;
+    const { Toolbar, value, toolbar, refId, relation, uiParams: {textCol, relationField}, rootValue } = this.props;
     const [key, index] = refId.getPathArr();
     // $FlowFixMe
     const selfItem = rootValue[key][index];
@@ -127,29 +128,40 @@ export default class RelationTree extends PureComponent<Props, State> {
     return (
       <Toolbar>
         {relationValue => {
-          const treeData = genRelationTree({
-            data: relation.to === key ? relationValue.concat(selfItem) : relationValue,
-            textCol,
-            relationField,
-            treeData: [],
-            treeMap: {}
-          });
           return (
-            <React.Fragment>
-              <Search style={{ marginBottom: 10, marginRight: 24 }} placeholder="Search" onChange={e => this.onChange(e, relationValue, treeData)} />
-              <Tree
-                onExpand={this.onExpand}
-                expandedKeys={expandedKeys}
-                autoExpandParent={autoExpandParent}
-                checkStrictly
-                checkable
-                onCheck={this.onCheck}
-                // $FlowFixMe
-                checkedKeys={value ? [value.id] : []}
-              >
-                {this.renderTreeNodes(treeData, selfItem && selfItem.id)}
-              </Tree>
-            </React.Fragment>
+            <SyncToolbar
+              dataSource={relationValue}
+              toolbar={toolbar}
+            >
+              {
+                props => {
+                  const treeData = genRelationTree({
+                    data: relation.to === key ? props.value.concat(selfItem) : props.value,
+                    textCol,
+                    relationField,
+                    treeData: [],
+                    treeMap: {}
+                  });
+                  return (
+                    <React.Fragment>
+                      <Search style={{ marginBottom: 10, marginRight: 24 }} placeholder="Search" onChange={e => this.onChange(e, relationValue, treeData)} />
+                      <Tree
+                        onExpand={this.onExpand}
+                        expandedKeys={expandedKeys}
+                        autoExpandParent={autoExpandParent}
+                        checkStrictly
+                        checkable
+                        onCheck={this.onCheck}
+                        // $FlowFixMe
+                        checkedKeys={value ? [value.id] : []}
+                      >
+                        {this.renderTreeNodes(treeData, selfItem && selfItem.id)}
+                      </Tree>
+                    </React.Fragment>
+                  )
+                }
+              }
+            </SyncToolbar>
           )
         }}
       </Toolbar>

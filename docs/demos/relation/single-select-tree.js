@@ -83,6 +83,18 @@ class SingleSelectTreeDemo extends React.Component<ArrayTypes<string>> {
               }],
               relationField: 'relation'
             }}
+            toolbar={{
+              actions: {
+                filterButton: true
+              },
+              filter: {
+                filters: [{
+                  type: 'text',
+                  label: 'text',
+                  field: 'title'
+                }]
+              }
+            }}
             subscribe={() => ({unsubscribe: () => {}})}
             updateQuery={console.log}
             refId={new RefId("relation/0/relation")}

@@ -16,7 +16,7 @@ export default class TextFilter extends Component {
     const {value} = e.target;
     if (!value) {
       onChange({
-        [name.splice('.')[0]]: undefined
+        [(name || '').split('.')[0]]: undefined
       });
     } else {
       onChange(set({}, `${name}.contains`, value));
