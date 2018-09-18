@@ -24,6 +24,18 @@ type State = {
   editPopup: boolean
 };
 
+type CustomRequestArgs = {
+  onProgress: (event: { percent: number }) => void,
+  onError: (event: Error, body?: Object) => void,
+  onSuccess: (body: Object) => void,
+  data: Object,
+  filename: String,
+  file: File,
+  withCredentials: Boolean,
+  action: String,
+  headers: Object
+};
+
 export default class Image extends PureComponent<Props, State> {
   state = {
     editPopup: false
@@ -81,7 +93,14 @@ export default class Image extends PureComponent<Props, State> {
         <EditImage
           onChange={this.onChange}
           editPopup={editPopup}
-          imageStorage={imageStorage}
+          serviceConfig={{
+            customRequest: (obj: CustomRequestArgs) => {
+              const {file, onProgress, onSuccess, onError} = obj;
+              imageStorage
+                .upload(file, file.name, onProgress)
+                .then(onSuccess)
+                .catch(onError);
+          }}}/>
           closeEditPopup={this.closeEditPopup}
           multiple={false}
         />

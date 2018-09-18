@@ -29,6 +29,19 @@ type Props = ArrayDefaultProps<FieldItem> & {
   intl: intlShape
 };
 
+type CustomRequestArgs = {
+  onProgress: (event: { percent: number }) => void,
+  onError: (event: Error, body?: Object) => void,
+  onSuccess: (body: Object) => void,
+  data: Object,
+  filename: String,
+  file: File,
+  withCredentials: Boolean,
+  action: String,
+  headers: Object
+};
+
+
 @injectIntl
 export default class ArrayGallery extends Component<Props> {
   imageKey: string;
@@ -107,8 +120,14 @@ export default class ArrayGallery extends Component<Props> {
           onCreate={this.createImages}
           onSwap={this.onSwap}
           // $FlowFixMe
-          imageStorage={imageStorage}
-          />
+          serviceConfig={{
+            customRequest: (obj: CustomRequestArgs) => {
+              const {file, onProgress, onSuccess, onError} = obj;
+              imageStorage
+                .upload(file, file.name, onProgress)
+                .then(onSuccess)
+                .catch(onError);
+          }}}/>
       </div>
     );
   }
