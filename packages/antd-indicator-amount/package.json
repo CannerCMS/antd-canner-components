@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-indicator-amount",
-  "version": "0.4.2-alpha.10",
+  "version": "0.4.2-alpha.11",
   "description": "indicator amount",
   "main": "lib/index.js",
   "scripts": {},
