@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-object-editor",
-  "version": "0.4.2-alpha.9",
+  "version": "0.4.2-alpha.10",
   "description": "object editor",
   "main": "lib/index.js",
   "scripts": {},

@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-boolean-switch",
-  "version": "0.4.2-alpha.9",
+  "version": "0.4.2-alpha.10",
   "description": "boolean-switch",
   "main": "lib/index.js",
   "scripts": {},
