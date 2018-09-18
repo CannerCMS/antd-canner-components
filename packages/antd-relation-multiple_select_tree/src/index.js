@@ -131,7 +131,7 @@ export default class MultipleRelationTree extends PureComponent<Props, State> {
           return (
             <SyncToolbar
               dataSource={relationValue}
-              toolbar={toolbar}
+              toolbar={{...toolbar, pagination: false}}
             >
               {
                 props => {

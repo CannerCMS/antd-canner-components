@@ -96,7 +96,7 @@ export default class ArrayTree extends React.Component<Props, State> {
     return (
       <React.Fragment>
         <Toolbar
-          toolbar={toolbar}
+          toolbar={{...toolbar, pagination: false}}
           dataSource={value}
         >
           {
