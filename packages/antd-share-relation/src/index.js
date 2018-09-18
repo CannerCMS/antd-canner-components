@@ -2,7 +2,7 @@
 import * as React from 'react';
 import {Modal, Table} from 'antd';
 import type {FieldId} from 'types/DefaultProps';
-import {isEqual} from 'lodash';
+import {isEqual, get} from 'lodash';
 import SyncToolbar from '@canner/antd-share-toolbar';
 
 type Props = {
@@ -28,6 +28,7 @@ type Props = {
   }>,
   showPagination: boolean,
   subscribe: Function,
+  rootValue: Object,
   Toolbar: React.ComponentType<*>
 };
 
@@ -92,8 +93,9 @@ export default class Picker extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { visible, columns, pickOne = false, Toolbar, toolbar } = this.props;
+    const { visible, columns, pickOne = false, Toolbar, toolbar, rootValue, refId } = this.props;
     const { selectedRowKeys} = this.state;
+    const recordValue = get(rootValue, refId.remove().getPathArr());
     return <Modal
       width={800}
       onOk={this.handleOk}
@@ -103,7 +105,11 @@ export default class Picker extends React.PureComponent<Props, State> {
       <Toolbar>
         {
           dataSource => (
-            <SyncToolbar dataSource={dataSource} toolbar={toolbar}>
+            <SyncToolbar
+              dataSource={dataSource}
+              toolbar={toolbar}
+              recordValue={recordValue}
+            >
               {
                 ({value, showPagination}) => (
                   <Table

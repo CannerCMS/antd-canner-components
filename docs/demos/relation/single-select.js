@@ -46,9 +46,9 @@ const connection = {
 };
 
 // $FlowFixMe
-const value = connection.edges.map(edge => edge.node);
+const originValue = connection.edges.map(edge => edge.node);
 
-@ExampleArrayValueWrapper(value[0])
+@ExampleArrayValueWrapper(originValue[0])
 class SingleSelectDemo extends React.Component<ArrayTypes<string>> {
   render() {
     const {value, onChange} = this.props;
@@ -71,7 +71,7 @@ class SingleSelectDemo extends React.Component<ArrayTypes<string>> {
                 dataIndex: 'title'
               }]
             }}
-            Toolbar={({children}) => React.cloneElement(children)}
+            Toolbar={({children}) => <div>{children(originValue)}</div>}
             relationValue={connection}
             subscribe={() => ({unsubscribe: () => {}})}
             updateQuery={console.log}

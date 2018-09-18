@@ -2,6 +2,7 @@
 
 import React, { Component } from "react";
 import { Table, Button } from "antd";
+import {get} from 'lodash';
 import showDeleteConfirm from "./showDeleteConfirm";
 import EditModal from "./editModal";
 import AddModal from "./addModal";
@@ -86,7 +87,8 @@ export default class TableArrayPlugin extends Component<Props, State> {
       intl,
       reset,
       toolbar,
-      goTo
+      goTo,
+      rootValue
     } = this.props;
     const {
       value
@@ -117,7 +119,7 @@ export default class TableArrayPlugin extends Component<Props, State> {
       reset,
       deploy
     });
-
+    const recordValue = get(rootValue, refId.remove().getPathArr());
     if ((!updateKeys || updateKeys.length > 0) || !disableDelete) {
       newColumnsRender.push({
         title: intl.formatMessage({ id: "array.table.actions" }),
@@ -160,6 +162,7 @@ export default class TableArrayPlugin extends Component<Props, State> {
         <Toolbar
           toolbar={toolbar}
           dataSource={value}
+          recordValue={recordValue}
         >
         {
           ({value, showPagination}) => {

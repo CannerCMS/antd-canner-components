@@ -77,7 +77,7 @@ export default class RelationTable extends React.PureComponent<Props, State> {
     const { modalVisible } = this.state;
     let { disabled, value, uiParams = {}, refId, relation,
       fetch, fetchRelation, updateQuery, subscribe, intl,
-      schema, Toolbar, relationValue, toolbar
+      schema, Toolbar, relationValue, toolbar, rootValue
     } = this.props;
     value = value || [];
     const newColumns = uiParams.columns.map(column => {
@@ -105,6 +105,7 @@ export default class RelationTable extends React.PureComponent<Props, State> {
         }
         {
           !disabled && <Picker
+            rootValue={rootValue}
             visible={modalVisible}
             onOk={this.handleOk}
             onCancel={this.handleCancel}

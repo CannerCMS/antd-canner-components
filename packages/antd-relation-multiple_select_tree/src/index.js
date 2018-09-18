@@ -4,6 +4,7 @@ import React, { PureComponent } from 'react';
 import { Tree, Input } from 'antd';
 import update from 'lodash/update';
 import difference from 'lodash/difference';
+import get from 'lodash/get';
 import {List} from 'react-content-loader';
 import SyncToolbar from '@canner/antd-share-toolbar';
 
@@ -124,7 +125,7 @@ export default class MultipleRelationTree extends PureComponent<Props, State> {
     if (fetching) {
       return <List style={{maxWidth: 400}}/>;
     }
-
+    const recordValue = get(rootValue, refId.remove().getPathArr());
     return (
       <Toolbar>
         {relationValue => {
@@ -132,6 +133,7 @@ export default class MultipleRelationTree extends PureComponent<Props, State> {
             <SyncToolbar
               dataSource={relationValue}
               toolbar={{...toolbar, pagination: false}}
+              recordValue={recordValue}
             >
               {
                 props => {

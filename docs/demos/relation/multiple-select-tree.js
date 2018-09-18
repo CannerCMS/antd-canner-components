@@ -100,6 +100,10 @@ class MultiSelectDemo extends React.Component<ArrayTypes<string>> {
                 filterButton: true
               },
               filter: {
+                permanentFilter: () => {
+                  return {
+                  };
+                },
                 filters: [{
                   type: 'text',
                   label: 'text',

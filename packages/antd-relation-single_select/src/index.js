@@ -22,7 +22,8 @@ type Props = RelationDefaultProps & {
   value: any,
   subscribe: Function,
   disabled: FieldDisabled,
-  updateQuery: Function
+  updateQuery: Function,
+  rootValue: Object
 };
 
 export default class RelationOneId extends PureComponent<Props, State> {
@@ -66,7 +67,7 @@ export default class RelationOneId extends PureComponent<Props, State> {
 
   render() {
     const { modalVisible } = this.state;
-    const { disabled, value, uiParams, refId, relation, fetch, fetchRelation, subscribe, updateQuery, relationValue, Toolbar, toolbar } = this.props;
+    const { disabled, value, uiParams, refId, relation, fetch, fetchRelation, subscribe, updateQuery, relationValue, Toolbar, toolbar, rootValue } = this.props;
     return (
       <div>
         {
@@ -88,6 +89,7 @@ export default class RelationOneId extends PureComponent<Props, State> {
         </Tag>
         {
           !disabled && <Picker
+            rootValue={rootValue}
             fetch={fetch}
             subscribe={subscribe}
             fetchRelation={fetchRelation}

@@ -46,9 +46,9 @@ const connection = {
 };
 
 // $FlowFixMe
-const value = connection.edges.map(edge => edge.node);
+const originValue = connection.edges.map(edge => edge.node);
 
-@ExampleArrayValueWrapper(value)
+@ExampleArrayValueWrapper(originValue)
 class MultiSelectDemo extends React.Component<ArrayTypes<string>> {
   render() {
     const {value, onChange} = this.props;
@@ -83,7 +83,7 @@ class MultiSelectDemo extends React.Component<ArrayTypes<string>> {
                 }
               }
             }}}
-            Toolbar={({children}) => React.cloneElement(children)}
+            Toolbar={({children}) => <div>{children(originValue)}</div>}
             relationValue={connection}
             subscribe={() => ({unsubscribe: () => {}})}
             updateQuery={console.log}

@@ -124,6 +124,7 @@ export default class RelationTree extends PureComponent<Props, State> {
     if (fetching) {
       return <List style={{maxWidth: 400}}/>;
     }
+    const recordValue = get(rootValue, refId.remove().getPathArr());
 
     return (
       <Toolbar>
@@ -132,6 +133,7 @@ export default class RelationTree extends PureComponent<Props, State> {
             <SyncToolbar
               dataSource={relationValue}
               toolbar={{...toolbar, pagination: false}}
+              recordValue={recordValue}
             >
               {
                 props => {
