@@ -53,11 +53,28 @@ export default class Toolbar extends React.PureComponent<Props, State> {
 
   constructor(props: Props) {
     super(props);
-    this.async = props.toolbar && props.toolbar.async;
-    this.permanentFilter = (props.toolbar && props.toolbar.filter && props.toolbar.filter.permanentFilter) || {};
+    const {toolbar = {}} = props;
+    this.async = toolbar && toolbar.async;
+    this.permanentFilter = {};
+    this.alwaysDisplayFilterIndexs = [];
+    let defaultWhere = {};
+    if (toolbar.filter) {
+      this.permanentFilter = toolbar.filter.permanentFilter || {};
+      this.alwaysDisplayFilterIndexs = (toolbar.filter.filters || [])
+        .map((filter, i) => ({...filter, __index: i}))
+        .filter(filter => filter.alwaysDisplay)
+        .map(filter => filter.__index);
+      const defaultFilter = toolbar.filter.filters.find(item => {
+        return item.type === 'select' &&
+          'defaultOptionIndex' in item;
+      });
+      if (defaultFilter) {
+        defaultWhere = defaultFilter.options[defaultFilter.defaultOptionIndex].condition;
+      }
+    }
     this.state = {
       sorter: {},
-      where: {...this.permanentFilter},
+      where: {...this.permanentFilter, ...defaultWhere},
       current: 1,
       pageSize: 10,
       displayedFilterIndexs: []
@@ -140,7 +157,7 @@ export default class Toolbar extends React.PureComponent<Props, State> {
       Actions={actions ? <ActionsComponent
         {...actions}
         filters={filter && filter.filters || []}
-        displayedFilters={displayedFilterIndexs}
+        displayedFilters={[...displayedFilterIndexs, ...this.alwaysDisplayFilterIndexs]}
         addFilter={this.addFilter}
       /> : <div />}
       Sort={sorter ? <SortComponent
@@ -162,7 +179,7 @@ export default class Toolbar extends React.PureComponent<Props, State> {
       Filter={filter ? <FilterComponent
         async={toolbar.async}
         {...filter}
-        displayedFilters={displayedFilterIndexs}
+        displayedFilters={[...displayedFilterIndexs, ...this.alwaysDisplayFilterIndexs]}
         where={this.state.where}
         changeFilter={this.changeFilter}
         deleteFilter={this.deleteFilter}

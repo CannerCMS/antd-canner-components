@@ -113,7 +113,7 @@ export default class FilterGroup extends React.Component<Props, State> {
     const renderFilter = (filter) => {
       switch (filter.type) {
         case 'select':
-          return <SelectFilter onChange={debounceChange} options={filter.options} where={where} placeholder={filter.placeholder}/>;
+          return <SelectFilter onChange={debounceChange} where={where} {...filter} />;
         case 'number':
           return <NumberFilter onChange={debounceChange} name={filter.field} where={where} placeholder={filter.placeholder}/>;
         /*
@@ -127,13 +127,17 @@ export default class FilterGroup extends React.Component<Props, State> {
       }
     }
     return (
-      <div style={{marginTop: 16}}>
+      <div style={{marginTop: 16, marginBottom: 16}}>
         {
           displayedFilters.map(index => (
             <FilterWrapper key={index}>
               <h5>{filters[index].label}</h5>
               {renderFilter(filters[index])}
-              <Icon type="close-circle-o" onClick={() => this.deleteFilter(index)} />
+              {
+                !filters[index].alwaysDisplay && (
+                  <Icon type="close-circle-o" onClick={() => this.deleteFilter(index)} />
+                )
+              }
             </FilterWrapper>
             
           ))
