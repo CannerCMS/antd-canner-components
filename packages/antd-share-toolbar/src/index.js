@@ -7,11 +7,12 @@ import Sort from './sort';
 import Filter from './filter';
 import Actions from './actions';
 import toLower from 'lodash/toLower';
-import {paginate, filterWith, sortWith} from './utils';
+import {paginate, filterWith, sortWith, getPermanentFilter} from './utils';
 
 type Props = {
   children: Function,
   dataSource: Array<Object>,
+  recordValue: any,
   toolbar: {
     async: boolean,
     actions?: {
@@ -53,13 +54,13 @@ export default class Toolbar extends React.PureComponent<Props, State> {
 
   constructor(props: Props) {
     super(props);
-    const {toolbar = {}} = props;
-    this.async = toolbar && toolbar.async;
+    const {toolbar = {}, recordValue} = props;
+    this.async = toolbar.async || false;
     this.permanentFilter = {};
     this.alwaysDisplayFilterIndexs = [];
     let defaultWhere = {};
     if (toolbar.filter) {
-      this.permanentFilter = toolbar.filter.permanentFilter || {};
+      this.permanentFilter = getPermanentFilter(toolbar, recordValue);
       this.alwaysDisplayFilterIndexs = (toolbar.filter.filters || [])
         .map((filter, i) => ({...filter, __index: i}))
         .filter(filter => filter.alwaysDisplay)

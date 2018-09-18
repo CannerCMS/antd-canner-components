@@ -55,3 +55,13 @@ export function passCondition(data: any, condition: Object) {
     return result && isPass;
   }, true);
 }
+
+export function getPermanentFilter(toolbar, recordValue) {
+  if (toolbar && toolbar.filter && toolbar.filter.permanentFilter) {
+    if (typeof toolbar.filter.permanentFilter === 'function' && recordValue) {
+      return toolbar.filter.permanentFilter(recordValue);
+    } else if (typeof toolbar.filter.permanentFilter === 'object') {
+      return toolbar.filter.permanentFilter;
+    }
+  }
+}
