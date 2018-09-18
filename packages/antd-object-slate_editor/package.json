@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-object-slate_editor",
-  "version": "0.4.2-alpha.11",
+  "version": "0.4.2-alpha.12",
   "description": "object editor",
   "main": "lib/index.js",
   "scripts": {},
