@@ -15,9 +15,6 @@ type State = {
 
 type Props = RelationDefaultProps & {
   uiParams: {
-    textCol: string,
-    subtextCol: string,
-    renderText?: string,
     columns: Array<*>,
     connectName: string
   },

@@ -15,9 +15,7 @@ type State = {
 
 type Props = RelationDefaultProps & {
   uiParams: {
-    textCol: string,
-    subtextCol: string,
-    renderText?: string,
+    textCol: string | any => string,
     columns: Array<*>
   },
   rootValue: any,
@@ -114,26 +112,15 @@ export default class RelationOneId extends PureComponent<Props, State> {
 }
 
 function getTag(v: {[string]: any}, uiParams: {
-  textCol: string,
-  subtextCol: string,
-  renderText?: string  
+  textCol: string | any => string
 }): string {
-  // use value and uiParams to generateTagName
-  const {textCol, subtextCol, renderText} = uiParams;
-  let tag = '';
-  if (renderText) {
-    // if there is renderText, textCol and subtextCol will be ignored;
-    const compiler = template(renderText);
-    try {
-      tag = compiler(v);
-    } catch (e) {
-      throw e;
-    }
-  } else {
-    const text = v[textCol];
-    const subtext = v[subtextCol];
-    tag = text + (subtext ? `(${subtext})` : '');
+  const {textCol} = uiParams;
+  const type = typeof textCol;
+  if (type === 'function') {
+    return textCol(v);
   }
-
-  return tag;
+  if (type === 'string') {
+    return v[textCol];
+  }
+  return textCol;
 }

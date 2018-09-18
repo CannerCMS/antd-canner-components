@@ -16,7 +16,7 @@ type State = {
 
 type Props = RelationDefaultProps & {
   uiParams: {
-    textCol: string,
+    textCol: string | any => string,
     relationField: string,
     disabled: (data: Object, key: string) => boolean
   },
@@ -184,10 +184,11 @@ function genRelationTree({
       return;
     }
     const parent = datum[relationField];
+    const title = typeof textCol === 'function' ? textCol(datum) : datum[textCol];
     if (!parent || !parent.id || datum.id === parent.id) {
       treeMap[datum.id] = `[${treeData.length}]`;
       treeData.push({
-        title: datum[textCol],
+        title,
         key: datum.id,
         children: []
       });
@@ -195,7 +196,7 @@ function genRelationTree({
       treeData = update(treeData, treeMap[parent.id], item => {
         treeMap[datum.id] = `${treeMap[parent.id]}.children[${item.children.length}]`;
         item.children.push({
-          title: datum[textCol],
+          title,
           key: datum.id,
           children: []
         });

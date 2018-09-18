@@ -203,11 +203,12 @@ function genRelationTree({
       return;
     }
     const parent = datum[relationField];
+    const title = typeof textCol === 'function' ? textCol(datum) : datum[textCol];
     if (!parent || !parent.id || datum.id === parent.id) {
       treeMap[datum.id] = `[${treeData.length}]`;
       treeData.push({
         ...datum,
-        title: datum[textCol],
+        title,
         children: [],
         __index: datum.__index
       });
@@ -216,7 +217,7 @@ function genRelationTree({
         treeMap[datum.id] = `${treeMap[parent.id]}.children[${item.children.length}]`;
         item.children.push({
           ...datum,
-          title: datum[textCol],
+          title,
           children: []
         });
         return item;
