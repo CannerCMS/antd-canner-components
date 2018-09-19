@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-string-textarea",
-  "version": "0.4.2-alpha.12",
+  "version": "0.4.2-alpha.13",
   "description": "string textarea",
   "main": "lib/index.js",
   "scripts": {},
