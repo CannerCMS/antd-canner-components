@@ -25,7 +25,7 @@ const Amount = styled.div`
   font-size: 26px;
 `;
 
-const IndicatorAmount = ({ value, title, uiParams: { formatter } }: Props) => {
+const IndicatorAmount = ({ value, title, uiParams: { formatter = v => v } }: Props) => {
   return (
     <Wrapper>
       <Title>{ title }</Title>
