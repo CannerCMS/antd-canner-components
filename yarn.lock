@@ -116,6 +116,14 @@
     react-loading-image "^0.4.1"
     styled-components "^3.2.0"
 
+"@canner/image-upload@^0.13.2":
+  version "0.13.2"
+  resolved "https://registry.yarnpkg.com/@canner/image-upload/-/image-upload-0.13.2.tgz#202363b08671603eb85249937d974a149575fb11"
+  dependencies:
+    react-intl "^2.4.0"
+    react-loading-image "^0.4.1"
+    styled-components "^3.2.0"
+
 "@canner/rc-tabs@^9.2.7":
   version "9.2.7"
   resolved "https://registry.yarnpkg.com/@canner/rc-tabs/-/rc-tabs-9.2.7.tgz#3f45a424996df3906548deb76adc12cbfb1f37fa"

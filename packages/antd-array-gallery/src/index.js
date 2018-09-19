@@ -22,8 +22,10 @@ type ImageItem = {
 
 type Props = ArrayDefaultProps<FieldItem> & {
   uiParams: {
+    dirname: string,
     imageKey: string,
-    disableDrag: boolean
+    disableDrag: boolean,
+    limitSize: ?number
   },
   imageStorage: any,
   intl: intlShape
@@ -102,9 +104,8 @@ export default class ArrayGallery extends Component<Props> {
   };
 
   render() {
-    const { value, refId, imageStorage, uiParams } = this.props;
+    const { value, refId, imageStorage, uiParams: {limitSize, disableDrag, dirname} } = this.props;
     const galleryValue = value.map(photo => photo[this.imageKey].url);
-
     return (
       <div style={{maxWidth: '800px'}}>
         <Gallery
@@ -115,7 +116,7 @@ export default class ArrayGallery extends Component<Props> {
               refId={refId.child(i)}
             />
           }
-          disableDrag={uiParams.disableDrag}
+          disableDrag={disableDrag}
           onDelete={this.deleteImage}
           onCreate={this.createImages}
           onSwap={this.onSwap}
@@ -123,12 +124,25 @@ export default class ArrayGallery extends Component<Props> {
           serviceConfig={{
             customRequest: (obj: CustomRequestArgs) => {
               const {file, onProgress, onSuccess, onError} = obj;
+              if (!imageStorage) {
+                onError(new Error('There is no imageStorage.'));
+                return;
+              }
+
+              if (limitSize && file.size > limitSize) {
+                onError(new Error(`Image is larger than the limit ${limitSize} bytes`))
+                return;
+              }
               imageStorage
-                .upload(file, file.name, onProgress)
-                .then(onSuccess)
+                .upload(file, {filename: genFilename(dirname, file.name)}, onProgress)
+                .then(({link}) => onSuccess({data: {link}}))
                 .catch(onError);
           }}}/>
       </div>
     );
   }
+}
+
+function genFilename(dir, filename) {
+  return `${dir || ''}${dir ? '/' : ''}${filename}`;
 }

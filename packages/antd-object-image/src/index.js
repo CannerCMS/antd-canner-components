@@ -12,9 +12,9 @@ import type {ObjectDefaultProps} from 'types/ObjectDefaultProps';
 
 type Props = ObjectDefaultProps & {
   uiParams: {
-    service: string,
-    dir: string,
-    filename: string
+    filename: string,
+    dirname: string,
+    limitSize: ?number
   },
   disabled: boolean,
   imageStorage: any
@@ -73,7 +73,7 @@ export default class Image extends PureComponent<Props, State> {
   };
 
   render() {
-    const { value, disabled, imageStorage } = this.props;
+    const { value, disabled, imageStorage, uiParams: {filename, dirname, limitSize} } = this.props;
     const { editPopup } = this.state;
     // if the image exist show it, otherwise let user upload.
     if (value && value.url) {
@@ -96,15 +96,28 @@ export default class Image extends PureComponent<Props, State> {
           serviceConfig={{
             customRequest: (obj: CustomRequestArgs) => {
               const {file, onProgress, onSuccess, onError} = obj;
+              if (!imageStorage) {
+                onError(new Error('There is no imageStorage.'));
+                return;
+              }
+              if (limitSize && file.size > limitSize) {
+                onError(new Error(`Image is larger than the limit ${limitSize} bytes`));
+                return;
+              }
               imageStorage
-                .upload(file, file.name, onProgress)
-                .then(onSuccess)
+                .upload(file, {filename: genFilename(dirname, filename || file.name)}, onProgress)
+                .then(({link}) => onSuccess({data: {link}}))
                 .catch(onError);
-          }}}/>
+              
+          }}}
           closeEditPopup={this.closeEditPopup}
           multiple={false}
         />
       </div>
     );
   }
+}
+
+function genFilename(dir, filename) {
+  return `${dir || ''}${dir ? '/' : ''}${filename}`;
 }
