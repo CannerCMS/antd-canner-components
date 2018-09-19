@@ -16,7 +16,7 @@ type Props = IndicatorDefaultProps & {
 
 const getRandomKey = () => (Math.random().toString(36).substr(2, 10));
 
-const IndicatorList = ({ value, uiParams: {
+const IndicatorList = ({ value, style, uiParams: {
   avatar,
   title,
   description,
@@ -24,6 +24,7 @@ const IndicatorList = ({ value, uiParams: {
 } }: Props) => {
   return (
     <List
+      style={{overflow: 'scroll', maxHeight: 600, ...style}}
       dataSource={value}
       renderItem={item => (
         <List.Item key={item.id || getRandomKey()}>
