@@ -5,7 +5,7 @@ import EditImage from "@canner/image-upload";
 import defaultMessage from '@canner/antd-locales';
 import {isArray} from 'lodash';
 import { Button } from "antd";
-import {FormattedMessage} from "react-intl";
+import {FormattedMessage, injectIntl} from "react-intl";
 
 // type
 import type {ObjectDefaultProps} from 'types/ObjectDefaultProps';
@@ -17,7 +17,8 @@ type Props = ObjectDefaultProps & {
     limitSize: ?number
   },
   disabled: boolean,
-  imageStorage: any
+  imageStorage: any,
+  intl: Object
 };
 
 type State = {
@@ -36,6 +37,7 @@ type CustomRequestArgs = {
   headers: Object
 };
 
+@injectIntl
 export default class Image extends PureComponent<Props, State> {
   state = {
     editPopup: false
@@ -73,7 +75,7 @@ export default class Image extends PureComponent<Props, State> {
   };
 
   render() {
-    const { value, disabled, imageStorage, uiParams: {filename, dirname, limitSize} } = this.props;
+    const { value, disabled, imageStorage, uiParams: {filename, dirname, limitSize}, intl } = this.props;
     const { editPopup } = this.state;
     // if the image exist show it, otherwise let user upload.
     if (value && value.url) {
@@ -97,11 +99,15 @@ export default class Image extends PureComponent<Props, State> {
             customRequest: (obj: CustomRequestArgs) => {
               const {file, onProgress, onSuccess, onError} = obj;
               if (!imageStorage) {
-                onError(new Error('There is no imageStorage.'));
+                onError(new Error(intl.formatMessage({id: 'image.error.noStorage'})));
                 return;
               }
               if (limitSize && file.size > limitSize) {
-                onError(new Error(`Image is larger than the limit ${limitSize} bytes`));
+                onError(new Error(intl.formatMessage({
+                  id: 'image.error.limitSize'
+                }, {
+                  limitSize
+                })));
                 return;
               }
               imageStorage

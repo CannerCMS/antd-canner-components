@@ -104,7 +104,7 @@ export default class ArrayGallery extends Component<Props> {
   };
 
   render() {
-    const { value, refId, imageStorage, uiParams: {limitSize, disableDrag, dirname} } = this.props;
+    const { value, refId, imageStorage, uiParams: {limitSize, disableDrag, dirname}, intl } = this.props;
     const galleryValue = value.map(photo => photo[this.imageKey].url);
     return (
       <div style={{maxWidth: '800px'}}>
@@ -125,13 +125,16 @@ export default class ArrayGallery extends Component<Props> {
             customRequest: (obj: CustomRequestArgs) => {
               const {file, onProgress, onSuccess, onError} = obj;
               if (!imageStorage) {
-                onError(new Error('There is no imageStorage.'));
+                onError(new Error(intl.formatMessage({id: 'image.error.noStorage'})));
                 return;
               }
 
               if (limitSize && file.size > limitSize) {
-                onError(new Error(`Image is larger than the limit ${limitSize} bytes`))
-                return;
+                onError(new Error(intl.formatMessage({
+                  id: 'image.error.limitSize'
+                }, {
+                  limitSize
+                })));                return;
               }
               imageStorage
                 .upload(file, {filename: genFilename(dirname, file.name)}, onProgress)

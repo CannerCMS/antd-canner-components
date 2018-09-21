@@ -41,7 +41,9 @@ export default {
     "query.filter.select.placeholder": "Filter by",
     "query.actions.export": "Export",
     "query.actions.import": "Import",
-    "query.actions.filter": "Add Filter"
+    "query.actions.filter": "Add Filter",
+    "image.error.noStorage": "There is no imageStorage, please contact your development team.",
+    "image.error.limitSize": "The image is larger than the limit {limitSize}."
   },
   zh: {
     "array.panel.delete.confirm": "您確定要刪除這個類別嗎？",
@@ -80,7 +82,9 @@ export default {
     "query.filter.select.placeholder": "輸入過濾條件",
     "query.actions.export": "匯出",
     "query.actions.import": "匯入",
-    "query.actions.filter": "搜尋"
+    "query.actions.filter": "搜尋",
+    "image.error.noStorage": "找不到任何的 imageStorage，請聯絡您的工程團隊。",
+    "image.error.limitSize": "超過圖片大小限制 {limitSize}。"
   }
 }
 
