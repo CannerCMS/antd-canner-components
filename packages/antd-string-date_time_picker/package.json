@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-string-date_time_picker",
-  "version": "0.4.2-alpha.13",
+  "version": "0.4.2-alpha.14",
   "description": "string date time picker",
   "main": "lib/index.js",
   "scripts": {},
@@ -12,7 +12,7 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/antd-locales": "^0.4.2-alpha.13",
+    "@canner/antd-locales": "^0.4.2-alpha.14",
     "moment": "^2.20.1",
     "moment-timezone": "^0.5.14",
     "react-intl": "^2.4.0"

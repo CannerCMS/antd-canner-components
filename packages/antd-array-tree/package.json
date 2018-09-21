@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-array-tree",
-  "version": "0.4.2-alpha.13",
+  "version": "0.4.2-alpha.14",
   "description": "array tree",
   "main": "lib/index.js",
   "scripts": {},
@@ -16,7 +16,7 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/antd-locales": "^0.4.2-alpha.13"
+    "@canner/antd-locales": "^0.4.2-alpha.14"
   },
   "canner": {
     "cacheActions": true,
