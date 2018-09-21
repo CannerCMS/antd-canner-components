@@ -108,20 +108,12 @@
     react-loading-image "^0.4.1"
     styled-components "^3.2.0"
 
-"@canner/image-upload@^0.13.2":
-  version "0.13.2"
-  resolved "https://registry.yarnpkg.com/@canner/image-upload/-/image-upload-0.13.2.tgz#202363b08671603eb85249937d974a149575fb11"
+"@canner/image-upload@^0.13.4":
+  version "0.13.4"
+  resolved "https://registry.yarnpkg.com/@canner/image-upload/-/image-upload-0.13.4.tgz#a154d39486aee60f7562ff9ed506d9eb007f6cc1"
   dependencies:
     react-intl "^2.4.0"
-    react-loading-image "^0.4.1"
-    styled-components "^3.2.0"
-
-"@canner/image-upload@^0.13.3":
-  version "0.13.3"
-  resolved "https://registry.yarnpkg.com/@canner/image-upload/-/image-upload-0.13.3.tgz#494583fd2aa2c2b70b74413bd0dacb7463c8e75e"
-  dependencies:
-    react-intl "^2.4.0"
-    react-loading-image "^0.4.1"
+    react-loading-image "^0.5.0"
     styled-components "^3.2.0"
 
 "@canner/rc-tabs@^9.2.7":
@@ -2711,11 +2703,11 @@ canner-helpers@^0.1.9:
     immutable "^4.0.0-rc.9"
     lodash "^4.17.5"
 
-canner-image-gallery@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/canner-image-gallery/-/canner-image-gallery-0.3.2.tgz#1c034ef70ac1b2f15d009d0efd281653624af405"
+canner-image-gallery@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/canner-image-gallery/-/canner-image-gallery-0.3.3.tgz#3d37b5d4f34443e727faafa8bbcd9f0314e92797"
   dependencies:
-    "@canner/image-upload" "^0.13.3"
+    "@canner/image-upload" "^0.13.4"
     grid-breakpoint "^1.7.0"
     grid-draggable "3.3.0"
     react-loading-image "^0.4.1"
