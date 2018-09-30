@@ -16,7 +16,8 @@ type State = {
 type Props = RelationDefaultProps & {
   uiParams: {
     columns: Array<*>,
-    connectName: string
+    connectName: string,
+    icon: string | React.Node
   },
   intl: Object,
   goTo: GotoFn,
@@ -84,7 +85,7 @@ export default class RelationTable extends React.PureComponent<Props, State> {
       return {...column, title: getIntlMessage(intl, column.title)};
     });
     const newColumnsRender = renderValue(newColumns, schema[relation.to].items.items);
-    
+    const {icon} = uiParams;
     return (
       <div>
         <Table
@@ -94,7 +95,12 @@ export default class RelationTable extends React.PureComponent<Props, State> {
         {
           !disabled && <div>
             <a href="javascript:;" onClick={this.showModal}>
-              <Icon type="link" style={{margin: '16px 8px'}}/>
+              {
+                !icon || typeof icon === 'string' ?
+                  <Icon type={icon || 'link'} style={{margin: '16px 8px'}}/> :
+                  icon
+              }
+              
               <FormattedMessage
                 id="relation.multipleSelect.connect"
                 defaultMessage="connect existing "

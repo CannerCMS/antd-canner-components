@@ -12,10 +12,14 @@ type State = {
 
 type Props = NumberDefaultProps & {
   uiParams: {
-    min: number,
-    max: number,
-    step: number,
-    unit: string
+    min?: number,
+    max?: number,
+    step?: number,
+    unit?: string,
+    formatter?: Function,
+    precision?: number,
+    parser?: Function,
+
   }
 };
 
@@ -27,9 +31,11 @@ export default class Input extends PureComponent<Props, State> {
 
   render() {
     const { value, uiParams, disabled } = this.props;
-
-    let formatter =
-      uiParams && uiParams.unit ? val => `${val} ${uiParams.unit}` : val => val;
+    let formatter = uiParams && uiParams.formatter;
+    if (!formatter) {
+      formatter = 
+        uiParams && uiParams.unit ? val => `${val} ${uiParams.unit}` : val => val;
+    }
     return (
       <InputNumber
         disabled={disabled}

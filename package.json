@@ -70,7 +70,7 @@
     "gh-pages": "npm run build && npm run gh-pages:clean && npm run gh-pages:build && npm run gh-pages:publish"
   },
   "dependencies": {
-    "antd": "^3.2.3",
+    "antd": "^3.9.3",
     "canner-helpers": "^0.1.9",
     "immutable": "^4.0.0-rc.9",
     "lodash": "^4.17.4",

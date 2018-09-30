@@ -20,7 +20,7 @@
   "dependencies": {
     "@canner/image-service-config": "^0.3.0",
     "@canner/image-upload": "^0.13.4",
-    "canner-image-gallery": "^0.3.3"
+    "canner-image-gallery": "^0.3.4"
   },
   "devDependencies": {
     "enzyme": "^3.3.0",
