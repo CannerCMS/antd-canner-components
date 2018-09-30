@@ -10,7 +10,16 @@ type State = {
   value: string
 };
 
-type Props = StringDefaultProps;
+type Props = StringDefaultProps & {
+  uiParams: {
+    addonAfter: string | React.Node,
+    addonBefore: string | React.Node,
+    prefix: string | React.Node,
+    size: 'large' | 'default' | 'smail',
+    suffix: string | React.Node,
+    type: string
+  }
+};
 
 export default class StringInput extends PureComponent<Props, State> {
   isOnComposition: boolean;
@@ -53,7 +62,7 @@ export default class StringInput extends PureComponent<Props, State> {
 
   render() {
     const { value } = this.state;
-    const { disabled } = this.props;
+    const { disabled, uiParams = {} } = this.props;
     return (
       <div id="input">
         <Input
@@ -64,6 +73,7 @@ export default class StringInput extends PureComponent<Props, State> {
           // prevent input called update function when user haven't composited their words using Chinese typing
           onCompositionEnd={this.onCompositionEnd}
           onCompositionStart={this.onCompositionStart}
+          {...uiParams}
         />
       </div>
     );
