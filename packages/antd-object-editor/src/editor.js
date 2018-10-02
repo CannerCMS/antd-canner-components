@@ -57,7 +57,7 @@ export default class Editor extends PureComponent<Props, State> {
       <ReactQuill
         modules={modules}
         formats={formats}
-        value={value && value[this.htmlKey]}
+        defaultValue={value && value[this.htmlKey]}
         onChange={this.handleChange} />
     )
   }
