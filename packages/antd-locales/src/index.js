@@ -89,7 +89,7 @@ export default {
 }
 
 export function getIntlMessage(intl: Object, text: string) {
-  const matched = text.match(/^\$\{(.*)\}$/);
+  const matched = text && text.match && text.match(/^\$\{(.*)\}$/);
   const message = matched ? intl.formatMessage({
     id: matched[1],
     defaultMessage: text
