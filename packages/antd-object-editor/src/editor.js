@@ -48,7 +48,7 @@ export default class Editor extends PureComponent<Props, State> {
   handleChange = (value: string) => {
     const {refId, onChange} = this.props;
 
-    onChange(refId, 'update', {[this.htmlKey]: value});
+    onChange(refId.child(this.htmlKey), 'update', value);
   }
 
   render() {
