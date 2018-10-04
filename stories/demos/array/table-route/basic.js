@@ -4,8 +4,8 @@ import Table from 'packages/antd-array-table_route';
 import cmsLocale from 'packages/antd-locales';
 import {IntlProvider} from 'react-intl';
 import RefId from 'canner-ref-id';
-import ExampleArrayValueWrapper from '../ExamplePrimitiveValueHoc';
-import type {ArrayTypes} from '../types';
+import ExampleArrayValueWrapper from '../../ExamplePrimitiveValueHoc';
+import type {ArrayTypes} from '../../types';
 
 const initData = [{
   id: 'id1',
