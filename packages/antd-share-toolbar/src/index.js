@@ -17,9 +17,25 @@ type Props = {
     async: boolean,
     actions?: {
       component?: React.ComponentType<*>,
-      exportButton?: boolean,
-      importButton?: boolean,
-      filterButton?: boolean,
+      export?: {
+        fields?: [{
+          keyName: string,
+          title: string,
+          render?: * => string
+        }],
+        title?: string,
+        filename?: string
+      },
+      import?: {
+        fields?: [{
+          keyName: string,
+          title: string,
+        }],
+        title?: string,
+        filename?: string
+      },
+      filter?: {
+      }
     },
     sorter?: {
       component?: React.ComponentType<*>,
@@ -132,7 +148,7 @@ export default class Toolbar extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const {dataSource, children, toolbar = {}} = this.props;
+    const {dataSource, children, toolbar = {}, selectedValue, items, keyName, request, deploy} = this.props;
     let {displayedFilterIndexs} = this.state;
     const {sorter, pagination, filter, toolbarLayout, actions} = toolbar;
     const ToolbarLayout = toolbarLayout && toolbarLayout.component ? toolbarLayout.component : DefaultToolbarLayout;
@@ -150,6 +166,7 @@ export default class Toolbar extends React.PureComponent<Props, State> {
     if (sorter) {
       value = sortWith(value, this.state.sorter.sortField, toLower(this.state.sorter.sortType));
     }
+    const unPaginatedValue = value;
     const total = value.length;
     if (pagination) {
       value = paginate(value, this.state.current, this.state.pageSize);
@@ -157,9 +174,16 @@ export default class Toolbar extends React.PureComponent<Props, State> {
     return <ToolbarLayout
       Actions={actions ? <ActionsComponent
         {...actions}
+        value={value}
+        keyName={keyName}
+        selectedValue={selectedValue}
+        unPaginatedValue={unPaginatedValue}
         filters={filter && filter.filters || []}
         displayedFilters={[...displayedFilterIndexs, ...this.alwaysDisplayFilterIndexs]}
         addFilter={this.addFilter}
+        items={items.items}
+        request={request}
+        deploy={deploy}
       /> : <div />}
       Sort={sorter ? <SortComponent
         {...sorter}

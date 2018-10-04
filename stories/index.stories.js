@@ -41,7 +41,8 @@ import GalleryDemo from './demos/array/gallery';
 import SliderDemo from './demos/array/slider';
 import PanelDemo from './demos/array/panel';
 import TableDemo from './demos/array/table';
-import TableRouteDemo from './demos/array/table-route';
+import TableRouteDemo from './demos/array/table-route/basic';
+import TableRouteWithToolbarDemo from './demos/array/table-route/with-toolbar';
 import TreeDemo from './demos/array/tree';
 
 // object
@@ -83,20 +84,28 @@ storiesOf('String Component', module)
   .add('String Card', () => <StringCardDemo/>)
   .add('Md Editor', () => <MdeDemo/>)
 
+
 storiesOf('Array Component', module)
   .addDecorator(CannerHelperContext)
-  .add('Tab Top', () => <TabTopDemo/>)
-  .add('Tab Bottom', () => <TabBottomDemo/>)
-  .add('Tab Left', () => <TabLeftDemo/>)
-  .add('Tab Right', () => <TabRightDemo/>)
   .add('Tags', () => <TagsDemo/>)
   .add('Gallery', () => <GalleryDemo/>)
   .add('Slider', () => <SliderDemo/>)
   .add('Panel', () => <PanelDemo/>)
   .add('Table', () => <TableDemo/>)
-  .add('Table Route', () => <TableRouteDemo/>)
   .add('Tree', () => <TreeDemo/>)
 
+storiesOf('Array Component/Tab', module)
+  .addDecorator(CannerHelperContext)
+  .add('Tab Top', () => <TabTopDemo/>)
+  .add('Tab Bottom', () => <TabBottomDemo/>)
+  .add('Tab Left', () => <TabLeftDemo/>)
+  .add('Tab Right', () => <TabRightDemo/>)
+
+storiesOf('Array Component/Table Route', module)
+  .addDecorator(CannerHelperContext)
+  .add('Basic', () => <TableRouteDemo/>)
+  .add('With Toolbar', () => <TableRouteWithToolbarDemo/>)
+  
 storiesOf('Object Component', module)
   .addDecorator(CannerHelperContext)
   .add('Options', () => <OptionsDemo/>)
