@@ -34,17 +34,11 @@ $ npm run build
 $ npm run build:watch
 
 # run demo
-$ npm start
+$ npm run storybook
 ```
 
 ## Test
 
 ```
 $ lerna run test
-```
-
-## Release
-
-```
-$ npm run release
 ```
