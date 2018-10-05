@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-array-tab_right",
-  "version": "0.4.2-alpha.20",
+  "version": "0.4.2-alpha.21",
   "description": "array tab right",
   "main": "lib/index.js",
   "scripts": {},
@@ -12,7 +12,7 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/antd-array-tabs": "^0.4.2-alpha.20"
+    "@canner/antd-array-tabs": "^0.4.2-alpha.21"
   },
   "publishConfig": {
     "access": "public"
