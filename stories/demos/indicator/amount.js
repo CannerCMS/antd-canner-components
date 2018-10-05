@@ -18,7 +18,8 @@ class IndicatorAmountDemo1 extends React.Component<PrimitiveTypes<boolean>> {
           value={value}
           title='Monthly Revenue'
           uiParams={{
-            formatter: v => `$${v}`
+            formatter: v => `$${v}`,
+            note: "hello this is a note"
           }}
         />
       </React.Fragment>
