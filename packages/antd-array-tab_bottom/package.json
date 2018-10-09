@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-array-tab_bottom",
-  "version": "0.4.2-alpha.22",
+  "version": "0.5.0",
   "description": "array tab bottom",
   "main": "lib/index.js",
   "scripts": {},
@@ -12,7 +12,7 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/antd-array-tabs": "^0.4.2-alpha.22"
+    "@canner/antd-array-tabs": "^0.5.0"
   },
   "publishConfig": {
     "access": "public"
