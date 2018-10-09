@@ -36,7 +36,6 @@
     "@canner/antd-object-image": "^0.4.2-alpha.22",
     "@canner/antd-object-map": "^0.4.2-alpha.22",
     "@canner/antd-object-options": "^0.4.2-alpha.22",
-    "@canner/antd-object-slate_editor": "^0.4.2-alpha.22",
     "@canner/antd-object-variants": "^0.4.2-alpha.22",
     "@canner/antd-relation-multiple_select": "^0.4.2-alpha.22",
     "@canner/antd-relation-multiple_select_tree": "^0.4.2-alpha.22",
