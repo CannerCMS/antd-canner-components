@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-relation-single_select_tree",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "relation single selection with tree",
   "main": "lib/index.js",
   "scripts": {},
