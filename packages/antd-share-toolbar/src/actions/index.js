@@ -100,14 +100,14 @@ export default class Actions extends Component<Props, State> {
       <React.Fragment>
         <Button.Group>
           {this.props.export && (
-            <Button>
+            <Button onClick={this.triggerExportModal}>
               <Icon type="download" />
               <FormattedMessage id="query.actions.export"/>
             </Button>
           )}
           {
-            this.props.export && (
-              <Button>
+            this.props.import && (
+              <Button onClick={this.triggerImportModal}>
                 <Icon type="upload" />
                 <FormattedMessage id="query.actions.import"/>
               </Button>

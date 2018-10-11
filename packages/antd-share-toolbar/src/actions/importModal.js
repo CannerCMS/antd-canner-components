@@ -7,7 +7,6 @@ import {
   get,
   set
 } from 'lodash';
-import { withApollo } from 'react-apollo';
 import {FormattedMessage, injectIntl} from 'react-intl';
 
 const Dragger = Upload.Dragger;
@@ -37,7 +36,6 @@ type State = {
 
 // $FlowFixMe
 @injectIntl
-@withApollo
 @Form.create()
 export default class ImportModal extends React.Component<Props, State> {
   state = {
