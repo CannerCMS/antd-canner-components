@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import { Table, Button, Modal } from "antd";
 import PropTypes from 'prop-types';
 import { FormattedMessage } from "react-intl";
-import defaultMessage, {renderValue, getIntlMessage} from "@canner/antd-locales";
+import defaultMessage, {renderValue} from "@canner/antd-locales";
 import type {FieldId, FieldItems, GotoFn} from 'types/DefaultProps';
 import {injectIntl, intlShape} from 'react-intl';
 import Toolbar from '@canner/antd-share-toolbar';
@@ -40,8 +40,12 @@ type Props = {
   intl: intlShape
 };
 
+type State = {
+  selectedRowKeys: Array<string>
+}
+
 @injectIntl
-export default class ArrayBreadcrumb extends Component<Props> {
+export default class ArrayBreadcrumb extends Component<Props, State> {
   editModal: ?HTMLDivElement;
   addModal: ?HTMLDivElement;
   static defaultProps = {
@@ -52,6 +56,10 @@ export default class ArrayBreadcrumb extends Component<Props> {
 
   static contextTypes = {
     fetch: PropTypes.func
+  }
+
+  state = {
+    selectedRowKeys: []
   }
 
   add = () => {
@@ -75,7 +83,10 @@ export default class ArrayBreadcrumb extends Component<Props> {
         });
       }
     });
-    
+  }
+
+  onSelectChange = (selectedRowKeys) => {
+    this.setState({selectedRowKeys});
   }
 
   render() {
@@ -89,9 +100,11 @@ export default class ArrayBreadcrumb extends Component<Props> {
       goTo,
       reset,
       refId,
-      onChange
+      onChange,
+      keyName,
+      request
     } = this.props;
-
+    const {selectedRowKeys} = this.state;
     const addText = (
       <FormattedMessage
         id="array.table.addText"
@@ -104,11 +117,7 @@ export default class ArrayBreadcrumb extends Component<Props> {
       columns = []
     } = uiParams;
 
-    // push update button and delete button
-    const newColumns = columns.map(column => {
-      return {...column, title: getIntlMessage(intl, column.title)};
-    });
-    const newColumnsRender = renderValue(newColumns, items.items, {
+    const newColumnsRender = renderValue(columns, items.items, {
       refId,
       deploy,
       reset,
@@ -117,6 +126,7 @@ export default class ArrayBreadcrumb extends Component<Props> {
       uiParams
     });
 
+    // add edit and delete action buttons
     newColumnsRender.push({
       title: intl.formatMessage({ id: "array.table.actions" }),
       dataIndex: "__settings",
@@ -134,11 +144,21 @@ export default class ArrayBreadcrumb extends Component<Props> {
         );
       }
     });
+    const rowSelection = {
+      selectedRowKeys,
+      onChange: this.onSelectChange,
+    };
+    const selectedValue = value.filter(item => selectedRowKeys.indexOf(item.id) > -1);
     return (
       <Wrapper>
         <Toolbar
           toolbar={toolbar}
           dataSource={value}
+          selectedValue={selectedValue}
+          items={items}
+          keyName={keyName}
+          request={request}
+          deploy={deploy}
         >
           {
             ({value, showPagination}) => {
@@ -158,6 +178,7 @@ export default class ArrayBreadcrumb extends Component<Props> {
                     </Button>
                   )}
                   <Table
+                    rowSelection={toolbar && toolbar.export ? rowSelection : undefined}
                     pagination={showPagination}
                     dataSource={value}
                     columns={newColumnsRender}
