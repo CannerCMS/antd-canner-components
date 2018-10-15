@@ -14,6 +14,7 @@ import type {ObjectDefaultProps} from 'types/ObjectDefaultProps';
 type Props = ObjectDefaultProps
 
 type State = {
+  blur: boolean
 }
 
 const modules = {
@@ -40,25 +41,61 @@ const formats = [
 export default class Editor extends PureComponent<Props, State> {
   htmlKey: string;
 
+  state = {
+    blur: true
+  }
+
   constructor(props: Props) {
     super(props);
     this.htmlKey = 'html';
   }
 
-  handleChange = (value: string) => {
+  handleChange = (delta: string) => {
     const {refId, onChange} = this.props;
 
-    onChange(refId.child(this.htmlKey), 'update', value);
+    onChange(refId.child(this.htmlKey), 'update', delta);
+  }
+
+  onFocus = () => {
+    this.setState({
+      blur: false
+    });
+  }
+
+  onBlur = () => {
+    this.setState({
+      blur: true
+    });
   }
 
   render() {
     const {value} = this.props;
-    return (
+    const {blur} = this.state;
+    // to makes react quill controlled, we have to remount it
+    const renderQuill = () => (
       <ReactQuill
         modules={modules}
         formats={formats}
+        onFocus={this.onFocus}
+        onBlur={this.onBlur}
         defaultValue={value && value[this.htmlKey]}
-        onChange={this.handleChange} />
+        onChange={this.handleChange}
+      />
     )
+    return (
+      <React.Fragment>
+        {blur ? 
+          renderQuill() : (
+          <ReactQuill
+            modules={modules}
+            formats={formats}
+            onFocus={this.onFocus}
+            onBlur={this.onBlur}
+            defaultValue={value && value[this.htmlKey]}
+            onChange={this.handleChange}
+          />
+        )}
+      </React.Fragment>
+    );
   }
 }
