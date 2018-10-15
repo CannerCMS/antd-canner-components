@@ -74,6 +74,7 @@ export default class Editor extends PureComponent<Props, State> {
     // to makes react quill controlled, we have to remount it
     const renderQuill = () => (
       <ReactQuill
+        key={Math.random().toString().substr(2, 5)}
         modules={modules}
         formats={formats}
         onFocus={this.onFocus}
