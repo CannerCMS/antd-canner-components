@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-components",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "plugins locals",
   "main": "lib/index.js",
   "scripts": {},
@@ -50,7 +50,7 @@
     "@canner/antd-string-link": "^0.5.1",
     "@canner/antd-string-radio": "^0.5.1",
     "@canner/antd-string-select": "^0.5.1",
-    "@canner/antd-string-textarea": "^0.5.1",
+    "@canner/antd-string-textarea": "^0.5.4",
     "@canner/antd-string-time_picker": "^0.5.1"
   },
   "peerDependencies": {
