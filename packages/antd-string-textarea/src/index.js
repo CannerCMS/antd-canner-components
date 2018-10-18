@@ -52,9 +52,10 @@ export default class TextareaString extends PureComponent<Props, State> {
 
   render() {
     const { value } = this.state;
-    const { disabled } = this.props;
+    const { disabled, uiParams = {} } = this.props;
     return (
       <TextArea
+        rows={uiParams.rows || 6}
         disabled={disabled}
         value={value}
         onChange={this.onChange}
