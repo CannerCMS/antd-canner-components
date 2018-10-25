@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-components",
-  "version": "0.5.6",
+  "version": "0.5.7",
   "description": "plugins locals",
   "main": "lib/index.js",
   "scripts": {},
@@ -23,7 +23,7 @@
     "@canner/antd-array-table_route": "^0.5.1",
     "@canner/antd-array-tabs": "^0.5.6",
     "@canner/antd-array-tag": "^0.5.1",
-    "@canner/antd-array-tree": "^0.5.1",
+    "@canner/antd-array-tree": "^0.5.7",
     "@canner/antd-boolean-card": "^0.5.1",
     "@canner/antd-boolean-switch": "^0.5.1",
     "@canner/antd-indicator-amount": "^0.5.1",
