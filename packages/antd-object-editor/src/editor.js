@@ -55,13 +55,13 @@ const formats = [
 
 export default class Editor extends PureComponent<Props, State> {
   static htmlKey: string = 'html';
-  static getDerivedStateFromProps(props, state) {
-    if (props.value && props.value[Editor.htmlKey] !== state[Editor.htmlKey]) {
+  static getDerivedStateFromProps(props) {
+    if (props.value && props.value[Editor.htmlKey]) {
       return {
         [Editor.htmlKey]: props.value[Editor.htmlKey]
       };
     }
-    return state;
+    return null;
   }
 
   constructor(props: Props) {
@@ -71,15 +71,14 @@ export default class Editor extends PureComponent<Props, State> {
 
   handleChange = (delta: string) => {
     const {refId, onChange} = this.props;
-    this.setState({
-      [Editor.htmlKey]: delta
-    }, () => {
-      onChange(refId.child(Editor.htmlKey), 'update', delta);
-    });
-    
+    onChange(refId.child(Editor.htmlKey), 'update', delta);
   }
 
-  render() {
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextState[Editor.htmlKey] !== this.state[Editor.htmlKey];
+  }
+
+  render() { 
     return (
       <ReactQuill
         onChange={this.handleChange}
