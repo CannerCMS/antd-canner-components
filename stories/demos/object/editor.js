@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import Editor from 'packages/antd-object-editor';
-import {Divider} from 'antd';
+import {Divider, Button} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../types';
 import RefId from 'canner-ref-id';
@@ -25,11 +25,53 @@ class EditorComponentDemo1 extends React.Component<PrimitiveTypes<boolean>> {
   }
 }
 
+@ExamplePrimitiveValueWrapper({html: ''})
+class EditorComponentDemo2 extends React.Component<PrimitiveTypes<boolean>> {
+  constructor(props: Object) {
+    super(props);
+    this.state = {
+      toggle: false,
+      updateValue: {html: "<h2>Updated!</h2>"}
+    }
+  }
+
+  swap = () => {
+    this.setState({
+      toggle: !this.state.toggle
+    });
+  }
+
+  handleChange = (refId, update, delta) => {
+    this.setState({
+      updateValue: {
+        html: delta
+      }
+    });
+  }
+
+  render() {
+    const {value, onChange} = this.props;
+    const {toggle, updateValue} = this.state;
+    return (
+      <React.Fragment>
+        <Divider>Editor Should Update (Simulate Swapping in Tabs)</Divider>
+        <Button onClick={this.swap} style={{marginBottom: 16}}>Simulate Swap</Button>
+        <Editor
+          refId={new RefId("map")}
+          value={toggle ? value : updateValue}
+          onChange={toggle ? onChange: this.handleChange}
+        />
+      </React.Fragment>
+    );
+  }
+}
+
 export default class Demo extends React.Component<{}> {
   render() {
     return (
       <React.Fragment>
-        <EditorComponentDemo1/>
+        <EditorComponentDemo1 />
+        <EditorComponentDemo2 />
       </React.Fragment>
     )
   }

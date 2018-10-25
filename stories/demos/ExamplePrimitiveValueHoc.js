@@ -34,8 +34,9 @@ export default (defaultValue: PrimitiveValue, rootValue: PrimitiveValue) => (Con
           this.setState({log, value: createVal})
           // $FlowFixMe
         } else {
+          const updateVal = set(value, refId.getPathArr().slice(1), delta);
           log.unshift({refId, type, delta});
-          this.setState({log, value: delta});
+          this.setState({log, value: updateVal});
         }
       } else if (type === 'delete' && !refId.firstRefId) {
         log.unshift({refId, type});
