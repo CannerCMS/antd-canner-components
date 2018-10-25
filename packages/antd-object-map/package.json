@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@canner/antd-locales": "^0.5.1",
-    "antd-geosuggest": "^0.3.2",
+    "antd-geosuggest": "^0.3.3",
     "react-google-maps": "^9.4.5"
   },
   "peerDependencies": {

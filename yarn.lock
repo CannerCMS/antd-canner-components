@@ -2009,9 +2009,9 @@ ant-design-palettes@^1.1.3:
   dependencies:
     tinycolor2 "^1.4.1"
 
-antd-geosuggest@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/antd-geosuggest/-/antd-geosuggest-0.3.2.tgz#91421a3e89df03400d72be4ee56d784e155a54e9"
+antd-geosuggest@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/antd-geosuggest/-/antd-geosuggest-0.3.3.tgz#accf1384a02662a2a086fe6f2c0092f6ae2adff0"
   dependencies:
     lodash.debounce "^4.0.8"
 
