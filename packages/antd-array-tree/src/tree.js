@@ -131,13 +131,13 @@ export default class ArrayTree extends React.Component<Props, State> {
           <span style={{ color: '#f50' }}>{searchValue}</span>
           {afterStr}
           <HoverableIcon style={{marginLeft: 24}} type="edit" onClick={() => edit(item)}/>
-          <HoverableIcon style={{marginLeft: 8}} type="cross" onClick={() => remove(item.__index)}/>
+          <HoverableIcon style={{marginLeft: 8}} type="delete" onClick={() => remove(item.__index)}/>
         </Title>
       ) : (
         <Title>
           {item.title}
           <HoverableIcon style={{marginLeft: 24}} type="edit" onClick={() => edit(item)}/>
-          <HoverableIcon style={{marginLeft: 8}} type="cross" onClick={() => remove(item.__index)}/>
+          <HoverableIcon style={{marginLeft: 8}} type="delete" onClick={() => remove(item.__index)}/>
         </Title>
       );
       if (item.children && item.children.length) {
