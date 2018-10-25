@@ -158,10 +158,14 @@ export default class TabUi extends Component<Props, State> {
           <Item
             refId={thisId}
           />
-          <div>
-            <ConfirmButton refId={thisId}/>
-            <ResetButton refId={thisId}/>
-          </div>
+          {
+            thisId.getPathArr().length === 2 && (
+              <div>
+                <ConfirmButton refId={thisId} />
+                <ResetButton refId={thisId} />
+              </div>
+            )
+          }
         </TabPane>
       );
     });

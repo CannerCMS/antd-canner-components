@@ -118,10 +118,14 @@ export default class PanelUi extends PureComponent<Props, State> {
                   <Item
                     refId={thisId}
                   />
-                  <div>
-                    <ConfirmButton refId={thisId}/>
-                    <ResetButton refId={thisId}/>
-                  </div>
+                  {
+                    thisId.getPathArr().length === 2 && (
+                      <div>
+                        <ConfirmButton refId={thisId} />
+                        <ResetButton refId={thisId} />
+                      </div>
+                    )
+                  }
                 </Panel>
               );
             })}
