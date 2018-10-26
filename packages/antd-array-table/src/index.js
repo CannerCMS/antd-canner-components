@@ -49,6 +49,10 @@ const Wrapper = styled.div`
   .antd td {
     white-space: nowrap;
   }
+  .ant-table-thead > tr > th,
+  .ant-table-tbody > tr > td {
+    word-break: initial;
+  }
 `
 export default @injectIntl class TableArrayPlugin extends Component<Props, State> {
   editModal: ?EditModal;
