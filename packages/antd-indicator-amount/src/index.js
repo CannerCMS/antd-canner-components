@@ -8,7 +8,8 @@ import type {IndicatorDefaultProps} from 'types/IndicatorDefaultProps';
 type Props = IndicatorDefaultProps & {
   title: string,
   uiParams: {
-    formatter: (value: any) => string
+    formatter: (value: any) => string,
+    note: (value: any) => string | string
   }
 };
 
@@ -25,11 +26,17 @@ const Amount = styled.div`
   font-size: 26px;
 `;
 
-const IndicatorAmount = ({ value, title, uiParams: { formatter = v => v } }: Props) => {
+const Note = styled.div`
+  color: rgba(0,0,0,0.30);
+  font-size: 12px;
+`
+
+const IndicatorAmount = ({ value, title, uiParams: { formatter = v => v, note } }: Props) => {
   return (
     <Wrapper>
       <Title>{ title }</Title>
       <Amount>{ formatter(value) }</Amount>
+      <Note>{ typeof note === "function" ? note(value) : note }</Note>
     </Wrapper>
   );
 }

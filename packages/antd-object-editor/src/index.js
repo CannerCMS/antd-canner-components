@@ -18,6 +18,13 @@ export default class EditorContainer extends PureComponent<Props, State> {
     this.setState({showEditor: true});
   }
 
+  componentWillUnmount() {
+    Editor = null;
+    this.setState({
+      showEditor: false
+    });
+  }
+
   render() {
     return (
       <div>

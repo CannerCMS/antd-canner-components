@@ -23,7 +23,7 @@ module.exports = {
   plugins: [
     ["@babel/plugin-proposal-decorators", { legacy: true }],
     ["@babel/plugin-proposal-class-properties", { loose: false }],
-    ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
+    ["import", { "libraryName": "antd", "style": true }]
   ],
   babelrcRoots: "packages/*"
 };

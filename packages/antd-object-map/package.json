@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-object-map",
-  "version": "0.4.2-alpha.19",
+  "version": "0.5.5",
   "description": "object map",
   "main": "lib/index.js",
   "scripts": {},
@@ -12,8 +12,8 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/antd-locales": "^0.4.2-alpha.19",
-    "antd-geosuggest": "^0.3.2",
+    "@canner/antd-locales": "^0.5.1",
+    "antd-geosuggest": "^0.3.3",
     "react-google-maps": "^9.4.5"
   },
   "peerDependencies": {
@@ -25,5 +25,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "e3d67c9e4c24124db4d3bba9d2ba12345deb8b99"
+  "gitHead": "6ad58dfd03c39ef5ee549d8a3910096e8728008e"
 }

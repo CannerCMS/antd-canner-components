@@ -45,7 +45,7 @@ export default class TabUi extends Component<Props, State> {
   componentWillReceiveProps(nextProps: Props) {
     // change active key when user delete last tab
     let { activeKey } = this.state;
-    const valueSize = nextProps.value.size;
+    const valueSize = nextProps.value.length;
     if (valueSize < Number(activeKey) + 1) {
       activeKey = valueSize - 1;
       this.setState({ activeKey: String(activeKey) });
@@ -67,7 +67,7 @@ export default class TabUi extends Component<Props, State> {
       refId,
       onChange,
     } = this.props;
-    const size = value.size;
+    const size = value.length;
     onChange(refId, 'create');
     this.setState({ activeKey: `${size}` });
   };
@@ -88,7 +88,7 @@ export default class TabUi extends Component<Props, State> {
           })
           .then(() => {
             that.setState({
-              activeKey: `${value.size - 2}`
+              activeKey: `${value.length - 2}`
             });
           });
       }
@@ -158,10 +158,14 @@ export default class TabUi extends Component<Props, State> {
           <Item
             refId={thisId}
           />
-          <div>
-            <ConfirmButton refId={thisId}/>
-            <ResetButton refId={thisId}/>
-          </div>
+          {
+            thisId.getPathArr().length === 2 && (
+              <div>
+                <ConfirmButton refId={thisId} />
+                <ResetButton refId={thisId} />
+              </div>
+            )
+          }
         </TabPane>
       );
     });

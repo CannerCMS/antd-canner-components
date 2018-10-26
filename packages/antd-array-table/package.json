@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-array-table",
-  "version": "0.4.2-alpha.19",
+  "version": "0.5.1",
   "description": "array table",
   "main": "lib/index.js",
   "scripts": {},
@@ -12,8 +12,8 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/antd-locales": "^0.4.2-alpha.19",
-    "@canner/antd-share-toolbar": "^0.4.2-alpha.19",
+    "@canner/antd-locales": "^0.5.1",
+    "@canner/antd-share-toolbar": "^0.5.1",
     "prop-types": "^15.6.0",
     "styled-components": "^3.4.6"
   },
@@ -25,5 +25,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "e3d67c9e4c24124db4d3bba9d2ba12345deb8b99"
+  "gitHead": "6ad58dfd03c39ef5ee549d8a3910096e8728008e"
 }

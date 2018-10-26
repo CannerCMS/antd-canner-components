@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-string-link",
-  "version": "0.4.2-alpha.19",
+  "version": "0.5.1",
   "description": "string input",
   "main": "lib/index.js",
   "scripts": {
@@ -20,8 +20,8 @@
     }
   },
   "dependencies": {
-    "@canner/antd-locales": "^0.4.2-alpha.19",
-    "@canner/antd-string-input": "^0.4.2-alpha.19",
+    "@canner/antd-locales": "^0.5.1",
+    "@canner/antd-string-input": "^0.5.1",
     "react-intl": "^2.4.0"
   },
   "peerDependencies": {
@@ -30,5 +30,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "e3d67c9e4c24124db4d3bba9d2ba12345deb8b99"
+  "gitHead": "6ad58dfd03c39ef5ee549d8a3910096e8728008e"
 }
