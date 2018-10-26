@@ -91,7 +91,7 @@ export default class Sort extends Component<Props, State> {
     const {key, order} = this.state;
     return (
       <div style={{display: 'flex'}}>
-        <Selector onChange={this.onChange} value={key} defaultValue={defaultField} allowClear placeholder={<FormattedMessage id="query.sort.placeholder"/>}>
+        <Selector style={{marginRight: 8}} onChange={this.onChange} value={key} defaultValue={defaultField} allowClear placeholder={<FormattedMessage id="query.sort.placeholder"/>}>
           {(options || []).map((option, i) => <Option key={i} value={option.field}>{option.label}</Option>)}
         </Selector>
         <OrderSwitch onClick={this.changeOrder}>
