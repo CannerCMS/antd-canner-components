@@ -9,6 +9,7 @@ import type {FieldId, FieldItems, GotoFn} from 'types/DefaultProps';
 import {injectIntl, intlShape} from 'react-intl';
 import Toolbar from '@canner/antd-share-toolbar';
 import styled from 'styled-components';
+import get from 'lodash/get';
 
 const ButtonGroup = Button.Group;
 const confirm = Modal.confirm;
@@ -44,8 +45,8 @@ type State = {
   selectedRowKeys: Array<string>
 }
 
-@injectIntl
-export default class ArrayBreadcrumb extends Component<Props, State> {
+
+export default @injectIntl class ArrayBreadcrumb extends Component<Props, State> {
   editModal: ?HTMLDivElement;
   addModal: ?HTMLDivElement;
   static defaultProps = {
@@ -102,7 +103,8 @@ export default class ArrayBreadcrumb extends Component<Props, State> {
       refId,
       onChange,
       keyName,
-      request
+      request,
+      rootValue
     } = this.props;
     const {selectedRowKeys} = this.state;
     const addText = (
@@ -149,11 +151,13 @@ export default class ArrayBreadcrumb extends Component<Props, State> {
       onChange: this.onSelectChange,
     };
     const selectedValue = value.filter(item => selectedRowKeys.indexOf(item.id) > -1);
+    const recordValue = get(rootValue, refId.remove().getPathArr());
     return (
       <Wrapper>
         <Toolbar
           toolbar={toolbar}
           dataSource={value}
+          recordValue={recordValue}
           selectedValue={selectedValue}
           items={items}
           keyName={keyName}
@@ -178,11 +182,12 @@ export default class ArrayBreadcrumb extends Component<Props, State> {
                     </Button>
                   )}
                   <Table
-                    rowSelection={toolbar && toolbar.export ? rowSelection : undefined}
+                    rowSelection={get(toolbar, 'actions.export') ? rowSelection : undefined}
                     pagination={showPagination}
                     dataSource={value}
                     columns={newColumnsRender}
                     scroll={{x: true}}
+                    rowKey="id"
                   />
                 </React.Fragment>
               )

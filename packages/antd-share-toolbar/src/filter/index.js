@@ -37,6 +37,7 @@ const FilterWrapper = styled.div`
   transition: 200ms;
   maxWidth: 220px;
   position: relative;
+  display: inline-block;
   text-align: left;
   padding: 8px;
 

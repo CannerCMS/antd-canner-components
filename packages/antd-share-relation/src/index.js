@@ -93,9 +93,17 @@ export default class Picker extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { visible, columns, pickOne = false, Toolbar, toolbar, rootValue, refId } = this.props;
+    const { visible, columns, pickOne = false,
+      Toolbar, toolbar, rootValue, refId,
+      items, keyName, request, deploy
+    } = this.props;
     const { selectedRowKeys} = this.state;
     const recordValue = get(rootValue, refId.remove().getPathArr());
+    if (toolbar && toolbar.actions) {
+      // not support export import in relation
+      delete toolbar.actions.export;
+      delete toolbar.actions.import;
+    }
     return <Modal
       width={800}
       onOk={this.handleOk}
@@ -109,6 +117,11 @@ export default class Picker extends React.PureComponent<Props, State> {
               dataSource={dataSource}
               toolbar={toolbar}
               recordValue={recordValue}
+              selectedValue={[]}
+              items={items}
+              keyName={keyName}
+              request={request}
+              deploy={deploy}
             >
               {
                 ({value, showPagination}) => (

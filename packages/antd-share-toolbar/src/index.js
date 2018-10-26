@@ -171,7 +171,6 @@ export default class Toolbar extends React.PureComponent<Props, State> {
     if (pagination) {
       value = paginate(value, this.state.current, this.state.pageSize);
     }
-    console.log(toolbar);
     return <ToolbarLayout
       Actions={actions ? <ActionsComponent
         {...actions}

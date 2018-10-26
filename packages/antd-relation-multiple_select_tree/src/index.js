@@ -115,7 +115,7 @@ export default class MultipleRelationTree extends PureComponent<Props, State> {
 
   render() {
     const {fetching, expandedKeys, autoExpandParent} = this.state;
-    const { Toolbar, toolbar, value, refId, relation, uiParams: {textCol, relationField, checkStrictly}, rootValue } = this.props;
+    const { Toolbar, toolbar, value, refId, relation, uiParams: {textCol, relationField, checkStrictly}, rootValue, schema, keyName, request, deploy } = this.props;
     const [key, index] = refId.getPathArr();
     // $FlowFixMe
     const checkedId = value && value.id;
@@ -126,6 +126,11 @@ export default class MultipleRelationTree extends PureComponent<Props, State> {
       return <List style={{maxWidth: 400}}/>;
     }
     const recordValue = get(rootValue, refId.remove().getPathArr());
+    if (toolbar && toolbar.actions) {
+      // not support export import in relation
+      delete toolbar.actions.export;
+      delete toolbar.actions.import;
+    }
     return (
       <Toolbar>
         {relationValue => {
@@ -134,6 +139,11 @@ export default class MultipleRelationTree extends PureComponent<Props, State> {
               dataSource={relationValue}
               toolbar={{...toolbar, pagination: false}}
               recordValue={recordValue}
+              selectedValue={[]}
+              items={schema[relation.to].items}
+              keyName={keyName}
+              request={request}
+              deploy={deploy}
             >
               {
                 props => {
