@@ -83,6 +83,18 @@ class SingleSelectTreeDemo extends React.Component<ArrayTypes<string>> {
               }],
               relationField: 'relation'
             }}
+            schema={{posts: {
+              title: 'posts',
+              type: 'array',
+              items: {
+                type: 'object',
+                items: {
+                  title: {
+                    type: 'string'
+                  }
+                }
+              }
+            }}}
             toolbar={{
               actions: {
                 filterButton: true
