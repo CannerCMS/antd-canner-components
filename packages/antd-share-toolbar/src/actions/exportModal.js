@@ -30,7 +30,7 @@ type State = {
 
 const ALL = 'ALL';
 const THIS_PAGE = 'THIS_PAGE';
-const SELECTED = 'SElECTED';
+const SELECTED = 'SELECTED';
 const DOWNLOAD = 'DOWNLOAD';
 
 // $FlowFixMe
@@ -47,7 +47,7 @@ export default class ExportModal extends React.Component<Props, State> {
       form,
       value,
       selectedValue,
-      allValue,
+      unPaginatedValue,
       fileName,
       triggerModal,
       fields,
@@ -58,7 +58,7 @@ export default class ExportModal extends React.Component<Props, State> {
         let csv = [];
         const fieldsData = fields.filter(field => exportFieldKeys.find(key => key === field.keyName));
         if (exportData === ALL) {
-          csv = genCSV(allValue, fieldsData);
+          csv = genCSV(unPaginatedValue, fieldsData);
         } else if (exportData === THIS_PAGE) {
           csv = genCSV(value, fieldsData);
         } else if (exportData === SELECTED) {
@@ -73,8 +73,11 @@ export default class ExportModal extends React.Component<Props, State> {
             downloading: false
           }, triggerModal);
         } else {
-          // not support other exportWay for now
+          message.error('Unsupportted export way.');
         }
+      } else {
+        message.error('There is something wrong.');
+        console.error(err);
       }
     });
   }

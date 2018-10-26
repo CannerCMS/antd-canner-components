@@ -50,9 +50,7 @@ const Wrapper = styled.div`
     white-space: nowrap;
   }
 `
-
-@injectIntl
-export default class TableArrayPlugin extends Component<Props, State> {
+export default @injectIntl class TableArrayPlugin extends Component<Props, State> {
   editModal: ?EditModal;
   addModal: ?AddModal;
   static defaultProps = {
@@ -65,7 +63,8 @@ export default class TableArrayPlugin extends Component<Props, State> {
     this.state = {
       showAddModal: false,
       showEditModal: false,
-      value: props.value
+      value: props.value,
+      selectedRowKeys: []
     }
   }
 
@@ -75,6 +74,10 @@ export default class TableArrayPlugin extends Component<Props, State> {
         value: nextProps.value
       };
     }
+  }
+
+  onSelectChange = (selectedRowKeys) => {
+    this.setState({selectedRowKeys});
   }
 
   render() {
@@ -88,10 +91,13 @@ export default class TableArrayPlugin extends Component<Props, State> {
       reset,
       toolbar,
       goTo,
-      rootValue
+      rootValue,
+      request,
+      keyName
     } = this.props;
     const {
-      value
+      value,
+      selectedRowKeys
     } = this.state;
 
     const addText = (
@@ -119,6 +125,12 @@ export default class TableArrayPlugin extends Component<Props, State> {
       reset,
       deploy
     });
+    const rowSelection = {
+      selectedRowKeys,
+      onChange: this.onSelectChange,
+    };
+    const selectedValue = value.filter(item => selectedRowKeys.indexOf(item.id) > -1);
+
     const recordValue = get(rootValue, refId.remove().getPathArr());
     if ((!updateKeys || updateKeys.length > 0) || !disableDelete) {
       newColumnsRender.push({
@@ -163,6 +175,11 @@ export default class TableArrayPlugin extends Component<Props, State> {
           toolbar={toolbar}
           dataSource={value}
           recordValue={recordValue}
+          selectedValue={selectedValue}
+          items={items}
+          keyName={keyName}
+          request={request}
+          deploy={deploy}
         >
         {
           ({value, showPagination}) => {
@@ -186,10 +203,12 @@ export default class TableArrayPlugin extends Component<Props, State> {
                   </Button>
                 )}
                 <Table
+                  rowSelection={get(toolbar, 'actions.export') ? rowSelection : undefined}
                   pagination={showPagination}
                   dataSource={value}
                   columns={newColumnsRender}
                   scroll={{ x: true }}
+                  rowKey="id"
                 />
               </React.Fragment>
             )

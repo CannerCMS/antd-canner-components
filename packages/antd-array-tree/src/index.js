@@ -5,6 +5,7 @@ import {Modal} from 'antd';
 import AddModal from './addModal';
 import EditModal from './editModal';
 import { injectIntl } from "react-intl";
+import get from 'lodash/get';
 import Toolbar from '@canner/antd-share-toolbar';
 
 import Tree from './tree';
@@ -42,8 +43,7 @@ type State = {
   searchValue: string,
 }
 
-@injectIntl
-export default class ArrayTree extends React.Component<Props, State> {
+export default @injectIntl class ArrayTree extends React.Component<Props, State> {
   addModal: ?AddModal;
   editModal: ?EditModal;
 
@@ -91,13 +91,20 @@ export default class ArrayTree extends React.Component<Props, State> {
   }
 
   render() {
-    const {uiParams, title, items, value, refId, reset, onChange, toolbar} = this.props;
+    const {uiParams, title, items, value, refId, reset, onChange, toolbar, keyName, request, deploy, rootValue} = this.props;
     const {showAddModal, showEditModal} = this.state;
+    const recordValue = get(rootValue, refId.remove().getPathArr());
     return (
       <React.Fragment>
         <Toolbar
           toolbar={{...toolbar, pagination: false}}
           dataSource={value}
+          recordValue={recordValue}
+          selectedValue={[]}
+          items={items}
+          keyName={keyName}
+          request={request}
+          deploy={deploy}
         >
           {
             ({value}) => {
