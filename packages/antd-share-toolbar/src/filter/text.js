@@ -27,7 +27,7 @@ export default class TextFilter extends Component {
     const {placeholder, where, name} = this.props;
     return (
       <Input
-        style={{width: 140}}
+        style={{width: 'auto'}}
         placeholder={placeholder || name}
         onChange={this.onInput}
         defaultValue={get(where, `${name}.contains`, '')}
