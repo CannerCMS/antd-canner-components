@@ -37,7 +37,7 @@ export default class AddModal extends Component<Props, State> {
     };
   }
 
-  showModal = (value: any, order: number) => {
+  showModal = (order: number) => {
     const {onChange, refId, updateShowModal} = this.props;
 
     // need to create before update new data

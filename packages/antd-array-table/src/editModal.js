@@ -35,7 +35,7 @@ export default class EditModal extends Component<Props, State> {
     };
   }
 
-  showModal = (value: any, i: number) => {
+  showModal = (i: number) => {
     const {updateShowModal} = this.props;
     this.setState({
       visible: true,

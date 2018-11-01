@@ -1,22 +1,15 @@
 // @flow
 
 import React, { Component } from "react";
-import { Table, Button } from "antd";
-import {get} from 'lodash';
-import showDeleteConfirm from "./showDeleteConfirm";
 import EditModal from "./editModal";
 import AddModal from "./addModal";
-import { FormattedMessage } from "react-intl";
-import defaultMessage, {renderValue, getIntlMessage} from "@canner/antd-locales";
 import {injectIntl} from 'react-intl';
 import styled from 'styled-components';
+import Table from '@canner/antd-share-table';
 
 import type {ArrayDefaultProps} from 'types/ArrayDefaultProps';
 import type {FieldItems} from 'types/DefaultProps';
 import {intlShape} from 'react-intl';
-import Toolbar from '@canner/antd-share-toolbar';
-
-const ButtonGroup = Button.Group;
 
 type FieldItem = {
   [string]: any,
@@ -26,13 +19,19 @@ type Props = ArrayDefaultProps<FieldItem> & {
   uiParams: {
     createKeys?: Array<string>,
     updateKeys?: Array<string>,
-    disableDelete?: boolean,
     columns: Array<{
       title: string,
       key: string,
       dataIndex: string,
       renderTemplate: string
     }>,
+    bordered: boolean,
+    components: Object,
+    footer: Function,
+    showHeader: boolean,
+    size: 'default' | 'middle' | 'small',
+    createButtonPosition: 'right' | 'left',
+    disableActionsColumn: boolean
   },
   showPagination: boolean,
   items: FieldItems,
@@ -67,8 +66,7 @@ export default @injectIntl class TableArrayPlugin extends Component<Props, State
     this.state = {
       showAddModal: false,
       showEditModal: false,
-      value: props.value,
-      selectedRowKeys: []
+      value: props.value
     }
   }
 
@@ -80,8 +78,21 @@ export default @injectIntl class TableArrayPlugin extends Component<Props, State
     }
   }
 
-  onSelectChange = (selectedRowKeys) => {
-    this.setState({selectedRowKeys});
+  update = (text, record) => {
+    this.editModal && this.editModal.showModal(record.__index);
+  }
+
+  delete = (text, record) => {
+    const index = record.__index;
+    const {onChange, deploy, refId, value} = this.props;
+    onChange(refId.child(index), 'delete').then(() => {
+      deploy(refId.getPathArr()[0], value[index].id);
+    });
+  }
+
+  create = () => {
+    const {value} = this.props;
+    this.addModal && this.addModal.showModal(value.length);
   }
 
   render() {
@@ -97,132 +108,37 @@ export default @injectIntl class TableArrayPlugin extends Component<Props, State
       goTo,
       rootValue,
       request,
-      keyName
+      keyName,
+      disabled = {}
     } = this.props;
     const {
-      value,
-      selectedRowKeys
+      value
     } = this.state;
-
-    const addText = (
-      <FormattedMessage
-        id="array.table.addText"
-        defaultMessage={defaultMessage.en["array.table.addText"]}
-      />
-    );
-
-    let {
-      createKeys,
-      updateKeys,
-      disableDelete,
-      columns = []
-    } = uiParams;
-
-    const newColumns = columns.map(column => {
-      return {...column, title: getIntlMessage(intl, column.title)};
-    });
-    const newColumnsRender = renderValue(newColumns, items.items, {
-      refId,
-      onChange,
-      uiParams,
-      goTo,
-      reset,
-      deploy
-    });
-    const rowSelection = {
-      selectedRowKeys,
-      onChange: this.onSelectChange,
-    };
-    const selectedValue = value.filter(item => selectedRowKeys.indexOf(item.id) > -1);
-
-    const recordValue = get(rootValue, refId.remove().getPathArr());
-    if ((!updateKeys || updateKeys.length > 0) || !disableDelete) {
-      newColumnsRender.push({
-        title: intl.formatMessage({ id: "array.table.actions" }),
-        dataIndex: "__settings",
-        key: "__settings",
-        render: (text, record) => {
-          return (
-            <ButtonGroup>
-              {(!updateKeys || updateKeys.length > 0) && (
-                <Button
-                  icon="edit"
-                  onClick={() => {
-                    if (this.editModal)
-                      this.editModal.showModal(value, record.__index);
-                  }}
-                />
-              )}
-              {!disableDelete && (
-                <Button
-                  icon="delete"
-                  onClick={() =>
-                    showDeleteConfirm({
-                      refId,
-                      onChange,
-                      intl,
-                      deploy,
-                      order: record.__index
-                    })
-                  }
-                />
-              )}
-            </ButtonGroup>
-          );
-        }
-      });
-    }
-
     return (
       <Wrapper>
-        <Toolbar
-          toolbar={toolbar}
-          dataSource={value}
-          recordValue={recordValue}
-          selectedValue={selectedValue}
+        <Table
+          refId={refId}
+          uiParams={uiParams}
+          onChange={onChange}
           items={items}
-          keyName={keyName}
-          request={request}
           deploy={deploy}
-        >
-        {
-          ({value, showPagination}) => {
-            return (
-              <React.Fragment>
-                {(!createKeys || createKeys.length > 0) && (
-                  <Button
-                    type="primary"
-                    style={{
-                      marginBottom: '10px',
-                      marginLeft: 'auto',
-                      display: 'block'
-                    }}
-                    onClick={() => {
-                      if (this.addModal) {
-                        this.addModal.showModal(value, value.length);
-                      }
-                    }}
-                  >
-                    {addText}
-                  </Button>
-                )}
-                <Table
-                  rowSelection={get(toolbar, 'actions.export') ? rowSelection : undefined}
-                  pagination={showPagination}
-                  dataSource={value}
-                  columns={newColumnsRender}
-                  scroll={{ x: true }}
-                  rowKey="id"
-                />
-              </React.Fragment>
-            )
-          }
-        }
-        </Toolbar>
+          intl={intl}
+          reset={reset}
+          toolbar={toolbar}
+          goTo={goTo}
+          rootValue={rootValue}
+          request={request}
+          keyName={keyName}
+          disabled={disabled}
+          value={value}
+          delete={this.delete}
+          create={this.create}
+          update={this.update}
+        />
         <EditModal
           ref={modal => (this.editModal = modal)}
           refId={refId}
-          updateKeys={updateKeys}
+          updateKeys={uiParams.updateKeys}
           updateShowModal={(state) => this.setState({showEditModal: state})}
           onChange={onChange}
           reset={reset}
@@ -232,7 +148,7 @@ export default @injectIntl class TableArrayPlugin extends Component<Props, State
           refId={refId}
           reset={reset}
           updateShowModal={(state) => this.setState({showAddModal: state})}
-          createKeys={createKeys}
+          createKeys={uiParams.createKeys}
           onChange={onChange}
           items={items.items}
         />

@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@canner/antd-locales": "^0.5.1",
-    "@canner/antd-share-toolbar": "^0.5.8",
+    "@canner/antd-share-table": "^0.5.8",
     "styled-components": "^3.4.6"
   },
   "canner": {
