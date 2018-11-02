@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-components",
-  "version": "0.5.9",
+  "version": "0.5.10",
   "description": "plugins locals",
   "main": "lib/index.js",
   "scripts": {},
@@ -19,8 +19,8 @@
     "@canner/antd-array-tab_left": "^0.5.6",
     "@canner/antd-array-tab_right": "^0.5.6",
     "@canner/antd-array-tab_top": "^0.5.6",
-    "@canner/antd-array-table": "^0.5.9",
-    "@canner/antd-array-table_route": "^0.5.9",
+    "@canner/antd-array-table": "^0.5.10",
+    "@canner/antd-array-table_route": "^0.5.10",
     "@canner/antd-array-tabs": "^0.5.6",
     "@canner/antd-array-tag": "^0.5.1",
     "@canner/antd-array-tree": "^0.5.8",
