@@ -3,8 +3,6 @@
 import React, { Component } from "react";
 import { Table, Button, Icon, Popconfirm } from "antd";
 import {get} from 'lodash';
-import EditModal from "./editModal";
-import AddModal from "./addModal";
 import { FormattedMessage } from "react-intl";
 import defaultMessage, {renderValue, getIntlMessage} from "@canner/antd-locales";
 import {injectIntl} from 'react-intl';
@@ -50,8 +48,6 @@ type State = {
 }
 
 export default @injectIntl class TableArrayPlugin extends Component<Props, State> {
-  editModal: ?EditModal;
-  addModal: ?AddModal;
   static defaultProps = {
     value: [],
     showPagination: true
