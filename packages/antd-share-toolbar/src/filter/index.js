@@ -128,7 +128,7 @@ export default class FilterGroup extends React.Component<Props, State> {
       }
     }
     return (
-      <div style={{marginTop: 16, marginBottom: 16}}>
+      <div>
         {
           displayedFilters.map(index => (
             <FilterWrapper key={index}>

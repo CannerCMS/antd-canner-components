@@ -21,14 +21,16 @@ export default class ToolbarLayout extends React.PureComponent<Props> {
         }}>
           <div style={{
             display: 'flex',
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
+            margin: '16px 0',
           }}>
             {Actions}
             {Sort}
           </div>
           <div style={{
             display: 'flex',
-            flexWrap: 'wrap'
+            flexWrap: 'wrap',
+            margin: '16px 0',
           }}>
             {Filter}
           </div>
