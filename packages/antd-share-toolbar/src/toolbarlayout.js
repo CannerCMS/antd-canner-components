@@ -14,26 +14,33 @@ export default class ToolbarLayout extends React.PureComponent<Props> {
   render() {
     const {Filter, Sort, Actions, children, Pagination} = this.props;
     return (
-      
       <React.Fragment>
         <div style={{
           flexWrap: 'wrap',
         }}>
-          <div style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            margin: Actions || Sort ? '16px 0' : '',
-          }}>
-            {Actions}
-            {Sort}
-          </div>
-          <div style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            margin: Filter ? '16px 0' : '',
-          }}>
-            {Filter}
-          </div>
+          {
+            Actions || Sort ? (
+              <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                margin: '8px 0 16px 0',
+              }}>
+                {Actions}
+                {Sort}
+              </div>
+            ) : null
+          }
+          {
+            Filter ? (
+              <div style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                margin: Filter ? '0 0 16px 0' : '',
+              }}>
+                {Filter}
+              </div>
+            ) : null
+          }
         </div>
         {React.Children.only(children)}
         {Pagination}
