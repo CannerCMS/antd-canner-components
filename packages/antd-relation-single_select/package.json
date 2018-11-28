@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-relation-single_select",
-  "version": "0.5.13",
+  "version": "0.5.14",
   "description": "relation single selection",
   "main": "lib/index.js",
   "scripts": {},
@@ -14,9 +14,9 @@
   "dependencies": {
     "@canner/antd-locales": "^0.5.1",
     "@canner/antd-share-relation": "^0.5.13",
+    "lodash.get": "^4.4.2",
     "lodash.template": "^4.4.0",
-    "styled-components": "^3.2.6",
-    "lodash.get": "^4.4.2"
+    "styled-components": "^3.2.6"
   },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
