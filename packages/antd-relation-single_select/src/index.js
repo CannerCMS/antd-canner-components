@@ -2,6 +2,7 @@
 import React, { PureComponent } from "react";
 import { Tag, Icon } from "antd";
 import template from 'lodash/template';
+import get from 'lodash.get';
 import Picker from '@canner/antd-share-relation';
 import {FormattedMessage} from 'react-intl';
 
@@ -122,7 +123,7 @@ function getTag(v: {[string]: any}, uiParams: {
     return textCol(v);
   }
   if (type === 'string') {
-    return v[textCol];
+    return get(v, textCol);
   }
   return textCol;
 }
