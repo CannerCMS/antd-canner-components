@@ -66,12 +66,56 @@ class EditorComponentDemo2 extends React.Component<PrimitiveTypes<boolean>> {
   }
 }
 
+@ExamplePrimitiveValueWrapper({html: ''})
+class EditorComponentDemo3 extends React.Component<PrimitiveTypes<boolean>> {
+
+  render() {
+    const {value, onChange} = this.props;
+
+    return (
+      <React.Fragment>
+        <Divider>Disabled Editor</Divider>
+        <Editor
+          refId={new RefId("map")}
+          value={value}
+          onChange={onChange}
+          disabled
+        />
+      </React.Fragment>
+    );
+  }
+}
+
+@ExamplePrimitiveValueWrapper({html: ''})
+class EditorComponentDemo4 extends React.Component<PrimitiveTypes<boolean>> {
+
+  render() {
+    const {value, onChange} = this.props;
+
+    return (
+      <React.Fragment>
+        <Divider>UIParams.minHeight = 100vh Editor</Divider>
+        <Editor
+          refId={new RefId("map")}
+          value={value}
+          onChange={onChange}
+          uiParams={{
+            minHeight: '100vh'
+          }}
+        />
+      </React.Fragment>
+    );
+  }
+}
+
 export default class Demo extends React.Component<{}> {
   render() {
     return (
       <React.Fragment>
         <EditorComponentDemo1 />
         <EditorComponentDemo2 />
+        <EditorComponentDemo3 />
+        <EditorComponentDemo4 />
       </React.Fragment>
     )
   }

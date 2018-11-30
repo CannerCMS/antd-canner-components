@@ -1,5 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
+import styled from 'styled-components';
 
 // type
 import type {ObjectDefaultProps} from 'types/ObjectDefaultProps';
@@ -7,6 +8,17 @@ import type {ObjectDefaultProps} from 'types/ObjectDefaultProps';
 type Props = ObjectDefaultProps
 type State = {showEditor: boolean};
 let Editor: any;
+
+const Container = styled.div`
+  .ql-editor {
+    @media (max-width: 576px) {
+      min-height: 100vh;
+    }
+    @media (min-width: 576px) {
+      min-height: ${props => props.minHeight || '400px'};
+    }
+  }
+`
 
 export default class EditorContainer extends PureComponent<Props, State> {
   state = {
@@ -26,10 +38,11 @@ export default class EditorContainer extends PureComponent<Props, State> {
   }
 
   render() {
+    const {uiParams = {}} = this.props;
     return (
-      <div>
+      <Container {...uiParams}>
         {this.state.showEditor && <Editor {...this.props}/>}
-      </div>
+      </Container>
     )
   }
 }

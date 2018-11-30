@@ -78,13 +78,15 @@ export default class Editor extends PureComponent<Props, State> {
     return nextState[Editor.htmlKey] !== this.state[Editor.htmlKey];
   }
 
-  render() { 
+  render() {
+    const {disabled} = this.props;
     return (
       <ReactQuill
         onChange={this.handleChange}
         value={this.state[Editor.htmlKey]}
         modules={modules}
         formats={formats}
+        readOnly={disabled}
       />
     )
   }
