@@ -41,7 +41,18 @@ export default class TableRouteDemo extends Component<ArrayTypes<any>> {
             },
             pagination: {},
             filter: {
-              filters: []
+              filters: [{
+                type: 'select',
+                label: 'Filter1',
+                options: [{
+                  text: 'Option1',
+                  condition: {}
+                }, {
+                  text: 'Option2',
+                  condition: {}
+                }],
+                alwaysDisplay: true
+              }]
             },
             actions: {
               export: {},

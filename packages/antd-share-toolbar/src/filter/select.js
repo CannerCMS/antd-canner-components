@@ -33,7 +33,7 @@ export default class SelectFilter extends Component {
     const defaultPlaceholder = intl.formatMessage({id: 'query.filter.select.placeholder'});
     return (
       <Select
-        style={{width: 'auto'}}
+        style={{width: 'auto', minWidth: 160}}
         placeholder={placeholder || defaultPlaceholder}
         onChange={(val) => this.onSelect(val)}
         defaultValue={defaultOptionIndex}
