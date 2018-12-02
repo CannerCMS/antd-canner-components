@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-share-toolbar",
-  "version": "0.5.13",
+  "version": "0.5.16",
   "description": "string input",
   "main": "lib/index.js",
   "scripts": {

@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-share-relation",
-  "version": "0.5.13",
+  "version": "0.5.16",
   "description": "string input",
   "main": "lib/index.js",
   "scripts": {},
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@canner/antd-locales": "^0.5.1",
-    "@canner/antd-share-toolbar": "^0.5.13"
+    "@canner/antd-share-toolbar": "^0.5.16"
   },
   "publishConfig": {
     "access": "public"
