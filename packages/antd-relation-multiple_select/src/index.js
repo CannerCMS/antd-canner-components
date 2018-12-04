@@ -91,6 +91,7 @@ export default class RelationTable extends React.PureComponent<Props, State> {
         <Table
           dataSource={value}
           columns={newColumnsRender}
+          size="middle"
         />
         {
           !disabled && <div>

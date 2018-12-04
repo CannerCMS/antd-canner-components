@@ -40,7 +40,8 @@ export default class TreeDemo extends Component<ArrayTypes<any>> {
           refId={new RefId("tree")}
           uiParams={{
             textCol: 'title',
-            relationField: 'ref'
+            relationField: 'ref',
+            icon: 'tag'
           }}
           toolbar={{
             actions: {

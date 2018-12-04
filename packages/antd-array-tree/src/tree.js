@@ -119,7 +119,8 @@ export default class ArrayTree extends React.Component<Props, State> {
   }
 
   render() {
-    const {title, edit, add, remove} = this.props;
+    const {title, edit, add, remove, uiParams = {}} = this.props;
+    const icon = uiParams.icon;
     const {treeData, autoExpandParent, expandedKeys, searchValue} = this.state;
     const loop = data => data.map((item) => {
       const index = (item.title || '').toLowerCase().indexOf(searchValue.toLowerCase());
@@ -141,9 +142,9 @@ export default class ArrayTree extends React.Component<Props, State> {
         </Title>
       );
       if (item.children && item.children.length) {
-        return <TreeNode key={item.key} title={title}>{loop(item.children)}</TreeNode>;
+        return <TreeNode key={item.key} title={title} icon={<Icon type={icon} />} >{loop(item.children)}</TreeNode>;
       }
-      return <TreeNode key={item.key} title={title} />;
+      return <TreeNode key={item.key} title={title} icon={<Icon type={icon} />} />;
     });
     const addText = (
       <FormattedMessage
@@ -174,6 +175,7 @@ export default class ArrayTree extends React.Component<Props, State> {
               onExpand={this.onExpand}
               expandedKeys={expandedKeys}
               autoExpandParent={autoExpandParent}
+              showIcon={icon}
             >
               {loop(treeData)}
             </Tree>

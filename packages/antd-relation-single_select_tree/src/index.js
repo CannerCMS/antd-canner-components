@@ -111,7 +111,7 @@ export default class RelationTree extends PureComponent<Props, State> {
           </TreeNode>
         );
       }
-      return <TreeNode {...item} title={title} key={item.key} disableCheckbox={isSelf || disableCheckbox || isDisabledByUser}/>;
+      return <TreeNode {...item} title={title} key={item.key} disableCheckbox={isSelf || disableCheckbox || isDisabledByUser} />;
     });
   }
 

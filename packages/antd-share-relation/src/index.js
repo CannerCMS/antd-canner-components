@@ -132,7 +132,7 @@ export default class Picker extends React.PureComponent<Props, State> {
                       onChange: this.rowSelectOnChange,
                       selectedRowKeys: selectedRowKeys
                     }}
-                    size="middle"
+                    size="small"
                     columns={columns}
                     // $FlowFixMe
                     dataSource={value.map(v => ({...v, key: v.id}))}
