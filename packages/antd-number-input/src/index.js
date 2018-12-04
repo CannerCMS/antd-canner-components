@@ -19,7 +19,7 @@ type Props = NumberDefaultProps & {
     formatter?: Function,
     precision?: number,
     parser?: Function,
-
+    width?: number
   }
 };
 
@@ -32,17 +32,28 @@ export default class Input extends PureComponent<Props, State> {
   render() {
     const { value, uiParams, disabled } = this.props;
     let formatter = uiParams && uiParams.formatter;
+    let parser = uiParams && uiParams.parser;
+    const unit = uiParams && uiParams.unit;
     if (!formatter) {
       formatter = 
-        uiParams && uiParams.unit ? val => `${val} ${uiParams.unit}` : val => val;
+      unit ? val => `${val} ${uiParams.unit}` : val => val;
+    }
+
+    if (!parser) {
+      const reg = new RegExp(unit, 'g');
+      parser =
+        unit ? str => str.replace(reg, '') : num => num;
     }
     return (
       <InputNumber
+        style={{width: uiParams && uiParams.width}}
         disabled={disabled}
         min={uiParams && uiParams.min}
         max={uiParams && uiParams.max}
         step={uiParams && uiParams.step}
+        precision={uiParams && uiParams.precision}
         formatter={formatter}
+        parser={parser}
         value={value}
         onChange={this.onChange}
       />

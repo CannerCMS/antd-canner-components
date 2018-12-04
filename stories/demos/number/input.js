@@ -18,8 +18,9 @@ class NumberInputDemo1 extends React.Component<PrimitiveTypes<number>> {
           value={value}
           uiParams={{
             min: 1,
-            max: 10,
+            max: 100,
             step: 2,
+            precision: 2,
             unit: " unit"
           }}
           onChange={onChange}
