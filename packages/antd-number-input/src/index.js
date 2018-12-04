@@ -50,8 +50,8 @@ export default class Input extends PureComponent<Props, State> {
         disabled={disabled}
         min={uiParams && uiParams.min}
         max={uiParams && uiParams.max}
-        step={uiParams && uiParams.step}
-        precision={uiParams && uiParams.precision}
+        step={(uiParams && uiParams.step)}
+        precision={uiParams && uiParams.precision || 0}
         formatter={formatter}
         parser={parser}
         value={value}

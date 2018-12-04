@@ -27,7 +27,6 @@ function renderField(schema, value) {
 
   // show '-' is no value.
   if (!value && !isBoolean(value)) return '-';
-
   switch (schema.type) {
     case 'boolean': {
       if (value) {

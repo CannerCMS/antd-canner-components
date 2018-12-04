@@ -9,10 +9,26 @@ import type {ArrayTypes} from '../types';
 
 const initData = [{
   "title": "title 1",
-  "content": "content 1"
+  "content": "content 1",
+  "image": {
+    url: "https://placeimg.com/321/321",
+  },
+  "photos": [{
+    image: {
+      "url": "https://placeimg.com/321/321"
+    }
+  }]
 }, {
   "title": "title 2",
-  "content": "content 2"
+  "content": "content 2",
+  "image": {
+    url: "https://placeimg.com/321/321",
+  },
+  "photos": [{
+    image: {
+      "url": "https://placeimg.com/321/321"
+    }
+  }]
 }]
 
 @ExampleArrayValueWrapper(initData)
@@ -35,6 +51,10 @@ export default class TableDemo extends Component<ArrayTypes<any>> {
               title: "photos",
               key: "photos",
               dataIndex: "photos"
+            }, {
+              title: "image",
+              key: "image",
+              dataIndex: "image"
             }]
           }}
           items={{
@@ -45,6 +65,9 @@ export default class TableDemo extends Component<ArrayTypes<any>> {
               },
               content: {
                 type: "string"
+              },
+              image: {
+                type: "image"
               },
               photos: {
                 type: "array",
