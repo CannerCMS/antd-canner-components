@@ -52,6 +52,10 @@ export default class TableRouteDemo extends Component<ArrayTypes<any>> {
                   condition: {}
                 }],
                 alwaysDisplay: true
+              }, {
+                type: 'date',
+                label: 'date1',
+                field: 'test'
               }]
             },
             actions: {
