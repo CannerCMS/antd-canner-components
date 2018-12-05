@@ -41,7 +41,7 @@ function renderField(schema, value) {
       return value;
     }
     case 'dateTime': {
-      return dayjs(value).format('YYYY/MM/DD HH:mm');
+      return dayjs(value).format('YYYY/MM/DD');
     }
     case 'image': {
       if (!value.url) return '-';
