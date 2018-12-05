@@ -46,9 +46,16 @@ function renderField(schema, value) {
     case 'image': {
       if (!value.url) return '-';
       return (
-        <div style={{display: 'inline-block'}}>
-          <img alt="Picture" src={value.url} width="50" height="50"></img>
-        </div>
+        <div
+          style={{
+            width: '50px',
+            height: '50px',
+            backgroundImage: `url(${value.url})`,
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat'
+          }}
+        />
       );
     }
     case 'array': {
