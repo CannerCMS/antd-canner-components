@@ -6,7 +6,7 @@ import TextFilter from './text';
 import styled from 'styled-components';
 import {Icon} from 'antd';
 import debounce from 'lodash/debounce';
-// import DateRangeFilter from './dateRange';
+import DateFilter from './date';
 import isEmpty from 'lodash/isEmpty';
 // import {FormattedMessage} from 'react-intl';
 // import defaultMessage from '../locale';
@@ -117,10 +117,8 @@ export default class FilterGroup extends React.Component<Props, State> {
           return <SelectFilter onChange={debounceChange} where={where} {...filter} />;
         case 'number':
           return <NumberFilter onChange={debounceChange} name={filter.field} where={where} placeholder={filter.placeholder}/>;
-        /*
-        case 'dateRange':
-          return <DateRangeFilter onChange={debounceChange} schema={{[filter.field]: filter}}/>
-        */
+          case 'date':
+          return <DateFilter onChange={debounceChange} name={filter.field} where={where} />;
         case 'text':
           return <TextFilter onChange={debounceChange} name={filter.field} where={where} placeholder={filter.placeholder}/>;
         default:
