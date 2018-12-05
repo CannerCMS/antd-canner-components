@@ -39,28 +39,18 @@ const FilterWrapper = styled.div`
   position: relative;
   display: inline-block;
   text-align: left;
-  padding: 8px;
+  margin: 8px 16px;
 
   &:hover {
-    background-color: #f3f3f3;
-
-    i {
-      visibility: visible;
-      opacity: 1;
-      position: absolute;
-      right: 0;
-      top: 0;
-      cursor: pointer;
-    }
+    opacity: .8;
   }
 
-  i {
+  i.filter-cross {
     transition: all 200ms;
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
+    left: 8px;
+    position: relative;
+    font-size: 18px;
+    cursor: pointer;
   }
 
   h5 {
@@ -134,7 +124,7 @@ export default class FilterGroup extends React.Component<Props, State> {
               {renderFilter(filters[index])}
               {
                 !filters[index].alwaysDisplay && (
-                  <Icon type="close-circle-o" onClick={() => this.deleteFilter(index)} />
+                  <Icon className="filter-cross" type="close-circle" onClick={() => this.deleteFilter(index)} />
                 )
               }
             </FilterWrapper>

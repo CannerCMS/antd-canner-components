@@ -4,7 +4,6 @@ import { DatePicker } from 'antd';
 import moment from 'moment';
 import get from 'lodash/get';
 import set from 'lodash/set';
-import './date.css';
 
 const { RangePicker } = DatePicker;
 
