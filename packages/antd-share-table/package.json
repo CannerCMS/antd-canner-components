@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-share-table",
-  "version": "0.5.19",
+  "version": "0.5.20",
   "description": "array table",
   "main": "lib/index.js",
   "scripts": {},
@@ -12,8 +12,8 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/antd-locales": "^0.5.19",
-    "@canner/antd-share-toolbar": "^0.5.19",
+    "@canner/antd-locales": "^0.5.20",
+    "@canner/antd-share-toolbar": "^0.5.20",
     "prop-types": "^15.6.0",
     "styled-components": "^3.4.6"
   },
