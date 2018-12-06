@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-components",
-  "version": "0.5.20",
+  "version": "0.5.21",
   "description": "plugins locals",
   "main": "lib/index.js",
   "scripts": {},
@@ -45,7 +45,7 @@
     "@canner/antd-share-relation": "^0.5.20",
     "@canner/antd-share-toolbar": "^0.5.20",
     "@canner/antd-string-card": "^0.5.1",
-    "@canner/antd-string-date_time_picker": "^0.5.20",
+    "@canner/antd-string-date_time_picker": "^0.5.21",
     "@canner/antd-string-input": "^0.5.1",
     "@canner/antd-string-link": "^0.5.20",
     "@canner/antd-string-radio": "^0.5.1",
