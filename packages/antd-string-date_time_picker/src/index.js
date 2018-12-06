@@ -3,6 +3,7 @@ import React, { PureComponent } from "react";
 import { DatePicker } from "antd";
 import defaultMessage from "@canner/antd-locales";
 import {injectIntl} from 'react-intl';
+import moment from 'moment-timezone';
 
 import {
   transformMomentToString,
@@ -37,11 +38,13 @@ export default class DateTimePicker extends PureComponent<Props> {
 
   render() {
     const { value, uiParams = {}, intl, disabled } = this.props;
-    const moment = transformStringToMoment(value, uiParams.output);
-
+    let date = transformStringToMoment(value, uiParams.output);
+    if (uiParams.timezone) {
+      date = date.tz(uiParams.timezone);
+    }
     return (
       <DatePicker
-        defaultValue={value && value.length > 0 && moment}
+        value={date}
         disabled={disabled}
         format={uiParams && uiParams.format}
         placeholder={

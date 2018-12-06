@@ -3,7 +3,7 @@ import React, {Component, Fragment} from 'react';
 import Datetime from 'packages/antd-string-date_time_picker';
 import cmsLocale from 'packages/antd-locales';
 import {IntlProvider} from 'react-intl';
-import {Divider} from 'antd';
+import {Divider, Select} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../types';
 import RefId from 'canner-ref-id';
@@ -123,8 +123,19 @@ class DatetimeDemo5 extends Component<PrimitiveTypes<string>> {
   }
 }
 
-@ExamplePrimitiveValueWrapper()
+const Option = Select.Option;
+
+@ExamplePrimitiveValueWrapper('2018-12-21T06:26:42.169Z')
 class DatetimeDemo6 extends Component<PrimitiveTypes<string>> {
+  state = {
+    timezone: 'Europe/Paris'
+  }
+  onSelect = (v) => {
+    this.setState({
+      timezone: v
+    });
+  }
+
   render() {
     const {value, onChange} = this.props;
     return (
@@ -138,9 +149,15 @@ class DatetimeDemo6 extends Component<PrimitiveTypes<string>> {
             value={value}
             onChange={onChange}
             uiParams={{
-              timezone: 'America/Los_Angeles'
+              timezone: this.state.timezone,
+              format: 'YYYY/MM/DD hh:mm',
+              showTime: true
             }}
           />
+          <Select onSelect={this.onSelect} value={this.state.timezone}>
+            <Option value="Europe/Paris">Europe/Paris</Option>
+            <Option value="Asia/Taipei">Asia/Taipei</Option>
+          </Select>
         </Fragment>
       </IntlProvider>
     );
