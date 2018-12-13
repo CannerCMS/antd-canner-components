@@ -3785,9 +3785,9 @@ canner-helpers@^0.1.9:
     immutable "^4.0.0-rc.9"
     lodash "^4.17.5"
 
-canner-image-gallery@^0.3.4:
-  version "0.3.4"
-  resolved "https://registry.yarnpkg.com/canner-image-gallery/-/canner-image-gallery-0.3.4.tgz#c06b00281822cd018e8a0eb5c02ae3498e7c86c6"
+canner-image-gallery@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/canner-image-gallery/-/canner-image-gallery-0.4.0.tgz#e63b8a5f44a864cf3287051adb7d085296812b8f"
   dependencies:
     "@canner/image-upload" "^0.13.4"
     grid-breakpoint "^1.7.0"

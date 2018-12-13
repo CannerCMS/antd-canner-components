@@ -46,6 +46,9 @@ export default class GalleryDemo extends React.Component<ArrayTypes<any>> {
               mashapeKey: '<mashapeKey>',
               clientId: '<clientId>'
             })}
+            uiParams={{
+              grid: {lg: 2, md: 3, sm: 4}
+            }}
             onChange={onChange}
             />
         </React.Fragment>

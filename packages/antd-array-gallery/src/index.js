@@ -25,7 +25,15 @@ type Props = ArrayDefaultProps<FieldItem> & {
     dirname: string,
     imageKey: string,
     disableDrag: boolean,
-    limitSize: ?number
+    limitSize: ?number,
+    rowHeight?: string,
+    grid?: {
+      xs?: number,
+      sm?: number,
+      md?: number,
+      lg?: number
+    },
+    imageStyle?: Object
   },
   imageStorage: any,
   intl: intlShape
@@ -104,44 +112,45 @@ export default class ArrayGallery extends Component<Props> {
   };
 
   render() {
-    const { value, refId, imageStorage, uiParams: {limitSize, disableDrag, dirname}, intl } = this.props;
+    const { value, refId, imageStorage, uiParams: {limitSize, disableDrag, dirname, imageStyle, rowHeight, grid}, intl } = this.props;
     const galleryValue = value.map(photo => photo[this.imageKey].url);
     return (
-      <div style={{maxWidth: '800px'}}>
-        <Gallery
-          // $FlowFixMe
-          value={galleryValue}
-          renderContent={
-            (i) => <Item
-              refId={refId.child(i)}
-            />
-          }
-          disableDrag={disableDrag}
-          onDelete={this.deleteImage}
-          onCreate={this.createImages}
-          onSwap={this.onSwap}
-          // $FlowFixMe
-          serviceConfig={{
-            customRequest: (obj: CustomRequestArgs) => {
-              const {file, onProgress, onSuccess, onError} = obj;
-              if (!imageStorage) {
-                onError(new Error(intl.formatMessage({id: 'image.error.noStorage'})));
-                return;
-              }
+      <Gallery
+        // $FlowFixMe
+        value={galleryValue}
+        renderContent={
+          (i) => <Item
+            refId={refId.child(i)}
+          />
+        }
+        disableDrag={disableDrag}
+        onDelete={this.deleteImage}
+        onCreate={this.createImages}
+        onSwap={this.onSwap}
+        imageStyle={imageStyle}
+        rowHeight={rowHeight || '200px'}
+        grid={grid}
+        // $FlowFixMe
+        serviceConfig={{
+          customRequest: (obj: CustomRequestArgs) => {
+            const {file, onProgress, onSuccess, onError} = obj;
+            if (!imageStorage) {
+              onError(new Error(intl.formatMessage({id: 'image.error.noStorage'})));
+              return;
+            }
 
-              if (limitSize && file.size > limitSize) {
-                onError(new Error(intl.formatMessage({
-                  id: 'image.error.limitSize'
-                }, {
-                  limitSize
-                })));                return;
-              }
-              imageStorage
-                .upload(file, {filename: genFilename(dirname, file.name)}, onProgress)
-                .then(({link}) => onSuccess({data: {link}}))
-                .catch(onError);
-          }}}/>
-      </div>
+            if (limitSize && file.size > limitSize) {
+              onError(new Error(intl.formatMessage({
+                id: 'image.error.limitSize'
+              }, {
+                limitSize
+              })));                return;
+            }
+            imageStorage
+              .upload(file, {filename: genFilename(dirname, file.name)}, onProgress)
+              .then(({link}) => onSuccess({data: {link}}))
+              .catch(onError);
+        }}}/>
     );
   }
 }
