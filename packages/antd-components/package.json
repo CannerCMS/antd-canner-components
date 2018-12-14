@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-components",
-  "version": "0.5.22",
+  "version": "0.5.23",
   "description": "plugins locals",
   "main": "lib/index.js",
   "scripts": {},
@@ -12,7 +12,7 @@
   "author": "canner",
   "license": "ISC",
   "dependencies": {
-    "@canner/antd-array-gallery": "^0.5.22",
+    "@canner/antd-array-gallery": "^0.5.23",
     "@canner/antd-array-panel": "^0.5.6",
     "@canner/antd-array-slider": "^0.5.1",
     "@canner/antd-array-tab_bottom": "^0.5.6",
