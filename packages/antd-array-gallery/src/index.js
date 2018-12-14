@@ -101,6 +101,13 @@ export default class ArrayGallery extends Component<Props> {
     }
   };
 
+  renderContent = (i) => {
+    const {refId} = this.props;
+    return <Item
+      refId={refId.child(i)}
+    />
+  };
+
   deleteImage = (imageIndex: number) => {
     const { intl, refId, onChange } = this.props;
     confirm({
@@ -111,19 +118,29 @@ export default class ArrayGallery extends Component<Props> {
     })
   };
 
+  getEditImage = () => {
+    const {goTo, pattern, keyName, value} = this.props;
+    if (pattern === 'array') {
+      // at top level
+      return (imageIndex) => goTo({
+        pathname: `${keyName}/${value[imageIndex].id}`,
+      });
+    } else {
+      // return undefined to let gallery show the modal
+      return undefined;
+    }
+  }
+
   render() {
-    const { value, refId, imageStorage, uiParams: {limitSize, disableDrag, dirname, imageStyle, rowHeight, grid}, intl } = this.props;
+    const { value, refId, imageStorage, pattern, uiParams: {limitSize, disableDrag, dirname, imageStyle, rowHeight, grid}, intl } = this.props;
     const galleryValue = value.map(photo => photo[this.imageKey].url);
     return (
       <Gallery
         // $FlowFixMe
         value={galleryValue}
-        renderContent={
-          (i) => <Item
-            refId={refId.child(i)}
-          />
-        }
-        disableDrag={disableDrag}
+        renderContent={this.renderContent}
+        disableDrag={disableDrag || pattern === 'array'}
+        onEdit={this.getEditImage()}
         onDelete={this.deleteImage}
         onCreate={this.createImages}
         onSwap={this.onSwap}
