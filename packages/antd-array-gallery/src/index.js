@@ -76,7 +76,7 @@ export default class ArrayGallery extends Component<Props> {
   };
 
   createImages = (values: ImageItem | Array<ImageItem>) => {
-    const { refId, onChange } = this.props;
+    const { refId, onChange, pattern } = this.props;
     const that = this;
     if (Array.isArray(values)) {
       const createValues = values.map((val) => {

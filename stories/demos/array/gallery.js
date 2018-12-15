@@ -47,8 +47,7 @@ export default class GalleryDemo extends React.Component<ArrayTypes<any>> {
             value={value}
             refId={new RefId("gallery")}
             imageStorage={new ImgurStorage({
-              mashapeKey: '<mashapeKey>',
-              clientId: '<clientId>'
+              clientId: 'a214c4836559c77'
             })}
             uiParams={{
               grid: {lg: 2, md: 3, sm: 4}
@@ -62,8 +61,7 @@ export default class GalleryDemo extends React.Component<ArrayTypes<any>> {
             value={value}
             refId={new RefId("gallery")}
             imageStorage={new ImgurStorage({
-              mashapeKey: '<mashapeKey>',
-              clientId: '<clientId>'
+              clientId: 'a214c4836559c77'
             })}
             keyName="photo"
             uiParams={{
