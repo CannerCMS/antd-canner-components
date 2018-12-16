@@ -25,7 +25,7 @@
     "babel-plugin-import": "^1.9.1",
     "babel-runtime": "^6.26.0",
     "canner-ref-id": "^0.1.2",
-    "canner-storage": "^1.5.0-canary.39",
+    "@canner/storage": "^2.0.11",
     "css-loader": "^0.28.10",
     "eslint": "^4.14.0",
     "eslint-config-prettier": "^2.9.0",

@@ -76,28 +76,38 @@ export default class ArrayGallery extends Component<Props> {
   };
 
   createImages = (values: ImageItem | Array<ImageItem>) => {
-    const { refId, onChange, pattern } = this.props;
+    const { refId, onChange, pattern, deploy, keyName } = this.props;
     const that = this;
     if (Array.isArray(values)) {
-      const createValues = values.map((val) => {
-        return {
-          refId,
-          type: "create",
-          value: {
+      if (pattern === 'array') {
+        values.reduce((prev, val) => {
+          return prev.then(() => {
+            onChange(refId, "create", {
+              [that.imageKey]: {
+                url: val.image
+              }
+            });
+            return deploy(keyName);
+          })
+        }, Promise.resolve());
+      } else {
+        values.forEach(val => {
+          onChange(refId, "create", {
             [that.imageKey]: {
               url: val.image
             }
-          }
-        };
-      });
-      // $FlowFixMe
-      onChange(createValues);
+          });
+        });
+      }
     } else {
       onChange(refId, "create", {
         [that.imageKey]: {
           url: values.image
         }
-      });
+      })
+      if (pattern === 'array') {
+        deploy(keyName);
+      }
     }
   };
 

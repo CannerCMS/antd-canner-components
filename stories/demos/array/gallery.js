@@ -2,7 +2,7 @@
 import * as React from 'react';
 import Gallery from 'packages/antd-array-gallery';
 import cmsLocale from 'packages/antd-locales';
-import {ImgurStorage} from "canner-storage";
+import {ImgurStorage} from "@canner/storage";
 import RefId from 'canner-ref-id';
 import {IntlProvider} from 'react-intl';
 import {Divider} from 'antd';
@@ -63,6 +63,7 @@ export default class GalleryDemo extends React.Component<ArrayTypes<any>> {
             imageStorage={new ImgurStorage({
               clientId: 'a214c4836559c77'
             })}
+            deploy={() => Promise.resolve()}
             keyName="photo"
             uiParams={{
               grid: {lg: 2, md: 3, sm: 4},

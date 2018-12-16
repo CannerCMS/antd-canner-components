@@ -1023,6 +1023,13 @@
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/@canner/slate-util-what/-/slate-util-what-1.5.0.tgz#7d016d8aefe4b478c6e768f63266f47b0e425987"
 
+"@canner/storage@^2.0.11":
+  version "2.0.11"
+  resolved "https://registry.npmjs.org/@canner/storage/-/storage-2.0.11.tgz#4d25e9563963a72f373ca0db716ff242706f1b3c"
+  dependencies:
+    axios "^0.18.0"
+    promise-polyfill "^8.1.0"
+
 "@gulp-sourcemaps/identity-map@1.X":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@gulp-sourcemaps/identity-map/-/identity-map-1.0.2.tgz#1e6fe5d8027b1f285dc0d31762f566bccd73d5a9"
@@ -3848,13 +3855,6 @@ canner-slate-editor@^1.5.4:
     slate-toolbar "^1.5.0"
     slate-trailing-block "^0.5.0"
     styled-components "^3.2.3"
-
-canner-storage@^1.5.0-canary.39:
-  version "1.5.0-canary.39"
-  resolved "https://registry.yarnpkg.com/canner-storage/-/canner-storage-1.5.0-canary.39.tgz#2493667cd4f2b2d1a5c50744782767769accb8d0"
-  dependencies:
-    axios "^0.18.0"
-    promise-polyfill "^8.1.0"
 
 case-sensitive-paths-webpack-plugin@^2.1.2:
   version "2.1.2"

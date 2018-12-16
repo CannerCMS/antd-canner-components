@@ -7,7 +7,7 @@ import {Divider} from 'antd';
 import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../types';
 import RefId from 'canner-ref-id';
-import {ImgurStorage} from "canner-storage";
+import {ImgurStorage} from "@canner/storage";
 
 const defaultValue = {
   contentType: "image/png",
