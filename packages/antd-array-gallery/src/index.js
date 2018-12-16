@@ -119,11 +119,14 @@ export default class ArrayGallery extends Component<Props> {
   };
 
   deleteImage = (imageIndex: number) => {
-    const { intl, refId, onChange } = this.props;
+    const { intl, refId, onChange, pattern, deploy, keyName} = this.props;
     confirm({
       title: intl.formatMessage({ id: "array.tab.delete.confirm" }),
       onOk() {
-        onChange(refId.child(imageIndex), "delete")
+        onChange(refId.child(imageIndex), "delete");
+        if (pattern === 'array') {
+          deploy(keyName);
+        }
       }
     })
   };
