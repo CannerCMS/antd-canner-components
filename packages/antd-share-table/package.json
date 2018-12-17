@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-share-table",
-  "version": "0.5.27",
+  "version": "0.5.28",
   "description": "array table",
   "main": "lib/index.js",
   "scripts": {},
