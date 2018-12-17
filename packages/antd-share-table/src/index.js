@@ -152,6 +152,7 @@ export default @injectIntl class TableArrayPlugin extends Component<Props, State
                   title={intl.formatMessage({ id: "array.table.delete.confirm" })}
                   onConfirm={() => this.props.delete(text, record)}
                   okType="danger"
+                  testid="delete-popconfirm"
                 >
                   <Button
                     icon="delete"
