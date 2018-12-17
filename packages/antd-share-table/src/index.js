@@ -143,6 +143,7 @@ export default @injectIntl class TableArrayPlugin extends Component<Props, State
               {!disableUpdate && (
                 <Button
                   icon="edit"
+                  data-testid="edit-button"
                   onClick={() => this.props.update(text, record)}
                 />
               )}
@@ -154,6 +155,7 @@ export default @injectIntl class TableArrayPlugin extends Component<Props, State
                 >
                   <Button
                     icon="delete"
+                    data-testid="delete-button"
                   />
                 </Popconfirm>
               )}
@@ -185,6 +187,7 @@ export default @injectIntl class TableArrayPlugin extends Component<Props, State
                     marginLeft: createButtonPosition === 'right' ? 'auto' : 0,
                     display: 'block'
                   }}
+                  data-testid="add-button"
                   onClick={this.props.create}
                 >
                   <Icon type="plus" />{addText}
