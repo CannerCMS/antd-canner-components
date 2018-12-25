@@ -108,6 +108,34 @@ class EditorComponentDemo4 extends React.Component<PrimitiveTypes<boolean>> {
   }
 }
 
+@ExamplePrimitiveValueWrapper({html: ''})
+class EditorComponentDemo5 extends React.Component<PrimitiveTypes<boolean>> {
+  // toolbar = [
+  //   [{ 'header': [1, 2, 3, 4, 5, false] }],
+  //   ['bold', 'italic', 'underline','strike'],
+  //   [{'list': 'ordered'}, {'list': 'bullet'}],
+  //   ['link'],
+  //   ['clean']
+  // ]
+  render() {
+    const {value, onChange} = this.props;
+    return (
+      <React.Fragment>
+        <Divider>customize toolbar with UIParams.toolbar</Divider>
+        <Editor
+          refId={new RefId("map")}
+          value={value}
+          onChange={onChange}
+          uiParams={{
+            toolbar: this.toolbar
+          }}
+        />
+      </React.Fragment>
+    );
+  }
+}
+
+
 export default class Demo extends React.Component<{}> {
   render() {
     return (
@@ -116,6 +144,7 @@ export default class Demo extends React.Component<{}> {
         <EditorComponentDemo2 />
         <EditorComponentDemo3 />
         <EditorComponentDemo4 />
+        <EditorComponentDemo5 />
       </React.Fragment>
     )
   }
