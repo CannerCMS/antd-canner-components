@@ -23,15 +23,17 @@ class TextareaDemo1 extends React.Component<PrimitiveTypes<string>> {
   }
 }
 
+@ExamplePrimitiveValueWrapper("this is textarea value")
 class TextareaDemo2 extends React.Component<PrimitiveTypes<string>> {
   render() {
-    const {value} = this.props;
+    const {value, onChange} = this.props;
     return (
       <React.Fragment>
         <Divider>Disabled textarea</Divider>
         <Textarea
           refId={new RefId("textarea")}
           value={value}
+          onChange={onChange}
           disabled
           />
       </React.Fragment>
@@ -40,12 +42,33 @@ class TextareaDemo2 extends React.Component<PrimitiveTypes<string>> {
 }
 
 
+@ExamplePrimitiveValueWrapper("this is textarea value")
+class TextareaDemo3 extends React.Component<PrimitiveTypes<string>> {
+  render() {
+    const {value, onChange} = this.props;
+    return (
+      <React.Fragment>
+        <Divider>Formatter - maxLength 10</Divider>
+        <Textarea
+          refId={new RefId("textarea")}
+          value={value}
+          uiParams={{
+            formatter: str => str.substr(0, 10)
+          }}
+          onChange={onChange}
+        />
+      </React.Fragment>
+    )
+  }
+}
+
 export default class Demo extends React.Component<{}> {
   render() {
     return (
       <React.Fragment>
         <TextareaDemo1/>
         <TextareaDemo2/>
+        <TextareaDemo3/>
       </React.Fragment>
     )
   }

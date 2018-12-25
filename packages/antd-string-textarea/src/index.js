@@ -30,13 +30,16 @@ export default class TextareaString extends PureComponent<Props, State> {
   }
 
   onChange = (e: any) => {
+    const {uiParams = {}, onChange, refId} = this.props;
+    const formatter = uiParams.formatter || function(str) {return str;};
     this.setState(
       {
         value: e.target.value
       },
       () => {
-        if (!this.isOnComposition)
-          this.props.onChange(this.props.refId, "update", this.state.value);
+        if (!this.isOnComposition) {
+          onChange(refId, "update", formatter(this.state.value));
+        }
       }
     );
   };
