@@ -1,6 +1,6 @@
 {
   "name": "@canner/antd-components",
-  "version": "0.5.28",
+  "version": "0.5.29",
   "description": "plugins locals",
   "main": "lib/index.js",
   "scripts": {},
@@ -32,7 +32,7 @@
     "@canner/antd-number-input": "^0.5.18",
     "@canner/antd-number-rate": "^0.5.1",
     "@canner/antd-number-slider": "^0.5.1",
-    "@canner/antd-object-editor": "^0.5.15",
+    "@canner/antd-object-editor": "^0.5.29",
     "@canner/antd-object-image": "^0.5.20",
     "@canner/antd-object-map": "^0.5.20",
     "@canner/antd-object-options": "^0.5.1",
@@ -50,7 +50,7 @@
     "@canner/antd-string-link": "^0.5.20",
     "@canner/antd-string-radio": "^0.5.1",
     "@canner/antd-string-select": "^0.5.20",
-    "@canner/antd-string-textarea": "^0.5.4",
+    "@canner/antd-string-textarea": "^0.5.29",
     "@canner/antd-string-time_picker": "^0.5.20"
   },
   "peerDependencies": {
