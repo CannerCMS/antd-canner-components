@@ -44,8 +44,8 @@
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
     "prettier": "^1.9.2",
-    "react": "^16.3.1",
-    "react-dom": "^16.3.1",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
     "slate-html-serializer": "^0.5.8",
     "style-loader": "^0.20.2",
     "styled-components": "^3.2.1"
@@ -61,11 +61,11 @@
     "deploy-storybook": "storybook-to-ghpages"
   },
   "dependencies": {
-    "antd": "^3.10.1",
-    "canner-helpers": "^0.1.9",
+    "antd": "^3.14.1",
+    "canner-helpers": "^3.2.1",
     "lodash": "^4.17.4",
-    "react-icons": "^2.2.7",
-    "react-intl": "^2.4.0"
+    "react-icons": "^3.5.0",
+    "react-intl": "^2.8.0"
   },
   "license": "Apache 2.0"
 }

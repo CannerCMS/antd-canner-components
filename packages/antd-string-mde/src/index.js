@@ -1,29 +1,21 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import SimpleMDE from 'react-simplemde-editor';
-import "simplemde/dist/simplemde.min.css";
+import "easymde/dist/easymde.min.css";
 
-export default class MDEditor extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: props.value
-    };
-  }
+export default (props) => {
+  const {value, onChange, refId} = props;
+  const [mdValue, setMdValue] = useState(value);
 
-  handleChange = (value) => {
-    const {onChange, refId} = this.props;
+  const handleChange = (value) => {
     onChange(refId, "update", value);
-    this.setState = {value}
-  };
-
-  render() {
-    const {value} = this.state
-    return (
-      <SimpleMDE
-        value={value}
-        onChange={this.handleChange}
-        options={{spellChecker: false}}
-      />
-    );
+    return setMdValue(value);
   }
+
+  return (
+    <SimpleMDE
+      value={mdValue}
+      onChange={handleChange}
+      options={{spellChecker: false}}
+    />
+  );
 }
