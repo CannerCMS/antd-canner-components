@@ -1,5 +1,5 @@
 // @flow
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 export function transformMomentToString(date: any, input: string = 'ISO_8601') {
   switch (input) {

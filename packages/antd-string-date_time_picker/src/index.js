@@ -1,9 +1,8 @@
 // @flow
-import React, { PureComponent } from "react";
+import React from "react";
 import { DatePicker } from "antd";
 import defaultMessage from "@canner/antd-locales";
 import {injectIntl} from 'react-intl';
-import moment from 'moment-timezone';
 
 import {
   transformMomentToString,
@@ -22,39 +21,34 @@ type Props = StringDefaultProps & {
   intl: intlShape
 };
 
-@injectIntl
-export default class DateTimePicker extends PureComponent<Props> {
-  static defaultProps = {
-    uiParams: {
-      format: "YYYY/MM/DD",
-      output: "ISO_8601"
-    }
-  };
+const DateTimePicker = (props: Props) => {
+  const { value, uiParams = {
+    format: "YYYY/MM/DD",
+    output: "ISO_8601"
+  }, intl, disabled, refId, onChange } = props;
 
-  onChange = (date: any) => {
-    const { onChange, refId, uiParams = {} } = this.props;
+  const pickerOnChange = (date: any) => {
     onChange(refId, "update", transformMomentToString(date, uiParams.output));
   };
 
-  render() {
-    const { value, uiParams = {}, intl, disabled } = this.props;
-    let date = transformStringToMoment(value, uiParams.output);
-    if (uiParams.timezone) {
-      date = date.tz(uiParams.timezone);
-    }
-    return (
-      <DatePicker
-        value={date}
-        disabled={disabled}
-        format={uiParams && uiParams.format}
-        placeholder={
-          intl.formatMessage({
-            id: "string.datetimepicker.placeholder",
-            defaultMessage: defaultMessage.en["string.datetimepicker.placeholder"]
-          })
-        }
-        onChange={this.onChange}
-      />
-    );
+  let date = transformStringToMoment(value, uiParams.output);
+  if (uiParams.timezone) {
+    date = date.tz(uiParams.timezone);
   }
+  return (
+    <DatePicker
+      value={date}
+      disabled={disabled}
+      format={uiParams && uiParams.format}
+      placeholder={
+        intl.formatMessage({
+          id: "string.datetimepicker.placeholder",
+          defaultMessage: defaultMessage.en["string.datetimepicker.placeholder"]
+        })
+      }
+      onChange={pickerOnChange}
+    />
+  );
 }
+
+export default injectIntl()(DateTimePicker);
