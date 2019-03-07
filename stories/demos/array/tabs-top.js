@@ -25,6 +25,7 @@ export default class TabTopDemo extends Component<ArrayTypes<any>> {
         messages={cmsLocale["en"]}>
         <TabTop
           value={value}
+          uiParams={{titleKey: 'title'}}
           refId={new RefId("tab-top")}
           onChange={onChange}
           />

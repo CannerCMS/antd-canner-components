@@ -46,8 +46,8 @@ export default (defaultValue: PrimitiveValue, rootValue: PrimitiveValue) => (Con
       } else if (type === 'delete' && !refId.firstRefId) {
         log.unshift({refId, type});
         const pathArr = refId.getPathArr();
-        const delValue = value.splice(pathArr[pathArr.length - 1], 1)
-        this.setState({log, value: delValue})
+        value.splice(+pathArr[pathArr.length - 1], 1)
+        this.setState({log, value})
       } else if (type === 'create') {
         // $FlowFixMe
         if (refId.getPathArr()[0] === 'variants') {
