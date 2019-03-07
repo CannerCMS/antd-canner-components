@@ -32,10 +32,10 @@ import SelectDemo from './demos/string/select';
 import StringCardDemo from './demos/string/card';
 
 // array
-import TabTopDemo from './demos/array/tabs-top';
-import TabBottomDemo from './demos/array/tabs-bottom';
-import TabLeftDemo from './demos/array/tabs-left';
-import TabRightDemo from './demos/array/tabs-right';
+// import TabTopDemo from './demos/array/tabs-top';
+// import TabBottomDemo from './demos/array/tabs-bottom';
+// import TabLeftDemo from './demos/array/tabs-left';
+// import TabRightDemo from './demos/array/tabs-right';
 import TagsDemo from './demos/array/tags';
 import GalleryDemo from './demos/array/gallery';
 import SliderDemo from './demos/array/slider';
@@ -96,10 +96,10 @@ storiesOf('Array Component', module)
 
 storiesOf('Array Component/Tab', module)
   .addDecorator(CannerHelperContext)
-  .add('Tab Top', () => <TabTopDemo/>)
-  .add('Tab Bottom', () => <TabBottomDemo/>)
-  .add('Tab Left', () => <TabLeftDemo/>)
-  .add('Tab Right', () => <TabRightDemo/>)
+  // .add('Tab Top', () => <TabTopDemo/>)
+  // .add('Tab Bottom', () => <TabBottomDemo/>)
+  // .add('Tab Left', () => <TabLeftDemo/>)
+  // .add('Tab Right', () => <TabRightDemo/>)
 
 storiesOf('Array Component/Table Route', module)
   .addDecorator(CannerHelperContext)
