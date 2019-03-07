@@ -51,4 +51,4 @@ const DateTimePicker = (props: Props) => {
   );
 }
 
-export default injectIntl()(DateTimePicker);
+export default injectIntl(DateTimePicker);
