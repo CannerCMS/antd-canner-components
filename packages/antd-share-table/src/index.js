@@ -73,6 +73,7 @@ const TableArrayPlugin = (props: Props) => {
       defaultMessage={defaultMessage.en["array.table.addText"]}
     />
   );
+  
   let {
     columns = [],
     bordered,
@@ -126,13 +127,13 @@ const TableArrayPlugin = (props: Props) => {
               <Button
                 icon="edit"
                 data-testid="edit-button"
-                onClick={() => this.props.update(text, record)}
+                onClick={() => props.update(text, record)}
               />
             )}
             {!disableDelete && (
               <Popconfirm
                 title={intl.formatMessage({ id: "array.table.delete.confirm" })}
-                onConfirm={() => this.props.delete(text, record)}
+                onConfirm={() => props.delete(text, record)}
                 okType="danger"
                 testid="delete-popconfirm"
               >
@@ -171,7 +172,7 @@ const TableArrayPlugin = (props: Props) => {
                   display: 'block'
                 }}
                 data-testid="add-button"
-                onClick={this.props.create}
+                onClick={props.create}
               >
                 <Icon type="plus" />{addText}
               </Button>

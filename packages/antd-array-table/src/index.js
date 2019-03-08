@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from "react";
+import React, { useRef } from "react";
 import EditModal from "./editModal";
 import AddModal from "./addModal";
 import {injectIntl} from 'react-intl';
@@ -40,10 +40,6 @@ type Props = ArrayDefaultProps<FieldItem> & {
   reset: Function
 };
 
-type State = {
-  showAddModal: boolean
-}
-
 const Wrapper = styled.div`
   .antd td {
     white-space: nowrap;
@@ -53,106 +49,82 @@ const Wrapper = styled.div`
     word-break: initial;
   }
 `
-export default @injectIntl class TableArrayPlugin extends Component<Props, State> {
-  editModal: ?EditModal;
-  addModal: ?AddModal;
-  static defaultProps = {
-    value: [],
-    showPagination: true
-  };
-  
-  constructor(props) {
-    super(props);
-    this.state = {
-      showAddModal: false,
-      showEditModal: false,
-      value: props.value
-    }
+
+const TableArrayPlugin = (props: Props) => {
+  const addModalEl = useRef(null);
+  const editModalEl = useRef(null);
+
+  const {
+    refId,
+    uiParams,
+    onChange,
+    items,
+    deploy,
+    intl,
+    reset,
+    toolbar,
+    goTo,
+    rootValue,
+    request,
+    keyName,
+    disabled = {},
+    value = []
+  } = props;
+
+  const updateItem = (text, record) => {
+    editModalEl.current.showModal(record.__index);
   }
 
-  static getDerivedStateFromProps(nextProps, nextState) {
-    if (!nextState.showAddModal && !nextState.showEditModal) {
-      return {
-        value: nextProps.value
-      };
-    }
-  }
-
-  update = (text, record) => {
-    this.editModal && this.editModal.showModal(record.__index);
-  }
-
-  delete = (text, record) => {
+  const deleteItem = (text, record) => {
     const index = record.__index;
-    const {onChange, deploy, refId, value} = this.props;
     onChange(refId.child(index), 'delete').then(() => {
       deploy(refId.getPathArr()[0], value[index].id);
     });
   }
 
-  create = () => {
-    const {value} = this.props;
-    this.addModal && this.addModal.showModal(value.length);
+  const createItem = () => {
+    addModalEl.current.showModal(value.length);
   }
-
-  render() {
-    const {
-      refId,
-      uiParams,
-      onChange,
-      items,
-      deploy,
-      intl,
-      reset,
-      toolbar,
-      goTo,
-      rootValue,
-      request,
-      keyName,
-      disabled = {}
-    } = this.props;
-    const {
-      value
-    } = this.state;
-    return (
-      <Wrapper>
-        <Table
-          refId={refId}
-          uiParams={uiParams}
-          onChange={onChange}
-          items={items}
-          deploy={deploy}
-          intl={intl}
-          reset={reset}
-          toolbar={toolbar}
-          goTo={goTo}
-          rootValue={rootValue}
-          request={request}
-          keyName={keyName}
-          disabled={disabled}
-          value={value}
-          delete={this.delete}
-          create={this.create}
-          update={this.update}
-        />
-        <EditModal
-          ref={modal => (this.editModal = modal)}
-          refId={refId}
-          updateKeys={uiParams.updateKeys}
-          updateShowModal={(state) => this.setState({showEditModal: state})}
-          onChange={onChange}
-          reset={reset}
-        />
-        <AddModal
-          ref={modal => (this.addModal = modal)}
-          refId={refId}
-          reset={reset}
-          updateShowModal={(state) => this.setState({showAddModal: state})}
-          createKeys={uiParams.createKeys}
-          onChange={onChange}
-          items={items.items}
-        />
-      </Wrapper>
-    );
-  }
+  
+  return (
+    <Wrapper>
+      <Table
+        refId={refId}
+        uiParams={uiParams}
+        onChange={onChange}
+        items={items}
+        deploy={deploy}
+        intl={intl}
+        reset={reset}
+        toolbar={toolbar}
+        goTo={goTo}
+        rootValue={rootValue}
+        request={request}
+        keyName={keyName}
+        disabled={disabled}
+        value={value}
+        delete={deleteItem}
+        create={createItem}
+        update={updateItem}
+      />
+      <EditModal
+        ref={editModalEl}
+        refId={refId}
+        updateKeys={uiParams.updateKeys}
+        onChange={onChange}
+        reset={reset}
+      />
+      <AddModal
+        ref={addModalEl}
+        refId={refId}
+        reset={reset}
+        updateShowModal={() => {}}
+        createKeys={uiParams.createKeys}
+        onChange={onChange}
+        items={items.items}
+      />
+    </Wrapper>
+  );
 }
+
+export default injectIntl(TableArrayPlugin)

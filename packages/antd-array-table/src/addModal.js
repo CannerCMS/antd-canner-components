@@ -1,16 +1,14 @@
 // @flow
 
-import React, {Component} from "react";
+import React, {useState, forwardRef, useImperativeHandle} from "react";
 import { Modal } from "antd";
 
-// import ChangeMethodComponent from "./changeMethodComponent";
 import { FormattedMessage } from "react-intl";
 import defaultMessage from "@canner/antd-locales";
 import { Item, ConfirmButton, ResetButton } from "canner-helpers";
 import type {FieldId} from "types/DefaultProps";
 
 type Props = {
-  updateShowModal: (showModal: boolean) => void,
   onChange: (refId: FieldId | {[string]: FieldId}, type: string, value?: any) => Promise<void>
   | (Array<{
     refId: FieldId | {[string]: FieldId},
@@ -23,83 +21,62 @@ type Props = {
   items: {[string]: any}
 }
 
-type State = {
-  order: number,
-  visible: boolean
-}
+export default forwardRef((props: Props, ref: any) => {
+  const {reset, refId, createKeys, onChange} = props;
+  const [visible, setVisible] = useState(false);
+  const [order, setOrder] = useState(0);
 
-export default class AddModal extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      visible: false,
-      order: 0,
-    };
-  }
+  useImperativeHandle(ref, () => ({
+    showModal(i: number) {
+      onChange(refId, "create");
+      setVisible(true);
+      setOrder(i)
+    }
+  }));
 
-  showModal = (order: number) => {
-    const {onChange, refId, updateShowModal} = this.props;
-
-    // need to create before update new data
-    onChange(refId, "create");
-    updateShowModal(true);
-    this.setState({
-      visible: true,
-      order
-    });
-  }
-
-
-  closeModalAndReset = () => {
-    const {updateShowModal, reset, refId} = this.props;
+  const closeModalAndReset = () => {
     reset(refId);
-    this.setState({
-      visible: false
-    }, () => {
-      updateShowModal(false);
-    });
+    setVisible(false);
   }
 
-  handleCancel = () => {
-    this.closeModalAndReset();
-  }
-
-  render() {
-    const { createKeys, refId } = this.props;
-    const { visible, order } = this.state;
-    const footer = <div>
+  const footer = (
+    <div>
       <ConfirmButton
         text={<FormattedMessage
           id="array.table.modal.okText"
           defaultMessage={defaultMessage.en["array.table.modal.okText"]}
         />}
-        callback={this.closeModalAndReset}
+        callback={closeModalAndReset}
       />
       <ResetButton
         text={<FormattedMessage
           id="array.table.modal.cancelText"
           defaultMessage={defaultMessage.en["array.table.modal.cancelText"]}
         />}
-        callback={this.closeModalAndReset}
+        callback={closeModalAndReset}
       />
-    </div>;
-    return (
-      <Modal
-        width="80%"
-        visible={visible}
-        onCancel={this.handleCancel}
-        afterClose={this.handleCancel}
-        closable={false}
-        maskClosable={false}
-        footer={footer}
-      >
-        {visible && (
-          <Item
-            refId={refId.child(order)}
-            filter={createKeys && (child => createKeys.indexOf(child.name) !== -1)}
-          />
-        )}
-      </Modal>
-    );
+    </div>
+  );
+
+  if (!visible) {
+    return <div/>
   }
-}
+
+  // visible
+  return (
+    <Modal
+      width="80%"
+      visible={visible}
+      onCancel={closeModalAndReset}
+      afterClose={closeModalAndReset}
+      closable={false}
+      maskClosable={false}
+      footer={footer}
+    >
+      <Item
+        refId={refId.child(order)}
+        filter={createKeys && (child => createKeys.indexOf(child.name) !== -1)}
+      />
+    </Modal>
+  );
+})
