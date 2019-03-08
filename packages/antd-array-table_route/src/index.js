@@ -1,8 +1,7 @@
 // @flow
 
-import React, { Component } from "react";
+import React from "react";
 import Table from '@canner/antd-share-table';
-import PropTypes from 'prop-types';
 import type {FieldId, FieldItems, GotoFn} from 'types/DefaultProps';
 import {injectIntl, intlShape} from 'react-intl';
 import styled from 'styled-components';
@@ -37,78 +36,65 @@ type Props = {
   intl: intlShape
 };
 
-type State = {
-  selectedRowKeys: Array<string>
-}
 
+const ArrayBreadcrumb = (props: Props) => {
 
-export default @injectIntl class ArrayBreadcrumb extends Component<Props, State> {
-  static defaultProps = {
-    value: [],
-    schema: {}
-  };
+  const {
+    uiParams,
+    items,
+    toolbar,
+    intl,
+    deploy,
+    goTo,
+    reset,
+    refId,
+    onChange,
+    keyName,
+    request,
+    rootValue,
+    disabled,
+    value = []
+  } = props;
 
-  static contextTypes = {
-    fetch: PropTypes.func
-  }
-
-  create = () => {
-    const {goTo, refId} = this.props;
+  const createItem = () => {
     goTo({pathname: refId.toString(), operator: 'create'});
   }
 
-  update = (text: string, record: Object) => {
-    const {goTo, refId} = this.props;
+  const updateItem = (text: string, record: Object) => {
     goTo({pathname:`${refId.toString()}/${record.id}`});
   }
 
-  delete = (text: string, record: number) => {
-    const {onChange, deploy, refId, value} = this.props;
+  const deleteItem = (text: string, record: number) => {
     const index = record.__index;
+    
     onChange(refId.child(index), 'delete').then(() => {
       deploy(refId.getPathArr()[0], value[index].id);
     });
   }
 
-  render() {
-    const {
-      uiParams,
-      value,
-      items,
-      toolbar,
-      intl,
-      deploy,
-      goTo,
-      reset,
-      refId,
-      onChange,
-      keyName,
-      request,
-      rootValue,
-      disabled
-    } = this.props;
-    return (
-      <Wrapper>
-        <Table
-          refId={refId}
-          uiParams={uiParams}
-          onChange={onChange}
-          items={items}
-          deploy={deploy}
-          intl={intl}
-          reset={reset}
-          toolbar={toolbar}
-          goTo={goTo}
-          rootValue={rootValue}
-          request={request}
-          keyName={keyName}
-          disabled={disabled}
-          value={value}
-          delete={this.delete}
-          create={this.create}
-          update={this.update}
-        />
-      </Wrapper>
-    );
-  }
+  return (
+    <Wrapper>
+      <Table
+        refId={refId}
+        uiParams={uiParams}
+        onChange={onChange}
+        items={items}
+        deploy={deploy}
+        intl={intl}
+        reset={reset}
+        toolbar={toolbar}
+        goTo={goTo}
+        rootValue={rootValue}
+        request={request}
+        keyName={keyName}
+        disabled={disabled}
+        value={value}
+        delete={deleteItem}
+        create={createItem}
+        update={updateItem}
+      />
+    </Wrapper>
+  );
 }
+
+export default injectIntl(ArrayBreadcrumb)
