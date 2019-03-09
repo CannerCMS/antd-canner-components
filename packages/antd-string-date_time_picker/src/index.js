@@ -30,11 +30,14 @@ const DateTimePicker = (props: Props) => {
   const pickerOnChange = (date: any) => {
     onChange(refId, "update", transformMomentToString(date, uiParams.output));
   };
-
+  
   let date = transformStringToMoment(value, uiParams.output);
   if (uiParams.timezone) {
     date = date.tz(uiParams.timezone);
+  } else if (value === null || value === undefined) {
+    date = undefined;
   }
+
   return (
     <DatePicker
       value={date}

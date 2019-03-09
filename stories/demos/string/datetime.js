@@ -8,7 +8,7 @@ import ExamplePrimitiveValueWrapper from '../ExamplePrimitiveValueHoc';
 import type {PrimitiveTypes} from '../types';
 import RefId from 'canner-ref-id';
 
-@ExamplePrimitiveValueWrapper()
+@ExamplePrimitiveValueWrapper('2019/03/29')
 class DatetimeDemo1 extends Component<PrimitiveTypes<string>> {
   render() {
     const {value, onChange} = this.props;
@@ -32,6 +32,27 @@ class DatetimeDemo1 extends Component<PrimitiveTypes<string>> {
 @ExamplePrimitiveValueWrapper()
 class DatetimeDemo2 extends Component<PrimitiveTypes<string>> {
   render() {
+    const {onChange} = this.props;
+    return (
+      <IntlProvider
+        locale="en"
+        messages={cmsLocale["en"]}>
+        <Fragment>
+          <Divider>Value is null</Divider>
+          <Datetime
+            refId={new RefId("input")}
+            value={null}
+            onChange={onChange}
+            />
+        </Fragment>
+      </IntlProvider>
+    );
+  }
+}
+
+@ExamplePrimitiveValueWrapper('2019/03/29')
+class DatetimeDemo3 extends Component<PrimitiveTypes<string>> {
+  render() {
     const {value, onChange} = this.props;
     return (
       <IntlProvider
@@ -51,8 +72,8 @@ class DatetimeDemo2 extends Component<PrimitiveTypes<string>> {
   }
 }
 
-@ExamplePrimitiveValueWrapper()
-class DatetimeDemo3 extends Component<PrimitiveTypes<string>> {
+@ExamplePrimitiveValueWrapper('2019/03/29')
+class DatetimeDemo4 extends Component<PrimitiveTypes<string>> {
   render() {
     const {value, onChange} = this.props;
     return (
@@ -75,8 +96,8 @@ class DatetimeDemo3 extends Component<PrimitiveTypes<string>> {
   }
 }
 
-@ExamplePrimitiveValueWrapper()
-class DatetimeDemo4 extends Component<PrimitiveTypes<string>> {
+@ExamplePrimitiveValueWrapper('2019/03/29')
+class DatetimeDemo5 extends Component<PrimitiveTypes<string>> {
   render() {
     const {value, onChange} = this.props;
     return (
@@ -99,8 +120,8 @@ class DatetimeDemo4 extends Component<PrimitiveTypes<string>> {
   }
 }
 
-@ExamplePrimitiveValueWrapper()
-class DatetimeDemo5 extends Component<PrimitiveTypes<string>> {
+@ExamplePrimitiveValueWrapper('2019/03/29')
+class DatetimeDemo6 extends Component<PrimitiveTypes<string>> {
   render() {
     const {value, onChange} = this.props;
     return (
@@ -126,7 +147,7 @@ class DatetimeDemo5 extends Component<PrimitiveTypes<string>> {
 const Option = Select.Option;
 
 @ExamplePrimitiveValueWrapper('2018-12-21T06:26:42.169Z')
-class DatetimeDemo6 extends Component<PrimitiveTypes<string>> {
+class DatetimeDemo7 extends Component<PrimitiveTypes<string>> {
   state = {
     timezone: 'Europe/Paris'
   }
@@ -174,6 +195,7 @@ export default class Demo extends React.Component<{}> {
         <DatetimeDemo4/>
         <DatetimeDemo5/>
         <DatetimeDemo6/>
+        <DatetimeDemo7/>
       </Fragment>
     )
   }
