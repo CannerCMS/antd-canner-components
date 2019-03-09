@@ -50,7 +50,7 @@ export default class GalleryDemo extends React.Component<ArrayTypes<any>> {
               clientId: 'a214c4836559c77'
             })}
             uiParams={{
-              grid: {lg: 2, md: 3, sm: 4}
+              grid: {lg: 4, md: 4, sm: 4}
             }}
             onChange={onChange}
             />
@@ -66,7 +66,7 @@ export default class GalleryDemo extends React.Component<ArrayTypes<any>> {
             deploy={() => Promise.resolve()}
             keyName="photo"
             uiParams={{
-              grid: {lg: 2, md: 3, sm: 4},
+              grid: {lg: 4, md: 4, sm: 4},
               disableDrag: true
             }}
             goTo={console.log}

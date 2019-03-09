@@ -157,8 +157,10 @@ export default class ArrayGallery extends Component<Props> {
         onDelete={this.deleteImage}
         onCreate={this.createImages}
         onSwap={this.onSwap}
-        imageStyle={imageStyle}
-        rowHeight={rowHeight || '200px'}
+        imageStyle={imageStyle || {
+          'margin-top': '0px'
+        }}
+        rowHeight={rowHeight || '150px'}
         grid={grid}
         // $FlowFixMe
         serviceConfig={{

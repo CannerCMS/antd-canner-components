@@ -3799,9 +3799,10 @@ canner-helpers@^3.2.1:
   dependencies:
     faker "^4.1.0"
 
-canner-image-gallery@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/canner-image-gallery/-/canner-image-gallery-0.5.0.tgz#d0db9baa96221bcd99d11d6b45b26fea66a709b4"
+canner-image-gallery@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/canner-image-gallery/-/canner-image-gallery-0.6.2.tgz#f0aad2c818e0f66b06d993112b38222967c37ca6"
+  integrity sha512-kK8Qc8Vjne+wogCPqXeehqFBF/Ytub8PRyKWWqBkAl8y86ok3W0RWcq2c5qZ8qRF5WNy8JvugS8Dx952BPm79Q==
   dependencies:
     "@canner/image-upload" "^0.13.4"
     grid-breakpoint "^1.7.0"
