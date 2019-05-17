@@ -1,35 +1,48 @@
+// @flow
 import React from "react";
 import { Alert, Button, Icon, Upload } from "antd";
 
-export default class FileComponent extends React.Component {
-  constructor(props) {
+type Props = {
+  label?: string,
+  multiple: boolean,
+  onChange: (value: Array<string> | string) => void,
+  onClose: (e: any) => void,
+  serviceConfig: any
+};
+
+type State = {
+  fileList: Array<any>,
+  error: ?Error
+};
+
+export default class FileComponent extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
 
-    this.uploadFile = this.uploadFile.bind(this);
+    (this: any).uploadFile = this.uploadFile.bind(this);
     this.state = {
       error: null,
-      fileList: this.props.defaultValue || []
+      fileList: (this: any).props.defaultValue || []
     };
   }
 
-  finishErrorEdit = () => {
+  onClose = (e: any) => {
     this.setState(
       {
         fileList: [],
-        displayFileList: [],
         error: null
       }
     );
   }
 
-  onError = (e) => {
+  onError = (e: any) => {
     this.setState({
       fileList: [],
       error: e
     });
   }
 
-  uploadFile(info) {
+  uploadFile(info: { file: any, fileList: Array<any> }) {
     let fileList = [...info.fileList];
 
     fileList = fileList.slice(-1);
@@ -67,7 +80,7 @@ export default class FileComponent extends React.Component {
           <Alert
             closable
             message={error.message}
-            onClose={this.finishErrorEdit}
+            onClose={this.onClose}
             showIcon
             type="error"
           />
