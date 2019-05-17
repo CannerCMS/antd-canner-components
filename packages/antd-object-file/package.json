@@ -1,0 +1,24 @@
+{
+  "name": "@canner/antd-object-file",
+  "version": "0.5.30",
+  "description": "object file",
+  "main": "lib/index.js",
+  "scripts": {},
+  "keywords": [
+    "canner",
+    "cms",
+    "file"
+  ],
+  "author": "canner",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
+  },
+  "canner": {
+    "cannerDataType": "file"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "6ad58dfd03c39ef5ee549d8a3910096e8728008e"
+}
