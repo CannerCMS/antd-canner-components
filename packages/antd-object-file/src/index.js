@@ -1,7 +1,9 @@
 // @flow
 import React, { PureComponent } from "react";
 import { Upload, Button, Icon } from "antd";
+import { FormattedMessage, injectIntl } from "react-intl";
 import { isArray } from "lodash";
+import defaultMessage from '@canner/antd-locales';
 import FileComponent from "./file";
 
 // type
@@ -9,6 +11,7 @@ import type {ObjectDefaultProps} from 'types/ObjectDefaultProps';
 
 type Props = ObjectDefaultProps & {
   fileStorage: any,
+  intl: Object,
   uiParams: {
     filename?: string,
     limitSize?: number
@@ -41,6 +44,7 @@ function getFilePayloadByValue(value: Object) {
   };
 }
 
+@injectIntl
 export default class File extends React.PureComponent<Props> {
   onChange = (newValue: Array<string> | string) => {
     const { uiParams: { filename }, value } = this.props;
@@ -55,6 +59,7 @@ export default class File extends React.PureComponent<Props> {
   render() {
     const {
       fileStorage,
+      intl,
       uiParams: { filename, limitSize },
       value,
     } = this.props;
@@ -73,12 +78,15 @@ export default class File extends React.PureComponent<Props> {
           customRequest: (obj) => {
             const { file, onError, onProgress, onSuccess } = obj;
             if (!fileStorage) {
-              onError(new Error('There is no storage config so you can\'t upload file. Checkout the storage section to know more'));
+              onError(new Error(intl.formatMessage({ id: 'file.error.noStorage' })));
               return;
             }
 
             if (limitSize && file.size > limitSize) {
-              onError(new Error(`The file is larger than the limit ${limitSize}`));
+              onError(new Error(intl.formatMessage(
+                { id: 'file.error.limitSize' },
+                { limitSize }
+              )));
               return;
             }
 
