@@ -50,6 +50,7 @@ import OptionsDemo from './demos/object/options';
 import MapDemo from './demos/object/map';
 import VariantsDemo from './demos/object/variants';
 import ImageDemo from './demos/object/image';
+import FileDemo from './demos/object/file';
 import EditorDemo from './demos/object/editor';
 import SlateDemo from './demos/object/slate_editor';
 
@@ -105,13 +106,14 @@ storiesOf('Array Component/Table Route', module)
   .addDecorator(CannerHelperContext)
   .add('Basic', () => <TableRouteDemo/>)
   .add('With Toolbar', () => <TableRouteWithToolbarDemo/>)
-  
+
 storiesOf('Object Component', module)
   .addDecorator(CannerHelperContext)
   .add('Options', () => <OptionsDemo/>)
   .add('Map', () => <MapDemo/>)
   .add('Variants', () => <VariantsDemo/>)
   .add('Image', () => <ImageDemo/>)
+  .add('File', () => <FileDemo />)
   .add('Editor', () => <EditorDemo/>)
   .add('Slate', () => <SlateDemo/>)
 

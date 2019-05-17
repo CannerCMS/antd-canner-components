@@ -42,8 +42,10 @@ export default {
     "query.actions.export": "Export",
     "query.actions.import": "Import",
     "query.actions.filter": "Add Filter",
-    "image.error.noStorage": "There is no imageStorage, please contact your development team.",
+    "file.error.limitSize": "The file is larger than the limit {limitSize}."
+    "file.error.noStorage": "There is no fileStorage, please contact your development team.",
     "image.error.limitSize": "The image is larger than the limit {limitSize}."
+    "image.error.noStorage": "There is no imageStorage, please contact your development team.",
   },
   zh: {
     "array.panel.delete.confirm": "您確定要刪除這個類別嗎？",
@@ -83,6 +85,8 @@ export default {
     "query.actions.export": "匯出",
     "query.actions.import": "匯入",
     "query.actions.filter": "搜尋",
+    "file.error.limitSize": "找不到任何的 fileStorage，請聯絡您的工程團隊。",
+    "file.error.noStorage": "超過檔案大小限制 {limitSize}。"
     "image.error.noStorage": "找不到任何的 imageStorage，請聯絡您的工程團隊。",
     "image.error.limitSize": "超過圖片大小限制 {limitSize}。"
   }
